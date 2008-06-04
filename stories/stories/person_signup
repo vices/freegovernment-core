@@ -1,7 +1,45 @@
 Story: Some story about person_signup
 
-  As a ...
-  I want to ...
-  So that ...
+  As a Person
+  I want to be able to signup
+  So that I can participate on the site
   
-  Scenario: ...
+  Scenario: Invalid signup data is submitted
+    When I signup with invalid data
+    Then 0 new users should be created
+    And 0 new people should be created
+    
+  Scenario: Invalid signup data is submitted requesting HTML
+    When I signup with invalid data
+    Then the person signup form should be rendered
+    And the response should contain an error notice
+    
+  Scenario: Invalid signup data is submitted requesting XML
+    When I request an XML response
+    And I signup with invalid data
+    Then the XML response should contain an error notice
+  
+  Scenario: Invalid signup data is submitted requesting JSON
+    When I request a JSON response
+    And I signup with invalid data
+    Then the JSON response should contain an error notice
+   
+  Scenario: Valid signup data is submitted
+    When I signup with valid data
+    Then 1 new user should be created
+    And 1 new person should be created
+    
+  Scenario: Valid signup data is submitted requesting HTML
+    When I signup with valid data
+    Then the response should contain an activation notice
+    
+  Scenario: Valid signup data is submitted requesting XML
+    When I request an XML response
+    And I signup with valid data
+    Then the XML response should contain an activation notice
+    
+  Scenario: Valid signup dta is submitted requestion JSON
+    When I request a JSON response
+    And I signup with valid data
+    Then the JSON response should contain an activation notice
+    
