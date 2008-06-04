@@ -1,4 +1,4 @@
-
+=begin
 @users_voted = users_voted[]
 @poll_votes = { 'yes' => 0, 'no' => 0 }
 
@@ -17,6 +17,7 @@
     
      
   end
+
 And: poll is open for voting
 When: User votes
 Then: Poll tally is changed
@@ -24,3 +25,4 @@ Then: Poll tally is changed
 
 And: User is no longer able to vote
 And: Resulting poll is displayed
+=end
