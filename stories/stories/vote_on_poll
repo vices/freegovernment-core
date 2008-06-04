@@ -1,0 +1,39 @@
+Story: Vote on Poll
+  
+  As a user
+  I want to vote on a poll
+  So that I may share my opinion
+
+  Scenario: Logged in person votes
+    Given I am logged in
+    And a poll is open for voting
+    When I vote on the poll
+    Then the poll tally should change ?
+    
+  Scenario: Logged in person votes, HTML
+    Given I am logged in
+    And a poll is open for voting
+    When I vote on the poll
+    Then the response should include poll results
+    
+  Scenario: Logged in person votes, XML
+    Given I am logged in
+    And a poll is open for voting
+    When I request an XML response
+    When I vote on the poll
+    Then the response should includ poll results
+
+  Scenario: Logged in person votes, JSON
+    Given I am logged in
+    And a poll is open for voting
+    When I request a JSON response
+    And I vote on the poll
+    Then the response should includ poll results
+
+  Scenario: Logged off person votes
+    Given User is logged off
+    And Poll is open for voting
+    When User votes
+    Then Poll vote is not added
+    And User is redirected to login page
+

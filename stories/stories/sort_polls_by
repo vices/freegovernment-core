@@ -1,0 +1,19 @@
+As a user
+I want to sort the polls
+So that I can find the ones I want
+
+Scenario: User selects sort method HTML
+    When I select a sort method
+    Then the server searches the cache
+    And displays the polls the way I chose
+    
+Scenario: User selects sort method XML
+    When I select a sort method
+    Then the server searches the cache
+    And displays the polls the way I chose
+    
+    
+Scenario: User selects sort method JSON
+    When I select a sort method
+    Then the server searches the cache
+    And displays the polls the way I chose

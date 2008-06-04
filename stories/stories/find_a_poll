@@ -1,0 +1,18 @@
+As a user
+I want to find a poll
+So that I may express my opinion
+
+Scenario: User searches for a poll with valid HTML request
+    When I submit my request
+    Then The server searches for matching polls
+    And I am brought to the results page
+
+Scenario: User searches for a poll with valid XML request
+    When I submit my request
+    Then The server searches for matching polls
+    And I am brought to the results page
+    
+Scenario: User searches for a poll with valid JSON request
+    When I submit my request
+    Then The server searches for matching polls
+    And I am brought to the results page

@@ -1,0 +1,46 @@
+As a user
+I want to create a poll
+So that I may learn others views
+
+Scenario: Logged off user tries to make a poll
+Given I am logged off
+When I click poll create
+Then I am redirected to the login page
+
+Scenario: Logged on user creates a poll HTML
+    Given I am logged on
+    When I fill out valid poll data
+    And I submit
+    Then the poll is created
+    And I am taken to its presentation page
+
+
+
+Scenario: Logged on user creates a poll XML
+    Given I am logged on
+    When I fill out valid poll data
+    And I submit
+    Then the poll is created
+    And I am taken to its presentation page
+
+Scenario: Logged on user creates a poll JSON
+    Given I am logged on
+    When I fill out valid poll data
+    And I submit
+    Then the poll is created
+    And I am taken to its presentation page
+    
+Scenario: Invalid poll data is submitted requesting JSON
+    When I request a JSON response
+    And I submit poll with invalid data
+    Then the JSON response should contain an error notice
+
+Scenario: Invalid Poll data is submitted requesting HTML
+    When I request a HTML response
+    And I submit poll with invalid data
+    Then the HTML response should contain an error notice
+    
+Scenario: Invalid Poll data is submitted requesting XML
+    When I request a XML response
+    And I submit poll with invalid data
+    Then the XML response should contain an error notice
