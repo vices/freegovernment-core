@@ -1,4 +1,4 @@
-Story: Some story about person_signup
+next Story: Some story about person_signup
 
   As a Person
   I want to be able to signup
@@ -38,7 +38,7 @@ Story: Some story about person_signup
     And I signup with valid data
     Then the XML response should contain an activation notice
     
-  Scenario: Valid signup dta is submitted requestion JSON
+  Scenario: Valid signup data is submitted requesting JSON
     When I request a JSON response
     And I signup with valid data
     Then the JSON response should contain an activation notice
