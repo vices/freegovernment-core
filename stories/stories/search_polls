@@ -1,0 +1,32 @@
+Story: Searching for polls
+
+  As a user
+  I want to search for polls
+  So that I may find topics of interest
+  
+  
+  Scenario: User submits valid poll search request
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then the poll database is parsed
+  
+  Scenario: User submits valid poll search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then I am redirected to the search results page
+    And it contains my results
+    
+  Scenario: User submits invalid poll search request
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then the poll database is not parsed
+    
+  Scenario: User submits invalid poll search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then I am redirected to the polls search page
+    And the response contains errors
