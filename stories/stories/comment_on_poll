@@ -1,0 +1,23 @@
+Story: User comments on a poll
+
+  As a user
+  I want to comment on polls
+  So that I may substantially express my views
+  
+  Scenario: User submits invalid comment
+    Given I am logged in
+    When I post an invalid comment
+    Then poll comments remain unchanged
+  
+  Scenario: User submits invalid comment, HTML
+    Given
+  
+  Scenario: User submits valid comment
+    Given I am logged in
+    When I post a valid comment
+    Then 1 new post exists
+    
+  Scenario: User submits valid comment, HTML
+    Given I am logged in
+    When I post a valid comment
+    Then I am redirected to the last page of the poll topic
