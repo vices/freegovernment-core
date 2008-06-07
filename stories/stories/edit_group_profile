@@ -1,0 +1,60 @@
+Story: Editing Group Profile
+
+  As a group
+  I want to edit my profile
+  So that others know accurately what I am about
+
+  Scenario: Not logged in and attempt to view edit page, HTML
+    When I request the group edit page
+    Then I should be redirected to the login page
+
+  Scenario: Not logged and attempt to edit a group
+    When I submit data
+    Then my changes should not be saved
+  
+  Scenario: Not logged and attempt to edit a group, HTML
+    When I submit data
+    Then I should be redirected to the login page
+  
+  Scenario: Logged in and view edit page, HTML
+    Given I am logged in
+    When I request the group edit page
+    Then the reponse should contain the group edit form
+  
+  Scenario: Attempt to edit another group
+    Given I am logged in
+    When my data is for another user
+    And I submit data
+    Then no changes should be saved
+
+  Scenario: Attempt to edit another group, HTML
+    Given I am logged in
+    When my data is for another user
+    And I submit data
+    Then I should be redirected to the start page page
+  
+  Scenario: Logged in group submits invalid profile data
+    Given I am a group
+    And I am logged in
+    When I submit invalid data
+    Then my changes should not be saved
+    
+  Scenario: Logged in user submits invalid profile data, HTML
+    Given I am a group
+    And I am logged in
+    When I submit invalid data
+    Then I should be redirected to the edit group page
+    And the response should contain errors
+  
+  Scenario: Logged in user submits valid profile edit data
+    Given I am a group
+    And I am logged in
+    When I submit valid data
+    Then my changes should be saved
+    
+  Scenario: Logged in user submits valid profile edit data, HTML
+    Given I am a group
+    And I am logged in
+    When I submit valid data
+    Then I should be redirected to the group page
+    

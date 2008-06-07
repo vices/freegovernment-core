@@ -33,5 +33,6 @@ Story: Person Signup
     
   Scenario: Valid signup data including CAPTCHA is submitted, HTML
     When I signup with valid data
-    Then the response should contain an activation notice
+    Then I should be redirected to the start page
+    And I should be logged in
     

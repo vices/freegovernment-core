@@ -1,0 +1,56 @@
+Story: Editing Person Profile
+
+  As a Person
+  I want to edit my profile
+  So that others know accurately who I am
+  
+  Scenario: Not logged in and attempt to view edit page, HTML
+    When I request the person edit page
+    Then I should be redirected to the login page
+  
+  Scenario: Not logged and attempt to update a person
+    When I submit data
+    Then my changes should not be saved
+  
+  Scenario: Not logged and attempt to update a person, HTML
+    When I submit data
+    Then I should be redirected to the login page
+  
+  Scenario: Logged in and view edit page, HTML
+    Given I am logged in
+    When I request the person edit page
+    Then the reponse should contain the person edit form
+  
+  Scenario: Attempt to update another person
+    Given I am logged in
+    When my data is for another user
+    And I submit data
+    Then no changes should be saved
+
+  Scenario: Attempt to update another person, HTML
+    Given I am logged in
+    When my data is for another user
+    And I submit data
+    Then I should be redirected to the start page page
+    
+  Scenario: Logged in person submits invalid profile data
+    Given I am logged in
+    When I submit invalid data
+    Then my changes should not be saved
+    
+  Scenario: Logged in person submits invalid profile data, HTML
+    Given I am logged in
+    When I submit invalid data
+    Then I should be redirected to the edit user page
+    And the response should contain errors
+  
+  Scenario: Logged in person submits valid profile edit data
+    Given I am logged in
+    When I submit valid data
+    Then my changes should be saved
+    
+  Scenario: Logged in person submits valid profile edit data, HTML
+    Given I am logged in
+    When I submit valid data
+    Then I should be redirected to the edit user page
+    
