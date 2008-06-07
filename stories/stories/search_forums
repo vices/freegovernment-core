@@ -1,0 +1,32 @@
+Story: Searching forums
+
+  As a user
+  I want to find specific topics in the forums
+  So that I may participate in the discussions
+  
+  
+  Scenario: User submits valid topic search request
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then the topic database is parsed
+  
+  Scenario: User submits valid topic search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then I am redirected to the search results page
+    And it contains my results
+    
+  Scenario: User submits invalid topic search request
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then the topic database is not parsed
+    
+  Scenario: User submits invalid topic search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then I am redirected to the topic search page
+    And the response contains errors
