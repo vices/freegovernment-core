@@ -1,39 +1,37 @@
-Story: Vote on Poll
-  
+Story: User votes on a poll
+
   As a user
-  I want to vote on a poll
-  So that I may share my opinion
-
-  Scenario: Logged in person votes
+  I want to vote on polls
+  So that I may share my opinions
+  
+  
+  Scenario: User casts first vote 
     Given I am logged in
-    And a poll is open for voting
-    When I vote on the poll
-    Then the poll tally should change ?
+    And it is my first vote
+    When I cast my vote
+    Then 1 vote should be added to my selection
+    And 1 vote for every person I represent should be added to my selection
     
-  Scenario: Logged in person votes, HTML
+  Scenario: User casts first vote, HTML
     Given I am logged in
-    And a poll is open for voting
-    When I vote on the poll
-    Then the response should include poll results
+    And it is my first vote
+    When I cast my vote
+    Then a new poll results partial should render
+    And a new poll selection partial should render
     
-  Scenario: Logged in person votes, XML
+  Scenario: User recasts vote
     Given I am logged in
-    And a poll is open for voting
-    When I request an XML response
-    When I vote on the poll
-    Then the response should includ poll results
-
-  Scenario: Logged in person votes, JSON
+    And it is not my first vote
+    When I cast my vote
+    Then 1 vote should be removed from my previous selection
+    And 1 vote for every person I represent should be removed from my previous selection
+    And 1 vote should be added to my selection
+    And 1 vote for every person I represent should be added to my selection
+    
+  Scenario: User recasts vote, HTML
     Given I am logged in
-    And a poll is open for voting
-    When I request a JSON response
-    And I vote on the poll
-    Then the response should includ poll results
-
-  Scenario: Logged off person votes
-    Given User is logged off
-    And Poll is open for voting
-    When User votes
-    Then Poll vote is not added
-    And User is redirected to login page
-
+    And it is not my first vote
+    When I cast my vote
+    Then A new poll results partial should render
+    And a new poll selection partial should render
+    
