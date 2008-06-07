@@ -1,45 +1,37 @@
-Story: Some story about person_signup
+Story: Person Signup
 
-  As a Person
+  As a person
   I want to be able to signup
   So that I can participate on the site
   
-  Scenario: Invalid signup data is submitted
-    When I signup with invalid data
+  Scenario: Signup data without CAPTCHA is submitted
+    When I signup without CAPTCHA
+    Then 0 new users should be created
+    And 0 new people should be created
+  
+  Scenario: Signup data without CAPTCHA is submitted, HTML
+    When I signup without CAPTCHA
+    Then the person signup form should be rendered
+    And the response should contain an error notice
+
+
+  Scenario: Invalid signup data including CAPTCHA is submitted
+    When I signup with invalid data including CAPTCHA
     Then 0 new users should be created
     And 0 new people should be created
     
-  Scenario: Invalid signup data is submitted requesting HTML
-    When I signup with invalid data
+  Scenario: Invalid signup data including CAPTCHA is submitted, HTML
+    When I signup with invalid data including CAPTCHA
     Then the person signup form should be rendered
     And the response should contain an error notice
-    
-  Scenario: Invalid signup data is submitted requesting XML
-    When I request an XML response
-    And I signup with invalid data
-    Then the XML response should contain an error notice
-  
-  Scenario: Invalid signup data is submitted requesting JSON
-    When I request a JSON response
-    And I signup with invalid data
-    Then the JSON response should contain an error notice
+
    
-  Scenario: Valid signup data is submitted
-    When I signup with valid data
+  Scenario: Valid signup data including CAPTCHA is submitted
+    When I signup with valid data including CAPTCHA
     Then 1 new user should be created
     And 1 new person should be created
     
-  Scenario: Valid signup data is submitted requesting HTML
+  Scenario: Valid signup data including CAPTCHA is submitted, HTML
     When I signup with valid data
     Then the response should contain an activation notice
-    
-  Scenario: Valid signup data is submitted requesting XML
-    When I request an XML response
-    And I signup with valid data
-    Then the XML response should contain an activation notice
-    
-  Scenario: Valid signup data is submitted requesting JSON
-    When I request a JSON response
-    And I signup with valid data
-    Then the JSON response should contain an activation notice
     

@@ -1,0 +1,24 @@
+Story: Logout
+
+  As a user
+  I want to be able to logout
+  So that my account stays secure
+  
+  Scenario: Logout
+    When I logout
+    Then my session is cleared
+  
+  Scenario: Logout, HTML
+    When I logout
+    Then I am redirected to the home page
+    
+  Scenario: Logout prevented by warning
+    Given my session data has been set to alert at logout
+    When I attempt logout
+    Then my user session remains unchanged
+    
+  Scenario: Logout prevented by warning, HTML
+    Given my session data has been set to alert at logout
+    When I attempt logout
+    Then the response contains a logout warning
+    And a button to force logout

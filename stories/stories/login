@@ -1,0 +1,52 @@
+Story: User Login
+
+  As a user
+  I want to login
+  So that I may be recognized
+
+  Scenario: Attempt to login while logged in
+    Given I am logged in
+    When I attempt to login
+    Then my user session data will remains unchanged
+    
+  Scenario: Attempt to login while logged in, HTML
+    Given I am logged in
+    When I attempt to login
+    Then I will be redirected to the start page
+    And the reponse will include a failure notice for conflicting login
+
+  Scenario: Attempt to login with non existant username
+    Given I am not logged in
+    When I provide a non existing username
+    Then I am not logged in
+    And the login page is rendered
+    And the response will include an error notice
+
+  Scenario: Attempt login with existing username and wrong password
+    Given I am an existing user
+    And I am not logged in
+    When my password is wrong
+    And I attempt to login
+    Then I am not logged in
+    
+  Scenario: Attempt login with existing username and wrong password, HTML
+    Given I am an existing user
+    And I am not logged in
+    When my password is wrong
+    And the login page is rendered
+    And the response includes an error notice
+    
+  
+  Scenario: Attempt login with existing username and correct password
+    Given I am an existing user
+    And I am not logged in
+    When I provide a correct username and password
+    Then I am logged in
+    
+  Scenario: Attempt login with existing username and correct password, HTML
+    Given I am an existing user
+    And I am not logged in
+    When I provide a correct username and password
+    Then I am redirected to the start page
+    And I am logged in
+    And my user session data is set
