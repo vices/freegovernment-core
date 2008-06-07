@@ -1,0 +1,26 @@
+Story: Creating Posts
+
+  As a user
+  I want to create posts
+  So that I may participate in discussion
+  
+  Scenario: User submits valid post data
+    Given I am logged in
+    When I submit valid post data
+    Then 1 new post is created
+  
+  Scenario: User submits valid post data
+    Given I am logged in
+    When I submit valid post data
+    Then I am redirected to the topic page containing my post
+    
+  Scenario: User submits invalid data
+    Given I am logged in
+    When I submit invalid data 
+    Then 0 new posts are created
+    
+  Scenario: User submits invalid data, HTML
+    Given I am logged in
+    When I submit invalid data 
+    Then I am redirected to the post creation form
+    And the response should contain errors

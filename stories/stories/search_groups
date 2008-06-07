@@ -1,0 +1,32 @@
+Story: Searching for groups
+
+  As a user
+  I want to find groups
+  So that I may expand my network
+  
+  
+  Scenario: User submits valid group search request
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then the groups database is parsed
+  
+  Scenario: User submits valid group search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is valid
+    Then I am redirected to the search results page
+    And it contains my results
+    
+  Scenario: User submits invalid group search request
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then the groups database is not parsed
+    
+  Scenario: User submits invalid group search request, HTML
+    Given I am logged in
+    When I submit a search request
+    And it is invalid
+    Then I am redirected to the group search page
+    And the response contains errors

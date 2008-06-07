@@ -1,0 +1,40 @@
+Story: Creating topics
+
+  As a user
+  I want to create topics
+  So that I may facilitate discussion 
+  
+  
+  Scenario: User submits valid topic data including CAPTCHA
+    Given I am logged in
+    When I submit valid topic data including CAPTCHA
+    Then 1 new topic is created
+  
+  Scenario: User submits valid topic data including CAPTCHA, HTML
+    Given I am logged in
+    When I submit valid topic data including CAPTCHA
+    Then I am redirected to the new topic page
+    
+  Scenario: User submits valid data without CAPTCHA
+    Given I am logged in
+    When I submit valid topic data without CAPTCHA
+    Then 0 new topics are created
+    
+   Scenario: User submits valid data without CAPTCHA, HTML
+    Given I am logged in
+    When I submit valid topic data without CAPTCHA
+    Then I am redirected to the creation form
+    And the response should contain errors
+    
+  Scenario: User submits invalid data including CAPTCHA
+    Given I am logged in
+    When I submit invalid data 
+    And I include CAPTCHA
+    Then 0 new topics are created
+    
+  Scenario: User submits invalid data including CAPTCHA, HTML
+    Given I am logged in
+    When I submit invalid data 
+    And I include CAPTCHA
+    Then I am redirected to the topic creation form
+    And the response should contain errors
