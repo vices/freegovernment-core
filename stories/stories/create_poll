@@ -1,0 +1,39 @@
+Story: Creating polls
+
+  As a user
+  I want to create polls
+  To gather others opinions on topics of interest
+  
+  Scenario: User submits valid poll data including CAPTCHA
+    Given I am logged in
+    When I submit valid poll data including CAPTCHA
+    Then 1 new poll is created
+  
+  Scenario: User submits valid poll data including CAPTCHA, HTML
+    Given I am logged in
+    When I submit valid poll data including CAPTCHA
+    Then I am redirected to the display page
+    
+  Scenario: User submits valid data without CAPTCHA
+    Given I am logged in
+    When I submit valid poll data without CAPTCHA
+    Then 0 new polls are created
+    
+   Scenario: User submits valid data without CAPTCHA, HTML
+    Given I am logged in
+    When I submit valid poll data without CAPTCHA
+    Then I am redirected to the submission form
+    And the response should contain errors
+    
+  Scenario: User submits invalid data including CAPTCHA
+    Given I am logged in
+    When I include CAPTCHA
+    And I submit invalid data 
+    Then 0 new polls are created
+    
+  Scenario: User submits invalid data including CAPTCHA, HTML
+    Given I am logged in
+    When I include CAPTCHA
+    And I submit invalid data
+    Then I am redirected to the poll submission form
+    And the response should contain errors

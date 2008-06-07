@@ -1,0 +1,27 @@
+Story: Browse groups
+
+  As a user
+  I want to browse groups
+  So that I can find groups that interest me
+  
+  Scenario: User requests a sorted group index
+    When I have selected an order method
+    And I submit my request
+    Then sorted group lists are constructed
+    
+  Scenario: User requests a sorted group index, HTML
+    When I have selected an order method
+    And I submit my request
+    Then the search page is rendered
+    And it contains the sorted list of groups
+  
+  Scenario: User requests an invalid sort method
+    When I select an invalid order method
+    And I submit my request
+    Then no sorted group lists are constructed
+    
+  Scenario: User requests an invalid sort method, HTML
+    When I select an invalid order method
+    And I submit my request
+    Then I am redirected to the browse group page
+    And the response contains errors

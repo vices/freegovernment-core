@@ -1,0 +1,27 @@
+Story: Browsing forums
+
+  As a user 
+  I want to browse the forums
+  So that I may find discussions of interest
+  
+  Scenario: User requests a sorted topic index
+    When I have selected an order method
+    And I submit my request
+    Then sorted forum lists are constructed
+    
+  Scenario: User requests a sorted topic index, HTML
+    When I have selected an order method
+    And I submit my request
+    Then the search page is rendered
+    And it contains the sorted list of topics
+  
+  Scenario: User requests an invalid sort method
+    When I select an invalid order method
+    And I submit my request
+    Then no sorted topic lists are constructed
+    
+  Scenario: User requests an invalid sort method, HTML
+    When I select an invalid order method
+    And I submit my request
+    Then I am redirected to the browse topic page
+    And the response contains errors
