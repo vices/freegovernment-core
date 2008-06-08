@@ -4,9 +4,7 @@ module UserSpecHelper
       :username => 'Foysavas',
       :email => 'foysavas@gmail.com',
       :password => 'password',
-      :password_confirmation => 'password',
-      :salt => 'salty',
-      :crypted_password => 'there'
+      :password_confirmation => 'password'
     }
   end
 end
