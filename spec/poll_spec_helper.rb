@@ -1,10 +1,12 @@
-module PollsSpecHelper
+module PollSpecHelper
+
   def valid_new_poll
     {
-      :question => 'Free Government Group?',
-      :description => 'FREE GOVERNMENT GROUP!',
-      :created_at => '1324-23-42-32-42-32',
-      :user_id => 'Tom Hamburg'
+      :question => "To be free or not to be free?",
+      :description => "Certainly a good question.",
+      :user_id => 1
+ 
     }
   end
+  
 end

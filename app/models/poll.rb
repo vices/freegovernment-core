@@ -1,14 +1,20 @@
 class Poll
   include DataMapper::Resource
   include DataMapper::Validate
-  
-  #TODO RENAME FILE SINGULAR
-  
+  include DataMapper::Timestamp
   
   property :id, Integer, :serial => true
-  property :poll_id, Integer, :nullable => false
   property :user_id, Integer, :nullable => false
-  property :topic_id, String
-  property :constituents_yes_count, Integer, :default => 0
-  property :constituents_no_count, Integer, :default => 0
+  property :forum_id, Integer
+  property :yes_count, Integer, :default => 0
+  property :no_count, Integer, :default => 0
+  property :registered_yes_count, Integer, :default => 0
+  property :registered_no_count, Integer, :default => 0
+  property :question, String, :nullable => false, :length => 140
+  property :description, DM::Text
+  property :created_at, DateTime
+  property :updated_at, DateTime
+  
+  validates_length :question, :within => 15..140
+
 end
