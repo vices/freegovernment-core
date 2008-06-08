@@ -59,7 +59,7 @@ class User
     end
     
     def authenticate(username, password)
-      u = User.first(:username => username)
+      u = User.first(:username => username.downcase)
       u && u.authenticated?(password) ? u : nil
     end
   end

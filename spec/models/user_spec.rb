@@ -45,7 +45,7 @@ describe User, "in general"  do
   end
   
     it "should require an email only between 8 and 40 chars" do
-    (3..40).each do |num|
+    (2..34).each do |num|
       @user.email = ("d" * num) + "@a.com"
       @user.valid?
       @user.errors.on(:email).should be_nil
