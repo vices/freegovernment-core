@@ -42,9 +42,11 @@ describe Person, "upon creation" do
       @person.full_name = "a" * num
       @person.valid?
       @person.errors.on(:full_name).should be_nil
-      end
+    end
   end
 
+  # Not actually necessary, but important thing to learn is that
+  # @person.errors stay the same until next @person.valid?
   it "should require the full name only at create" do
     @person.attributes = valid_new_person.except(:full_name)
     @person.valid?
@@ -57,12 +59,4 @@ describe Person, "upon creation" do
     @person.errors.on(:full_name).should be_nil
   end 
   
-  it "should require the date of birth only at create" do
-  @person.attributes = valid_new_person.except(:date_of_birth)
-  @person.valid?
-  @person.errors.on(:date_of_birth).should_not be_nil
-  @person.errors.on(:date_of_birth).should_not be_empty
-  @person.date_of_birth = '1991-03-10'
-  @person.save
-  end
 end
