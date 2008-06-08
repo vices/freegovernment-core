@@ -3,7 +3,7 @@ module PostSpecHelper
     {
       'text' => 'ALL FOR ONE, AND ALL FOR ONE',
       'user_id' => 'Tom Hamburg',
-      'topic_id' => 'SAVE HAMBURGERS!'
+      'topic_id' => 'SAVE HAMBURGERS!'w
     }
   end
-end'
+end
