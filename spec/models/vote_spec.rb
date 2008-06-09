@@ -39,8 +39,6 @@ describe Vote, "during adviser vote changes" do
     Vote.auto_migrate!
   end
 
-  it "should have a class method update_advisees_votes" do
-    Vote.
-  end
+  it "should have a class method update_advisees_votes"
 
 end

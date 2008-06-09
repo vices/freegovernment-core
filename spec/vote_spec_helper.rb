@@ -12,7 +12,7 @@ module VoteSpecHelper
     {
       :poll_id => 1,
       :user_id => 2,
-      :controlled_by_advisers => true
+      :controlled_by_advisers => true,
       :position => 0
     }
   end
