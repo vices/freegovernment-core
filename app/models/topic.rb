@@ -4,13 +4,15 @@ class Topic
   include DataMapper::Timestamp
   
   property :id, Integer, :serial => true
-  property :name, String, :nullable => false
-  property :forum_id, Integer
-  property :created_at, DateTime
-  property :user_id, Integer
+  property :name, String, :nullable => false, :length => 140
+  property :forum_id, Integer, :nullable => false
+  property :user_id, Integer, :nullable => false
   property :group_id, Integer
   property :poll_id, Integer
-  
-  belongs_to :forum
+  property :created_at, DateTime
+  property :updated_at, DateTime
+
+  validates_length :name, :within => 1..140
+  belongs_to :forum, :class_name => 'Forum' 
   has n, :posts
 end

@@ -4,7 +4,7 @@ module TopicSpecHelper
       :name => 'First Topic',
       :user_id => 1,
       :forum_id => 1,
-      :poll_id => nil
+      :parent_id => 1
     }
   end
 end
