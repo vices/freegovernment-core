@@ -4,7 +4,8 @@ module VoteSpecHelper
       :poll_id => 1,
       :user_id => 1,
       :controlled_by_advisers => false,
-      :position => 1
+      :is_yes => 1,
+      :is_no => 0
     }
   end
   
@@ -13,7 +14,8 @@ module VoteSpecHelper
       :poll_id => 1,
       :user_id => 2,
       :controlled_by_advisers => true,
-      :position => 0
+      :is_yes => 0,
+      :is_no => 0
     }
   end
   
