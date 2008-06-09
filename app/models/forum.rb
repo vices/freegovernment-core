@@ -1,16 +1,17 @@
-class Topic
+class Forum
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
   
   property :id, Integer, :serial => true
   property :name, String, :nullable => false
-  property :forum_id, Integer
-  property :created_at, DateTime
-  property :user_id, Integer
+  property :posts_count, Integer, :default => 0
+  property :topics_count, Integer, :default => 0
   property :group_id, Integer
   property :poll_id, Integer
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
-  belongs_to :forum
+  has n, :topics
   has n, :posts
 end
