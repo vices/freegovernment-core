@@ -38,8 +38,10 @@ describe Vote, "when adviser changes vote" do
   before(:each) do
     Vote.auto_migrate!
     @advisees_ids = (2..100).to_a
+    pp @advisees_ids
     @advisees_ids.each do |advisee_id|
       vote = Vote.new(advisee_vote.except(:user_id))
+      pp @advisees_ids
       vote.user_id = advisee_id
       case advisee_id % 3
         when 0
@@ -62,8 +64,8 @@ describe Vote, "when adviser changes vote" do
   
   it "should have a class method update_advisees_votes" do
     Vote.update_advisees_votes(@old_vote,@new_vote,@advisees_ids)
-    changed_votes = Vote.all(:user_id.in => @advisees_ids).size
-    changed_votes.size.should == 99
+    changed_vote_count = Vote.all(:user_id.in => @advisees_ids).size
+    changed_vote_count.size.should == 99
   end
 
 end
@@ -124,10 +126,6 @@ end
 describe Vote, "upon creation by user" do
   include VoteSpecHelper
   
-    before(:each) do
-    Vote.auto_migrate!
-    @vote = Vote.new
-  end
   
   it "should check for previous votes on poll_id"
   
@@ -135,7 +133,9 @@ describe Vote, "upon creation by user" do
   
   it "should not submit vote when by_adviser == false, when position == 0"
   
+
 end
+
 
 describe Vote, "upon establishment of adviser" do
 

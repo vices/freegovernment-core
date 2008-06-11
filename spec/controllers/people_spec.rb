@@ -4,14 +4,16 @@ describe People do
   describe "#new" do
   
     before(:each) do
+      #prep
       @new_person = mock(:person)
       @new_user = mock(:user)
     end
   
     it "should initialize @new_person and @new_user" do
+      # what we need
       User.should_receive(:new).and_return(@new_user)
       Person.should_receive(:new).and_return(@new_person)
-      
+      # gets the controller to actually run the method
       dispatch_to(People, :new)
     end
     
