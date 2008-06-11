@@ -17,14 +17,21 @@ describe People do
       dispatch_to(People, :new)
     end
     
-    it "should display a CAPTCHA"
-    
   end
   
   describe "#create" do
-    it "should require a correct CAPTCHA"
+    it "should require a correct CAPTCHA" do
+      dispatch_to(People, :create, {:user => [], :person => []}) do |controller|
+        controller.should_receive(:verify_captcha)
+      end
+    end
     
-    it "should render #new if CAPTCHA is incorrect"
+    it "should render #new if CAPTCHA is incorrect" do
+      dispatch_to(People, :create, {:user => [], :person => []}) do |controller|
+        controller.should_receive(:verify_captcha).and_return(false)
+        controller.should_receive(:render).with(:new)
+      end
+    end
     
     it "should create a new user and person when valid"
     

@@ -42,8 +42,6 @@ Gem.path.unshift(Merb.root / "gems")
 # Merb.push_path(:lib, Merb.root / "lib") # uses **/*.rb as path glob.
 
 
-
-
 # ==== Dependencies
 
 # These are some examples of how you might specify dependencies.
@@ -67,10 +65,13 @@ dependency 'dm-aggregates'
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
+dependency 'lib/merb_recaptcha'
+dependency 'net/http'
 Merb::BootLoader.after_app_loads do
   # Add dependencies here that must load after the application loads:
 
   # dependency "magic_admin" # this gem uses the app's model classes
+  require File.join(File.dirname(__FILE__),'recaptcha')
 end
 
 #
