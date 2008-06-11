@@ -57,6 +57,18 @@ describe Votes do
   describe "#update" do
     it "should update vote if already existing and valid"
     
+    it "should add 1 vote to yes_count of vote poll_id when is_yes = 1" do
+    
+      @poll = Poll.stub!(:first).and_return(@poll)
+      @vote = Vote.stub!(:first).and_return(@vote)
+      @vote.attributes = {:is_yes => 1}
+      @poll.attributes = { :yes_count => 0, :user_id => 1, :poll_id => 1 }
+      @poll.should_recieve(:update_attributes).with({:yes_count => @poll.yes_count + 1})  
+      lambda { @poll.update_attributes()}.should change(@poll.yes_count).by(1)
+      @poll.yes_count.should == yes_count + 1
+      
+    end
+  end
     it "should update all advisees votes if valid vote updated by adviser"
   end
 

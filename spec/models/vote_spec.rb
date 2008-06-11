@@ -30,6 +30,7 @@ describe Vote, "in general"  do
   	@vote.should_not be_valid
   end
   
+
 end
 
 describe Vote, "when adviser changes vote" do
@@ -38,10 +39,9 @@ describe Vote, "when adviser changes vote" do
   before(:each) do
     Vote.auto_migrate!
     @advisees_ids = (2..100).to_a
-    pp @advisees_ids
+   
     @advisees_ids.each do |advisee_id|
       vote = Vote.new(advisee_vote.except(:user_id))
-      pp @advisees_ids
       vote.user_id = advisee_id
       case advisee_id % 3
         when 0
@@ -56,7 +56,6 @@ describe Vote, "when adviser changes vote" do
       end
       vote.save
     end
-    
     @old_vote = Vote.new
     @new_vote = Vote.new(valid_new_vote)
     @new_vote.save
@@ -64,8 +63,8 @@ describe Vote, "when adviser changes vote" do
   
   it "should have a class method update_advisees_votes" do
     Vote.update_advisees_votes(@old_vote,@new_vote,@advisees_ids)
-    changed_vote_count = Vote.all(:user_id.in => @advisees_ids).size
-    changed_vote_count.size.should == 99
+    changed_vote_count = Vote.count(:user_id.in => @advisees_ids)
+    changed_vote_count.should == 99
   end
 
 end
@@ -107,11 +106,10 @@ describe Vote, "upon creation by adviser" do
     Vote.auto_migrate!
   end
   
-  it "should update the positI DUNNO!!! "
 
   it "should check for previous vote_id associated with poll_id by user_id"
   
-  it "should add 1 vote to yes_count of poll_id when position == 1" 
+ 
   
   it "should not add 2 votes to yes_count of poll_id when position == 1"
   

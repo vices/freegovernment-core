@@ -1,5 +1,4 @@
 class People < Application
-  before :check_recaptcha, :only => %w{ create }
   
   def index
   
@@ -16,11 +15,16 @@ class People < Application
   end
   
   def create(user, person)
-    if verify_recaptcha(params['recaptcha'])
-      
+    @new_person = Person.new(person)
+    @new_user = User.new(user)
+    if verify_recaptcha(params[:recaptcha])
+      if @new_person.valid?(:before_user_creation) && @new_user.save
+        @new_person.save
+        redirect url(:home)
+      else
+        render :new
+      end
     else
-      @new_person = Person.new(person)
-      @new_user = User.new(user)
       render :new
     end
   end
@@ -37,9 +41,4 @@ class People < Application
   
   end
   
-  private
-  
-  def check_recaptcha
-
-  end
 end
