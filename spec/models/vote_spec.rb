@@ -32,7 +32,7 @@ describe Vote, "in general"  do
   
 end
 
-desribe Vote, "when adviser changes vote" do
+describe Vote, "when adviser changes vote" do
   include VoteSpecHelper
   
   before(:each) do
@@ -62,7 +62,7 @@ desribe Vote, "when adviser changes vote" do
   
   it "should have a class method update_advisees_votes" do
     Vote.update_advisees_votes(@old_vote,@new_vote,@advisees_ids)
-    changed_vote_count = Vote.all(:user_id.in => @advisees_ids).size
+    changed_votes = Vote.all(:user_id.in => @advisees_ids).size
     changed_votes.size.should == 99
   end
 
@@ -124,6 +124,10 @@ end
 describe Vote, "upon creation by user" do
   include VoteSpecHelper
   
+    before(:each) do
+    Vote.auto_migrate!
+    @vote = Vote.new
+  end
   
   it "should check for previous votes on poll_id"
   
@@ -131,9 +135,7 @@ describe Vote, "upon creation by user" do
   
   it "should not submit vote when by_adviser == false, when position == 0"
   
-
 end
-
 
 describe Vote, "upon establishment of adviser" do
 

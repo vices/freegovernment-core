@@ -22,6 +22,13 @@ class Vote
         where user_id in (#{advisees_ids.join(', ')}) \
         and poll_id = #{new_vote.poll_id} \
       "
+      
+      if new_vote.is_yes > old_vote.is_yes
+      	"yeah, it's bigger"
+      else
+      	"sad..."
+      end # do you see it now?  Yep
+      
       repository.adapter.execute(query)
     end
   end

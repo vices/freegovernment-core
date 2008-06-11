@@ -1,9 +1,20 @@
 module PostSpecHelper
   def valid_new_post
     {
-      'text' => 'ALL FOR ONE, AND ALL FOR ONE',
-      'user_id' => 'Tom Hamburg',
-      'topic_id' => 'SAVE HAMBURGERS!'w
+      :text => 'It\'s all for one and one for all.',
+      :user_id => 1,
+      :topic_id => 1,
+      :forum_id => 1,
+      :parent_id => 1
+    }
+  end
+  
+  def valid_reponse_post
+    {
+      :text => 'It\'s all for one and one for all.',
+      :user_id => 1,
+      :parent_id => 1,
+      :topic_id => 1
     }
   end
 end
