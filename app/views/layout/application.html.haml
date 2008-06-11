@@ -1,0 +1,11 @@
+!!! XML
+!!! 1.0 Strict
+%html
+  = partial 'layout/head'
+  %body
+    #non_footer
+      = partial 'layout/header'
+      #center.girdle
+        = catch_content :for_layout
+      #push
+    = partial 'layout/footer'

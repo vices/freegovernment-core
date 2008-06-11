@@ -1,0 +1,12 @@
+#home_login
+  - form_tag :action => url(:new_session), :class => 'standard' do
+    %fieldset
+      %ul
+        %li
+          = text_field :name => 'username', :label => 'username'
+        %li
+          = password_field :name => 'password', :label => 'password'
+      = submit_button "log in"
+      .links
+        = link_to "Forgot your password?", url(:home)
+        = link_to "Sign up here.", url(:new_user)

@@ -1,0 +1,126 @@
+body {
+  font-size: 12px;
+  font-family: "Arial", "Verdana", sans-serif;
+  color: #333;
+  bckground: #8b8b8b; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+#non_footer {
+  background: white;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -550px; }
+
+.girdle {
+  width: 760px;
+  margin: 0 auto; }
+
+#header {
+  background: white;
+  margin-bottom: 10px; }
+  #header h1 {
+    padding-top: 12px; }
+    #header h1 a {
+      display: block;
+      height: 84px;
+      width: 420px;
+      background: url('/images/layout/logo_header.png') no-repeat top left;
+      text-indent: -999em; }
+    #header h1 a:hover {
+      background-position: bottom left; }
+  #header .caption {
+    display: none; }
+
+#navigation {
+  margin-top: 12px;
+  height: 36px;
+  line-height: 26pxc;
+  background: url('/images/layout/navigation-dots.png') repeat-x;
+  text-transform: uppercase; }
+  #navigation li {
+    float: left;
+    width: 125px; }
+    #navigation li a {
+      display: block;
+      width: 70%;
+      margin: 0 auto;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 11px; }
+    #navigation li a:hover {
+      height: 30px;
+      line-height: 30px;
+      border-top: 3px solid #666;
+      border-bottom: 3px solid #666; }
+  #navigation li.active a {
+    height: 30px;
+    line-height: 30px;
+    border-top: 3px solid #333;
+    border-bottom: 3px solid #333; }
+  #navigation li.active a:hover {
+    border-top: 3px solid #333;
+    border-bottom: 3px solid #333; }
+
+#home_login {
+  width: 225px; }
+
+#push {
+  height: 580px; }
+
+#footer {
+  height: 550px;
+  background: #8b8b8b;
+  color: white; }
+  #footer a {
+    color: white; }
+
+#footer_top {
+  height: 10px;
+  padding: 5px;
+  background: #303030;
+  background-image: url('/images/patterns/stripe_dark.png');
+  font-size: 11px;
+  line-height: 10px;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+#footer_middle {
+  height: 500px;
+  padding: 5px; }
+
+#footer_new_users {
+  float: left; }
+
+#footer_recent {
+  float: right; }
+
+#footer_bottom {
+  height: 40px;
+  padding: 2px;
+  background: #525252;
+  line-height: 20px; }
+
+#footer_copyright {
+  float: right;
+  text-align: right; }
+
+#footer_links {
+  text-transform: uppercase;
+  clear: both; }
+
+#footer_about_links {
+  float: left; }
+
+#footer_info_links {
+  float: right;
+  text-align: right; }

@@ -1,0 +1,29 @@
+#footer
+  #footer_top
+    .girdle
+      == Updates
+  #footer_middle
+    .girdle
+      #footer_new_users
+        %h2 New Users
+      #footer_recent
+        #footer_recent_topics
+          %h2 Recent Topics
+        #footer_recent_polls
+          %h2 Recent Polls
+  #footer_bottom
+    .girdle
+      #footer_copyright== &copy; #{Time.now.year} FreeGovernment.org
+      #footer_links
+        #footer_about_links
+          = link_to "About Us"
+          %span= '|'
+          = link_to "Contact Us"
+          %span= '|'
+          = link_to "Blog"
+        #footer_info_links
+          = link_to "Privacy Policy"
+          %span= '|'
+          = link_to "Terms of Use"
+          %span= '|'
+          = link_to "Source Code"

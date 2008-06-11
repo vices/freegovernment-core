@@ -1,0 +1,14 @@
+#navigation
+  %ul
+    %li#n_home{ :class => @nav_active == :home ? 'active' : '' }
+      =link_to "Home", url(:home)
+    %li#n_bills{ :class => @nav_active == :bills ? 'active' : '' }
+      =link_to "Legislation", url(:bills)
+    %li#n_polls{ :class => @nav_active == :polls ? 'active' : '' }
+      =link_to "Polls", url(:polls)
+    %li#n_forums{ :class => @nav_active == :forums ? 'active' : '' }
+      =link_to "Forums", url(:forums)
+    %li#n_groups{ :class => @nav_active == :groups ? 'active' : '' }
+      =link_to "Groups", url(:groups)
+    %li#n_people{ :class => @nav_active == :people ? 'active' : '' }
+      =link_to "People", url(:people)             
