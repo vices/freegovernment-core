@@ -84,7 +84,7 @@ describe Groups do
   
     before(:each) do
       @group = mock(:group)
-      @groups_page = [@group, @group, @group]
+      @groups_page = [@group]
     end
     
     def do_get
@@ -99,7 +99,9 @@ describe Groups do
       do_get.assigns(:groups_page).should == @groups_page
     end
   
-    it "should default order by id"
+    it "should default order by id" do
+      Group.should_receive(:all)#.with(:order=> [:id.asc])
+    end
   
     it "should allow order by number of advisees"
     

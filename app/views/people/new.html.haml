@@ -1,1 +1,18 @@
-= recaptcha_tags
+- form_for @new_person, :action => url(:people), :class => 'full' do
+  %h1 Person Signup
+  = error_messages_for @new_person
+  = error_messages_for @new_user
+  = text_control :full_name, :label => 'Full Name'
+  = text_control :date_of_birth, :label => 'Date of Birth'  
+  - fields_for @new_user do
+    = text_control :email, :label => 'Email'
+    = text_control :username, :label => 'Username'
+    = password_control :password, :label => 'Password'
+    = password_control :password_confirmation, :label => 'Confirm Password'
+  .captcha
+    = recaptcha_tags
+  .actions
+    .cancel
+      = link_to "cancel", url(:home)
+    .submit
+      = submit_button "sign up"
