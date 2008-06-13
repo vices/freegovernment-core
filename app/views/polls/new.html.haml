@@ -1,0 +1,13 @@
+- form_for @new_poll, :action => url(:polls), :class => 'full' do
+  %h1 Create a new poll
+  = error_messages_for @new_poll
+  = text_control :question, :label => 'poll question (140 characters max):'
+  = text_area_control :description, :label => 'poll description'  
+  / TODO videos and tags text_area_control
+  .captcha
+    = recaptcha_tags
+  .actions
+    .cancel
+      = link_to "cancel", url(:polls)
+    .submit
+      = submit_button "create"
