@@ -84,7 +84,7 @@ describe Groups do
   
     before(:each) do
       @group = mock(:group)
-      @groups_page = [@group, @group, @group]
+      @groups_page = [@group]
     end
     
     def do_get
@@ -99,11 +99,27 @@ describe Groups do
       do_get.assigns(:groups_page).should == @groups_page
     end
   
-    it "should default order by id"
+    it "should default order by id" do
+      #@operator = mock(:operator)
+      #DataMapper::Query::Operator.stub!(:new).with(:id,:asc).and_return(@operator)
+      Group.should_receive(:all).with(:order => [@operator])
+      dispatch_to(Groups, :index) do |controller|
+        controller.stub!(:render)
+      end
+    end
   
     it "should allow order by number of advisees"
     
-    it "should allow order by name"
+    it "should allow order by name" do
+      #@operator = mock(:operator)
+      #DataMapper::Query::Operator.stub!(:new).with(:name,:asc).and_return(@operator)
+      #Group.should_receive(:all).with(:order => [@operator])
+      dispatch_to(Groups, :index, {:order => 'name'} ) do |controller|
+        controller.stub!(:render)
+        assigns(:sort_by).should == :id
+        assigns(:direction).should == :asc
+      end
+    end
     
     it "should allow search names"
     
@@ -119,7 +135,9 @@ describe Groups do
   
   describe "#show" do
   
-    it "should get data for @group by id or name"
+    it "should get data for @group by id"
+    
+    it "should get data for @group by name"
   
     it "should get display an error message if group not found"
     
@@ -145,7 +163,7 @@ describe Groups do
     end
    
     it "should load the requested group" do
-      Group.should_receive(:by_slug_and_select_version!).and_return(@group)
+      Group.should_receive(:first).and_return(@group)
       do_get.assigns(:group).should == @group
     end
     
