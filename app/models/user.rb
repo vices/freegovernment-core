@@ -1,5 +1,3 @@
-require 'digest/sha1'
-
 class User
   include DataMapper::Resource
   include DataMapper::Validate
@@ -9,8 +7,8 @@ class User
   property :id, Integer, :serial => true
   property :username, String, :nullable => false
   property :email, String, :nullable => false
-  property :salt, String, :nullable => false
-  property :crypted_password, String, :nullable => false
+  property :salt, String
+  property :crypted_password, String
   property :is_adviser, Boolean, :default => 0
   property :person_id, Integer
   property :group_id, Integer

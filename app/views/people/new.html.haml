@@ -1,7 +1,7 @@
 - form_for @new_person, :action => url(:people), :class => 'full' do
   %h1 Person Signup
   .caption
-    %span Looking signup your organization?
+    %span Looking to sign up your organization?
     = link_to "Group Signup", url(:new_group)
   = error_messages_for @new_person
   = error_messages_for @new_user
