@@ -25,10 +25,11 @@ form.standard, form.full
     :font-weight normal
     :font-size 16px
     :color #333ff
-  input.text, input.password, input.textarea
+  input.text, input.password, textarea
     :border 1px solid #dadada
     :padding 3px
     :background-color #fff
+  input.text, input.password
     :background-image url('/images/forms/input-bg.png')
     :background-repeat repeat-x
   label
@@ -47,6 +48,9 @@ form.standard, form.full
         :font-weight bold
     .submit
       :float right
+  .caption
+    :text-align center
+    :margin-bottom 5px
       
 form.standard
   :border 1px solid #dadada
@@ -66,7 +70,7 @@ form.full
   :margin 0 auto
   :border 10px solid #e9e9e9
   :padding 20px
-  input
+  input, textarea
     :margin-top 10px
     :margin-bottom 20px
     :width 490px

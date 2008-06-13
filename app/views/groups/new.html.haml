@@ -1,12 +1,12 @@
-- form_for @new_person, :action => url(:people), :class => 'full' do
-  %h1 Person Signup
+- form_for @new_group, :action => url(:groups), :class => 'full' do
+  %h1 Group Signup
   .caption
-    %span Looking signup your organization?
-    = link_to "Group Signup", url(:new_group)
-  = error_messages_for @new_person
+    %span Not a group?
+    = link_to "Person Signup", url(:new_person)
+  = error_messages_for @new_group
   = error_messages_for @new_user
-  = text_control :full_name, :label => 'Full Name'
-  = text_control :date_of_birth, :label => 'Date of Birth'  
+  = text_control :name, :label => 'Group Name'
+  = text_area_control :description, :label => 'Group Description'
   - fields_for @new_user do
     = text_control :email, :label => 'Email'
     = text_control :username, :label => 'Username'
