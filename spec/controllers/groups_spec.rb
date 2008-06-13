@@ -87,25 +87,47 @@ describe Groups do
       @groups_page = [@group]
     end
     
-    def do_get
-      dispatch_to(Groups, :index) do |controller|
+    def do_get(params = nil, &block)
+      dispatch_to(Groups, :index, params) do |controller|
         controller.stub!(:render)
+        block if block_given?
       end
     end
   
-    it "should pull up list of @groups" do
+    it "should pull up a pages worth of groups" do
       Group.stub!(:all).and_return(@groups_page)
       Group.should_receive(:all).and_return(@groups_page)
       do_get.assigns(:groups_page).should == @groups_page
     end
+
+    it "should use sort_by and direction to construct order used in all" do
+      sort_by = :id
+      direction = :desc
+      params = {:sort_by => sort_by, :direction => direction}
+      operator = mock(:operator)
+      DataMapper::Query::Operator.stub!(:new).with(sort_by,direction).and_return(operator)
+      Group.should_receive(:all).with(:order => [operator])
+      do_get(params) do
+        assigns(:sort_by).should == sort_by
+        assigns(:direction).should == direction
+      end
+    end
   
     it "should default order by id" do
-      Group.should_receive(:all)#.with(:order=> [:id.asc])
+      do_get do
+        assigns(:sort_by).should == :id
+        assigns(:direction).should == :asc
+      end
     end
   
     it "should allow order by number of advisees"
     
-    it "should allow order by name"
+    it "should allow order by name" do
+      do_get({:sort_by => 'name', :direction => 'asc'}) do
+        assigns(:sort_by).should == :name
+        assigns(:direction).should == :asc
+      end
+    end
     
     it "should allow search names"
     
@@ -121,7 +143,9 @@ describe Groups do
   
   describe "#show" do
   
-    it "should get data for @group by id or name"
+    it "should get data for @group by id"
+    
+    it "should get data for @group by name"
   
     it "should get display an error message if group not found"
     
@@ -147,7 +171,7 @@ describe Groups do
     end
    
     it "should load the requested group" do
-      Group.should_receive(:by_slug_and_select_version!).and_return(@group)
+      Group.should_receive(:first).and_return(@group)
       do_get.assigns(:group).should == @group
     end
     

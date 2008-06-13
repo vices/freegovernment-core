@@ -1,12 +1,19 @@
 class Groups < Application
   
   def index
-
-   case params[:order]
+    case params['sort_by']
       when 'name'
-        @order = :name.asc
+        @sort_by = :name
       else
-        @order = :id.asc
+        @sort_by = :id
+    end
+    case params['direction']
+      when 'desc'
+        @direction = 'desc'
+        @order = @sort_by.desc
+      else
+        @direction = 'asc'
+        @order = @sort_by.asc
     end
     @groups_page = Group.all(:order => [@order])
     render
@@ -37,12 +44,9 @@ class Groups < Application
     end
   end
   
-  def edit#(user, group)
-=begin
-  @group = Group.get(group.id)
-  @user = User.get(user.id)
-=end
-  render
+  def edit(id)
+    @group = Group.first(:id => id)
+    render
   end
   
   def update
