@@ -1,7 +1,14 @@
 class People < Application
   
   def index
-  
+    case params[:order]
+      when 'full_name'
+        @order = :full_name.asc
+      else
+        @order = :id.asc
+    end
+    @people_page = Person.all(:order => [@order])
+    render
   end
   
   def show
@@ -18,7 +25,7 @@ class People < Application
     @new_person = Person.new(person)
     @new_user = User.new(user)
     if verify_recaptcha(params[:recaptcha])
-      if @new_person.valid?(:before_user_creation) && @new_user.save
+      if @new_person.valid?(:before_user_creation) && ( @new_user.save if @new_user.valid? ) 
         @new_person.save
         redirect url(:home)
       else

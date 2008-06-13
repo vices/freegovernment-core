@@ -1,3 +1,13 @@
+=clearfix
+  display: inline-block
+  &:after
+    content: "." 
+    height: 0
+    clear: both
+    visibility: hidden
+  * html &
+    height: 1px
+
 body
   :font-size 12px
   :font-family "Arial", "Verdana", sans-serif
@@ -22,7 +32,7 @@ a:hover
 
 #header
   :background white
-  :margin-bottom 10px
+  :margin-bottom 28px
   h1
     :padding-top 12px
     a
@@ -73,7 +83,7 @@ a:hover
 
 
 #home_login
-  :width 225px
+  :width 250px
 
 #push
   :height 580px
