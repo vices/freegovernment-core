@@ -24,6 +24,11 @@ Merb::Router.prepare do |r|
   # RESTful routes
   r.resources :users
   r.resources :sessions
+  r.to(:controller => 'session') do |s|
+    s.match('/login').to(:action => 'new').name(:login)
+    s.match('/logout').to(:action => 'destroy').name(:logout)
+  end
+  r.resource :session
   r.resources :bills
   r.resources :polls
   r.resources :forums
