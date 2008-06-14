@@ -1,3 +1,4 @@
 log/*
 database.yml
+coverage/*
 deploy.rb
