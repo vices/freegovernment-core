@@ -13,7 +13,7 @@ describe Groups do
       User.should_receive(:new).and_return(@new_user)
       Group.should_receive(:new).and_return(@new_group)
       dispatch_to(Groups, :new) do |controller|
-        controller.stub!(:render)
+        controller.stub!(:render) 
       end
     end
     
@@ -142,19 +142,48 @@ describe Groups do
   end
   
   describe "#show" do
+
+  before(:each) do
+    @group = mock(:group)
+    Group.stub!(:first).and_return(@group)
+  end
+
   
-    it "should get data for @group by id"
+  def do_get(params={}, &block)
+    dispatch_to(Groups, :show, {:id => 1 }.merge(params)) do |controller|
+      controller.stub!(:render)
+      block if block_given?
+    end
+  end
+
+
+  it "should be successful" do
+    do_get.should be_successful
+  end
+
+  it "should get data for @group by id" do
+    do_get({:id => 1}) do
+      assign(:group).should == @group
+    end
+  end
     
-    it "should get data for @group by name"
-  
-    it "should get display an error message if group not found"
+   it "should get data for @group by name" do
+     do_get({:name => 'NRA'}) do
+       assign(:group).should == @group
+     end
+   end
+    
+   it "should get display an error message if group not found" do
+     Group.should_receive(:first).and_return(nil)
+     lambda { do_get }.should raise_error(Merb::ControllerExceptions::NotFound)
+   end
     
     it "should check privacy settings for the group"
     
     it "should display an error when privacy settings conflict"
     
   end
-  
+
   describe "#edit" do
       before(:each) do
       @group = mock(:group)
@@ -181,7 +210,7 @@ describe Groups do
       end
     end
   end
-  
+
   describe "#update" do
   
   end

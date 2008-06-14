@@ -19,8 +19,10 @@ class Groups < Application
     render
   end
   
-  def show
-  
+  def show(id)
+    @group = Group.first(params[:id])
+    raise Merb::ControllerExceptions::NotFound unless @group
+    render
   end
   
   def new
