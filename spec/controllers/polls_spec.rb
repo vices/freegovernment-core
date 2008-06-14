@@ -180,8 +180,42 @@ describe Polls do
 #    it "should allow filter for bills"
     
   end
-  describe "#show" do 
-    it "should get data for poll by poll_id"
+  
+  describe "#show" do
+  
+    before(:each) do
+      @poll = mock(:poll)
+      @vote = mock(:vote)
+      #poll stub here?
+    end
+  
+    def do_get(params = {:id => 1}, &block)
+      dispatch_to(Polls, :show, params) do |controller|
+        controller.stub!(:render)
+        block if block_given?
+      end
+    end
+    
+    it "should display the vote associated with user_id" do
+      #Poll.should_receive(:first).and_return(@poll)
+      #Vote.should_receive(:first).and_return(@vote)
+      
+      do_get({:id => 1}) do
+        #controller.session[:user_id] = 1
+        p 'here'
+        #pp controller
+        #controller.stub!(:logged_in?).and_return(true)
+        #assigns(:poll).should == @poll
+        #assigns(:vote).should == @vote
+      end
+      
+    end
+    
+ 
+    it "should get data for poll by id" do
+      Poll.should_receive(:first).and_return(@poll)
+      do_get
+    end
     
     it "should get data for comment stream posts by poll_id"
     

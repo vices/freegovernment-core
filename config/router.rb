@@ -30,10 +30,11 @@ Merb::Router.prepare do |r|
   end
   r.resource :session
   r.resources :bills
-  r.resources :polls
   r.resources :forums
   r.resources :groups
   r.resources :people
+  r.resources :polls
+  r.resources :votes
 
   # This is the default route for /:controller/:action/:id
   # This is fine for most cases.  If you're heavily using resource-based
