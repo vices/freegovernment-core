@@ -1,0 +1,21 @@
+.poll_question
+  = @poll.question
+.voting_options
+  .standard_voting
+    - form_for @vote, :action => url(:votes), :class => "vote_yes #{ @vote.is_yes && !@vote.is_adviser_decided ? 'active' : '' }" do
+      = hidden_control :poll_id, :value => @poll.id
+      = hidden_control :stance, :value => 'no'
+      = submit_button "Yes"
+    - form_for @vote, :action => url(:votes), :class => "vote_undecided #{ !@vote.is_no && !@vote.is_yes && !@vote.is_adviser_decided ? 'active' : '' }" do
+      = hidden_control :poll_id, :value => @poll.id
+      = hidden_control :stance, :value => 'undecided'
+      = submit_button "Undecided"
+    - form_for @vote, :action => url(:votes), :class => "vote_no #{ @vote.is_no && !@vote.is_adviser_decided ? 'active' : '' }" do
+      = hidden_control :poll_id, :value => @poll.id
+      = hidden_control :stance, :value => 'yes'
+      = submit_button "No"
+  .adviser_voting
+    - form_for @vote, :action => url(:votes), :class => "vote_advisers #{ @vote.is_adviser_decided ? 'active' : '' }" do
+      = hidden_control :poll_id, :value => @poll.id
+      = hidden_control :stance, :value => 'advisers'
+      = submit_button "Let Advisers Decide"

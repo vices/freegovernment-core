@@ -1,4 +1,5 @@
 class Polls < Application
+#  include MerbAuth
   
   def index
     case params['sort_by']
@@ -22,14 +23,11 @@ class Polls < Application
   
   def show
     @poll = Poll.first(:id => params[:id])
-#    @vote = Vote.first(:id => params[:id])
-#    if logged_in?
-#      unless (@vote = Vote.first(:user_id => session[:user_id], :poll_id => @poll.id)).nil?
-#        @vote = Vote.new
-#      end
-#    else
-#      @vote = Vote.new
-#    end
+
+    if !logged_in? || (@vote = Vote.first(:user_id => session[:user_id], :poll_id => @poll.id)).nil?
+      @vote = Vote.new
+    end
+    
     render
   end
   

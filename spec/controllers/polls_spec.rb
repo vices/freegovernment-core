@@ -186,30 +186,39 @@ describe Polls do
     before(:each) do
       @poll = mock(:poll)
       @vote = mock(:vote)
-      #poll stub here?
+      Poll.stub!(:first).and_return(@poll)
+      Vote.stub!(:first).and_return(@vote)
     end
   
-    def do_get(params = {:id => 1}, &block)
-      dispatch_to(Polls, :show, params) do |controller|
+    def do_get(params = {}, &block)
+      dispatch_to(Polls, :show, {:id => 1}.merge(params)) do |controller|
         controller.stub!(:render)
         block if block_given?
       end
     end
+    it "should be succesful" do
+      do_get.should be_successful
+    end
     
-    it "should display the vote associated with user_id" do
+    it "should get the vote associated with user_id" do
+#      Poll.should_receive(:first).and_return(@poll)
+#      Vote.should_receive(:first).and_return(@vote)    
+      do_get.assigns(:poll).should == @poll
+      do_get.assigns(:vote).should == @vote
+      
+    
       #Poll.should_receive(:first).and_return(@poll)
       #Vote.should_receive(:first).and_return(@vote)
-      
-      do_get({:id => 1}) do
+    # do_get({:id => 1}) do
         #controller.session[:user_id] = 1
-        p 'here'
+     #   p 'here'
         #pp controller
         #controller.stub!(:logged_in?).and_return(true)
         #assigns(:poll).should == @poll
         #assigns(:vote).should == @vote
+      #end
       end
-      
-    end
+    
     
  
     it "should get data for poll by id" do

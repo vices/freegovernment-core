@@ -1,18 +1,28 @@
 class People < Application
   
   def index
-    case params[:order]
-      when 'full_name'
-        @order = :full_name.asc
+    case params['sort_by']
+      when 'name'
+        @sort_by = :full_name
       else
-        @order = :id.asc
+        @sort_by = :id
+    end
+    case params['direction']
+      when 'desc'
+        @direction = 'desc'
+        @order = @sort_by.desc
+      else
+        @direction = 'asc'
+        @order = @sort_by.asc
     end
     @people_page = Person.all(:order => [@order])
     render
   end
   
-  def show
-  
+    def show(id)
+    @person = Person.first(params[:id])
+    raise Merb::ControllerExceptions::NotFound unless @person
+    render
   end
   
   def new
@@ -36,8 +46,10 @@ class People < Application
     end
   end
   
-  def edit
-  
+  def edit(id)
+    @person = Person.first(params[:id])
+    raise Merb::ControllerExceptions::NotFound unless @person
+    render
   end
   
   def update

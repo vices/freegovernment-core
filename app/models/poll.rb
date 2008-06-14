@@ -2,6 +2,7 @@ class Poll
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
+#  include MerbAuth::ControllerMixin
   
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false

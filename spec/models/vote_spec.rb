@@ -33,7 +33,9 @@ describe Vote, "in general"  do
 
 end
 
-describe Vote, "when adviser changes vote" do
+
+
+describe Vote, "when adviser votes" do
   include VoteSpecHelper
   
   before(:each) do
@@ -61,6 +63,12 @@ describe Vote, "when adviser changes vote" do
     @new_vote.save
   end
   
+  it "should have a class method advisers_first_vote" do
+    Vote.advisers_first_vote(@new_vote, @advisees_ids)
+    changed_vote_count = Vote.count(:user_id.in => @advisees_ids)
+    changed_vote_count.should == 99
+  end
+  
   it "should have a class method update_advisees_votes" do
     Vote.update_advisees_votes(@old_vote,@new_vote,@advisees_ids)
     changed_vote_count = Vote.count(:user_id.in => @advisees_ids)
@@ -69,7 +77,7 @@ describe Vote, "when adviser changes vote" do
 
 end
 
-=begin
+begin
 describe Vote, "when adviser with 1 million advisees changes vote" do
   include VoteSpecHelper
 

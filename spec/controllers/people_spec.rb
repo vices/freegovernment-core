@@ -58,7 +58,6 @@ describe People do
         @new_user.should_receive(:save).and_return(true)
         @new_person.should_receive(:save)
       end
-      
     end
     
     it "should render #new again if user is invalid" do    
@@ -86,64 +85,61 @@ describe People do
       
     before(:each) do
       @person = mock(:person)
-      @people_page = [@person, @person, @person]#was this missing?
-      
+      @people_page = [@person]
     end
-    def do_get
-      dispatch_to(People, :index) do |controller|
-        controller.stub!(:display)
+
+    def do_get(params = nil, &block)
+      dispatch_to(People, :index, params) do |controller|
+        controller.stub!(:render)
+        block if block_given?
       end
     end
+
     it "should be successful" do
       do_get.should be_successful
     end
 
-    it "should load a page of people" do
+    it "should pull up a pages worth of people" do
       Person.stub!(:all).and_return(@people_page)
-      Person.should_receive(:all).and_return(@people_page) #problem with :all
+      Person.should_receive(:all).and_return(@people_page)
       do_get.assigns(:people_page).should == @people_page
+    end
+
+    it "should use sort_by and direction to construct order used in all" do
+      sort_by = :id
+      direction = :desc
+      params = {:sort_by => sort_by, :direction => direction}
+      operator = mock(:operator)
+      DataMapper::Query::Operator.stub!(:new).with(sort_by,direction).and_return(operator)
+      Person.should_receive(:all).with(:order => [operator])
+      do_get(params) do
+        assigns(:sort_by).should == sort_by
+        assigns(:direction).should == direction
+      end
     end
     
     it "should default order by id" do
-      Person.should_receive(:all).with(:order=>[:id.asc])
-      do_get
+     do_get do
+        assigns(:sort_by).should == :id
+        assigns(:direction).should == :asc
+      end
     end
     
-    describe "requesting people/1 with GET" do
-      def do_get(params={})
-        dispatch_to(People, :show, { :user_id => "1" }.update(params)) do |controller|
-        controller.stub!(:display)
-      end
-      #TODO foy, look at :user_id above and decide if it should be :id
-      it "should be successful" do
-        do_get.should be_successful
-      end
-      
-      it "should load the requested page by the specificed slug" do #wtf is slug
-        Person.should_receive(:by_slug_and_select_version!).and_return(person)
-        do_get.assigns(:people_page).should == @person
-      end
-      
-      it "should raise NotFound if a person cannot be found with slug" do
-        Person.should_receive(:by_slug_and_select_version!).and_return(nil)
-        lambda { do_get }.should raise_error(Merb::ControllerExceptions::NotFound)
-      end
-      #TODO foy look at the above todo
-      it "should display the Person" do
-        dispatch_to(Person, :show, :user_id => "1") do |controller|
-          controller.should_receive(:display).with(@person)
-        end
-      end
-      
-    end
+
   
     it "should allow order by number of advisees" do
-      @advisee_count = #put advisee list into array and then join it 
-      Person.should_receive(:all).with(:order=>[@advisee_count.asc]) #dsc?
-      do_get
+			pending
+  #    @advisee_count = #put advisee list into array and then join it 
+  #    Person.should_receive(:all).with(:order=>[@advisee_count.asc]) #dsc?
+  #    do_get
     end
     
-    it "should allow order by full name"
+    it "should allow order by full name" do
+      do_get({:sort_by => 'name', :direction => 'asc'}) do
+        assigns(:sort_by).should == :name
+        assigns(:direction).should == :asc
+      end
+    end
     
     it "should allow search full names"
     
@@ -156,11 +152,27 @@ describe People do
     it "should allow filter by registered voters"
     
   end
-  #TODO foy you went too far, scroll up or delete this
+
   describe "#show" do
   
-    it "should get data for @user by id or username"
+  	before(:each) do
+  	@person = mock(:person)
+  	Person.stub!(:first).and_return(@person)
+  	end
   
+    def do_get(params = {}, &block)
+      dispatch_to(People, :show, {:id => 1 }.merge(params)) do |controller|
+        controller.stub!(:render)
+        block if block_given?
+      end
+    end
+  
+    it "should get data for @person by id" do
+      do_get({:id => 1})  do
+        assign(:person).should == @person
+      end
+    end
+    
     it "should get display an error message if user not found"
     
     it "should check privacy settings for the user"
@@ -170,13 +182,16 @@ describe People do
   end
   
   describe "#edit" do
-    before(:each) do
-      @person = mock(:person)
-    end
-    
-    def do_get
-      dispatch_to(People, :edit, :id => "1") do |controller|
+  before(:each) do
+  	@person = mock(:person)
+  	@people_page = [@person]
+  	Person.stub!(:first).and_return(@person)
+  end
+  
+    def do_get(params = {}, &block)
+      dispatch_to(People, :edit, {:id => 1 }.merge(params)) do |controller|
         controller.stub!(:render)
+        block if block_given?
       end
     end
     
@@ -185,13 +200,14 @@ describe People do
     end
     
     it "should load the requested person" do
-      Person.should_receive(:by_slug_and_select_version!).and_return(@person)
-      do_get.assigns(:person).should == @person
+      do_get({:id => 1})  do
+        assign(:person).should == @person
+      end
     end
     
     it "should render the action" do
       dispatch_to(People, :edit, :id => "1") do |controller|
-        controller.should.receive(:render)
+        controller.should_receive(:render)
       end
     end
     it "should only work for the current user on their own person"
@@ -199,6 +215,38 @@ describe People do
     it "should find @edit_user and @edit_person for id"
     
   end
+  
+  describe "#show" do
+
+  before(:each) do
+  	@person = mock(:person)
+  	Person.stub!(:first).and_return(@person)
+  end
+  
+    def do_get(params = {}, &block)
+      dispatch_to(People, :show, {:id => 1 }.merge(params)) do |controller|
+        controller.stub!(:render)
+        block if block_given?
+      end
+    end
+    
+      it "should load the requested page by the specificed slug" do #wtf is slug
+        Person.should_receive(:by_slug_and_select_version!).and_return(@person)
+        do_get.assign(:people_page).should == @person
+      end
+      
+      it "should raise NotFound if a person cannot be found with slug" do
+        Person.should_receive(:by_slug_and_select_version!).and_return(nil)
+        lambda { do_get }.should raise_error(Merb::ControllerExceptions::NotFound)
+      end
+      #TODO foy look at the above todo
+      it "should display the Person" do
+    		dispatch_to(Person, :show, :user_id => "1") do |controller|
+          controller.should_receive(:display).with(@person)
+        end
+      end
+      
+    end
   
   describe "#update" do
   
@@ -208,3 +256,5 @@ describe People do
   #TODO nothing to see here
   end
 end
+
+
