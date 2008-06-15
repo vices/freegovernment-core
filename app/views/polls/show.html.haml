@@ -1,0 +1,4 @@
+.poll_question
+== Question:  #{@poll.question}
+== Description:  #{@poll.description}
+= partial 'polls/voting_options', :poll => @poll, :vote => @vote

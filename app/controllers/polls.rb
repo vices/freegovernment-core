@@ -1,4 +1,6 @@
 class Polls < Application
+#  include MerbAuth
+  before :login_required, :only => ['create']
   
   def index
     case params['sort_by']
@@ -22,7 +24,11 @@ class Polls < Application
   
   def show
     @poll = Poll.first(:id => params[:id])
-    display @poll
+
+    if !logged_in? || (@vote = Vote.first(:user_id => session[:user_id], :poll_id => @poll.id)).nil?
+      @vote = Vote.new
+    end
+    
     render
   end
   
@@ -35,16 +41,18 @@ class Polls < Application
   end
   
   def create(poll)
-    @new_poll = Poll.new(poll)
-    @new_forum = Forum.new
-    @new_topic = Topic.new
-    @new_post = Post.new
+    @new_poll = Poll.new(poll.merge(:user_id => session[:user_id]))
+
+#    @new_post = Post.new
     if verify_recaptcha(params[:recaptcha])
       if @new_poll.valid?(:before_poll_creation) 
         @new_poll.save
+        @new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id)
         @new_forum.save
+        @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id,
+        :user_id => @new_poll.user_id)
         @new_topic.save
-        @new_post.save
+#        @new_post.save
         redirect url(:polls)
       else
         render :new

@@ -4,17 +4,37 @@ describe Votes do
 
   describe "#create" do
     before(:each) do
+      @old_vote = mock(:vote)
       @new_vote = mock(:vote)
-      Vote.stub!(:new).and_return(@new_vote)
-      @current_user = mock(:user)
-      User.stub!(:new).and_return(@current_user)    
+      Vote.stub!(:new).and_return(@new_vote)   
     end
     
-    it "should check if user is adviser after save" do
-      @new_vote.should_receive(:save).and_return(true)
-      @current_user.should_receive(:is_adviser)
-      dispatch_to(Votes, :create, {:vote => 'fake'})
+    def do_post(params = {:poll_id => 1, :stance => 'yes'}, &block)
+      dispatch_to(Votes, :create, params) do |controller|
+        block if block_given?
+      end
     end
+    
+    # these over here
+    it "should not create unless logged_in" do
+      @new_vote.should_not_receive(:save)
+
+      do_post do
+        controller.should_receive(:logged_in?).and_return(false)
+      end
+    end
+    
+    it "should not create without a open poll_id" do
+      do_post({:stance => 'yes'})
+      @new_vote.should_not_receive(:save)
+    end 
+    
+    it "should update instead of create if user has already voted" do
+      Vote.should_receive(:first).and_return(@new_vote)
+      Vote.should_not_receive(:new)
+      do_post({:poll_id => 1, :stance => 'yes'})
+    end
+    
   end
 
   describe "#create", "as adviser" do
@@ -27,6 +47,12 @@ describe Votes do
       @advisees = [@advisee]
       @new_vote.stub!(:save).and_return(true)
       @current_user.stub!(:is_adviser).and_return(true)
+    end
+
+    it "should check if user is adviser after save" do
+      @new_vote.should_receive(:save).and_return(true)
+      @current_user.should_receive(:is_adviser)
+      dispatch_to(Votes, :create, {:vote => 'fake'})
     end
 
     it "should check if user is adviser after save and create or update all advisee votes if so" do
@@ -72,4 +98,4 @@ describe Votes do
     it "should update all advisees votes if valid vote updated by adviser"
   end
 
-end
+#end

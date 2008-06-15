@@ -1,0 +1,7 @@
+#account_bar
+  - if logged_in?
+    = link_to "my profile"
+    %span= "|"
+    = link_to "account settings"
+    %span= "|"
+    =delete_button :session, @session, "log out", :class => 'button_link'

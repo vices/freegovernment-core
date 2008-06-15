@@ -11,8 +11,10 @@ class Session < Application
 
   def create(username, password)
     unless (self.current_user = User.authenticate(username, password)).nil?
+      p "LOGGED in"
       redirect_back_or_default url(:home)
     else
+      p "NO login" 
       redirect url(:login)
     end
   end
