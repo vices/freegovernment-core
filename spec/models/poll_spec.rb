@@ -66,8 +66,6 @@ describe Poll, "upon creation" do
 
   include PollSpecHelper
   
-
-  
   before(:each) do
     Poll.auto_migrate!
     @poll = Poll.new(valid_new_poll)
@@ -101,4 +99,25 @@ describe Poll, "upon creation" do
     @poll.updated_at.class.should == DateTime
   end
   
+end
+
+describe Poll, "updating for vote changes" do
+  
+  before(:each) do
+    @poll = Poll.new
+  end
+  
+  it "should handle single vote difference" do
+    diff = {:yes => 1, :no => 0}
+    @poll.update_for_votes(diff)
+    @poll.yes_count.should == 1
+    @poll.no_count.should == 0
+  end
+  
+  it "should handle arrays of vote differences" do
+    diffs = [{:yes => 1, :no => 0}, {:yes => 1, :no => -1}]
+    @poll.update_for_votes(diffs)
+    @poll.yes_count.should == 2
+    @poll.no_count.should == -1
+  end
 end

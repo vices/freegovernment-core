@@ -2,7 +2,6 @@ class Poll
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
-#  include MerbAuth::ControllerMixin
   
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false
@@ -18,7 +17,7 @@ class Poll
   
   validates_length :question, :within => 15..140
 
-  def update_poll_for_votes(diffs)
+  def update_for_votes(diffs)
     unless diffs.is_a? Array
       diffs = [diffs]
     end

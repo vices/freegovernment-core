@@ -62,11 +62,13 @@ end
 
 describe Vote, "when updating advisee votes" do
   include VoteSpecHelper
+  
+  before(:each) do
+    Vote.auto_migrate!
+  end
 
   it "should pull up a list of advisee votes" do
     advisee_ids = (1..10).to_a
-    #vote = mock(:vote)
-    #votes = [@vote]   merge vs update?  does it matter which?
     old_vote = Vote.new(valid_new_vote.merge({:position => 'undecided'}))
     new_vote = Vote.new(valid_new_vote)
     votes = Vote.should_receive(:all).and_return([])#.with(:poll_id => 1, :user_id.in => advisee_ids)
