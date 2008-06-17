@@ -11,18 +11,25 @@ describe "#new" do
 end
 
 describe Polls, "#create", "when not logged on" do
-include PollsSpecHelper
+  include PollsSpecHelper
 
   it "should not save poll" do
-    Polls.should_receive(:logged_in?).and_return(false)
-    @new_poll.should_not_receive(:save)
+    dispatch_to(Polls, :create, {:poll => valid_new_poll}) do |controller|
+      controller.should_receive(:logged_in?).and_return(false)
+      @new_poll.should_not_receive(:save)
+    end
   end
-  
-  it "should render the login page" do
-    dispatch_to(Polls, :create).should redirect_to("/login") 
-  end
-  
 end
+
+describe Polls, "#create", "valid poll" do
+
+end
+
+
+
+
+
+
 =begin
   #mock vs stub?  do I need @new_poll = Poll.new ?
   it "should not save poll and it should render login" do
