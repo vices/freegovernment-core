@@ -1,6 +1,83 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
+require File.join(File.dirname(__FILE__), "..", "polls_spec_helper")
+
+describe "#new" do
+
+  it "should initialize @new_poll" do
+  @new_poll = Poll.new
+ 
+  end
+
+end
+
+describe Polls, "#create", "when not logged on" do
+include PollsSpecHelper
+
+  it "should not save poll" do
+    Polls.should_receive(:logged_in?).and_return(false)
+    @new_poll.should_not_receive(:save)
+  end
+  
+  it "should render the login page" do
+    dispatch_to(Polls, :create).should redirect_to("/login") 
+  end
+  
+end
+=begin
+  #mock vs stub?  do I need @new_poll = Poll.new ?
+  it "should not save poll and it should render login" do
+    #first we need a poll object
+    #@new_poll = mock(:poll)
+    @new_poll = Poll.new 
+    #now we tell it that it is not logged in (what is it?)((it is polls/create))
+    dispatch_to(Polls, :create, :poll => valid_new_poll) do |controller|
+      #ok ok we tell it "are you logged in?"
+      controller.should_receive(:logged_in?).and_return(false)
+      #and it tells us "NO!"  In theory.  However, it is not receiving that order
+      #Where oh where does the green rabbit run?
+      #in which case it should not receive a save demand from us!
+      @new_poll.should_not_receive(:save)
+      controller.should_receive(:render) #but god doesnt want this
+      #it were not the sheep that focked the shepard, but instead the gnomes
+      controller.stub!(:render)#there are some codes that you can only run green once
+      #Dear lord of the gambit, please allow your cats free reign over our teradactyls
+    
+    end
+    end
+ =end
+    
+
+  end
+
+describe Polls, "#create", "when logged on" do
 
 
+  it "should save the poll"   do
+
+  end
+end
+
+
+
+
+
+
+=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=begin
 describe Polls do
   describe "#new" do 
     before(:each) do
@@ -20,7 +97,7 @@ describe Polls do
       dispatch_to(Polls, :new)
     end
     
-    
+    end
   end
   describe "#create" do 
   
@@ -90,7 +167,7 @@ describe Polls do
         end
       end
     end
-=end
+ =end
 
     it "should render #new if poll data invalid" do
       @new_poll.should_receive(:valid?).with(:before_poll_creation).and_return(false)
@@ -242,6 +319,5 @@ describe Polls do
   
   describe "#update" do end  
   describe "#edit" do end
-end
 
-
+=end

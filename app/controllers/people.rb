@@ -37,6 +37,7 @@ class People < Application
     if verify_recaptcha(params[:recaptcha])
       if @new_person.valid?(:before_user_creation) && ( @new_user.save if @new_user.valid? ) 
         @new_person.save
+        self.current_user = @new_user
         redirect url(:home)
       else
         render :new

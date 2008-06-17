@@ -1,75 +1,156 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
+require File.join(File.dirname(__FILE__), "..", "vote_spec_helper")
 
-describe Votes do
-
-  describe "#create" do
-    before(:each) do
-      @new_vote = mock(:vote)
-      Vote.stub!(:new).and_return(@new_vote)
-      @current_user = mock(:user)
-      User.stub!(:new).and_return(@current_user)    
+describe Votes, "#create", "when not logged in" do
+  include VoteSpecHelper
+  
+  it "should not save vote unless logged in" do
+    @vote = mock(:vote)
+    Vote.stub!(:new).and_return(@vote)
+    @vote.should_not_receive(:save)
+    dispatch_to(Votes, :create, :vote => valid_new_vote) do |controller|
+      controller.should_receive(:logged_in?).and_return(false)
     end
-    
-    it "should check if user is adviser after save" do
-      @new_vote.should_receive(:save).and_return(true)
-      @current_user.should_receive(:is_adviser)
-      dispatch_to(Votes, :create, {:vote => 'fake'})
+  end
+end
+
+describe Votes, "#create", "when logged in", "when vote valid" do
+  include VoteSpecHelper
+
+  before(:each) do
+    @old_vote = mock(:old_vote)
+    @new_vote = mock(:new_vote)
+    @params = {:vote => valid_new_vote}
+  end
+
+  def do_post(params = @params, &block)
+    dispatch_to(Votes, :create, params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      controller.assigns(:new_vote).stub!(:save)
+      controller.stub!(:set_old_and_new_vote)
+      controller.stub!(:update_poll_for_vote)
+      controller.stub!(:change_advisee_votes_and_update_poll)
     end
   end
 
-  describe "#create", "as adviser" do
-    before(:each) do
-      @new_vote = mock(:vote)
-      Vote.stub!(:new).and_return(@new_vote)
-      @current_user = mock(:user)
-      User.stub!(:new).and_return(@current_user)
-      @advisee = mock(:user)
-      @advisees = [@advisee]
-      @new_vote.stub!(:save).and_return(true)
-      @current_user.stub!(:is_adviser).and_return(true)
+  it "should set old and new votes" do
+    do_post do |controller|
+      controller.assigns(:new_vote).stub!(:save).and_return(false)
+      controller.should_receive(:set_old_and_new_vote)
     end
+  end
 
-    it "should check if user is adviser after save and create or update all advisee votes if so" do
-      @current_user.should_receive(:advisees).and_return(@advisees)
-      
-      dispatch_to(Votes, :create, {:vote => 'fake'}) do |controller|
-        controller.stub!(:current_user).and_return(@user)
-      end
+  it "should save vote if valid" do
+    do_post do |controller|
+      controller.assigns(:new_vote).should_receive(:save)
     end
   end
   
-  describe "#create", "as user" do
-    before(:each) do
-      @new_vote = mock(:vote)  
-      Vote.stub!(:new).and_return(:@new_vote)
-      @current_user = mock(:user)
-      User.stub!(:new).and_return(@current_user)
-      @advisee = mock(:user)
-    end 
-    
-    it "should check advisers selection if by_advisers == true"
-    
-    it "should submit vote to poll if position != 0"
-   
-  end
-  
-    
-  describe "#update" do
-    it "should update vote if already existing and valid"
-    
-    it "should add 1 vote to yes_count of vote poll_id when is_yes = 1" do
-    
-      @poll = Poll.stub!(:first).and_return(@poll)
-      @vote = Vote.stub!(:first).and_return(@vote)
-      @vote.attributes = {:is_yes => 1}
-      @poll.attributes = { :yes_count => 0, :user_id => 1, :poll_id => 1 }
-      @poll.should_recieve(:update_attributes).with({:yes_count => @poll.yes_count + 1})  
-      lambda { @poll.update_attributes()}.should change(@poll.yes_count).by(1)
-      @poll.yes_count.should == yes_count + 1
-      
+  it "should redirect to poll page" do
+    do_post do |controller|
+      controller.should redirect_to url(:poll, :id => valid_new_vote[:id])
     end
   end
-    it "should update all advisees votes if valid vote updated by adviser"
+  
+  it "should update poll after vote is saved" do
+    do_post do |controller|
+      controller.stub!(:update_poll_for_vote)
+    end
+  end
+  
+  it "should update advisee votes after vote is saved" do
+    do_post do |controller|
+      controller.stub!(:change_advisee_votes_and_update_poll)
+    end
+  end
+end
+
+describe Votes, "#create", "set_old_and_new_vote" do
+  include VoteSpecHelper
+
+  before(:each) do
+    @old_vote = mock(:old_vote)
+    @new_vote = mock(:new_vote)
+    @params = {:vote => valid_new_vote}
   end
 
+  def do_post(params = @params, &block)
+    dispatch_to(Votes, :create, params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      controller.assigns(:new_vote).stub!(:save)
+      controller.stub!(:update_poll_for_vote)
+      controller.stub!(:change_advisee_votes_and_update_poll)
+      controller.stub!(:session).and_return({:user_id => 1})
+      @old_vote.stub!(:attributes).and_return(@old_vote)
+      @old_vote.stub!(:except)
+      @old_vote.stub!(:stance=)
+      @old_vote.stub!(:save)
+      block.call(controller) if block_given?
+    end
+  end
+  
+  it "should check for a previous vote" do
+    do_post do |controller|
+      Vote.should_receive(:first).with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
+      controller.assigns(:old_vote) == @old_vote
+    end
+  end
+
+end
+
+describe Votes, "#create", "update_poll_for_vote" do
+  include VoteSpecHelper
+ 
+  before(:each) do
+    @old_vote = mock(:old_vote)
+    @new_vote = mock(:new_vote)
+    @params = {:vote => valid_new_vote}
+  end
+
+  def do_post(params = @params, &block)
+    dispatch_to(Votes, :create, params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      controller.assigns(:new_vote).stub!(:save).and_return(true)
+      controller.stub!(:change_advisee_votes_and_update_poll)
+      controller.stub!(:set_old_and_new_vote)
+      block.call(controller) if block_given?
+    end
+  end
+ 
+  it "should set update poll with vote change" do
+    do_post do |controller|
+      vote_change = mock(:vote_change)
+      Vote.should_receive(:describe_change).and_return(vote_change)
+      Poll.should_receive(:update_for_vote).with(vote_change)
+    end
+  end
+end
+
+describe Votes, "#create", "change_advisee_votes_and_update_poll" do
+  include VoteSpecHelper
+ 
+  before(:each) do
+    @old_vote = mock(:old_vote)
+    @new_vote = mock(:new_vote)
+    @params = {:vote => valid_new_vote}
+  end
+
+  def do_post(params = @params, &block)
+    dispatch_to(Votes, :create, params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      controller.assigns(:new_vote).stub!(:save).and_return(true)
+      controller.stub!(:update_poll_for_vote)
+      controller.stub!(:set_old_and_new_vote)
+      block.call(controller) if block_given?
+    end
+  end
+ 
+  it "should update advisee votes and poll with changes if current user is adviser" do
+    do_post do |controller|
+      controller.assigns(:current_user).should_receive(:is_adviser?).and_return(true)
+      controller.assigns(:current_user).should_receive(:advisee_list)
+      Vote.should_receive(:update_advisee_votes)
+      Poll.should_receive(:update_for_multiple_votes)
+    end
+  end
 end

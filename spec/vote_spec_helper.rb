@@ -2,6 +2,13 @@ module VoteSpecHelper
   def valid_new_vote
     {
       :poll_id => 1,
+      :stance => 'yes'
+    }
+  end
+  
+  def adviser_vote
+    {
+      :poll_id => 1,
       :user_id => 1,
       :controlled_by_advisers => false,
       :is_yes => 1,
