@@ -1,6 +1,7 @@
 class People < Application
   before Proc.new{ @nav_active = :people }
-  
+  before :find_person, :only => %w{ show edit update destroy }
+
   def index
     case params['sort_by']
       when 'name'
@@ -20,9 +21,7 @@ class People < Application
     render
   end
   
-    def show(id)
-    @person = Person.first(params[:id])
-    raise Merb::ControllerExceptions::NotFound unless @person
+  def show
     render
   end
   
@@ -61,5 +60,15 @@ class People < Application
   def destroy
   
   end
+
+  private
   
+  def find_person
+    unless(@user = User.first(:username => params[:id], :person_id.not => nil)).nil?
+      @person = @user.person
+    else
+      raise NotFound
+    end
+  end
+
 end

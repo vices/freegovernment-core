@@ -205,14 +205,28 @@ form.button.active button {
     float: right;
     width: 110px; }
 
-#polls_index_header {
+.index_header {
   margin-bottom: 20px; }
-  #polls_index_header h2 {
-    background-image: url('/images/polls/header.png');
+  .index_header h2 {
     height: 100px;
     text-indent: -999em; }
-  #polls_index_header .caption {
+  .index_header .caption {
     display: none; }
+
+#polls_index_header h2 {
+  background-image: url('/images/polls/header.png'); }
+
+#people_index_header h2 {
+  background-image: url('/images/people/header.png'); }
+
+#groups_index_header h2 {
+  background-image: url('/images/groups/header.png'); }
+
+#bills_index_header h2 {
+  background-image: url('/images/bills/header.png'); }
+
+#forums_index_header h2 {
+  background-image: url('/images/forums/header.png'); }
 
 #poll_list_and_filters {
   display: inline-block; }

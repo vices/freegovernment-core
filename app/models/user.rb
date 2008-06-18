@@ -16,7 +16,10 @@ class User
   property :last_login_at, DateTime
   property :created_at, DateTime
   property :updated_at, DateTime
-  
+
+  has 0..1, :person
+  has 0..1, :group
+
   validates_length :username, :within => 4..20
   validates_is_unique :username
   
@@ -28,7 +31,7 @@ class User
   
   validates_present :password, :if => proc { |r| r.new_record? }
   validates_present :password_confirmation, :if => proc { |r| r.new_record? }
-  validates_length :password, :within => 8..40
+  validates_length :password, :within => 8..40, :if => proc { |r| !r.password.nil? }
   validates_is_confirmed :password, :groups => :create
   
   before :save, :encrypt_password
