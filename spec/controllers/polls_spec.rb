@@ -5,7 +5,7 @@ describe "#new" do
 
   it "should initialize @new_poll" do
   @new_poll = Poll.new
- 
+
   end
 
 end

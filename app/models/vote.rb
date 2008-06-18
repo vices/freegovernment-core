@@ -103,7 +103,11 @@ class Vote
     end
 
     def describe_change(old_vote, new_vote)
-      [old_vote.state, new_vote.state]
+      unless old_vote.nil?
+        [old_vote.state, new_vote.state]
+      else
+        [0, new_vote.state]
+      end
     end
 
     def describe_difference(vc)

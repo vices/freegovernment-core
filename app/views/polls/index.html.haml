@@ -1,0 +1,16 @@
+%h2 Polls
+.caption vote here on user-submitted questions
+.caption don't forget to learn how you can get advisers to vote for you.
+#poll_list_and_filters
+  #poll_list
+    - unless @polls_page.nil?
+      - @polls_page.each do |poll|
+        .poll
+          .question= poll.question
+          .description= poll.description
+          = partial 'polls/voting_options', :poll => @poll, :vote => Vote.new
+  #poll_filters
+    #poll_search
+    #poll_creation
+      %div Can't find the poll you're looking for?
+      = link_to "Click here to create it.", url(:new_poll)
