@@ -1,4 +1,5 @@
 class Groups < Application
+  before :find_group, :only => %w{ show edit update destroy }
   
   def index
     case params['sort_by']
@@ -19,7 +20,7 @@ class Groups < Application
     render
   end
   
-  def show(id)
+  def show
     @group = Group.first(params[:id])
     raise Merb::ControllerExceptions::NotFound unless @group
     render
@@ -57,6 +58,17 @@ class Groups < Application
   
   def destroy
   
+  end
+  
+  private
+  
+  def find_group
+    username = params[:id]
+    unless (@user = User.first(:username => username)).nil?
+      @group = @user.group
+    else
+      raise NotFound
+    end
   end
   
 end
