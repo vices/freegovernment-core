@@ -1,5 +1,6 @@
 class Groups < Application
   before :find_group, :only => %w{ show edit update destroy }
+  before Proc.new{ @nav_active = :groups }
   
   def index
     case params['sort_by']
@@ -21,8 +22,6 @@ class Groups < Application
   end
   
   def show
-    @group = Group.first(params[:id])
-    raise Merb::ControllerExceptions::NotFound unless @group
     render
   end
   
@@ -38,6 +37,8 @@ class Groups < Application
     if verify_recaptcha(params[:recaptcha])
       if @new_group.valid?(:before_user_creation) && @new_user.save
         @new_group.save
+        @new_user.group_id = @new_group.id
+        @new_user.save
         redirect url(:home)
       else
         render :new
@@ -64,7 +65,7 @@ class Groups < Application
   
   def find_group
     username = params[:id]
-    unless (@user = User.first(:username => username)).nil?
+    unless (@user = User.first(:username => username, :group_id.not => nil)).nil?
       @group = @user.group
     else
       raise NotFound
