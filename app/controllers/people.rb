@@ -34,7 +34,7 @@ class People < Application
   def create(user, person)
     @new_person = Person.new(person)
     @new_user = User.new(user)
-    if verify_recaptcha(params[:recaptcha])
+    if verify_recaptcha
       if @new_person.valid?(:before_user_creation) && ( @new_user.save if @new_user.valid? ) 
         @new_person.save
         self.current_user = @new_user

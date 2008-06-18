@@ -148,23 +148,31 @@ describe Groups do
     Group.stub!(:first).and_return(@group)
   end
 
-  
+
   def do_get(params={}, &block)
     dispatch_to(Groups, :show, {:id => 1 }.merge(params)) do |controller|
       controller.stub!(:render)
       block if block_given?
+      pp "test 200t"
     end
   end
 
-
+=begin
+  def do_get(params={})
+    dispatch_to(Groups, :show, {:id => 1}.merge(params)) do |controller|
+     pp "test 0"
+      controller.stub!(:display)
+    end
+  end
+=end
   it "should be successful" do
     do_get.should be_successful
   end
 
   it "should get data for @group by id" do
-    do_get({:id => 1}) do
-      assign(:group).should == @group
-    end
+
+    do_get.assigns(:group).should == @group
+    
   end
     
    it "should get data for @group by name" do
