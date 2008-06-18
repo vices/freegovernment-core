@@ -1,6 +1,7 @@
 class Polls < Application
   before :login_required, :only => %w{ new create }
   before :find_poll, :only => %w{ show }
+  before Proc.new{ @nav_active = :polls }
   
   def index
     case params['sort_by']

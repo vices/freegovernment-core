@@ -1,4 +1,5 @@
 class People < Application
+  before Proc.new{ @nav_active = :people }
   
   def index
     case params['sort_by']
