@@ -1,0 +1,6 @@
+- @polls.each do |poll|
+  .poll
+    == Question:  #{poll.question}
+    %br
+    == Description:  #{poll.description}
+    /= partial 'polls/voting_options', :poll => @poll, :vote => @vote
