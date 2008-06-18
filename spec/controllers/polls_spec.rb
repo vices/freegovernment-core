@@ -1,6 +1,90 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
+require File.join(File.dirname(__FILE__), "..", "polls_spec_helper")
+
+describe "#new" do
+
+  it "should initialize @new_poll" do
+  @new_poll = Poll.new
+ 
+  end
+
+end
+
+describe Polls, "#create", "when not logged on" do
+  include PollsSpecHelper
+
+  it "should not save poll" do
+    dispatch_to(Polls, :create, {:poll => valid_new_poll}) do |controller|
+      controller.should_receive(:logged_in?).and_return(false)
+      @new_poll.should_not_receive(:save)
+    end
+  end
+end
+
+describe Polls, "#create", "valid poll" do
+
+end
 
 
+
+
+
+
+=begin
+  #mock vs stub?  do I need @new_poll = Poll.new ?
+  it "should not save poll and it should render login" do
+    #first we need a poll object
+    #@new_poll = mock(:poll)
+    @new_poll = Poll.new 
+    #now we tell it that it is not logged in (what is it?)((it is polls/create))
+    dispatch_to(Polls, :create, :poll => valid_new_poll) do |controller|
+      #ok ok we tell it "are you logged in?"
+      controller.should_receive(:logged_in?).and_return(false)
+      #and it tells us "NO!"  In theory.  However, it is not receiving that order
+      #Where oh where does the green rabbit run?
+      #in which case it should not receive a save demand from us!
+      @new_poll.should_not_receive(:save)
+      controller.should_receive(:render) #but god doesnt want this
+      #it were not the sheep that focked the shepard, but instead the gnomes
+      controller.stub!(:render)#there are some codes that you can only run green once
+      #Dear lord of the gambit, please allow your cats free reign over our teradactyls
+    
+    end
+    end
+ =end
+    
+
+  end
+
+describe Polls, "#create", "when logged on" do
+
+
+  it "should save the poll"   do
+
+  end
+end
+
+
+
+
+
+
+=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=begin
 describe Polls do
   describe "#new" do 
     before(:each) do
@@ -20,7 +104,7 @@ describe Polls do
       dispatch_to(Polls, :new)
     end
     
-    
+    end
   end
   describe "#create" do 
   
@@ -90,7 +174,7 @@ describe Polls do
         end
       end
     end
-=end
+ =end
 
     it "should render #new if poll data invalid" do
       @new_poll.should_receive(:valid?).with(:before_poll_creation).and_return(false)
@@ -180,8 +264,51 @@ describe Polls do
 #    it "should allow filter for bills"
     
   end
-  describe "#show" do 
-    it "should get data for poll by poll_id"
+  
+  describe "#show" do
+  
+    before(:each) do
+      @poll = mock(:poll)
+      @vote = mock(:vote)
+      Poll.stub!(:first).and_return(@poll)
+      Vote.stub!(:first).and_return(@vote)
+    end
+  
+    def do_get(params = {}, &block)
+      dispatch_to(Polls, :show, {:id => 1}.merge(params)) do |controller|
+        controller.stub!(:render)
+        block if block_given?
+      end
+    end
+    it "should be succesful" do
+      do_get.should be_successful
+    end
+    
+    it "should get the vote associated with user_id" do
+#      Poll.should_receive(:first).and_return(@poll)
+#      Vote.should_receive(:first).and_return(@vote)    
+      do_get.assigns(:poll).should == @poll
+      do_get.assigns(:vote).should == @vote
+      
+    
+      #Poll.should_receive(:first).and_return(@poll)
+      #Vote.should_receive(:first).and_return(@vote)
+    # do_get({:id => 1}) do
+        #controller.session[:user_id] = 1
+     #   p 'here'
+        #pp controller
+        #controller.stub!(:logged_in?).and_return(true)
+        #assigns(:poll).should == @poll
+        #assigns(:vote).should == @vote
+      #end
+      end
+    
+    
+ 
+    it "should get data for poll by id" do
+      Poll.should_receive(:first).and_return(@poll)
+      do_get
+    end
     
     it "should get data for comment stream posts by poll_id"
     
@@ -199,6 +326,5 @@ describe Polls do
   
   describe "#update" do end  
   describe "#edit" do end
-end
 
-
+=end
