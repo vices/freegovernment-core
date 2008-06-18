@@ -111,6 +111,123 @@ a:hover
 #home_login
   :width 250px
 
+
+.attention
+  :font-size 16px
+  :background-color #d9e0e4
+  :padding 15px
+  :text-align center
+  .title
+    :margin-bottom 10px
+  a
+    :font-size 16px
+    :font-weight bold
+
+.filter
+  :background-color #e9e9e9
+  :color #525252
+  :padding 10px
+  .title
+    :text-transform uppercase
+    :border-bottom 1px solid #525252
+  a
+    :color #525252
+
+form.button
+  button
+    +font
+    :padding 5px 10px
+    :color #000
+    :background-color #e9e9e9
+    :border none
+    :font-size 12px
+form.button.active
+  button
+    :color #fff
+    :background-color #363636
+    :font-weight bold
+
+.voting_options
+  :text-align center
+  .standard_voting
+    +clearfix
+    form
+      :float left
+    form button
+      :float left
+      :margin 10px 10px
+  .adviser_voting
+    
+.poll
+  +clearfix
+  :border-bottom 1px solid #ccc
+  :padding 10px 0px
+  :margin-bottom 10px
+  .details
+    +clearfix
+    :float left
+    :width 430px
+    .sidebar
+      :width 60px
+      :float left
+    .main
+      :width 360px
+      :float right
+      :border-right 1px solid #ddd
+      .question
+        :color #525252
+        :font-size 14px
+        :margin-bottom 5px
+      .description
+        :height 40px
+        :overflow hidden
+  .stats
+    :float right
+    :width 110px
+  
+
+.index_header
+  :margin-bottom 20px
+  h2
+    :height 100px
+    :text-indent -999em
+  .caption
+    :display none
+
+#polls_index_header
+  h2
+    :background-image url('/images/polls/header.png')
+#people_index_header
+  h2
+    :background-image url('/images/people/header.png')
+#groups_index_header
+  h2
+    :background-image url('/images/groups/header.png')
+#bills_index_header
+  h2
+    :background-image url('/images/bills/header.png')
+#forums_index_header
+  h2
+    :background-image url('/images/forums/header.png')
+
+
+
+#poll_list_and_filters 
+  +clearfix
+  #poll_list
+    :float left
+    :width 550px
+  #poll_filters
+    :float right
+    :width 200px
+    .attention
+      :margin-bottom 10px
+    .filter
+      :margin-bottom 10px
+
+
+// FOOTER
+
 #push
   :height 580px
 

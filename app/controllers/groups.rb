@@ -37,6 +37,8 @@ class Groups < Application
     if verify_recaptcha(params[:recaptcha])
       if @new_group.valid?(:before_user_creation) && @new_user.save
         @new_group.save
+        @new_user.group_id = @new_group.id
+        @new_user.save
         redirect url(:home)
       else
         render :new
