@@ -150,7 +150,7 @@ describe Groups, "#show" do
 
 
   def do_get(params={}, &block)
-    dispatch_to(Groups, :show, {:id => 'groupusername' }.merge(params)) do |controller|
+    dispatch_to(Groups, :show, {:id => 'groupusername'}) do |controller|
       controller.stub!(:render)
       block if block_given?
     end

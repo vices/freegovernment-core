@@ -1,5 +1,6 @@
 class Groups < Application
   before :find_group, :only => %w{ show edit update destroy }
+  before Proc.new{ @nav_active = :groups }
   
   def index
     case params['sort_by']

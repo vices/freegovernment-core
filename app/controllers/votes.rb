@@ -14,13 +14,13 @@ class Votes < Application
   
   def update_poll_for_vote
     vote_diff = Vote.describe_difference(Vote.describe_change(@old_vote, @new_vote))
-    Poll.update_for_votes(vote_diff)
+    Poll.first(:id => @new_vote.poll_id).update_for_votes(vote_diff)
   end
   
   def change_advisee_votes_and_update_poll
     if @current_user.is_adviser?
       vote_diffs = Vote.update_advisee_votes(@old_vote, @new_vote, @current_user.advisee_list)
-      Poll.update_for_votes(vote_diffs)
+      Poll.first(:id => @new_vote.poll_id).update_for_votes(vote_diffs)
     end  
   end
   
@@ -30,7 +30,7 @@ class Votes < Application
     else
       @new_vote = @old_vote
       @old_vote = Vote.new(@old_vote.attributes.except(:id))
-      @new_vote.stance = params[:stance]
+      @new_vote.selection = params[:selection]
     end
   end
 
