@@ -22,8 +22,6 @@ class Groups < Application
   end
   
   def show
-    @group = Group.first(params[:id])
-    raise Merb::ControllerExceptions::NotFound unless @group
     render
   end
   
@@ -65,7 +63,7 @@ class Groups < Application
   
   def find_group
     username = params[:id]
-    unless (@user = User.first(:username => username)).nil?
+    unless (@user = User.first(:username => username, :group_id.not => nil)).nil?
       @group = @user.group
     else
       raise NotFound

@@ -1,0 +1,13 @@
+/%h2 Groups
+/.caption locate organizations that serve your unique perspectives
+/#groups_list_and_filters
+/  #groups_list
+/    - unless @groups_page nil?
+/      @groups_page.each do |group|
+/        .group
+/          .username= group.username
+/          .membership= group.membership
+/  #groups_filters
+/    #groups_search
+          
+        

@@ -1,12 +1,12 @@
-%h2 People
-.caption find others who share in the democratic process
-#people_list_and_filters
-  #people_list
-    - unless @people_page nil?
-      @people_page.each do |person|
-        .person
-          .full_name= person.full_name
-  #people_filters
-    #people_search
+/%h2 People
+/.caption find others who share in the democratic process
+/#people_list_and_filters
+/  #people_list
+/    - unless @people_page nil?
+/      @people_page.each do |person|
+/        .person
+/          .full_name= person.full_name
+/  #people_filters
+/    #people_search
           
         
