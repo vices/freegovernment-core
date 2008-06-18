@@ -1,19 +1,19 @@
 .voting_options
   .standard_voting
-    - form_for vote, :action => url(:votes), :class => "vote_yes #{ vote.selection == 'yes' ? 'active'  : '' }" do
+    - form_for vote, :action => url(:votes), :class => "button vote_yes #{ vote.selection == 'yes' ? 'active'  : '' }" do
       = hidden_control :poll_id, :value => poll.id
       = hidden_control :selection, :value => 'no'
       = submit_button "Yes"
-    - form_for vote, :action => url(:votes), :class => "vote_undecided #{ vote.selection == 'no' ? 'active' : '' }" do
+    - form_for vote, :action => url(:votes), :class => "button vote_undecided #{ vote.selection == 'no' ? 'active' : '' }" do
       = hidden_control :poll_id, :value => poll.id
       = hidden_control :selection, :value => 'undecided'
       = submit_button "Undecided"
-    - form_for vote, :action => url(:votes), :class => "vote_no #{ vote.selection == 'undecided' ? 'active' : '' }" do
+    - form_for vote, :action => url(:votes), :class => "button vote_no #{ vote.selection == 'undecided' ? 'active' : '' }" do
       = hidden_control :poll_id, :value => poll.id
       = hidden_control :selection, :value => 'yes'
       = submit_button "No"
   .adviser_voting
-    - form_for vote, :action => url(:votes), :class => "vote_advisers #{ vote.selection == 'adviser' ? 'active' : '' }" do
+    - form_for vote, :action => url(:votes), :class => "button vote_advisers #{ vote.selection == 'adviser' ? 'active' : '' }" do
       = hidden_control :poll_id, :value => poll.id
       = hidden_control :selection, :value => 'adviser'
       = submit_button "Let Advisers Decide"
