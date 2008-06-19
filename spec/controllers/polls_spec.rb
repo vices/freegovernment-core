@@ -108,11 +108,8 @@ describe Polls, "#index" do
   end
 
   it "should default to order by created_at" do
-#more do_get block problems
       do_get.assigns(:sort_by).should == :created_at
       do_get.assigns(:direction).should == "asc"
-#because of the conversion to strings in polls.rb, please
-#check that this test is legit, changed :desc to "asc"
   end
 
   it "should allow order by location"
