@@ -23,6 +23,10 @@ describe User, "in general"  do
   it "should have a crypted_password property"do
     @user.should respond_to(:crypted_password)
   end
+  
+  it "should encrypt the password" do
+		#@user.attributes(:crypted_password).should == :encrypt(:password)
+  end
 
   it "should have a salt property" do
     @user.should respond_to(:salt)
@@ -66,7 +70,8 @@ describe User, "in general"  do
   it "should require a unique email" do
     @user.attributes = valid_new_user
     @user.save
-    user2 = User.new(:valid_new_user)
+    user2 = User.new
+    user2.attributes = valid_new_user
     user2.valid?
     user2.errors.on(:email).should_not be_nil
   end
@@ -74,7 +79,8 @@ describe User, "in general"  do
   it "should require a unique username" do
     @user.attributes = valid_new_user
     @user.save
-    user2 = User.new(:valid_new_user)
+    user2 = User.new
+    user2.attributes = valid_new_user
     user2.valid?
     user2.errors.on(:username).should_not be_nil
   end

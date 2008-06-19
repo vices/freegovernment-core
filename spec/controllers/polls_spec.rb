@@ -104,21 +104,12 @@ describe Polls, "#index" do
     DataMapper::Query::Operator.stub!(:new).with(sort_by, direction).and_return(operator)
     Poll.should_receive(:all).with(:order => [operator]).twice
     do_get(params).assigns(:sort_by).should == sort_by
-#TODO fix this
     do_get(params).assigns(:direction).should == "desc"
-=begin     
-      assigns(:sort_by).should == sort_by
-      assigns(:direction).should == direction
-#TODO More do_get block problems
-=end
   end
 
   it "should default to order by created_at" do
-#more do_get block problems
       do_get.assigns(:sort_by).should == :created_at
       do_get.assigns(:direction).should == "asc"
-#because of the conversion to strings in polls.rb, please
-#check that this test is legit, changed :desc to "asc"
   end
 
   it "should allow order by location"
@@ -178,9 +169,9 @@ describe Polls, "#show" do
     end
   end
   
-  it "should display an error if poll not found" do
+  it "should display an error if poll not found" 
   
-  end
+  
 
 end
 

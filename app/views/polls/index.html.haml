@@ -3,14 +3,14 @@
     %h2 Polls
     .caption vote here on user-submitted questions
     .caption don't forget to learn how you can get advisers to vote for you.
-  #poll_list_and_filters
-    #poll_list
+  #poll_list_and_filters.list_and_filters
+    #poll_list.list
       - unless @polls_page.nil?
         - @polls_page.each do |poll|
           .poll
             .details
               .sidebar
-                = link_to image_tag("polls/default_icon.png"), url(:poll, :id => poll.id)
+                = link_to image_tag("polls/default_icon_60.png"), url(:poll, :id => poll.id)
               .main
                 .question= link_to "#{poll.question}", url(:poll, :id => poll.id)
                 .description= poll.description
@@ -54,7 +54,7 @@
                     %span.number n/a
                     %span.label No
                 .total== #{poll.verified_vote_count} votes 
-    #poll_filters
+    #poll_filters.filters
       #poll_search
       #poll_creation.attention
         .title Can't find the poll you're looking for?

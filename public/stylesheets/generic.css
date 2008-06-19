@@ -322,6 +322,68 @@ form.button.active button {
     width: 80px;
     border-left: 4px solid #e9e9e9; }
 
+.list_and_filters {
+  display: inline-block;
+  width: 760px; }
+  .list_and_filters:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .list_and_filters {
+    height: 1px; }
+  .list_and_filters .list {
+    float: left;
+    width: 550px; }
+  .list_and_filters .filters {
+    float: right;
+    width: 200px; }
+    .list_and_filters .filters .attention {
+      margin-bottom: 10px; }
+    .list_and_filters .filters .filter {
+      margin-bottom: 10px; }
+
+#people_index .person {
+  display: inline-block;
+  width: 550px;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ddd; }
+  #people_index .person:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #people_index .person {
+    height: 1px; }
+  #people_index .person .photo_and_details {
+    display: inline-block;
+    float: left;
+    width: 440px; }
+    #people_index .person .photo_and_details:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #people_index .person .photo_and_details {
+      height: 1px; }
+    #people_index .person .photo_and_details .photo {
+      float: left;
+      width: 100px; }
+      #people_index .person .photo_and_details .photo img {
+        border: 1px solid #ddd; }
+    #people_index .person .photo_and_details .details {
+      float: right;
+      width: 320px; }
+      #people_index .person .photo_and_details .details .full_name, #people_index .person .photo_and_details .details .full_name a {
+        font-size: 16px; }
+  #people_index .person .actions {
+    float: right;
+    width: 110px; }
+
+.actions form.button button {
+  width: 100%;
+  margin-bottom: 10px; }
+
 #polls_index_header h2 {
   background-image: url('/images/polls/header.png'); }
 
@@ -336,26 +398,6 @@ form.button.active button {
 
 #forums_index_header h2 {
   background-image: url('/images/forums/header.png'); }
-
-#poll_list_and_filters {
-  display: inline-block; }
-  #poll_list_and_filters:after {
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #poll_list_and_filters {
-    height: 1px; }
-  #poll_list_and_filters #poll_list {
-    float: left;
-    width: 550px; }
-  #poll_list_and_filters #poll_filters {
-    float: right;
-    width: 200px; }
-    #poll_list_and_filters #poll_filters .attention {
-      margin-bottom: 10px; }
-    #poll_list_and_filters #poll_filters .filter {
-      margin-bottom: 10px; }
 
 #push {
   height: 580px; }

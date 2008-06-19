@@ -68,12 +68,13 @@ describe Vote, "when user votes" do
     @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
     @new_vote.attributes[:is_yes].should == true
     @new_vote.state.should == 1
-    @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
-    @new_vote.attributes[:is_yes].should == true
-    @new_vote.state.should == 1
-    @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
-    @new_vote.attributes[:is_yes].should == true
-    @new_vote.state.should == 1
+    @new_vote = Vote.new(valid_new_vote.update({:selection => 'no'}))
+    @new_vote.attributes[:is_no].should == true
+    @new_vote.state.should == -1
+    @new_vote = Vote.new(valid_new_vote.update({:selection => 'undecided'}))
+    @new_vote.attributes[:is_yes].should == false
+    @new_vote.attributes[:is_no].should == false
+    @new_vote.state.should == 0
   end
 
   
@@ -104,6 +105,21 @@ describe Vote, "when updating advisee votes" do
     changes = Vote.update_advisee_votes(old_vote, new_vote, advisee_ids)
     Vote.count.should == 10
     Vote.count(:is_yes => true, :is_no => false).should == 10
+    
+
+    old_vote = Vote.new(:user_id => 11, :poll_id => 1, :selection => 'yes')
+    new_vote = Vote.new(:user_id => 11, :poll_id => 1, :selection => 'no')
+    changes = Vote.update_advisee_votes(old_vote, new_vote, advisee_ids)
+    Vote.count.should == 10
+    Vote.count(:is_yes => false, :is_no => true).should == 10
+    
+
+    old_vote = Vote.new(:user_id => 11, :poll_id => 1, :selection => 'no')
+    new_vote = Vote.new(:user_id => 11, :poll_id => 1, :selection => 'undecided')
+    changes = Vote.update_advisee_votes(old_vote, new_vote, advisee_ids)
+    Vote.count.should == 10
+    Vote.count(:is_yes => false, :is_no => false).should == 10
+    
   end
 
 
@@ -150,12 +166,16 @@ describe Vote, "describe changes and differences in votes" do
   end
   
   
-  it "should have a class method to describe change from old vo  include VoteSpecHelperte to new vote" do
+  it "should have a class method to describe change from old vote to new vote" do
     @old_vote = Vote.new(valid_new_vote.merge({:selection => 'yes'}))
     #new(valid_new_vote.merge({:selection => 'yes'}))
     new_vote = Vote.new(valid_new_vote.merge({:selection => 'undecided'}))
     change = Vote.describe_change(@old_vote, new_vote)
     change.should == [1, 0]
+    
+    @old_vote = nil
+    change = Vote.describe_change(@old_vote, new_vote)
+    change.should == [0, 0]
   end
   
   it "should have a class method to describe the difference in a vote change" do
@@ -173,6 +193,25 @@ describe Vote, "describe changes and differences in votes" do
     difference[:yes].should == 0
     difference[:no].should == 0
   end
+  it "should have a descrbied difference of 0,1 when undecided to no" do 
+    old_vote = Vote.new(valid_new_vote.merge({:selection=> 'undecided'}))
+    new_vote = Vote.new(valid_new_vote.merge({:selection=> 'no'}))
+    change = Vote.describe_change(old_vote, new_vote)
+    difference = Vote.describe_difference(change) 
+    difference[:yes].should == 0
+    difference[:no].should == 1
+  end
+  
+  it "should hae a described difference of :yes => 1, :no => -1 when no to yes" do
+    old_vote = Vote.new(valid_new_vote.merge({:selection=> 'no'}))
+    new_vote = Vote.new(valid_new_vote.merge({:selection=> 'yes'}))
+    change = Vote.describe_change(old_vote, new_vote)
+    difference = Vote.describe_difference(change) 
+    difference[:yes].should == 1
+    difference[:no].should == -1
+  end
+  
+  
   
   it "should have a described difference of 0,1 when yes to no" do
     old_vote = Vote.new(valid_new_vote.merge({:selection=> 'yes'}))

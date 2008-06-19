@@ -1,5 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
 require File.join(File.dirname(__FILE__), "..", "vote_spec_helper")
+require File.join(File.dirname(__FILE__), "..", "polls_spec_helper")
 
 describe Votes, "#create", "when not logged in" do
   include VoteSpecHelper
@@ -53,9 +54,26 @@ describe Votes, "#create", "when logged in", "when vote valid" do
   end
   
   it "should update poll after vote is saved" do
-    do_post do |controller|
-      controller.stub!(:update_poll_for_vote)
+  include PollsSpecHelper
+#    @new_poll = Poll.new(valid_new_poll.merge({:yes_count => 1, :no_count => 1}))
+    
+#    @new_vote = Vote.new(valid_new_vote.merge)
+    @new_vote.stub!(:update_poll_for_vote)
+    @new_vote = mock(:vote)
+    @new_poll = mock(:poll)
+    vote_diff = [-1,0]
+   
+    @new_poll.stub!(:attributes).and_return(:yes_count)
+    pp :yes_count
+    dispatch_to(Votes, :create, @params) do |controller|
+      controller.stub!(:update_poll_for_votes)
+      @new_poll.attributes(:yes_count).should == -1
+#    @new_vote.update_poll_for_vote
+#    do_post do |controller|
+#      controller.stub!(:update_poll_for_vote)
     end
+        
+    
   end
   
   it "should update advisee votes after vote is saved" do
@@ -90,7 +108,9 @@ describe Votes, "#create", "set_old_and_new_vote" do
   end
   
   it "should check for a previous vote" do
-    do_post do |controller|
+#    do_post do |controller|
+      dispatch_to(Votes, :create, @params) do |controller|
+      controller.stub!(:logged_in?)
       Vote.should_receive(:first).with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
       controller.assigns(:old_vote) == @old_vote
     end

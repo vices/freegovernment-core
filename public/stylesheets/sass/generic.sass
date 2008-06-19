@@ -297,6 +297,51 @@ form.button.active
       :width 80px
       :border-left 4px solid #e9e9e9
 
+
+.list_and_filters 
+  +clearfix
+  :width 760px
+  .list
+    :float left
+    :width 550px
+  .filters
+    :float right
+    :width 200px
+    .attention
+      :margin-bottom 10px
+    .filter
+      :margin-bottom 10px
+
+#people_index
+  .person
+    +clearfix
+    :width 550px
+    :padding 10px 0px
+    :border-bottom 1px solid #ddd
+    .photo_and_details
+      +clearfix
+      :float left
+      :width 440px
+      .photo
+        :float left
+        :width 100px
+        img
+          :border 1px solid #ddd
+      .details
+        :float right
+        :width 320px
+        .full_name, .full_name a
+          :font-size 16px
+    .actions
+      :float right
+      :width 110px
+
+.actions
+  form.button
+    button
+      :width 100%
+      :margin-bottom 10px
+
 #polls_index_header
   h2
     :background-image url('/images/polls/header.png')
@@ -315,18 +360,6 @@ form.button.active
 
 
 
-#poll_list_and_filters 
-  +clearfix
-  #poll_list
-    :float left
-    :width 550px
-  #poll_filters
-    :float right
-    :width 200px
-    .attention
-      :margin-bottom 10px
-    .filter
-      :margin-bottom 10px
 
 
 // FOOTER
