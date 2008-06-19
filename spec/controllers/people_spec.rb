@@ -1,9 +1,12 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
+require File.join(File.dirname(__FILE__), "..", "person_spec_helper")
+require File.join(File.dirname(__FILE__), "..", "user_spec_helper")
 
 describe People do
 
+
   describe "#new" do
-  
+
     before(:each) do
       @new_person = mock(:person)
       @new_user = mock(:user)
@@ -13,12 +16,12 @@ describe People do
       User.should_receive(:new).and_return(@new_user)
       Person.should_receive(:new).and_return(@new_person)
       dispatch_to(People, :new) do |controller|
-        controller.stub!(:render)
+       # controller.stub!(:render) #TODO is this used?
       end
     end
     
   end
-  
+
   describe "#create" do
     
     before(:each) do
@@ -91,7 +94,7 @@ describe People do
     def do_get(params = nil, &block)
       dispatch_to(People, :index, params) do |controller|
         controller.stub!(:render)
-        block if block_given?
+        block.call(controller) if block_given?
       end
     end
 
@@ -111,18 +114,16 @@ describe People do
       params = {:sort_by => sort_by, :direction => direction}
       operator = mock(:operator)
       DataMapper::Query::Operator.stub!(:new).with(sort_by,direction).and_return(operator)
-      Person.should_receive(:all).with(:order => [operator])
-      do_get(params) do
-        assigns(:sort_by).should == sort_by
-        assigns(:direction).should == direction
-      end
+      Person.should_receive(:all).with(:order => [operator]).twice
+      do_get(params).assigns(:sort_by).should == sort_by
+      do_get(params).assigns(:direction).should == "desc"
+      
     end
     
     it "should default order by id" do
-     do_get do
-        assigns(:sort_by).should == :id
-        assigns(:direction).should == :asc
-      end
+     do_get.assigns(:sort_by).should == :id
+     do_get.assigns(:direction).should == "asc"
+     
     end
     
 
@@ -135,10 +136,9 @@ describe People do
     end
     
     it "should allow order by full name" do
-      do_get({:sort_by => 'name', :direction => 'asc'}) do
-        assigns(:sort_by).should == :name
-        assigns(:direction).should == :asc
-      end
+      do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:sort_by).should == :full_name
+      do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:direction).should == "asc"
+      
     end
     
     it "should allow search full names"
@@ -152,109 +152,103 @@ describe People do
     it "should allow filter by registered voters"
     
   end
-
-  describe "#show" do
-  
-  	before(:each) do
-  	@person = mock(:person)
-  	Person.stub!(:first).and_return(@person)
-  	end
-  
-    def do_get(params = {}, &block)
-      dispatch_to(People, :show, {:id => 1 }.merge(params)) do |controller|
-        controller.stub!(:render)
-        block if block_given?
-      end
-    end
-  
-    it "should get data for @person by id" do
-      do_get({:id => 1})  do
-        assign(:person).should == @person
-      end
-    end
-    
-    it "should get display an error message if user not found"
-    
-    it "should check privacy settings for the user"
-    
-    it "should display an error when privacy settings conflict"
-    
-  end
-  
-  describe "#edit" do
-  before(:each) do
-  	@person = mock(:person)
-  	@people_page = [@person]
-  	Person.stub!(:first).and_return(@person)
-  end
-  
-    def do_get(params = {}, &block)
-      dispatch_to(People, :edit, {:id => 1 }.merge(params)) do |controller|
-        controller.stub!(:render)
-        block if block_given?
-      end
-    end
-    
-    it "should be successful" do
-      do_get.should be_successful
-    end
-    
-    it "should load the requested person" do
-      do_get({:id => 1})  do
-        assign(:person).should == @person
-      end
-    end
-    
-    it "should render the action" do
-      dispatch_to(People, :edit, :id => "1") do |controller|
-        controller.should_receive(:render)
-      end
-    end
-    it "should only work for the current user on their own person"
-    
-    it "should find @edit_user and @edit_person for id"
-    
-  end
-  
-  describe "#show" do
-
-  before(:each) do
-  	@person = mock(:person)
-  	Person.stub!(:first).and_return(@person)
-  end
-  
-    def do_get(params = {}, &block)
-      dispatch_to(People, :show, {:id => 1 }.merge(params)) do |controller|
-        controller.stub!(:render)
-        block if block_given?
-      end
-    end
-    
-      it "should load the requested page by the specificed slug" do #wtf is slug
-        Person.should_receive(:by_slug_and_select_version!).and_return(@person)
-        do_get.assign(:people_page).should == @person
-      end
-      
-      it "should raise NotFound if a person cannot be found with slug" do
-        Person.should_receive(:by_slug_and_select_version!).and_return(nil)
-        lambda { do_get }.should raise_error(Merb::ControllerExceptions::NotFound)
-      end
-      #TODO foy look at the above todo
-      it "should display the Person" do
-    		dispatch_to(Person, :show, :user_id => "1") do |controller|
-          controller.should_receive(:display).with(@person)
-        end
-      end
-      
-    end
-  
-  describe "#update" do
-  
-  end
-  
-  describe "#destroy" do
-  #TODO nothing to see here
-  end
 end
+
+describe People, "#show" do
+include UserSpecHelper
+	before(:each) do
+	  @person = mock(:person)
+	  @user = User.new(valid_new_user)
+	  User.stub!(:first).and_return(@user)
+	  Person.stub!(:first).and_return(@person)
+	end
+
+  def do_get(params = {}, &block)
+    dispatch_to(People, :show, {:id => 1 }.merge(params)) do |controller|
+      controller.stub!(:render)
+      block.call(controller) if block_given?
+    end
+  end
+  
+  it "should be successful" do
+    do_get.should be_successful
+    
+  end  
+  
+  it "should return not found if @person id does not exist" do
+    User.stub!(:first).and_return(nil)
+    dispatch_to(People, :show, {:id => 'noone'}) do |controller|
+      controller.should raise_error(Merb::ControllerExceptions::NotFound)
+    end
+  end
+  
+  it "should get data for @person by id" do
+    User.should_receive(:first).and_return(@user)
+    do_get
+    pp @user
+=begin , Interestingly, you cannot put the comma next to the begin, because although this text will all stay blue, the command will not work properly in spec.
+
+pp @user = the following, as we can see it does not have people
+ last_login_at = nil,
+ salt = nil,
+ created_at = nil,
+ crypted_password = nil,
+ username = "foysavas",
+ is_adviser = 0,
+ person_id = nil,
+ email = "foysavas@gmail.com",
+ id = nil,
+ updated_at = nil,
+ previous_login_at = nil,
+ group_id = nil>
+
+=end   
+  end
+  
+  it "should get display an error message if user not found"
+  
+  it "should check privacy settings for the user"
+  
+  it "should display an error when privacy settings conflict"
+  
+end
+=begin
+describe People, "#edit" do
+  before(:each) do
+	  @person = mock(:person)
+	  @people_page = [@person]
+	  User.stub!(:first).and_return(@person)
+  end
+
+  def do_get(params = {}, &block)
+    dispatch_to(People, :edit, {:id => 1 }.merge(params)) do |controller|
+      controller.stub!(:render)
+      block if block_given?
+    end
+  end
+  
+  it "should be successful" do
+    do_get.should be_successful
+  end
+  
+  it "should load the requested person" do
+    do_get({:id => 1})  do
+      assign(:person).should == @person
+    end
+  end
+  
+  it "should render the action" do
+    dispatch_to(People, :edit, :id => "1") do |controller|
+      controller.should_receive(:render)
+    end
+  end
+  it "should only work for the current user on their own person"
+  
+  it "should find @edit_user and @edit_person for id"
+  
+end
+=end
+
+
 
 

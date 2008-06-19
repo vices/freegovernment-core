@@ -38,8 +38,8 @@ class Groups < Application
       if @new_group.valid?(:before_user_creation) && @new_user.save
         @new_group.save
         @new_user.group_id = @new_group.id
-        @new_user.save
-        redirect url(:home)
+        @new_user.save #test this
+        redirect url(:home) #this
       else
         render :new
       end
@@ -48,10 +48,10 @@ class Groups < Application
     end
   end
   
-  def edit(id)
-    @group = Group.first(:id => id)
-    render
-  end
+  def edit
+  #  @group = Group.first(params[:id]) 
+    render #THIS TOO ???!!!
+  end #this is just funny
   
   def update
   

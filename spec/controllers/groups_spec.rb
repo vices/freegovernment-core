@@ -50,10 +50,10 @@ describe Groups, "#create" do
       @new_group.stub!(:valid?).and_return(false)
     end
     
-    it "should create a new group and person when valid" do
+    it "should create a new group and user when valid" do
       @new_group.should_receive(:valid?).and_return(true)
+   		@new_group.should_receive(:save)
       @new_user.should_receive(:save).and_return(true)
-      @new_group.should_receive(:save)
     end
     
   end
@@ -156,14 +156,6 @@ describe Groups, "#show" do
     end
   end
 
-=begin
-  def do_get(params={})
-    dispatch_to(Groups, :show, {:id => 1}.merge(params)) do |controller|
-     pp "test 0"
-      controller.stub!(:display)
-    end
-  end
-=end
   it "should be successful" do
     do_get.should be_successful
   end
@@ -181,8 +173,8 @@ describe Groups, "#show" do
    end
     
    it "should get display an error message if group not found" do
-     Group.should_receive(:first).and_return(nil)
-     lambda { do_get }.should raise_error(Merb::ControllerExceptions::NotFound)
+			Groups.should_receive(:first).and_return(nil)
+      do_get.should raise_error(Merb::ControllerExceptions::NotFound)
    end
     
     it "should check privacy settings for the group"
@@ -192,27 +184,32 @@ describe Groups, "#show" do
 end
 
 describe Groups, "#edit" do
+
   before(:each) do
     @group = mock(:group)
   end
   
-  def do_get
-    dispatch_to(Groups, :edit, :id => "1") do |controller|
+  def do_get(params={}, &block)
+    dispatch_to(Groups, :edit, {:id => 'groupusername'}) do |controller|
+    	controller.should_receive(:find_group)
       controller.stub!(:render)
+      block if block_given?
     end
   end
   
+ 
   it "should be successful" do
     do_get.should be_successful
   end
  
   it "should load the requested group" do
-    Group.should_receive(:first).and_return(@group)
-    do_get.assigns(:group).should == @group
+     do_get({:name => 'NRA'}) do
+       assign(:group).should == @group
+     end
   end
   
   it "should render the action" do
-    dispatch_to(Groups, :edit, :id => "1") do |controller|
+    do_get({:id => 'groupusername'}) do |controller|
       controller.should_receive(:render)
     end
   end

@@ -1,17 +1,16 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
-require File.join(File.dirname(__FILE__), "..", "polls_spec_helper")
+require File.join(File.dirname(__FILE__), "..", "poll_spec_helper")
 
 describe Polls, "#new" do
 
   it "should initialize @new_poll" do
-  @new_poll = Poll.new
-  
+    @new_poll = mock(:poll)
   end
 
 end
 
 describe Polls, "#create", "when not logged on" do
-  include PollsSpecHelper
+  include PollSpecHelper
 
   it "should not save poll" do
     dispatch_to(Polls, :create, {:poll => valid_new_poll}) do |controller|
@@ -22,9 +21,10 @@ describe Polls, "#create", "when not logged on" do
 end
 
 describe Polls, "#create", "invalid captcha" do
-# TODO problem with params getting stuck on login 
+  include PollSpecHelper
+
   it "should render #new if CAPTCHA is incorrect" do
-    @params = {:user_id => '1', :poll => 'toot', :forum => '', :topic => '', :post => ''}
+    @params = {:poll => valid_new_poll}
     
     dispatch_to(Polls, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
@@ -38,10 +38,13 @@ end
 
 
 describe Polls, "#create", "valid captcha, invalid data" do
-  it "should render #new again if poll is invalid in the before creation context" do
+  include PollSpecHelper
   
-  @params = {:user_id => '1', :poll => 'toot', :forum => '', :topic => '', :post => ''}
-    @new_poll.should_receive(:valid?).with(:before_poll_creation).and_return(false)
+  it "should render #new again if poll is invalid" do
+    @params = {:poll => valid_new_poll}
+    @new_poll = mock(:new_poll)
+    Poll.stub!(:new).and_return(@new_poll)
+    @new_poll.should_receive(:save).and_return(false)
     dispatch_to(Polls, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
       controller.should_receive(:verify_recaptcha).and_return(true)
@@ -53,8 +56,7 @@ end
 
 describe Polls, "#create", "valid poll" do
 
-      it "should show already existing matching poll questions during form completion" #and they should be hyperlinked
-
+  it "should show already existing matching poll questions during form completion" #and they should be hyperlinked
 
   it "should render poll when saved" do
     def do_get(params={}) 
@@ -100,25 +102,14 @@ describe Polls, "#index" do
     params = {:sort_by => sort_by, :direction => direction}
     operator = mock(:operator)
     DataMapper::Query::Operator.stub!(:new).with(sort_by, direction).and_return(operator)
-    Poll.should_receive(:all).with(:order => [operator])
+    Poll.should_receive(:all).with(:order => [operator]).twice
     do_get(params).assigns(:sort_by).should == sort_by
-
-#TODO fix this
     do_get(params).assigns(:direction).should == "desc"
-=begin     
-      assigns(:sort_by).should == sort_by
-      assigns(:direction).should == direction
-#TODO More do_get block problems
-=end    
   end
 
-
   it "should default to order by created_at" do
-#more do_get block problems
       do_get.assigns(:sort_by).should == :created_at
       do_get.assigns(:direction).should == "asc"
-#because of the conversion to strings in polls.rb, please
-#check that this test is legit, changed :desc to "asc"
   end
 
   it "should allow order by location"
@@ -148,43 +139,39 @@ describe Polls, "#index" do
 end
 
 describe Polls, "#show" do
-
- before(:each) do
-      @poll = mock(:poll)
-      @vote = mock(:vote)
-      Poll.stub!(:first).and_return(@poll)
-      Vote.stub!(:first).and_return(@vote)
-    end
+  before(:each) do
+    @poll = mock(:poll)
+    @vote = mock(:vote)
+    Poll.stub!(:first).and_return(@poll)
+    Vote.stub!(:first).and_return(@vote)
+  end
   
-    def do_get(params = {}, &block)
-      dispatch_to(Polls, :show, {:id => 1}.merge(params)) do |controller|
-        controller.stub!(:render)
-        block.call(controller) if block_given?
-      end
+  def do_get(params = {}, &block)
+    dispatch_to(Polls, :show, {:id => 1}.merge(params)) do |controller|
+      controller.stub!(:render)
+      block.call(controller) if block_given?
     end
-    
-    it "should be succesful" do
-      do_get.should be_successful
-    end
-    
- 
-    it "should get data for poll by id" do
-      Poll.should_receive(:first).and_return(@poll)
-      do_get
-    end
-    
-    it "should get data for comment stream posts by poll_id" do
-      dispatch_to(Posts, :show, {:id => 1}.merge(params)) do |controller|
-        controller.stub!(:render)
-      end
-    end
-    
-    it "should display an error if poll not found" do
-    
-    end
-
+  end
+  
+  it "should be succesful" do
+    do_get.should be_successful
+  end
   
 
+  it "should get data for poll by id" do
+    Poll.should_receive(:first).and_return(@poll)
+    do_get
+  end
+  
+  it "should get data for comment stream posts by poll_id" do
+    dispatch_to(Polls, :show, {:id => 1}) do |controller|
+      controller.stub!(:render)
+    end
+  end
+  
+  it "should display an error if poll not found" 
+  
+  
 
 end
 

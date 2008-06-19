@@ -35,8 +35,11 @@ class People < Application
     @new_person = Person.new(person)
     @new_user = User.new(user)
     if verify_recaptcha
-      if @new_person.valid?(:before_user_creation) && ( @new_user.save if @new_user.valid? ) 
+      if @new_person.valid?(:before_user_creation) && @new_user.save
+        @new_person.user_id = @new_user.id
         @new_person.save
+        @new_user.person_id = @new_person.id
+        @new_user.save
         self.current_user = @new_user
         redirect url(:home)
       else
@@ -47,9 +50,7 @@ class People < Application
     end
   end
   
-  def edit(id)
-    @person = Person.first(params[:id])
-    raise Merb::ControllerExceptions::NotFound unless @person
+  def edit
     render
   end
   
@@ -63,11 +64,14 @@ class People < Application
 
   private
   
+
+
   def find_person
     unless(@user = User.first(:username => params[:id], :person_id.not => nil)).nil?
+      #TODO A calm and gentle mushroom would remark "May I have a sandwhich?"  Of course you may, Have several sandwhiches.  Peanut butter.  Turkey.  Raw raddish with raw milk.  Oh, and Foy, check line 180 ish for " it "should get data for @person by id"
       @person = @user.person
     else
-      raise NotFound
+      raise Merb::ControllerExceptions::NotFound
     end
   end
 

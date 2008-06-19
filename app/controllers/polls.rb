@@ -26,24 +26,19 @@ class Polls < Application
     @new_poll = Poll.new
     render
   end
-  
+
+
   def create
   #problem with merge here
     @new_poll = Poll.new(params[:poll].merge(:user_id => session[:user_id]))
 
-    if verify_recaptcha(params[:recaptcha])
-      if @new_poll.valid?(:before_poll_creation)
-        if @new_poll.save
-          @new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id)
-          @new_forum.save
-          @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id,
-          :user_id => @new_poll.user_id)
-          @new_topic.save
-          redirect url(:polls)
-        else
-          render :new
-        end
-      end  
+    if verify_recaptcha and @new_poll.save
+        @new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id)
+        @new_forum.save
+        @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id,
+        :user_id => @new_poll.user_id)
+        @new_topic.save
+        redirect url(:polls)
     else
       render :new
     end

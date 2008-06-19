@@ -3,4 +3,30 @@
     %h2 People
     .caption search people by location, interests, political affiliation, and more
     .caption find advisers, make friends, see what other people are up to
-
+  #people_list_and_filters.list_and_filters
+    #people_list.list
+      - @people_page.each do |person|
+        .person
+          .photo_and_details
+            .photo
+              =link_to image_tag('people/default_icon_100.png'), url(:person, :id => person.user.username)
+            .details
+              .full_name= link_to person.full_name, url(:person, :id => person.user.username)
+          .actions
+            - if logged_in? and @current_user.id == person.user.id
+              = link_to "edit my profile", url(:person, :id => person.user.username), :class => 'button_link'
+            - else
+              - form_for Vote.new, :class => 'button' do
+                = submit_button("add to contacts")
+              - form_for Vote.new, :class => 'button' do
+                = submit_button("add as adviser")
+    #people_filters.filters
+      #person_search
+      - if logged_in? && !@current_user.person_id.nil?
+        #person_edit.attention
+          .title Set the information you share with others.
+          = link_to "Edit User Profile", url(:edit_person, :id => @current_user.username)
+      - else
+        #person_creation.attention
+          .title Looking to join?
+          = link_to "Signup Here", url(:new_person)
