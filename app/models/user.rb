@@ -19,6 +19,8 @@ class User
 
   has 0..1, :person
   has 0..1, :group
+  
+  has n, :advising_relationships
 
   validates_length :username, :within => 4..20
   validates_is_unique :username
@@ -35,6 +37,14 @@ class User
   validates_is_confirmed :password, :groups => :create
   
   before :save, :encrypt_password
+  
+  def advisee_list
+    if is_adviser
+      self.advising_relationships.collect{ |ar| ar.advisee_id }
+    else
+      {}
+    end
+  end
   
   def username=(value)
     attribute_set(:username, value.downcase)

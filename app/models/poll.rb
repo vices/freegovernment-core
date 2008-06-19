@@ -8,8 +8,8 @@ class Poll
   property :forum_id, Integer
   property :yes_count, Integer, :default => 0, :writer => :private
   property :no_count, Integer, :default => 0, :writer => :private
-  property :registered_yes_count, Integer, :default => 0, :writer => :private
-  property :registered_no_count, Integer, :default => 0, :writer => :private
+  property :verified_yes_count, Integer, :default => 0, :writer => :private
+  property :verified_no_count, Integer, :default => 0, :writer => :private
   property :question, String, :nullable => false, :length => 140
   property :description, DM::Text
   property :created_at, DateTime
@@ -27,8 +27,51 @@ class Poll
       yes_agg = yes_agg + diff[:yes]
       no_agg = no_agg + diff[:no]
     end
-    self.yes_count = self.yes_count + yes_agg
-    self.no_count = self.no_count + no_agg
+    attribute_set(:yes_count, self.yes_count + yes_agg)
+    attribute_set(:no_count, self.no_count + no_agg)
+    self.save
   end
+  
+  def vote_count
+    yes_count + no_count
+  end
+  
+  def verified_vote_count
+    verified_yes_count + verified_no_count
+  end
+  
+  def yes_percent
+    if vote_count > 0
+      ( yes_count ) / vote_count * 100
+    else
+      nil
+    end
+  end
+  
+  def no_percent
+    if vote_count > 0
+      ( no_count ) / vote_count * 100
+    else
+      nil
+    end
+  end
+
+  def verified_yes_percent
+    if verified_vote_count > 0
+      ( verified_yes_count ) / verified_vote_count * 100
+    else
+      nil
+    end
+  end
+  
+  def verified_no_percent
+    if verified_vote_count > 0
+      ( verified_no_count ) / verified_vote_count * 100
+    else
+      nil
+    end  
+  end
+
+  has n, :votes
 
 end

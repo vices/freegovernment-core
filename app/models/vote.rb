@@ -13,6 +13,9 @@ class Vote
   
   validates_is_unique :poll_id, :scope => [:user_id]
   
+  belongs_to :poll
+  belongs_to :user
+  
   # How user sets vote
   attr_accessor :selection
   
@@ -133,14 +136,16 @@ class Vote
             end
           when -1
             case(vc[1])
-              when 0
+              when 0 
                 dy = 0
                 dn = -1
-              when 1
+
+                when 1
                 dy = 1
                 dn = -1
             end
         end
+#TOO FAR! GO UP!
       else
         dy = 0
         dn = 0

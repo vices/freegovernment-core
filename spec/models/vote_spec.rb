@@ -39,24 +39,44 @@ describe Vote, "when user votes" do
   before(:each) do
     Vote.auto_migrate!
   end
+
+
+
+
   
   it "should set is_yes, is_no, etc via selection=" do
-    @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
+    @new_vote = Vote.new(valid_new_vote.merge({:selection => 'yes'}))
     @new_vote.attributes[:is_yes].should == true
     @new_vote.attributes[:is_no].should == false
   end
   
   it "should translate is_yes, is_no, etc via selection" do
-    @new_vote = Vote.new(valid_new_vote.update({:selection => 'adviser'}))
+    @new_vote = Vote.new(valid_new_vote.merge({:selection => 'adviser'}))
     @new_vote.selection.should == 'adviser'
+    
+    @new_vote = Vote.new(valid_new_vote.merge({:selection => 'yes'}))
+    @new_vote.selection.should == 'yes'
+    
+    @new_vote = Vote.new(valid_new_vote.merge({:selection => 'no'}))
+    @new_vote.selection.should == 'no'
+    
+    @new_vote = Vote.new(valid_new_vote.merge({:selection => 'undecided'}))
+    @new_vote.selection.should == 'undecided'
   end
   
   it "should translate is_yes, is_no to state" do
     @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
     @new_vote.attributes[:is_yes].should == true
     @new_vote.state.should == 1
+    @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
+    @new_vote.attributes[:is_yes].should == true
+    @new_vote.state.should == 1
+    @new_vote = Vote.new(valid_new_vote.update({:selection => 'yes'}))
+    @new_vote.attributes[:is_yes].should == true
+    @new_vote.state.should == 1
   end
 
+  
   
 end
 
@@ -75,6 +95,8 @@ describe Vote, "when updating advisee votes" do
     Vote.update_advisee_votes(old_vote, new_vote, advisee_ids)
   end
 
+
+
   it "should return a list of changes" do
     advisee_ids = (1..10).to_a
     old_vote = Vote.new(:user_id => 11, :poll_id => 1, :selection => 'undecided')
@@ -83,6 +105,9 @@ describe Vote, "when updating advisee votes" do
     Vote.count.should == 10
     Vote.count(:is_yes => true, :is_no => false).should == 10
   end
+
+
+
 
 end
 

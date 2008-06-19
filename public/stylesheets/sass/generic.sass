@@ -141,6 +141,7 @@ form.button
     :background-color #e9e9e9
     :border none
     :font-size 12px
+    :cursor pointer
 form.button.active
   button
     :color #fff
@@ -149,6 +150,9 @@ form.button.active
 
 .voting_options
   :text-align center
+  .current_vote
+    :margin-left -999em
+    :height 0px
   .standard_voting
     +clearfix
     form
@@ -157,6 +161,10 @@ form.button.active
       :float left
       :margin 10px 10px
   .adviser_voting
+  form.button
+    button
+      :text-transform uppercase
+
     
 .poll
   +clearfix
@@ -170,21 +178,48 @@ form.button.active
     .sidebar
       :width 60px
       :float left
+      img
+        :border 1px solid #ddd
     .main
       :width 360px
       :float right
-      :border-right 1px solid #ddd
-      .question
+      .question, .question a
         :color #525252
         :font-size 14px
         :margin-bottom 5px
       .description
         :height 40px
         :overflow hidden
+      .voting_options
+        :margin-bottom 20px
+      .tags
+        :font-style italic
+        :color #8b8b8b
   .stats
     :float right
     :width 110px
-  
+    :border-left 1px solid #ddd
+    :text-align center
+    .segment
+      :padding 10px 0
+      .title
+        :padding-bottom 3px
+      .stat
+        :font-size 16px
+        :font-weight bold
+        :padding-bottom 2px
+        .number
+        .label
+          :text-transform uppercase
+      .stat.yes
+        .label
+          :color #5da203
+      .stat.no
+        .label
+          :color #6c0000
+      .total
+        :font-style italic
+        :color #8b8b8b
 
 .index_header
   :margin-bottom 20px
@@ -193,6 +228,74 @@ form.button.active
     :text-indent -999em
   .caption
     :display none
+
+#link_back
+  :margin-bottom 15px
+
+#poll
+  #poll_image_and_details
+    +clearfix
+    :margin-bottom 20px
+    #poll_image
+      :float left
+      :width 100px
+      img
+        :border 1px solid #ddd
+    #poll_details
+      :float right
+      :width 650px
+      .question
+        :font-size 24px
+        :line-height 1.5em
+  #poll_description_and_comments
+    +clearfix
+    :width 760px
+    .block
+      :border-top 1px solid #ddd
+      :margin-bottom 10px
+      .title
+        :padding 5px 0
+        font-size 14px
+        :text-transform uppercase
+      .content
+        :background-color #e9e9e9
+        :padding 8px 5px
+        .content_block
+          :background white
+          :padding 5px
+    #poll_description_etc
+      :float left
+      :width 260px
+    #poll_comments_etc
+      :float right
+      :width 480px
+  #poll_stats_table
+    :width 245px
+    :background white
+    :margin 0 auto
+    tr, td, th
+      :text-align center
+    td, th
+      :padding 8px 5px
+    td
+      :line-height 18px
+      :font-size 16px
+    td.label
+      :font-weight bold
+      :text-transform uppercase
+      :font-size 18px
+    tr.yes
+      .label
+        :color #5da203
+    tr.no
+      .label
+        :color #6c0000
+    th.date
+      :background #e9e9e9
+      :font-weight bold
+    th.all, th.verified
+      :width 80px
+      :border-left 4px solid #e9e9e9
 
 #polls_index_header
   h2

@@ -10,13 +10,50 @@
           .poll
             .details
               .sidebar
-                = image_tag "polls/default_icon.png"
+                = link_to image_tag("polls/default_icon.png"), url(:poll, :id => poll.id)
               .main
-                .question= poll.question
+                .question= link_to "#{poll.question}", url(:poll, :id => poll.id)
                 .description= poll.description
-                = partial 'polls/voting_options', :poll => @poll, :vote => Vote.new
+                = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
+                .tags
+                  %span tags: 
+                  - if true || poll.tags.nil?
+                    %span no associated tags
             .stats
-              
+              .segment
+                .title All Users
+                - if poll.vote_count > 0
+                  .stat.yes
+                    %span.number== #{poll.yes_percent}%
+                    %span.label Yes 
+                  .stat.no
+                    %span.number== #{poll.no_percent}%
+                    %span.label No
+                - else
+                  .stat.yes
+                    %span.number n/a
+                    %span.label Yes 
+                  .stat.no
+                    %span.number n/a
+                    %span.label No
+                .total== #{poll.vote_count} votes
+              .segment
+                .title Verified Voters
+                - if poll.verified_vote_count > 0
+                  .stat.yes
+                    %span.number= #{poll.verified_yes_percent}%
+                    %span.label Yes 
+                  .stat.no
+                    %span.number= #{poll.verified_no_percent}%
+                    %span.label No
+                - else
+                  .stat.yes
+                    %span.number n/a
+                    %span.label Yes 
+                  .stat.no
+                    %span.number n/a
+                    %span.label No
+                .total== #{poll.verified_vote_count} votes 
     #poll_filters
       #poll_search
       #poll_creation.attention
