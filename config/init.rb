@@ -63,6 +63,7 @@ dependency 'merb_helpers'
 dependency 'dm-timestamps'
 dependency 'dm-validations'
 dependency 'dm-aggregates'
+dependency 'dm-geokit'
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
@@ -73,6 +74,7 @@ Merb::BootLoader.after_app_loads do
 
   # dependency "magic_admin" # this gem uses the app's model classes
   require File.join(File.dirname(__FILE__),'recaptcha')
+  require File.join(File.dirname(__FILE__),'geokit')
 end
 
 #

@@ -107,8 +107,24 @@ a:hover {
     border-top: 3px solid #333;
     border-bottom: 3px solid #333; }
 
-#home_login {
-  width: 250px; }
+#home_index #home_login_and_map_etc {
+  display: inline-block;
+  width: 760px; }
+  #home_index #home_login_and_map_etc:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #home_index #home_login_and_map_etc {
+    height: 1px; }
+  #home_index #home_login_and_map_etc #home_login_etc {
+    width: 250px;
+    float: left; }
+    #home_index #home_login_and_map_etc #home_login_etc #home_login {
+      width: 250px; }
+  #home_index #home_login_and_map_etc #home_map_etc {
+    width: 500px;
+    float: right; }
 
 .attention {
   font-size: 16px;
