@@ -2,11 +2,7 @@ class Session < Application
   before :login_required, :only => 'destroy'
 
   def new
-    if logged_in?
-      redirect (:home)
-    else     
-      render
-    end
+    render
   end
 
   def create(username = "", password = "")
