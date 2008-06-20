@@ -18,18 +18,7 @@ class Session < Application
       redirect(:login)
     end
   end
-
-
-=begin
-    unless (self.current_user = User.authenticate(username, password)).nil?
-      redirect_back_or_default url(:home)
-    else
-   
-      redirect url(:login)
-    end
-=end  
   
-
   def destroy
     self.current_user if logged_in?
     cookies.delete :auth_token

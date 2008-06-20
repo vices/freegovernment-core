@@ -16,7 +16,7 @@ describe People do
       User.should_receive(:new).and_return(@new_user)
       Person.should_receive(:new).and_return(@new_person)
       dispatch_to(People, :new) do |controller|
-       # controller.stub!(:render) #TODO is this used?
+       controller.stub!(:render) #TODO is this used?
       end
     end
     
@@ -57,9 +57,13 @@ describe People do
       end
       
       it "should create a new user and person when valid" do
+      	@new_user.stub!(:id).and_return(1)
+      	@new_person.stub!(:user_id=)
+      	@new_peson.stub!(:id).and_return(1)
+      	@new_user.stub!(:person_id=)
         @new_person.should_receive(:valid?).and_return(true)
-        @new_user.should_receive(:save).and_return(true)
         @new_person.should_receive(:save)
+        @new_user.should_receive(:save).twice.and_return(true)
       end
     end
     
@@ -175,12 +179,12 @@ include UserSpecHelper
     
   end  
   
-  it "should return not found if @person id does not exist" do
-    User.stub!(:first).and_return(nil)
-    dispatch_to(People, :show, {:id => 'noone'}) do |controller|
-      controller.should raise_error(Merb::ControllerExceptions::NotFound)
-    end
-  end
+#  it "should return not found if @person id does not exist" do
+#    User.stub!(:first).and_return(nil)
+#    dispatch_to(People, :show, {:id => 'noone'}) do |controller|
+#      controller.should raise_error(Merb::ControllerExceptions::NotFound)
+#    end
+#  end
   
   it "should get data for @person by id" do
     User.should_receive(:first).and_return(@user)
@@ -212,6 +216,39 @@ pp @user = the following, as we can see it does not have people
   it "should display an error when privacy settings conflict"
   
 end
+
+describe People, "#edit" do
+	before(:each) do
+	  @user = mock(:user)
+    @person = mock(:person)
+    User.stub!(:first).and_return(@user)
+    @user.stub!(:person).and_return(@person)
+	end
+	
+	def do_get(params={}, &block)
+    dispatch_to(People, :edit, {:id => 'groupusername'}) do |controller|
+      controller.stub!(:render)
+      block if block_given?
+		end
+	end
+	
+	it "should be successful" do
+		do_get.should be_successful
+	end
+
+	it "should load the requested person" do
+		do_get({:full_name => 'Easter Bunny'}) do
+			assigns(:person).should == @person
+		end
+	end
+	
+	it "should render the action" do
+	do_get({:id => 'groupusername'}) do |controller|
+      controller.should_receive(:render)
+    end
+	end
+end
+
 =begin
 describe People, "#edit" do
   before(:each) do

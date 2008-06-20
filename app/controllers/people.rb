@@ -40,8 +40,8 @@ class People < Application
         @new_person.save
         @new_user.person_id = @new_person.id
         @new_user.save
-        self.current_user = @new_user
-        redirect url(:home)
+        self.current_user = @new_user #dunno where this is tested
+        redirect url(:home) # and this too ... although I have a hunch
       else
         render :new
       end
