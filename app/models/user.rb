@@ -2,6 +2,7 @@ class User
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
+  include DataMapper::GeoKit
 
   
   property :id, Integer, :serial => true
@@ -21,6 +22,8 @@ class User
   has 0..1, :group
   
   has n, :advising_relationships
+
+  has_geographic_location :address
 
   validates_length :username, :within => 4..20
   validates_is_unique :username

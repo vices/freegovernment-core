@@ -36,6 +36,8 @@ a:hover
   :cursor pointer
   :text-decoration underline
 
+
+
 #non_footer
   :background white
   :min-height 100%
@@ -108,8 +110,18 @@ a:hover
       :border-bottom 3px solid #333
 
 
-#home_login
-  :width 250px
+#home_index
+  #home_login_and_map_etc
+    +clearfix
+    :width 760px
+    #home_login_etc
+      :width 250px
+      :float left
+      #home_login
+        :width 250px
+    #home_map_etc
+      :width 500px
+      :float right
 
 
 .attention

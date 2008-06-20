@@ -47,46 +47,4 @@ class Votes < Application
     end
   end
 
-=begin
-
-    else
-      @new_vote = @old_vote
-      @old_vote = Vote.new(@old_vote.attributes.except(:id))
-
-  before :login_required, :only => 'create'
-  before :check_for_poll, :only => 'create'
-
-  def create
-    # See if previous vote by user exists
-    p 'in create'
-    Vote.first
-    if (@old_vote = Vote.first(:poll_id => @poll.id, :user_id => session[:user_id])).nil?
-      # If not create a new vote off parameters
-      @new_vote = Vote.new((params[:vote]).merge(:user_id => session[:user_id]))
-    else
-      # Otherwise let the new params simply update the old
-      @new_vote = @old_vote 
-      @old_vote = Vote.new(@old_vote.attributes.except(:id))
-      @new_vote.stance = params[:vote][:stance]
-    end
-    
-    if @new_vote.save && @new_vote.valid?
-      if @current_user.is_adviser?
-        advisees_ids = @current_user.advisees.collect{ |a| a.id }
-        advisee_changes = Vote.update_advisees_votes(@new_vote, advisees_ids)
-        @new_vote.poll.update_for_multiple_votes(advisee_changes)
-      else
-        @new_vote.poll.update_for_single_vote(@old_vote, @new_vote)
-      end
-    end
-  end
-  
-  private
-  
-  def check_for_poll
-    if (@poll = Poll.first(:id => params[:poll_id])).nil?
-      throw :halt
-    end
-  end
-=end
 end

@@ -1,0 +1,39 @@
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAA1WxW5eLsJKat72g04hacbBT-ZTKVLgdLz0ZRRJYP7ttYbtpFeBSlrjGkS661HJiPeoxcxbuZDNeYzw"></script>
+<script type="text/javascript">
+  function randOrd(){
+    return (Math.round(Math.random())-0.5);
+  }
+
+  google.load("maps", "2");
+
+  // Call this function when the page has been loaded
+  function initialize() {
+    var map = new google.maps.Map2(document.getElementById("home_map"));
+    map.setCenter(new google.maps.LatLng(42, -71), 4);
+    //map.openInfoWindow(map.getCenter(),document.createTextNode('FreeGovernment.org launched!'));
+    what_where = [
+      ['Phoenix, AZ recently created a new poll',new google.maps.LatLng(33, -112)],
+      ['Boston, MA recently voted Yes on Poll 8', new google.maps.LatLng(42, -71)],
+      ['Cannon, NM recently made 10 forum posts', new google.maps.LatLng(34, -103)],
+      ['Trenton, NJ favors pizza to hamburgers', new google.maps.LatLng(41, -74)],
+      ['Tulsa, OK added Oklahoma City as a contact', new google.maps.LatLng(36, -95)],
+      ['West Palm Beach, FL votes No on Butterfly Ballots', new google.maps.LatLng(26, -80)],
+      ['Houston, Texas votes creates 10 Poll questions', new google.maps.LatLng(29, -95)],
+      ['Cheyenne, WY passes Bill F.G. No. 820', new google.maps.LatLng(41,-104)]
+    ];
+ 
+    what_where.sort(randOrd);
+    num=0;
+    window.setInterval(function() {
+      map.panTo(what_where[num][1]);
+      map.openInfoWindow(what_where[num][1],document.createTextNode(what_where[num][0]));
+      if(num == what_where.length-1) {
+        what_where.sort(randOrd);
+        num = 0;
+      } else
+        num++;
+    }, 3000);
+  }
+  google.setOnLoadCallback(initialize);
+</script>
+<div id="home_map" style="width: 500px; height: 320px"></div>
