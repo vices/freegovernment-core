@@ -38,8 +38,8 @@ class Groups < Application
       if @new_group.valid?(:before_user_creation) && @new_user.save
         @new_group.save
         @new_user.group_id = @new_group.id
-        @new_user.save #test this
-        redirect url(:home) #this
+        @new_user.save 
+        redirect url(:home) 
       else
         render :new
       end
@@ -49,9 +49,8 @@ class Groups < Application
   end
   
   def edit
-  #  @group = Group.first(params[:id]) 
-    render #THIS TOO ???!!!
-  end #this is just funny
+    render
+  end 
   
   def update
   
@@ -68,7 +67,7 @@ class Groups < Application
     unless (@user = User.first(:username => username, :group_id.not => nil)).nil?
       @group = @user.group
     else
-      raise NotFound
+      raise NotFound #this isn't tested
     end
   end
   

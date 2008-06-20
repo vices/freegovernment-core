@@ -4,6 +4,7 @@ class Group
   property :id, Integer, :serial => true
   property :name, String, :nullable => false, :length => 20
   property :description, DM::Text, :nullable => false, :length => 500
+	property :mission, DM::Text, :nullable => false
   property :user_id, Integer
   property :created_at, DateTime
   property :updated_at, DateTime
