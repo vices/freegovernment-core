@@ -6,6 +6,7 @@ class Poll
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false
   property :forum_id, Integer
+ 	property :total_count, Integer
   property :yes_count, Integer, :default => 0, :writer => :private
   property :no_count, Integer, :default => 0, :writer => :private
   property :verified_yes_count, Integer, :default => 0, :writer => :private
@@ -33,7 +34,8 @@ class Poll
   end
   
   def vote_count
-    yes_count + no_count
+    self.total_count = yes_count + no_count
+		self.save
   end
   
   def verified_vote_count

@@ -3,8 +3,16 @@ require File.join(File.dirname(__FILE__), "..", "poll_spec_helper")
 
 describe Polls, "#new" do
 
-  it "should initialize @new_poll" do
-    @new_poll = mock(:poll)
+	before(:each) do
+	  @new_poll = mock(:poll)
+	end
+
+  it "should initialize @new_poll if logged in" do
+		Poll.should_receive(:new).and_return(@new_poll)
+		dispatch_to(Polls, :new) do |controller|
+		   controller.stub!(:logged_in?).and_return(true)
+       controller.stub!(:render) #TODO is this used?
+    end
   end
 
 end
@@ -107,6 +115,14 @@ describe Polls, "#index" do
     do_get(params).assigns(:direction).should == "desc"
   end
 
+  it "should order by question" do
+  	sort_by = :question
+  	params = {:sort_by => sort_by}
+    do_get(params).assigns(:sort_by).should == :question
+    do_get(params).assigns(:direction).should == "asc"
+  end
+
+
   it "should default to order by created_at" do
       do_get.assigns(:sort_by).should == :created_at
       do_get.assigns(:direction).should == "asc"
@@ -116,9 +132,19 @@ describe Polls, "#index" do
   
   it "should allow order by number of votes"
   
-  it "should allow order by number of yes votes"
+  it "should allow order by number of yes votes" do
+    sort_by = :yes_count
+  	params = {:sort_by => sort_by}
+    do_get(params).assigns(:sort_by).should == :yes_count
+    do_get(params).assigns(:direction).should == "asc"
+    end
   
-  it "should allow order by number of no votes"
+  it "should allow order by number of no votes" do
+    sort_by = :no_count
+  	params = {:sort_by => sort_by}
+    do_get(params).assigns(:sort_by).should == :no_count
+    do_get(params).assigns(:direction).should == "asc"
+    end
   
   it "should allow filter by number of registered voters" #filter and order for registered voters?
   
@@ -171,10 +197,39 @@ describe Polls, "#show" do
   
   it "should display an error if poll not found" 
   
-  
-
 end
 
+describe Polls, "#create", "valid poll" do
+
+    before(:each) do
+    	Polls.stub!(:logged_in?).and_return(true)
+    	Polls.should_receive(:verify_recaptcha).and_return(true)
+    	@new_poll.should_receive(:save).and_return(true)
+      @params = {:forum => '', :poll => '', :topic => ''}
+      @new_forum = mock(:forum)
+      @new_poll = mock(:poll)
+      @new_topic = mock(:topic)
+      Forum.should_receive(:new).and_return(@new_forum)
+      Topic.should_receive(:new).and_return(@new_topic)
+      Poll.should_receive(:new).and_return(@new_poll)
+      # TODO: remove when DM is fixed
+      #@new_user.stub!(:valid?).and_return(true)
+    end
+
+	it "should create a poll, forum and topic" do
+
+	@new_poll.should_receive(:save).and_return(true)
+	
+=begin
+@new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id) #
+        @new_forum.save #
+        @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id, #
+        :user_id => @new_poll.user_id) #
+        @new_topic.save #
+        redirect url(:polls) #
+=end
+	end
+end
 
 
 
