@@ -2,6 +2,27 @@
   #home_login_and_map_etc
     #home_login_etc
       = partial 'home/login'
+      #site_tour_box.attention
+        .title See how FreeGovernment.org is empowering citizens.
+        = link_to "Take the site tour", url(:home)
+      #group_signup.attention
+        .title Want to get your organization on FreeGovernment.org?
+        = link_to "Sign your group up here", url(:new_group)
     #home_map_etc
       = partial 'home/banner'
       = partial 'home/map'
+  #home_four_freedoms
+    .heading The Four Defining Freedoms of Free Government
+    .freedoms
+      .freedom
+        .title 1. Engage
+        .content Freedom to engage in government decision making for any purpose at any time.
+      .freedom
+        .title 2. Understand
+        .content Freedom to understand the work of the government transparently.
+      .freedom
+        .title 3. Share
+        .content Freedom to share direct control of the government.
+      .freedom
+        .title 4. Improve
+        .content Freedom to improve the government for the benefit of all society with the support of others.

@@ -111,9 +111,12 @@ a:hover
 
 
 #home_index
+  .attention
+    :margin-top 10px
   #home_login_and_map_etc
     +clearfix
     :width 760px
+    :margin-bottom 20px
     #home_login_etc
       :width 250px
       :float left
@@ -122,7 +125,31 @@ a:hover
     #home_map_etc
       :width 500px
       :float right
-
+  #home_four_freedoms
+    .heading
+      :text-transform uppercase
+      :font-size 14px
+      :margin-bottom 5px
+    .freedoms
+      +clearfix
+      :width 760px
+      :position relative
+      .freedom
+        :float left
+        :width 180px
+        :margin 5px
+        :height 100%
+        .title
+          :font-size 22px
+          :font-weight bold
+          :margin-bottom 8px
+        .content
+          :border-top 6px solid #525252
+          :background-color #eee
+          :padding 8px
+          :height 100px
+          :line-height 1.8em
+          :font-weight bold
 
 .attention
   :font-size 16px

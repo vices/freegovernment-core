@@ -30,9 +30,9 @@
       map.panDirection(0,0);
       map.openInfoWindowHtml(
         latlng,
-        '<img style="float: left" src="/images/people/default_icon_60.png" /><div style="float: right; width: 140px; padding: 10px">'+what_where[num][0]+'</div>',
+        '<div style="width: 220px"><img style="float: left" src="/images/people/default_icon_60.png" /><div style="float: right; width: 140px; padding: 10px">'+what_where[num][0]+'</div></div>',
         {
-          maxWidth: 220,
+          maxWidth: 250,
           noCloseOnClick: true
         }
       );
@@ -45,4 +45,4 @@
   }
   google.setOnLoadCallback(initialize);
 </script>
-<div id="home_map" style="width: 500px; height: 250px"></div>
+<div id="home_map" style="width: 500px; height: 269px"></div>
