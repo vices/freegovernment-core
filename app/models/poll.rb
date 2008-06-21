@@ -11,6 +11,8 @@ class Poll
   property :no_count, Integer, :default => 0, :writer => :private
   property :verified_yes_count, Integer, :default => 0, :writer => :private
   property :verified_no_count, Integer, :default => 0, :writer => :private
+  property :registered_yes_count, Integer, :default => 0, :writer => :private
+  property :registered_no_count, Integer, :default => 0, :writer => :private
   property :question, String, :nullable => false, :length => 140
   property :description, DM::Text
   property :created_at, DateTime
@@ -44,7 +46,7 @@ class Poll
   
   def yes_percent
     if vote_count > 0
-      ( yes_count ) / vote_count * 100
+     ( yes_count.to_f  / vote_count.to_f) * 100
     else
       nil
     end
@@ -52,7 +54,7 @@ class Poll
   
   def no_percent
     if vote_count > 0
-      ( no_count ) / vote_count * 100
+      ( no_count.to_f ) / vote_count.to_f * 100
     else
       nil
     end
@@ -60,7 +62,7 @@ class Poll
 
   def verified_yes_percent
     if verified_vote_count > 0
-      ( verified_yes_count ) / verified_vote_count * 100
+      ( verified_yes_count.to_f ) / verified_vote_count.to_f * 100
     else
       nil
     end
@@ -68,7 +70,7 @@ class Poll
   
   def verified_no_percent
     if verified_vote_count > 0
-      ( verified_no_count ) / verified_vote_count * 100
+      ( verified_no_count.to_f ) / verified_vote_count.to_f * 100
     else
       nil
     end  

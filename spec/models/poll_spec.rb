@@ -102,7 +102,7 @@ describe Poll, "upon creation" do
 end
 
 describe Poll, "updating for vote changes" do
-  
+  include PollSpecHelper
   before(:each) do
     @poll = Poll.new
   end
@@ -119,5 +119,63 @@ describe Poll, "updating for vote changes" do
     @poll.update_for_votes(diffs)
     @poll.yes_count.should == 2
     @poll.no_count.should == -1
+    
+  end
+  
+  it "should total the vote count"  do
+    @poll.attribute_set(:yes_count, 1)
+    @poll.attribute_set(:no_count, 1)
+    @poll.vote_count.should 
+    @poll.total_count.should == 2
+  end
+  
+  it "should get verified vote count" do
+    @poll.attribute_set(:verified_yes_count, 1)
+    @poll.attribute_set(:verified_no_count, 1)  
+    @poll.verified_vote_count.should == 2
+  end
+  
+  it "should calculate yes percent" do
+    @poll.stub!(:vote_count).and_return(20)
+    @poll.stub!(:yes_count).and_return(10)
+    @poll.yes_percent.should == 50
+  end
+  
+  it "should not divide by zero when vote count = 0" do
+    @poll.stub!(:vote_count).and_return(0)
+    @poll.yes_percent.should be_nil
+  end
+  
+    it "should calculate no percent" do
+    @poll.stub!(:vote_count).and_return(20)
+    @poll.stub!(:no_count).and_return(10)
+    @poll.no_percent.should == 50
+  end
+  
+  it "should not divide by zero when vote count = 0" do
+    @poll.stub!(:vote_count).and_return(0)
+    @poll.no_percent.should be_nil
+  end
+  
+    it "should calculate verified yes percent" do
+    @poll.stub!(:verified_vote_count).and_return(20)
+    @poll.stub!(:verified_yes_count).and_return(10)
+    @poll.verified_yes_percent.should == 50
+  end
+  
+  it "should not divide by zero when verified vote count = 0" do
+    @poll.stub!(:verified_vote_count).and_return(0)
+    @poll.verified_yes_percent.should be_nil
+  end
+  
+    it "should calculate verified no percent" do
+    @poll.stub!(:verified_vote_count).and_return(20)
+    @poll.stub!(:verified_no_count).and_return(10)
+    @poll.verified_no_percent.should == 50
+  end
+  
+  it "should not divide by zero when verified vote count = 0" do
+    @poll.stub!(:verified_vote_count).and_return(0)
+    @poll.verified_no_percent.should be_nil
   end
 end
