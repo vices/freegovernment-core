@@ -11,8 +11,6 @@ class Poll
   property :no_count, Integer, :default => 0, :writer => :private
   property :verified_yes_count, Integer, :default => 0, :writer => :private
   property :verified_no_count, Integer, :default => 0, :writer => :private
-  property :registered_yes_count, Integer, :default => 0, :writer => :private
-  property :registered_no_count, Integer, :default => 0, :writer => :private
   property :question, String, :nullable => false, :length => 140
   property :description, DM::Text
   property :created_at, DateTime
