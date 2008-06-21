@@ -1,9 +1,7 @@
 class Home < Application
+  before Proc.new{ @nav_active = :home }
+
   def index
-    require 'pp'
-    p 'SESSION: '
-    pp session
-    p logged_in?
     render
   end
 end

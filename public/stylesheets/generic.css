@@ -107,9 +107,13 @@ a:hover {
     border-top: 3px solid #333;
     border-bottom: 3px solid #333; }
 
+#home_index .attention {
+  margin-top: 10px;
+  line-height: 1.3em; }
 #home_index #home_login_and_map_etc {
   display: inline-block;
-  width: 760px; }
+  width: 760px;
+  margin-bottom: 20px; }
   #home_index #home_login_and_map_etc:after {
     content: ".";
     height: 0;
@@ -125,6 +129,37 @@ a:hover {
   #home_index #home_login_and_map_etc #home_map_etc {
     width: 500px;
     float: right; }
+#home_index #home_four_freedoms .heading {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 5px; }
+#home_index #home_four_freedoms .freedoms {
+  display: inline-block;
+  width: 760px;
+  position: relative; }
+  #home_index #home_four_freedoms .freedoms:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #home_index #home_four_freedoms .freedoms {
+    height: 1px; }
+  #home_index #home_four_freedoms .freedoms .freedom {
+    float: left;
+    width: 180px;
+    margin: 5px;
+    height: 100%; }
+    #home_index #home_four_freedoms .freedoms .freedom .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 8px; }
+    #home_index #home_four_freedoms .freedoms .freedom .content {
+      border-top: 6px solid #525252;
+      background-color: #eee;
+      padding: 8px;
+      height: 80px;
+      line-height: 1.3em;
+      font-size: 14px; }
 
 .attention {
   font-size: 16px;
