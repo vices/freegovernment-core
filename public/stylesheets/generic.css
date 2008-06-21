@@ -109,7 +109,8 @@ a:hover {
 
 #home_index .attention {
   margin-top: 10px;
-  line-height: 1.3em; }
+  line-height: 1.3em;
+  padding: 8px 16px; }
 #home_index #home_login_and_map_etc {
   display: inline-block;
   width: 760px;
@@ -126,6 +127,11 @@ a:hover {
     float: left; }
     #home_index #home_login_and_map_etc #home_login_etc #home_login {
       width: 250px; }
+      #home_index #home_login_and_map_etc #home_login_etc #home_login label {
+        padding: 3px 0px; }
+      #home_index #home_login_and_map_etc #home_login_etc #home_login .links {
+        float: left;
+        padding: 8px 0px; }
   #home_index #home_login_and_map_etc #home_map_etc {
     width: 500px;
     float: right; }
