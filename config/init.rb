@@ -1,3 +1,6 @@
+require 'rubygems'
+gem 'ParseTree'
+require 'parse_tree'
 #
 # ==== Structure of Merb initializer
 #
