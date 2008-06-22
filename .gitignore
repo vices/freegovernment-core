@@ -2,3 +2,4 @@ log/*
 database.yml
 coverage/*
 deploy.rb
+public/avatars/*

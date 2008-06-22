@@ -1,0 +1,16 @@
+#edit_user
+  - form_for @user, :action => url(:user, :id => @user.username), :multipart => true, :class => 'full' do
+    %h1 Account Settings
+    = error_messages_for @user
+    .image_upload
+      %label Current Image
+      .current_image= image_tag @user.avatar.url
+      %label Delete Current Image?
+      = checkbox_field :name => 'delete_avatar'
+      %label Upload Image
+      = file_field :name => 'avatar'
+    .actions
+      .cancel
+        = link_to "cancel", url(:home)
+      .submit
+        = submit_button "update account"

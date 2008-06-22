@@ -1,0 +1,42 @@
+#person
+  #person_photo_etc
+    #person_photo
+      .photo= image_tag "people/default_icon_200.png"
+    #person_actions
+      .actions
+    - if @user.is_adviser?
+      #person_advisees_block.block
+        .title Advisers
+    - else
+      #person_advisers_block.block
+        .title Advisees
+    #person_contacts_block.block
+      .title Contacts
+    #person_groups_block.block
+      .title Groups
+    #watched_bills.block
+      .title Watched Bills
+    #watched_polls.block
+      .title Watched Polls
+  #person_details_etc
+    #person_details
+      .name== #{@person.full_name} | #{@user.username}
+      - unless @user.address.nil?
+        .address= @user.address
+    #recent_activity.block
+      .title.alt_title Recent Activity
+    - unless @person.description.nil?
+      #description.block
+        .title About Me
+        .content
+          = h @person.description
+    - unless @person.political_beliefs.nil?
+      #political_beliefs.block
+        .title Political Beliefs
+        .content
+          = h @person.political_beliefs
+    - unless @person.interests.nil?
+      #interests.block
+        .title Interests
+        .content
+          = h @person.interests

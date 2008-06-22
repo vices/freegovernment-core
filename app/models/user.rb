@@ -3,7 +3,7 @@ class User
   include DataMapper::Validate
   include DataMapper::Timestamp
   include DataMapper::GeoKit
-
+  include Paperclip::Resource
   
   property :id, Integer, :serial => true
   property :username, String, :nullable => false
@@ -22,8 +22,14 @@ class User
   has 0..1, :group
   
   has n, :advising_relationships
+  has n, :contact_relationships
+  has n, :group_relationships
 
   has_geographic_location :address
+  
+  has_attached_file :avatar,
+    :styles => { :small => '60x60#', :medium => '100x100>', :large => '200x200>' },
+    :default_url => "users/missing_icon_:style.png"
 
   validates_length :username, :within => 4..20
   validates_is_unique :username

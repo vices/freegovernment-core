@@ -1,0 +1,21 @@
+- form_for @person, :action => url(:person, :id => @user.username), :class => 'full' do
+  %h1 Edit Your Profile
+  .caption
+    %span You can describe yourself here.
+  = error_messages_for @person
+  = error_messages_for @user
+  - if !params[:after_signup]
+    = text_control :full_name, :label => 'Full Name'
+    - fields_for @user do
+      = text_control :email, :label => 'Email'
+  = text_area_control :description, :label => 'Describe Yourself'
+  = text_area_control :political_beliefs, :label => 'Political Beliefs'
+  = text_area_control :interests, :label => 'Interests'
+  - fields_for @user do
+    =text_area_control :address, :label => 'Address'
+
+  .actions
+    .cancel
+      = link_to "cancel", url(:home)
+    .submit
+      = submit_button "save profile"

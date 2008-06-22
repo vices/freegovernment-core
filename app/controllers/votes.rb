@@ -1,6 +1,8 @@
 class Votes < Application
   before :login_required, :only => 'create'
 
+
+
   def create
     set_old_and_new_vote
     if @new_vote.save
@@ -20,6 +22,8 @@ class Votes < Application
   def change_advisee_votes_and_update_poll
     if @current_user.is_adviser?
       vote_diffs = Vote.update_advisee_votes(@old_vote, @new_vote, @current_user.advisee_list)
+      pp @new_vote
+      pp @new_vote
       Poll.first(:id => @new_vote.poll_id).update_for_votes(vote_diffs)
     end  
   end

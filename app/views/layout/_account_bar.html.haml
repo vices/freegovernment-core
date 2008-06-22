@@ -1,8 +1,11 @@
 #account_bar
   - if logged_in?
-    = link_to "my profile"
+    - unless @current_user.person_id.nil?
+      = link_to "my profile", url(:person, :id => @current_user.username)
+    - else
+      = link_to "group profile", url(:group, :id => @current_user.username)
     %span= "|"
-    = link_to "account settings"
+    = link_to "account settings", url(:edit_user, :id => @current_user.username)
     %span= "|"
     =delete_button :session, @session, "log out", :class => 'button_link'
 

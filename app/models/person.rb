@@ -8,6 +8,8 @@ class Person
   property :date_of_birth, Date, :nullable => false
   property :user_id, Integer
   property :description, DM::Text
+  property :political_beliefs, DM::Text
+  property :interests, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
   

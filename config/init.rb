@@ -67,6 +67,7 @@ dependency 'dm-timestamps'
 dependency 'dm-validations'
 dependency 'dm-aggregates'
 dependency 'dm-geokit'
+dependency 'dm-paperclip'
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end

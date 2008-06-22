@@ -441,6 +441,40 @@ form.button.active button {
   width: 100%;
   margin-bottom: 10px; }
 
+#person {
+  display: inline-block;
+  width: 760px; }
+  #person:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #person {
+    height: 1px; }
+  #person #person_photo_etc {
+    float: left;
+    width: 225px; }
+    #person #person_photo_etc #person_photo img {
+      padding: 10px;
+      border: 1px solid #ddd; }
+  #person #person_details_etc {
+    float: right;
+    width: 525px; }
+    #person #person_details_etc #person_details .name {
+      font-size: 24px;
+      font-weight: bold; }
+  #person .block {
+    margin-top: 10px; }
+    #person .block .title {
+      background-color: #e9e9e9;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-bottom: 2px solid #999; }
+    #person .block .alt_title {
+      color: #fff;
+      background-color: #8b8b8b;
+      border-bottom: 2px solid #111; }
+
 #polls_index_header h2 {
   background-image: url('/images/polls/header.png'); }
 
@@ -455,6 +489,19 @@ form.button.active button {
 
 #forums_index_header h2 {
   background-image: url('/images/forums/header.png'); }
+
+#edit_user .image_upload {
+  text-align: center; }
+  #edit_user .image_upload label {
+    font-size: 14px;
+    color: #222;
+    margin-top: 15px;
+    margin-bottom: 5px; }
+  #edit_user .image_upload .file {
+    margin: 0 auto;
+    width: 500px; }
+#edit_user .current_image {
+  text-align: center; }
 
 #push {
   height: 580px; }
