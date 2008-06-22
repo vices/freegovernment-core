@@ -9,7 +9,7 @@
         .person
           .photo_and_details
             .photo
-              =link_to image_tag('people/default_icon_100.png'), url(:person, :id => person.user.username)
+              =link_to image_tag(person.user.avatar.url(:medium)), url(:person, :id => person.user.username)
             .details
               .full_name= link_to person.full_name, url(:person, :id => person.user.username)
           .actions

@@ -87,58 +87,32 @@ describe Votes, "#create", "set_old_and_new_vote" do
     dispatch_to(Votes, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
       controller.assigns(:new_vote).stub!(:save)  
-      controller.stub!(:update_poll_for_vote)
+      #controller.stub!(:update_poll_for_vote)
       controller.stub!(:change_advisee_votes_and_update_poll)
       controller.stub!(:session).and_return({:user_id => 1})
       controller.stub!(:clean_vote_for_advisers)
+      @old_vote.stub!(:selection=)
+      @old_vote.stub!(:save)
       Vote.stub!(:first).with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
-      #Vote.should_receive(:first).with(:user_id => controller.session[:user_id], :poll_id => valid_new_vote[:poll_id]).and_return(@old_vote)
+      Vote.should_receive(:first).with(:user_id => controller.session[:user_id], :poll_id => valid_new_vote[:poll_id]).and_return(@old_vote)
     end
   end
   
-=begin
-  it "should find an old vote if it exists" do
-    dispatch_to(Votes, :create, @params) do |controller|
-      controller.stub!(:logged_in?).and_return(true)
-      controller.assigns(:new_vote).stub!(:save)
-      controller.stub!(:update_poll_for_vote)
-      controller.stub!(:change_advisee_votes_and_update_poll)
-      controller.stub!(:session).and_return({:user_id => 1})
-      controller.stub!(:clean_vote_for_advisers)
-      @old_vote = Vote.new(valid_new_vote)
-      @old_vote.stub!(:attributes).and_return(@old_vote)
-      @old_vote.stub!(:except)
-      @old_vote.stub!(:stance=)
-      @old_vote.stub!(:save)
-      @new_vote = mock(:vote)
-      #@old_vote.stub!(:selection).with(params[:vote][:selection])
-      @old_vote.stub!(:selection)
-      @new_vote.stub!(:selection)
-      Vote.stub!(:first).and_return(@old_vote)
-      Vote.should_receive(:first).and_return(@old_vote)
-      # :user_id => controller.session[:user_id])
-      #.with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
-      @old_vote.should_receive(:selection)
-      controller.assigns(:old_vote) == @old_vote
-      controller.assigns(:new_vote) == @old_vote
-      #@old_vote.attributes(:selection).should_not == @new_vote.attributes(:selection)
-      #@old_vote = Vote.new(valid_new_vote.merge({:selection=> 'no'}))
-      @new_vote.selection.should_not == @old_vote.selection
-         end
-  end
-=end
-
   it "should not find an old vote if it does not exist" do
     dispatch_to(Votes, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
-      controller.stub!(:clean_vote_for_advisers)
-      Vote.should_receive(:first).and_return(nil)
-      new_vote = mock(:new_vote)
-      Vote.should_receive(:new).and_return(new_vote)
-      new_vote.stub!(:save).and_return(false)
+      controller.assigns(:new_vote).stub!(:save)
+      #controller.stub!(:update_poll_for_vote)
+      controller.stub!(:change_advisee_votes_and_update_poll)
       controller.stub!(:session).and_return({:user_id => 1})
+      controller.stub!(:clean_vote_for_advisers)
+      @new_vote.stub!(:save)
+      Vote.should_receive(:first).and_return(nil)
+      Vote.should_receive(:new).and_return(@new_vote)
+      
     end
   end
+
 
 end
 
@@ -226,22 +200,24 @@ describe Votes, "#create", "change_advisee_votes_and_update_poll" do
     @new_vote = mock(:new_vote)
     @params = {:vote => valid_new_vote}
   end
-
- 
-  it "should update advisee votes and poll with changes if current user is adviser" do
+  
+  it "should update advisee votes and poll with changes if current user is advser" do
     dispatch_to(Votes, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
+      controller.stub!(:set_old_and_new_vote)
       controller.assigns(:new_vote).stub!(:save).and_return(true)
       controller.stub!(:update_poll_for_vote)
-      controller.stub!(:set_old_and_new_vote)
-      pp @new_vote
-
       controller.assigns(:current_user).should_receive(:is_adviser?).and_return(true)
       controller.assigns(:current_user).should_receive(:advisee_list)
-      Vote.should_receive(:update_advisee_votes)
-      Poll.should_receive(:update_for_multiple_votes)
+      controller.assigns(:new_vote).stub!(:poll_id)
+      vote_diff = mock(:vote_diff)
+      Vote.should_receive(:update_advisee_votes).and_return(vote_diff)
+      poll = mock(:poll)
+      Poll.should_receive(:first).with(:id => valid_new_vote[:id]).and_return(poll)
+      poll.should_receive(:update_for_votes).with(vote_diff)
     end
   end
+
 end
 
 describe Votes, "#create", "clean_poll_for_advisers" do

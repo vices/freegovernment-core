@@ -1,7 +1,7 @@
 #person
   #person_photo_etc
     #person_photo
-      .photo= image_tag "people/default_icon_200.png"
+      .photo= image_tag @user.avatar.url(:large)
     #person_actions
       .actions
     - if @user.is_adviser?

@@ -1,6 +1,16 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
 require File.join(File.dirname(__FILE__), "..", "user_spec_helper")
 
+describe Session, "#home" do
+
+  it "should render action" do
+    dispatch_to(Session, :new) do |controller|
+      controller.stub!(:render)
+      controller.should_receive(:render)
+    end
+  end
+
+end
 
 describe Session, "In general" do
 
@@ -23,7 +33,7 @@ describe Session, "In general" do
   
   it "should redirect to home upon login" do
     do_it
-    @controller.should redirect_to(:home)
+    @controller.should redirect_to(url(:home))
   end
 
   
@@ -48,7 +58,7 @@ describe Session, "failing to login" do
   
   it "should not redirect to home" do
     do_it
-    @controller.should_not redirect_to(:home)
+    @controller.should_not redirect_to(url(:home))
     #should be
     #@controller.should_not be_redirected
     #but undefined method `redirected?' for #<Session:0xb76733a8>
@@ -57,13 +67,6 @@ describe Session, "failing to login" do
   it "should not populate the session" do
     do_it
     @controller.session[:user_id].should be_nil
-  end
-  
-  it "should have a success status code" do
-    do_it
-    @controller.should be_successful
-    #should this be:
-    #@controller.should_not be_succesful
   end
 
 end

@@ -41,12 +41,12 @@ describe Poll, "in general"  do
     @poll.errors.on(:user_id).should_not be_nil
   end
 
-  it "should respond to a registered_yes_count" do
-    @poll.should respond_to(:registered_yes_count)
+  it "should respond to a verified_yes_count" do
+    @poll.should respond_to(:verified_yes_count)
   end
   
-  it "should respond to a registered_no_count" do
-    @poll.should respond_to(:registered_no_count)
+  it "should respond to a verified_no_count" do
+    @poll.should respond_to(:verified_no_count)
   end
     
   it "should respond to a yes_count" do
@@ -81,12 +81,12 @@ describe Poll, "upon creation" do
     @poll.no_count.should == 0
   end
 
-  it "should default to a registered_yes_count of 0" do
-    @poll.registered_yes_count.should == 0
+  it "should default to a verified_yes_count of 0" do
+    @poll.verified_yes_count.should == 0
   end
   
-  it "should default to a registered_no_count of 0" do
-    @poll.registered_no_count.should == 0 
+  it "should default to a verified_no_count of 0" do
+    @poll.verified_no_count.should == 0 
   end
 
   it "should record created_at" do
@@ -123,17 +123,15 @@ describe Poll, "updating for vote changes" do
   end
   
   it "should total the vote count"  do
-    @poll.attribute_set(:yes_count, 1)
-    @poll.attribute_set(:no_count, 1)
-    @poll.vote_count.should 
-    @poll.total_count.should == 2
+    @poll.update_for_votes({:yes => 1, :no => 1})
+    @poll.vote_count.should == 2
   end
   
-  it "should get verified vote count" do
-    @poll.attribute_set(:verified_yes_count, 1)
-    @poll.attribute_set(:verified_no_count, 1)  
-    @poll.verified_vote_count.should == 2
-  end
+  # Not Applicable Yet
+  #it "should get verified vote count" do
+  #  @poll.update_for_votes({:yes => 1, :no => 1})
+  #  @poll.verified_vote_count.should == 2
+  #end
   
   it "should calculate yes percent" do
     @poll.stub!(:vote_count).and_return(20)
