@@ -6,7 +6,7 @@ Though the code has been principally used by "FreeGovernment.org":http://www.fre
 
 h2. Code
 
-You can find the most recent Free Government core code on Github. To copy it to you local machine use:
+You can always find the most recent freegovernment-core code right here. To copy it to you local machine use:
 
   git clone git://github.com/foysavas/freegovernment-core.git
 
@@ -26,7 +26,7 @@ To run freegovernment-core you will need:
 
 h2. Joining the Development Team
 
-If you have experience with git and ruby, it's easy to get involved. Join us at #freegovernment on FreeNode to see what's going on right at the moment.
+If you have experience with git and ruby, it's easy to get involved. Join us at #freegovernment on the FreeNode IRC server to see what's being developed right now.
 
 h2. Questions
 
