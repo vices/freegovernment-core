@@ -78,32 +78,56 @@ describe Votes, "#create", "set_old_and_new_vote" do
     @new_vote = mock(:new_vote)
     @params = {:vote => valid_new_vote}
   end
-
-  def do_post(params = @params, &block)
-    dispatch_to(Votes, :create, params) do |controller|
+  
+  it "should find an old vote if it exists" do
+    @old_vote.stub!(:poll_id).and_return(1)
+    @old_vote.stub!(:selection).and_return('yes')
+    @old_vote.stub!(:user_id).and_return(2)
+   
+    dispatch_to(Votes, :create, @params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      controller.assigns(:new_vote).stub!(:save)  
+      controller.stub!(:update_poll_for_vote)
+      controller.stub!(:change_advisee_votes_and_update_poll)
+      controller.stub!(:session).and_return({:user_id => 1})
+      controller.stub!(:clean_vote_for_advisers)
+      Vote.stub!(:first).with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
+      #Vote.should_receive(:first).with(:user_id => controller.session[:user_id], :poll_id => valid_new_vote[:poll_id]).and_return(@old_vote)
+    end
+  end
+  
+=begin
+  it "should find an old vote if it exists" do
+    dispatch_to(Votes, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
       controller.assigns(:new_vote).stub!(:save)
       controller.stub!(:update_poll_for_vote)
       controller.stub!(:change_advisee_votes_and_update_poll)
-      controller.assigns(:current_user).stub!(:is_adviser?).and_return(true)
       controller.stub!(:session).and_return({:user_id => 1})
       controller.stub!(:clean_vote_for_advisers)
-      block.call(controller) if block_given?
-    end
-  end
-
-  it "should find an old vote if it exists" do
-    do_post do |controller|
+      @old_vote = Vote.new(valid_new_vote)
       @old_vote.stub!(:attributes).and_return(@old_vote)
       @old_vote.stub!(:except)
       @old_vote.stub!(:stance=)
       @old_vote.stub!(:save)
-      Vote.should_receive(:first) #i can't figure out why it's twice
-      #.with(:poll_id => valid_new_vote.merge([:poll_id], :user_id => controller.session[:user_id])).and_return(@old_vote)
+      @new_vote = mock(:vote)
+      #@old_vote.stub!(:selection).with(params[:vote][:selection])
+      @old_vote.stub!(:selection)
+      @new_vote.stub!(:selection)
+      Vote.stub!(:first).and_return(@old_vote)
+      Vote.should_receive(:first).and_return(@old_vote)
+      # :user_id => controller.session[:user_id])
+      #.with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
+      @old_vote.should_receive(:selection)
       controller.assigns(:old_vote) == @old_vote
-    end
+      controller.assigns(:new_vote) == @old_vote
+      #@old_vote.attributes(:selection).should_not == @new_vote.attributes(:selection)
+      #@old_vote = Vote.new(valid_new_vote.merge({:selection=> 'no'}))
+      @new_vote.selection.should_not == @old_vote.selection
+         end
   end
-  
+=end
+
   it "should not find an old vote if it does not exist" do
     dispatch_to(Votes, :create, @params) do |controller|
       controller.stub!(:logged_in?).and_return(true)
@@ -218,4 +242,32 @@ describe Votes, "#create", "change_advisee_votes_and_update_poll" do
       Poll.should_receive(:update_for_multiple_votes)
     end
   end
+end
+
+describe Votes, "#create", "clean_poll_for_advisers" do
+  include VoteSpecHelper
+
+  before(:each) do
+    @old_vote = mock(:old_vote)
+    @new_vote = mock(:new_vote)
+    @params = {:vote => valid_new_vote}
+  end
+
+  it "when 'yes'" do
+  dispatch_to(Votes, :create, @params) do |controller|
+      controller.stub!(:logged_in?).and_return(true)
+      pp :current_user
+      controller.assigns(:current_user)
+      @current_user.should_receive(:is_adviser).and_return(true)
+      controller.stub!(:session).and_return({:user_id => 1})
+      controller.stub!(:selection).and_return('yes')
+      controller.stub!(:params).with(:selection => 'yes')
+#      @old_vote.stub!(:attributes).and_return(@old_vote)
+#      @old_vote.stub!(:except)
+#      @old_vote.stub!(:stance=)
+#      @old_vote.stub!(:save)
+#      @old_vote.stub!(:selection).and_return('yes')
+      end
+  end
+
 end

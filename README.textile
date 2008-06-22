@@ -22,6 +22,7 @@ To run freegovernment-core you will need:
 * dm-more (from git://github.com/sam/dm-more.git)
 * geokit-core (from git://github.com/foysavas/geokit-core.git)
 * dm-geokit (from git://github.com/foysavas/dm-geokit.git)
+* dm-paperclip (from git://github.com/foysavas/dm-paperclip.git)
 
 h2. Joining the Development Team
 

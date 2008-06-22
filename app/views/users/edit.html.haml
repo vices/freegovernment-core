@@ -4,7 +4,7 @@
     = error_messages_for @user
     .image_upload
       %label Current Image
-      .current_image= image_tag @user.avatar.url
+      .current_image= image_tag @user.avatar.url(:large)
       %label Delete Current Image?
       = checkbox_field :name => 'delete_avatar'
       %label Upload Image

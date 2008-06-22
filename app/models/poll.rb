@@ -6,11 +6,12 @@ class Poll
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false
   property :forum_id, Integer
- 	property :total_count, Integer
   property :yes_count, Integer, :default => 0, :writer => :private
   property :no_count, Integer, :default => 0, :writer => :private
+ 	property :vote_count, Integer, :default => 0, :writer => :private
   property :verified_yes_count, Integer, :default => 0, :writer => :private
   property :verified_no_count, Integer, :default => 0, :writer => :private
+  property :verified_vote_count, Integer, :default => 0, :writer => :private
   property :question, String, :nullable => false, :length => 140
   property :description, DM::Text
   property :created_at, DateTime
@@ -30,16 +31,8 @@ class Poll
     end
     attribute_set(:yes_count, self.yes_count + yes_agg)
     attribute_set(:no_count, self.no_count + no_agg)
+    attribute_set(:vote_count, self.yes_count + self.no_count)
     self.save
-  end
-  
-  def vote_count
-    self.total_count = yes_count + no_count
-		self.save
-  end
-  
-  def verified_vote_count
-    verified_yes_count + verified_no_count
   end
   
   def yes_percent
