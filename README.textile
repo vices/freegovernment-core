@@ -1,0 +1,33 @@
+h1. Free Government
+
+freegovernment-core is written and maintained by the Free Government Foundation.
+
+Though the code has been principally used by "FreeGovernment.org":http://www.freegovernment.org you are free to use it for any purpose without restriction so long as you abide by the LICENSE found in this repository and all licenses referenced therein.
+
+h2. Code
+
+You can find the most recent Free Government core code on Github. To copy it to you local machine use:
+
+  git clone git://github.com/foysavas/freegovernment-core.git
+
+h2. Dependencies
+
+To run freegovernment-core you will need:
+
+* merb (>= 0.9.2)
+* merb_helpers (>= 0.9.2)
+* extlib (from git://github.com/sam/extlib.git)
+* do (from git://github.com/sam/do.git)
+* dm-core (from git://github.com/sam/dm-core.git)
+* dm-more (from git://github.com/sam/dm-more.git)
+* geokit-core (from git://github.com/foysavas/geokit-core.git)
+* dm-geokit (from git://github.com/foysavas/dm-geokit.git)
+
+h2. Joining the Development Team
+
+If you have experience with git and ruby, it's easy to get involved. Join us at #freegovernment on FreeNode to see what's going on right at the moment.
+
+h2. Questions
+
+Please direct all question to dev@freegovernment.org
+
