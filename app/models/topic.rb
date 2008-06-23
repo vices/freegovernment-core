@@ -15,4 +15,6 @@ class Topic
   validates_length :name, :within => 1..140
   belongs_to :forum, :class_name => 'Forum' 
   has n, :posts
+  
+  belongs_to :user
 end

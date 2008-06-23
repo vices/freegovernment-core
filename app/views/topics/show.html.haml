@@ -1,0 +1,14 @@
+#topic
+  %h2= @topic.name
+  - unless @posts_page.nil? 
+    %table
+      %tr
+        %th.author Author
+        %th.post Post
+      - @posts_page.each do |post|
+        %tr
+          %td.author
+            = link_to image_tag(post.user.avatar.url(:small)), url(:user, :id => @user.username)
+          %td.text
+            = h post.text
+  = link_to "Submit a New Post", url(:new_post, :topic_id => @topic.id)
