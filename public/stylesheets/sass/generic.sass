@@ -474,10 +474,34 @@ form.button.active
 #footer_middle
   :height 500px
   :padding 5px
-#footer_new_users
-  :float left
-#footer_recent
-  :float right
+  #footer_middle_content
+    +clearfix
+    :width 760px
+    h2
+      :font-weight bold
+      :text-transform uppercase
+      :border-top 1px solid #ccc
+      :padding 3px 0px
+      :margin-bottom 5px
+    #footer_users_etc
+      :float left
+      :width 200px
+      #footer_new_users
+        :height 375px
+        .user
+          +clearfix
+          :margin 5px 0px
+          :width 200px
+          .image
+            :float left
+            :width 60px
+          .details
+            :float right
+            :width 130px
+            :font-weight bold
+    #footer_recent
+      :float right
+      :width 520px
 #footer_bottom
   :height 40px
   :padding 2px

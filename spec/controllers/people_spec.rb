@@ -16,7 +16,7 @@ describe People do
       User.should_receive(:new).and_return(@new_user)
       Person.should_receive(:new).and_return(@new_person)
       dispatch_to(People, :new) do |controller|
-       controller.stub!(:render) #TODO is this used?
+       controller.stub!(:render)
       end
     end
     
@@ -59,6 +59,7 @@ describe People do
       it "should create a new user and person when valid" do
       	@new_user.stub!(:id).and_return(1)
       	@new_person.stub!(:user_id=)
+      	@new_user.stub!(:username)
       	@new_peson.stub!(:id).and_return(1)
       	@new_user.stub!(:person_id=)
         @new_person.should_receive(:valid?).and_return(true)
@@ -141,8 +142,7 @@ describe People do
     
     it "should allow order by full name" do
       do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:sort_by).should == :full_name
-      do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:direction).should == "asc"
-      
+      do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:direction).should == "asc"    
     end
     
     it "should allow search full names"
@@ -189,24 +189,6 @@ include UserSpecHelper
   it "should get data for @person by id" do
     User.should_receive(:first).and_return(@user)
     do_get
-    pp @user
-=begin , Interestingly, you cannot put the comma next to the begin, because although this text will all stay blue, the command will not work properly in spec.
-
-pp @user = the following, as we can see it does not have people
- last_login_at = nil,
- salt = nil,
- created_at = nil,
- crypted_password = nil,
- username = "foysavas",
- is_adviser = 0,
- person_id = nil,
- email = "foysavas@gmail.com",
- id = nil,
- updated_at = nil,
- previous_login_at = nil,
- group_id = nil>
-
-=end   
   end
   
   it "should get display an error message if user not found"
@@ -218,17 +200,20 @@ pp @user = the following, as we can see it does not have people
 end
 
 describe People, "#edit" do
+
 	before(:each) do
-	  @user = mock(:user)
+  	@user = mock(:user)
     @person = mock(:person)
     User.stub!(:first).and_return(@user)
     @user.stub!(:person).and_return(@person)
+    @user.stub!(:id=)
 	end
 	
 	def do_get(params={}, &block)
-    dispatch_to(People, :edit, {:id => 'groupusername'}) do |controller|
+    dispatch_to(People, :edit, {:id => 'username'}) do |controller|
+      controller.stub!(:session).and_return({:user_id => @user.id})
       controller.stub!(:render)
-      block if block_given?
+      block.call(controller) if block_given?
 		end
 	end
 	
@@ -241,51 +226,47 @@ describe People, "#edit" do
 			assigns(:person).should == @person
 		end
 	end
-	
+
 	it "should render the action" do
-	do_get({:id => 'groupusername'}) do |controller|
+    do_get do |controller|
       controller.should_receive(:render)
     end
 	end
 end
 
-=begin
-describe People, "#edit" do
-  before(:each) do
-	  @person = mock(:person)
-	  @people_page = [@person]
-	  User.stub!(:first).and_return(@person)
-  end
+describe People, "#update" do
+  include UserSpecHelper
+  include PersonSpecHelper
 
-  def do_get(params = {}, &block)
-    dispatch_to(People, :edit, {:id => 1 }.merge(params)) do |controller|
+  it "should set the attributes" do
+   @user = mock(:user)
+   @person = mock(:person)
+   User.stub!(:first).and_return(@user)
+   @user.stub!(:person).and_return(@person)
+   @user.stub!(:id)
+   @user.stub!(:username)
+   
+    params = {:user => User.new(valid_new_user), :person => Person.new(valid_new_person)}
+    
+    dispatch_to(People, :update, params) do |controller|
+      controller.stub!(:session).and_return({:user_id => @user.id})
+      @user.should_receive(:update_attributes).and_return(true)
+      @person.should_receive(:update_attributes).and_return(true)
       controller.stub!(:render)
-      block if block_given?
     end
   end
   
-  it "should be successful" do
-    do_get.should be_successful
+=begin
+  dispatch_to(People, :update, params) do |controller|
+    controller.stub!(:session).and_return({:user_id => 1})
+    controller.stub!(:user).and_return(nil)
+    controller.stub!(:avatar).and_return(nil)
+    controller.stub!(:save).and_return(true)    
+    @user.should_receive(:attributes=).and_return(@user)
+    @user.should_receive(:avatar=)
+    @user.stub!(:username)
+    @user.should_receive(:save).and_return(true)
   end
-  
-  it "should load the requested person" do
-    do_get({:id => 1})  do
-      assign(:person).should == @person
-    end
-  end
-  
-  it "should render the action" do
-    dispatch_to(People, :edit, :id => "1") do |controller|
-      controller.should_receive(:render)
-    end
-  end
-  it "should only work for the current user on their own person"
-  
-  it "should find @edit_user and @edit_person for id"
-  
-end
 =end
 
-
-
-
+end

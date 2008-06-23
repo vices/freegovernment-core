@@ -28,8 +28,9 @@ class User
   has_geographic_location :address
   
   has_attached_file :avatar,
-    :styles => { :small => "60x60#", :medium => "100x100#", :large => "200x200>" },
-    :default_url => "users/missing_icon_:style.png"
+    :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
+    :default_url => "users/missing_icon_:style.png",
+    :whiny_thumbnails => true
   
   validates_attachment_thumbnails :avatar
 

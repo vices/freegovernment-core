@@ -59,9 +59,13 @@ class People < Application
     if @user.update_attributes(params[:user])
       if @person.update_attributes(params[:person])
         redirect url(:person, :id => @user.username)
+      else
+        render :edit
       end
+    else
+      render :edit
     end
-    render :edit
+
   end
   
   def destroy

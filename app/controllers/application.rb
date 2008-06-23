@@ -1,4 +1,6 @@
 class Application < Merb::Controller
+  before :set_updates_data
+
   protected
   
   def logged_in?
@@ -39,5 +41,11 @@ class Application < Merb::Controller
 
   def reset_session
     session.data.each{|k,v| session.data.delete(k)}
+  end
+
+  private
+
+  def set_updates_data
+    @updates_newest_users = User.all(:limit => 4, :order => [:id.desc, :avatar_file_name.desc])
   end
 end

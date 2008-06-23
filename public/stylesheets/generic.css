@@ -526,12 +526,48 @@ form.button.active button {
 #footer_middle {
   height: 500px;
   padding: 5px; }
-
-#footer_new_users {
-  float: left; }
-
-#footer_recent {
-  float: right; }
+  #footer_middle #footer_middle_content {
+    display: inline-block;
+    width: 760px; }
+    #footer_middle #footer_middle_content:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #footer_middle #footer_middle_content {
+      height: 1px; }
+    #footer_middle #footer_middle_content h2 {
+      font-weight: bold;
+      text-transform: uppercase;
+      border-top: 1px solid #ccc;
+      padding: 3px 0px;
+      margin-bottom: 5px; }
+    #footer_middle #footer_middle_content #footer_users_etc {
+      float: left;
+      width: 200px; }
+      #footer_middle #footer_middle_content #footer_users_etc #footer_new_users {
+        height: 375px; }
+        #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user {
+          display: inline-block;
+          margin: 5px 0px;
+          width: 200px; }
+          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user:after {
+            content: ".";
+            height: 0;
+            clear: both;
+            visibility: hidden; }
+          * html #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user {
+            height: 1px; }
+          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user .image {
+            float: left;
+            width: 60px; }
+          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user .details {
+            float: right;
+            width: 130px;
+            font-weight: bold; }
+    #footer_middle #footer_middle_content #footer_recent {
+      float: right;
+      width: 520px; }
 
 #footer_bottom {
   height: 40px;

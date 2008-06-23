@@ -93,6 +93,47 @@ describe User, "in general"  do
 
 end
 
+describe User, "Avatar" do
+  include UserSpecHelper
+  
+  before(:each) do
+    User.auto_migrate!
+    @user = User.new
+  end
+
+  it "should respond to an avatar, styles, default_url, whiny thumbnails" do
+    @user.should respond_to(:avatar)
+    @user.avatar.should respond_to(:styles)
+    @user.avatar.should respond_to(:default_url)
+    @user.avatar.should respond_to(:whiny_thumbnails)
+  end
+  
+  
+  
+
+end
+
+
+describe User, "when adviser" do
+  include UserSpecHelper
+  
+  before (:each) do
+    User.auto_migrate!
+    @user = User.new
+  end
+  
+  it "should get an advisee list" do
+    #@user.stub!(:advisee_id).and_return([4])
+    #advising_relationships = mock(:advising_relationships)
+    #@user.attribute_s(:advising_relationships, [4])
+    #@user.stub!(:advising_relationships).and_return([5])
+    #@user.stub!(:collect).and_return({1 => 4})
+    @user.advisee_list.should == [3,4]
+  end
+  
+end
+
+
 describe User, "upon creation" do
   include UserSpecHelper
   

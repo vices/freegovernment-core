@@ -10,7 +10,7 @@ class Users < Application
     if !params[:user].nil?
       @user.attributes = params[:user]
     end
-    if !params[:avatar].empty?
+    if !params[:avatar].nil?
       @user.avatar = params[:avatar]
     end
     if @user.save

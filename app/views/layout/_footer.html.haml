@@ -4,13 +4,30 @@
       == Updates
   #footer_middle
     .girdle
-      #footer_new_users
-        %h2 New Users
-      #footer_recent
-        #footer_recent_topics
-          %h2 Recent Topics
-        #footer_recent_polls
-          %h2 Recent Polls
+      #footer_middle_content
+        #footer_users_etc
+          #footer_new_users
+            %h2 New Users
+            - unless @updates_newest_users.nil?
+              - @updates_newest_users.each do |user|
+                .user
+                  .image
+                    - if !user.person_id.nil?
+                      = link_to image_tag(user.avatar.url(:small)), url(:person, :id => user.username)
+                    - else
+                      = link_to image_tag(user.avatar.url(:small)), url(:group, :id => user.username)
+                  .details
+                    = user.username
+          #footer_donation
+            %h2 Support FreeGovernment.org
+            - form_tag do
+              = text_field :name => 'amount'
+              = submit_button 'donate'
+        #footer_recent
+          #footer_recent_topics
+            %h2 Recent Topics
+          #footer_recent_polls
+            %h2 Recent Polls
   #footer_bottom
     .girdle
       #footer_copyright== &copy; #{Time.now.year} FreeGovernment.org
