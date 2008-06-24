@@ -130,7 +130,6 @@ describe People do
      do_get.assigns(:direction).should == "asc"
      
     end
-    
 
   
     it "should allow order by number of advisees" do
@@ -143,6 +142,11 @@ describe People do
     it "should allow order by full name" do
       do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:sort_by).should == :full_name
       do_get({:sort_by => 'name', :direction => 'asc'}).assigns(:direction).should == "asc"    
+    end
+    
+    it "should allow order by full name with desc" do
+      do_get({:sort_by => 'name', :direction => 'desc'}).assigns(:sort_by).should == :full_name
+      do_get({:sort_by => 'name', :direction => 'desc'}).assigns(:direction).should == "desc"    
     end
     
     it "should allow search full names"
@@ -237,18 +241,19 @@ end
 describe People, "#update" do
   include UserSpecHelper
   include PersonSpecHelper
-
-  it "should set the attributes" do
+  
+  before(:each) do
    @user = mock(:user)
    @person = mock(:person)
    User.stub!(:first).and_return(@user)
    @user.stub!(:person).and_return(@person)
    @user.stub!(:id)
    @user.stub!(:username)
-   
-    params = {:user => User.new(valid_new_user), :person => Person.new(valid_new_person)}
-    
-    dispatch_to(People, :update, params) do |controller|
+   @params = {:user => User.new(valid_new_user), :person => Person.new(valid_new_person)}
+   end
+
+  it "should set the attributes" do
+    dispatch_to(People, :update, @params) do |controller|
       controller.stub!(:session).and_return({:user_id => @user.id})
       @user.should_receive(:update_attributes).and_return(true)
       @person.should_receive(:update_attributes).and_return(true)
@@ -256,17 +261,22 @@ describe People, "#update" do
     end
   end
   
-=begin
-  dispatch_to(People, :update, params) do |controller|
-    controller.stub!(:session).and_return({:user_id => 1})
-    controller.stub!(:user).and_return(nil)
-    controller.stub!(:avatar).and_return(nil)
-    controller.stub!(:save).and_return(true)    
-    @user.should_receive(:attributes=).and_return(@user)
-    @user.should_receive(:avatar=)
-    @user.stub!(:username)
-    @user.should_receive(:save).and_return(true)
+  it "should render else after first if" do
+    dispatch_to(People, :update, @params) do |controller|
+      controller.stub!(:session).and_return({:user_id => @user.id})
+      @user.should_receive(:update_attributes).and_return(false)
+      controller.stub!(:render)
+      controller.should_receive(:render).with(:edit)
+    end
   end
-=end
-
+  
+    it "should render else after second if" do
+    dispatch_to(People, :update, @params) do |controller|
+      controller.stub!(:session).and_return({:user_id => @user.id})
+      @user.should_receive(:update_attributes).and_return(true)
+      @person.should_receive(:update_attributes).and_return(false)
+      controller.stub!(:render)
+      controller.should_receive(:render).with(:edit)
+    end
+  end
 end

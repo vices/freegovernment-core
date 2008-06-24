@@ -129,6 +129,13 @@ describe Groups, "#index" do
     end
   end
   
+  it "should allow order by name with desc" do
+    do_get({:sort_by => 'name', :direction => 'desc'}) do
+      assigns(:sort_by).should == :name
+      assigns(:direction).should == :desc
+    end
+  end
+  
   it "should allow search names"
   
   it "should allow search by location"
