@@ -25,7 +25,7 @@ class Polls < Application
         @direction = 'asc'
         @order = @sort_by.asc
     end
-    @polls_page = Poll.all(:order => [@order])
+    @polls_page = Poll.paginate(:page => params[:page], :per_page => 8) #(:order => [@order])
     render
   end
   

@@ -44,6 +44,24 @@ Gem.path.unshift(Merb.root / "gems")
 # uncomment this.
 # Merb.push_path(:lib, Merb.root / "lib") # uses **/*.rb as path glob.
 
+#
+# ==== Set up your ORM of choice
+#
+
+# Merb doesn't come with database support by default.  You need
+# an ORM plugin.  Install one, and uncomment one of the following lines,
+# if you need a database.
+
+# Uncomment for DataMapper ORM
+ use_orm :datamapper
+
+# Uncomment for ActiveRecord ORM
+# use_orm :activerecord
+
+# Uncomment for Sequel ORM
+# use_orm :sequel
+
+
 
 # ==== Dependencies
 
@@ -63,6 +81,7 @@ dependency 'merb-action-args'
 dependency 'merb-assets'
 dependency 'merb-haml'
 dependency 'merb_helpers'
+dependency 'merb_paginate'
 dependency 'dm-timestamps'
 dependency 'dm-validations'
 dependency 'dm-aggregates'
@@ -80,23 +99,6 @@ Merb::BootLoader.after_app_loads do
   require File.join(File.dirname(__FILE__),'recaptcha')
   require File.join(File.dirname(__FILE__),'geokit')
 end
-
-#
-# ==== Set up your ORM of choice
-#
-
-# Merb doesn't come with database support by default.  You need
-# an ORM plugin.  Install one, and uncomment one of the following lines,
-# if you need a database.
-
-# Uncomment for DataMapper ORM
- use_orm :datamapper
-
-# Uncomment for ActiveRecord ORM
-# use_orm :activerecord
-
-# Uncomment for Sequel ORM
-# use_orm :sequel
 
 
 #
