@@ -3,3 +3,21 @@
     %h2 Groups
     .caption discuss, stay updated, and learn more about what matters to you
     .caption pick representative groups as your advisers
+  #groups_list_and_filters.list_and_filters
+    #people_list.list
+      - if !@group_page.nil?
+        - @group_page.each do |person|
+          .group
+            .photo_and_details
+              .photo
+                =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
+    #groups_filters.filters
+      #groups_search.search
+      - if logged_in? && !@current_user.group_id.nil?
+        #group_edit.attention
+          .title Describe your group's focus
+          = link_to "Edit Group Profile", url(:edit_group, :id => @current_user.username)
+      /- else
+      /  #group_edit.attention
+      /    .title= "Can't find the group you're looking for?"
+      /    = Learn about the important role groups play on FreeGovernment.org and how you can create your own.

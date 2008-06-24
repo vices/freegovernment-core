@@ -1,5 +1,43 @@
-#forums_index
+#forums
   #forums_index_header.index_header
     %h2 Forums
     .caption debate the issue in real time
     .caption become part of the discussion
+  - if @forums_page.nil?
+    .section
+      %h3 Latest Topics
+      - unless @latest_topics.nil?
+        - @latest_topics.each do |topic|
+          = topic.name
+    .section
+      %h3 General Forums
+      - unless @general_forums.nil?
+        %table
+          %tr.header
+            %th.name Forum
+            %th.topic_count Topics
+          - i = 0
+          - @general_forums.each do |forum|
+            %tr{:class => "alt#{i}"}
+              %td.name= link_to forum.name, url(:forum, :id => forum.id)
+              %td.topic_count= forum.topics_count
+            - i == 0 ? i = 1 : i = 0
+            
+    .section
+      %h3 Group Forums
+      - unless @group_forums.nil?
+        - @group_forums.each do |forum|
+          = link_to forum.name, url(:forum, :id => forum.id)
+    .section
+      %h3 Poll-Related Forums
+      - unless @poll_forums.nil?
+        - @poll_forums.each do |forum|
+          = link_to forum.name, url(:forum, :id => forum.id)
+    .section
+      %h3 Legislation Forums
+      - unless @bill_forums.nil?
+        - @bill_forums.each do |forum|
+          = link_to forum.name, url(:forum, :id => forum.id)
+  - else
+    - @forums_page.each do |forum|
+      = forum.name

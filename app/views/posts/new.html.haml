@@ -1,0 +1,11 @@
+#new_post
+  - form_for @new_post, :action => url(:posts), :class => 'full' do
+    %h1 Submit a new post
+    = error_messages_for @new_post
+    = hidden_control :topic_id, :value => @topic.id
+    = text_area_control :text, :label => 'your post:'
+    .actions
+      .cancel
+        = link_to "cancel", url(:topic, :id => @topic.id)
+      .submit
+        = submit_button "submit post"

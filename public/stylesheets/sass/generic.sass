@@ -445,6 +445,78 @@ form.button.active
     :text-align center
 
 
+// FORUMS
+
+
+table
+  tr.alt0
+    td
+      :background #e9e9e9
+  tr.alt1
+    td
+      :background #f4f4f4
+
+
+#forums
+  .section
+    :margin-bottom 20px
+    h3
+      :font-size 20px
+      :font-weight bold
+      :margin-bottom 5px
+    table
+      :width 760px
+      .name
+        :width 660px
+      .topic_count
+        :width 100px
+        :text-align center
+      tr
+        th, td
+          :padding 10px 15px
+      tr
+        th
+          :font-weight bold
+          :background #8b8b8b
+          :color #fff
+
+#forum
+  h2
+    :font-size 20px
+    :font-weight bold
+    :margin-bottom 5px
+  table
+    :width 760px
+    :margin-bottom 20px
+    td, th
+      :padding 10px 15px
+    th
+      :font-weight bold
+      :background-color #8b8b8b
+      :color #fff
+    .posts_count, .author
+      :width 100px
+      :text-align center
+
+#topic
+  h2
+    :font-size 20px
+    :font-weight bold
+    :margin-bottom 5px
+  table
+    :width 760px
+    :margin-bottom 20px
+    td, th
+      :padding 10px 15px
+    th
+      :font-weight bold
+      :background-color #8b8b8b
+      :color #fff
+    .author
+      :width 110px
+    .text
+      :width 650px
+
 // FOOTER
 
 #push
@@ -453,8 +525,7 @@ form.button.active
 #footer
   :height 550px
   :background #8b8b8b
-  :color white
-  
+  :color white 
   a
     :color white
 #footer_top
@@ -497,6 +568,21 @@ form.button.active
     #footer_recent
       :float right
       :width 520px
+      #footer_recent_topics
+        .topic
+          +clearfix
+          :margin-bottom 10px
+          :width 520px
+          .image
+            :width 60px
+            :float left
+          .details
+            :width 450px
+            :float right
+            .heading
+              :margin-bottom 3px
+              a
+                :font-weight bold
 #footer_bottom
   :height 40px
   :padding 2px
