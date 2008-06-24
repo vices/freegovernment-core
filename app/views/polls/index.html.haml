@@ -6,55 +6,55 @@
   #poll_list_and_filters.list_and_filters
     #poll_list.list
       - unless @polls_page.nil?
-        = paginated_section @polls_page do
-          - @polls_page.each do |poll|
-            .poll
-              .details
-                .sidebar
-                  = link_to image_tag("polls/default_icon_60.png"), url(:poll, :id => poll.id)
-                .main
-                  .question= link_to "#{poll.question}", url(:poll, :id => poll.id)
-                  .description= poll.description
-                  = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
-                  .tags
-                    %span tags: 
-                    - if true || poll.tags.nil?
-                      %span no associated tags
-              .stats
-                .segment
-                  .title All Users
-                  - if poll.vote_count > 0
-                    .stat.yes
-                      %span.number== #{poll.yes_percent}%
-                      %span.label Yes 
-                    .stat.no
-                      %span.number== #{poll.no_percent}%
-                      %span.label No
-                  - else
-                    .stat.yes
-                      %span.number n/a
-                      %span.label Yes 
-                    .stat.no
-                      %span.number n/a
-                      %span.label No
-                  .total== #{poll.vote_count} votes
-                .segment
-                  .title Verified Voters
-                  - if poll.verified_vote_count > 0
-                    .stat.yes
-                      %span.number= #{poll.verified_yes_percent}%
-                      %span.label Yes 
-                    .stat.no
-                      %span.number= #{poll.verified_no_percent}%
-                      %span.label No
-                  - else
-                    .stat.yes
-                      %span.number n/a
-                      %span.label Yes 
-                    .stat.no
-                      %span.number n/a
-                      %span.label No
-                  .total== #{poll.verified_vote_count} votes
+        - @polls_page.each do |poll|
+          .poll
+            .details
+              .sidebar
+                = link_to image_tag("polls/default_icon_60.png"), url(:poll, :id => poll.id)
+              .main
+                .question= link_to "#{poll.question}", url(:poll, :id => poll.id)
+                .description= poll.description
+                = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
+                .tags
+                  %span tags: 
+                  - if true || poll.tags.nil?
+                    %span no associated tags
+            .stats
+              .segment
+                .title All Users
+                - if poll.vote_count > 0
+                  .stat.yes
+                    %span.number== #{poll.yes_percent}%
+                    %span.label Yes 
+                  .stat.no
+                    %span.number== #{poll.no_percent}%
+                    %span.label No
+                - else
+                  .stat.yes
+                    %span.number n/a
+                    %span.label Yes 
+                  .stat.no
+                    %span.number n/a
+                    %span.label No
+                .total== #{poll.vote_count} votes
+              .segment
+                .title Verified Voters
+                - if poll.verified_vote_count > 0
+                  .stat.yes
+                    %span.number= #{poll.verified_yes_percent}%
+                    %span.label Yes 
+                  .stat.no
+                    %span.number= #{poll.verified_no_percent}%
+                    %span.label No
+                - else
+                  .stat.yes
+                    %span.number n/a
+                    %span.label Yes 
+                  .stat.no
+                    %span.number n/a
+                    %span.label No
+                .total== #{poll.verified_vote_count} votes
+        = merb_paginate @polls_page
         = page_entries_info @polls_page
     #poll_filters.filters
       #poll_search

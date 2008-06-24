@@ -3,17 +3,31 @@ class Polls < Application
   before :find_poll, :only => %w{ show }
   before Proc.new{ @nav_active = :polls }
   
+  #params_accessible :poll => [:]
+  
   def index
+    case params['filter_by']
+      when 'verified_vote_count'
+        @filter_by = {:verified_vote_count.gt => 0}
+      else 
+        @filter_by = nil
+    end
+    #syntax : :conditions => {:id => 34}
+       #       : :conditions => {:verified_vote_count gt 0}
+          
     case params['sort_by']
       when 'question'
         @sort_by = :question
       when 'yes_count'
         @sort_by = :yes_count
       when 'no_count'
+       pp "made it"
         @sort_by = :no_count
-#      when 'total_count'
-#      	Poll.vote_count
-#      	@sort_by = :total_count
+      when 'vote_count'
+
+      	Poll.vote_count
+
+      	@sort_by = :vote_count
       else
         @sort_by = :created_at
     end
@@ -21,11 +35,17 @@ class Polls < Application
       when 'desc'
         @direction = 'desc'
         @order = @sort_by.desc
-      else
+        
+       else
         @direction = 'asc'
         @order = @sort_by.asc
     end
-    @polls_page = Poll.paginate(:page => params[:page], :per_page => 8) #(:order => [@order])
+    #syntax : :conditions => {:id => 34}
+       #       : :conditions => {:verified_vote_count gt 0}
+      
+      
+      @polls_page = Poll.paginate(:page => params[:page], :per_page => 6) #(:order => [@order])
+    #pp @polls_page
     render
   end
   

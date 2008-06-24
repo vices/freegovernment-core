@@ -18,7 +18,7 @@ class People < Application
         @direction = 'asc'
         @order = @sort_by.asc
     end
-    @people_page = Person.all(:order => [@order])
+    @people_page = Person.paginate(:page => params[:page], :per_page => 6) #(:order => [@order])
     render
   end
   

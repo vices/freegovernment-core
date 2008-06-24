@@ -2,9 +2,9 @@ class Poll
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
-  include Paperclip::Resource 
+  include Paperclip::Resource
   include MerbPaginate::Finders::Datamapper
-
+  
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false
   property :forum_id, Integer
