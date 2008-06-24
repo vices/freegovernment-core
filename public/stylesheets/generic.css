@@ -43,35 +43,22 @@ a:hover {
 
 #header {
   background: white;
-  margin-bottom: 28px; }
-  #header #logo_and_account_bar {
-    display: inline-block;
-    width: 760px; }
-    #header #logo_and_account_bar:after {
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #header #logo_and_account_bar {
-      height: 1px; }
-    #header #logo_and_account_bar #logo {
-      float: left; }
-      #header #logo_and_account_bar #logo h1 {
-        padding-top: 12px; }
-        #header #logo_and_account_bar #logo h1 a {
-          display: block;
-          height: 84px;
-          width: 420px;
-          background: url('/images/layout/logo_header.png') no-repeat top left;
-          text-indent: -999em; }
-        #header #logo_and_account_bar #logo h1 a:hover {
-          background-position: bottom left; }
-      #header #logo_and_account_bar #logo .caption {
-        display: none; }
-    #header #logo_and_account_bar #account_bar {
-      float: right;
-      margin-top: 10px;
-      margin-left: 2px; }
+  margin: 12px auto 28px;
+  position: relative; }
+  #header #logo a {
+    display: block;
+    height: 84px;
+    width: 420px;
+    background: url('/images/layout/logo_header.png') no-repeat top left;
+    text-indent: -999em; }
+  #header #logo a:hover {
+    background-position: bottom left; }
+  #header #logo span {
+    display: none; }
+  #header #account_bar {
+    position: absolute;
+    top: 10px;
+    right: 0; }
 
 #navigation {
   margin-top: 12px;
