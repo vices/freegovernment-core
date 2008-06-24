@@ -2,6 +2,7 @@ class Person
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
+  include MerbPaginate::Finders::Datamapper
   
   property :id, Integer, :serial => true
   property :full_name, String, :nullable => false, :length => 100

@@ -16,7 +16,7 @@ class Posts < Application
 
   def create
     if @new_post.save
-      redirect url(:topic, :id => @topic.id)
+      redirect url(:topics, :id => @topic.id)
     else
       render :new
     end
@@ -30,7 +30,6 @@ class Posts < Application
   
   def find_topic
     unless params[:post].nil?
-      pp ":post is nil"
       topic_id = params[:post][:topic_id]
     else
       topic_id = params[:topic_id]

@@ -24,6 +24,13 @@ describe Person, "in general"  do
     @person.should respond_to(:description)
   end
   
+  it "should allow for political beliefs property" do
+    @person.should respond_to(:political_beliefs)
+  end
+  
+  it "should allow for interests property" do
+    @person.should respond_to(:interests)
+  end
 
 end
 
