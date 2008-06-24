@@ -46,6 +46,9 @@ class Application < Merb::Controller
   private
 
   def set_updates_data
-    @updates_newest_users = User.all(:limit => 4, :order => [:id.desc, :avatar_file_name.desc])
+    @updates_newest_users = User.all(:limit => 4, :order => [:id.desc])
+    @updates_newest_topics = Post.all(:limit => 3, :order => [:id.desc])
+    @updates_newest_polls = Poll.all(:limit => 3, :order => [:id.desc])
   end
+
 end

@@ -1,26 +1,31 @@
-require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
+require File.join(File.dirname(__FILE__), "..", "spec_helper")
 
-describe Forums do
-  describe "#index" do
-    before(:each) do
-      @general_forums = [mock(:forum)]
-      @group_forums = [mock(:forum)]
-      @poll_forums = [mock(:forum)]
-      Forum.stub!(:all).with(:group_id => nil, :poll_id => nil).and_return(@general_forums)
-      Forum.stub!(:all).with(:group_id.not => nil).and_return(@group_forums)
-      Forum.stub!(:all).with(:poll_id.not => nil).and_return(@poll_forums)
-    end
+describe Forums, '#new' do
   
-    it "should create lists of general, group, and poll forums" do
-      Forum.should_receive(:all).with(:group_id => nil, :poll_id => nil)
-      #Forum.should_receive(:all).with(:group_id.not => nil)
-      #Forum.should_receive(:all).with(:poll_id.not => nil)
-      dispatch_to(Forums, :index)
+  it 'should render action' do
+    @forum = mock(:forum)
+    #Forum.stub!(:first).and_return(@forum)
+    #@forum.stub!(:id)
+    dispatch_to(Forums, :index, {:id => 1}) do |controller|
+      controller.stub!(:find_forum)
+      #controller.should_receive(:find_forum)
+      controller.stub!(:render)
+      controller.should_receive(:render)
     end
-    
   end
+end
+
+describe Forums, '#show' do
   
-  describe "#show" do
-  
+  it "should have @forum and @topics_page variables" do
+    @forum = mock(:forum)
+    @forum.stub!(:id=)
+    Forum.should_receive(:first).with(:id => 1).and_return(@forum)
+    dispatch_to(Forums, :show, {:id => 1}) do |controller|
+      controller.assigns(:forum)
+      #@forum.id.should == params
+      controller.stub!(:render)
+      controller.should_receive(:render)
+    end
   end
 end

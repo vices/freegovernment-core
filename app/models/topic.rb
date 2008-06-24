@@ -9,6 +9,7 @@ class Topic
   property :user_id, Integer, :nullable => false
   property :group_id, Integer
   property :poll_id, Integer
+  property :posts_count, Integer, :default => 0
   property :created_at, DateTime
   property :updated_at, DateTime
 

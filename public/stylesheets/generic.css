@@ -533,7 +533,8 @@ table tr.alt1 td {
   font-weight: bold;
   margin-bottom: 5px; }
 #forum table {
-  width: 760px; }
+  width: 760px;
+  margin-bottom: 20px; }
   #forum table td, #forum table th {
     padding: 10px 15px; }
   #forum table th {
@@ -549,7 +550,8 @@ table tr.alt1 td {
   font-weight: bold;
   margin-bottom: 5px; }
 #topic table {
-  width: 760px; }
+  width: 760px;
+  margin-bottom: 20px; }
   #topic table td, #topic table th {
     padding: 10px 15px; }
   #topic table th {
@@ -626,6 +628,27 @@ table tr.alt1 td {
     #footer_middle #footer_middle_content #footer_recent {
       float: right;
       width: 520px; }
+      #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic {
+        display: inline-block;
+        margin-bottom: 10px;
+        width: 520px; }
+        #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic:after {
+          content: ".";
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        * html #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic {
+          height: 1px; }
+        #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic .image {
+          width: 60px;
+          float: left; }
+        #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic .details {
+          width: 450px;
+          float: right; }
+          #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic .details .heading {
+            margin-bottom: 3px; }
+            #footer_middle #footer_middle_content #footer_recent #footer_recent_topics .topic .details .heading a {
+              font-weight: bold; }
 
 #footer_bottom {
   height: 40px;

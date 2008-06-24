@@ -5,10 +5,13 @@
       %tr
         %th.author Author
         %th.post Post
+      - i = 0
       - @posts_page.each do |post|
-        %tr
+        %tr{ :class => "alt#{i}"}
           %td.author
-            = link_to image_tag(post.user.avatar.url(:small)), url(:user, :id => @user.username)
+            .image= link_to image_tag(post.user.avatar.url(:small)), url(:user, :id => post.user.username)
+            .username= link_to post.user.username, url(:user, :id => post.user.username)
           %td.text
             = h post.text
+        - i == 0 ? i = 1 : i = 0
   = link_to "Submit a New Post", url(:new_post, :topic_id => @topic.id)

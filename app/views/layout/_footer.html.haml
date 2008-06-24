@@ -26,8 +26,27 @@
         #footer_recent
           #footer_recent_topics
             %h2 Recent Topics
+            - unless @updates_newest_topics.nil?
+              - @updates_newest_topics.each do |post|
+                .topic
+                  .image= link_to image_tag(post.user.avatar(:small)), url(:user, :id => post.user.username)
+                  .details
+                    .heading
+                      =link_to post.user.username, url(:user, :id => post.user.username)
+                      %span commented on 
+                      =link_to post.topic.name, url(:topic, :id => post.topic.id)
+                    .text
+                      =link_to post.text, url(:topic, :id => post.topic.id)
           #footer_recent_polls
             %h2 Recent Polls
+            - unless @updates_newest_polls.nil?
+              - @updates_newest_polls.each do |poll|
+                .poll
+                  .image 
+                  .details
+                    .heading
+                    .results
+ 
   #footer_bottom
     .girdle
       #footer_copyright== &copy; #{Time.now.year} FreeGovernment.org

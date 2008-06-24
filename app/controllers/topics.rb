@@ -38,7 +38,7 @@ class Topics < Application
   
   def find_topic
     if(@topic = Topic.first(:id => params[:id])).nil?
-      raise Merb::ControllerException::NotFound
+      raise Merb::ControllerExceptions::NotFound
     end
   end
   

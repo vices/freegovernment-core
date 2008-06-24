@@ -492,6 +492,7 @@ table
     :margin-bottom 5px
   table
     :width 760px
+    :margin-bottom 20px
     td, th
       :padding 10px 15px
     th
@@ -509,6 +510,7 @@ table
     :margin-bottom 5px
   table
     :width 760px
+    :margin-bottom 20px
     td, th
       :padding 10px 15px
     th
@@ -528,8 +530,7 @@ table
 #footer
   :height 550px
   :background #8b8b8b
-  :color white
-  
+  :color white 
   a
     :color white
 #footer_top
@@ -572,6 +573,21 @@ table
     #footer_recent
       :float right
       :width 520px
+      #footer_recent_topics
+        .topic
+          +clearfix
+          :margin-bottom 10px
+          :width 520px
+          .image
+            :width 60px
+            :float left
+          .details
+            :width 450px
+            :float right
+            .heading
+              :margin-bottom 3px
+              a
+                :font-weight bold
 #footer_bottom
   :height 40px
   :padding 2px

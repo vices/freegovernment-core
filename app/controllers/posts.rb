@@ -1,7 +1,7 @@
 class Posts < Application
   before Proc.new{ @nav_active = :forums }
   before :login_required, :only => %w{ new create destroy }
-  before :find_topic, :only => %{ new create }
+  before :find_topic, :only => %w{ new create }
   before :check_create_permissions, :only => %w{ create }
   
   # Shows individual post
@@ -29,13 +29,19 @@ class Posts < Application
   private
   
   def find_topic
-    if(@topic = Topic.first(:forum_id => params[:post][:forum_id], :topic_id => params[:post][:topic_id])).nil?
-      raise Merb::ControllerExceptions::NotAcceptable
+    unless params[:post].nil?
+      pp ":post is nil"
+      topic_id = params[:post][:topic_id]
+    else
+      topic_id = params[:topic_id]
+    end
+    if(@topic = Topic.first(:id => topic_id)).nil?
+      raise Merb::ControllerExceptions::NotFound
     end
   end
   
   def check_create_permissions
-    @new_post = params[:post]
+    @new_post = Post.new(params[:post].merge(:user_id => session[:user_id]))
   end
 
 end

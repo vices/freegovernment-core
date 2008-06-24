@@ -12,7 +12,6 @@ class Forums < Application
   
   # Shows forum / Lists paginated topics of forum
   def show
-    @forum = Forum.first(:id => params[:id])
     @topics_page = Topic.all(:forum_id => @forum.id)
     render
   end
@@ -20,7 +19,7 @@ class Forums < Application
   private
   
   def find_forum
-    if(@forum = Forum.first(:id => params[:id])).nil?
+    if(@forum = Forum.first(:id => params[:id].to_i)).nil?
       raise Merb::ControllerExceptions::NotAcceptable
     end
   end
