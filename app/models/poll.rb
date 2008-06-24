@@ -2,6 +2,7 @@ class Poll
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
+  include Paperclip::Resource 
   
   property :id, Integer, :serial => true
   property :user_id, Integer, :nullable => false
@@ -16,6 +17,11 @@ class Poll
   property :description, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
+  
+  has_attached_file :icon,
+    :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
+    :default_url => "polls/missing_icon_:style.png",
+    :whiny_thumbnails => true
   
   validates_length :question, :within => 15..140
 

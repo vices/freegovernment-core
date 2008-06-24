@@ -8,3 +8,7 @@
     = link_to "account settings", url(:edit_user, :id => @current_user.username)
     %span= "|"
     =delete_button :session, @session, "log out", :class => 'button_link'
+  - else
+    = link_to "sign up", url(:new_person)
+    %span= "|"
+    = link_to "log in", url(:new_session)

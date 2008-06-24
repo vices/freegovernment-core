@@ -11,13 +11,9 @@
             - unless @updates_newest_users.nil?
               - @updates_newest_users.each do |user|
                 .user
-                  .image
-                    - if !user.person_id.nil?
-                      = link_to image_tag(user.avatar.url(:small)), url(:person, :id => user.username)
-                    - else
-                      = link_to image_tag(user.avatar.url(:small)), url(:group, :id => user.username)
+                  .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
                   .details
-                    = user.username
+                    = link_to user.username, profile_url(user)
           #footer_donation
             %h2 Support FreeGovernment.org
             - form_tag do
@@ -29,10 +25,10 @@
             - unless @updates_newest_topics.nil?
               - @updates_newest_topics.each do |post|
                 .topic
-                  .image= link_to image_tag(post.user.avatar(:small)), url(:user, :id => post.user.username)
+                  .image= link_to image_tag(post.user.avatar(:small)), profile_url(post.user)
                   .details
                     .heading
-                      =link_to post.user.username, url(:user, :id => post.user.username)
+                      =link_to post.user.username, profile_url(post.user)
                       %span commented on 
                       =link_to post.topic.name, url(:topic, :id => post.topic.id)
                     .text
@@ -42,7 +38,7 @@
             - unless @updates_newest_polls.nil?
               - @updates_newest_polls.each do |poll|
                 .poll
-                  .image 
+                  .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
                   .details
                     .heading
                     .results
