@@ -1,11 +1,11 @@
-#home_login
+#login
   - form_tag :action => url(:session), :class => 'standard' do
     %fieldset
       %ul
         %li
-          = text_field :name => 'username', :label => 'username'
+          = text_field :name => 'username', :label => 'username', :id => 'l-username'
         %li
-          = password_field :name => 'password', :label => 'password'
+          = password_field :name => 'password', :label => 'password', :id => 'l-password'
       = submit_button "log in"
       .links
         = link_to "Forgot your password?", url(:home)

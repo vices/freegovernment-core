@@ -8,7 +8,7 @@
 
   // Call this function when the page has been loaded
   function initialize() {
-    var map = new google.maps.Map2(document.getElementById("home_map"));
+    var map = new google.maps.Map2(document.getElementById("map"));
     map.setCenter(new google.maps.LatLng(42, -71), 4);
     //map.openInfoWindow(map.getCenter(),document.createTextNode('FreeGovernment.org launched!'));
     what_where = [
@@ -45,4 +45,4 @@
   }
   google.setOnLoadCallback(initialize);
 </script>
-<div id="home_map" style="width: 500px; height: 282px"></div>
+<div id="map" style="width: 500px; height: 275px"></div>
