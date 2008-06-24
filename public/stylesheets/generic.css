@@ -513,7 +513,7 @@ form.button.active button {
 
 #footer {
   height: 550px;
-  background: #8b8b8b;
+  background: #345672;
   color: white; }
   #footer a {
     color: white; }
@@ -522,7 +522,7 @@ form.button.active button {
   height: 10px;
   padding: 5px;
   background: #303030;
-  background-image: url('/images/patterns/stripe_dark.png');
+  background-image: url('/images/patterns/stripe_blue.png');
   font-size: 11px;
   line-height: 10px;
   font-weight: bold;
@@ -579,7 +579,7 @@ form.button.active button {
 #footer_bottom {
   height: 40px;
   padding: 2px;
-  background: #525252;
+  background: #274156;
   line-height: 20px; }
 
 #footer_copyright {
