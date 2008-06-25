@@ -34,6 +34,17 @@ class Vote
         attribute_set(:is_yes, false)
         attribute_set(:is_adviser_decided, false)
       else
+        case(self.adviser_yes_count <=> self.adviser_no_count)
+          when 0
+            attribute_set(:is_no, false)
+            attribute_set(:is_yes, false)
+          when 1
+            attribute_set(:is_no, false)
+            attribute_set(:is_yes, true)            
+          when -1
+            attribute_set(:is_no, true)
+            attribute_set(:is_yes, false)
+        end
         attribute_set(:is_adviser_decided, true)
     end
   end
@@ -70,13 +81,15 @@ class Vote
   def change_adviser_counts(dy, dn)
     self.adviser_yes_count = self.adviser_yes_count + dy
     self.adviser_no_count = self.adviser_no_count + dn
-    
-    if self.adviser_yes_count > self.adviser_no_count
-      self.state = 1
-    elsif self.adviser_yes_count < self.adviser_no_count
-      self.state = -1
-    else
-      self.state = 0
+
+    if self.is_adviser_decided   
+      if self.adviser_yes_count > self.adviser_no_count
+        self.state = 1
+      elsif self.adviser_yes_count < self.adviser_no_count
+        self.state = -1
+      else
+        self.state = 0
+      end
     end
   end
 

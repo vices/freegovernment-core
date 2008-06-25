@@ -211,7 +211,29 @@ describe Vote, "describe changes and differences in votes" do
     difference[:no].should == -1
   end
   
-  
+  it "should have a described difference of -1, 0 when yes to adviser(0,0)" do
+    old_vote = Vote.new(valid_new_vote.merge({:selection=> 'yes'}))
+    new_vote = Vote.new(valid_new_vote.merge({:selection=> 'adviser'}))
+    change = Vote.describe_change(old_vote, new_vote)
+    difference = Vote.describe_difference(change)
+    difference[:yes].should == -1
+    difference[:no].should == 0 
+  end
+
+  it "should have a described difference of -1, 1 when yes to adviser(0,1)" do
+    old_vote = Vote.new(valid_new_vote)
+    old_vote.change_adviser_counts(0,1)
+    new_vote = Vote.new(valid_new_vote)
+    new_vote.change_adviser_counts(0,1)
+    
+    old_vote.selection = 'yes'
+    new_vote.selection = 'adviser'
+    
+    change = Vote.describe_change(old_vote, new_vote)
+    difference = Vote.describe_difference(change)
+    difference[:yes].should == -1
+    difference[:no].should == 1
+  end
   
   it "should have a described difference of 0,1 when yes to no" do
     old_vote = Vote.new(valid_new_vote.merge({:selection=> 'yes'}))

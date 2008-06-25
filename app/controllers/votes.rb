@@ -1,7 +1,21 @@
 class Votes < Application
   before :login_required, :only => 'create'
+  params_accessible [
+    :selection,
+    {:vote => [:is_yes, :is_no, :is_adviser_decided]}  
+  ]
 
-
+=begin
+  params_accessible [
+    :sort_by,
+    :direction,
+    :page,
+    :recaptcha_challenge_field,
+    :recaptcha_response_field,
+    {:group => [:name, :description, :mission]},
+    {:user => [:email, :password, :password_confirmation, :username]}
+  ]
+=end
 
   def create
     set_old_and_new_vote
@@ -22,9 +36,8 @@ class Votes < Application
   def change_advisee_votes_and_update_poll
     if @current_user.is_adviser?
       vote_diffs = Vote.update_advisee_votes(@old_vote, @new_vote, @current_user.advisee_list)
-      pp "made it this far"
       Poll.first(:id => @new_vote.poll_id).update_for_votes(vote_diffs)
-      pp "made it all the way"
+      #does the next line need to be there?
       pp @new_vote.poll_id
     end  
   end
