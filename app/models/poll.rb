@@ -19,6 +19,12 @@ class Poll
   property :description, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
+
+  attr_accessor :tag_list
+
+
+  has n, :taggings
+
   
   has_attached_file :icon,
     :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
@@ -26,6 +32,27 @@ class Poll
     :whiny_thumbnails => true
   
   validates_length :question, :within => 15..140
+
+
+  def create_tags
+    return if @tag_list.nil? || @tag_list.empty?
+    # Wax all the existing taggings
+    self.taggings.each {|t| t.destroy! }
+    @tag_list.split(",").each do |t|
+      unless t.empty?
+        unless(tag = Tag.first(:name => t.strip.downcase)).nil?
+          tag = Tag.create(:name => t.strip.downcase)
+        end 
+        Tagging.create(:poll_id => self.id, :tag_id => tag.id)
+      end
+    end
+  end
+
+  def tags
+    taggings.map { |tagging| tagging.tag.name }.join(", ")
+  end
+
+
 
   def update_for_votes(diffs)
     unless diffs.is_a? Array

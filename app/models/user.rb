@@ -17,6 +17,7 @@ class User
   property :last_login_at, DateTime
   property :created_at, DateTime
   property :updated_at, DateTime
+  property :address_text, DM::Text
 
   has 0..1, :person
   has 0..1, :group
@@ -49,6 +50,11 @@ class User
   validates_is_confirmed :password, :groups => :create
   
   before :save, :encrypt_password
+  
+  def address_text=(value)
+    @address_text = value
+    self.address = value
+  end
   
   def advisee_list
     if is_adviser
