@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'merb-core'
-require 'pp'
-Merb.start
+require File.join(File.dirname(__FILE__),'helper')
 
 def random_text(length=100)
   srand()
