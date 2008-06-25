@@ -5,12 +5,12 @@
     .caption pick representative groups as your advisers
   #groups_list_and_filters.list_and_filters
     #people_list.list
-      - if !@group_page.nil?
-        - @group_page.each do |person|
+      - if !@groups_page.nil?
+        - @groups_page.each do |group|
           .group
             .photo_and_details
               .photo
-                =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
+                =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user)
     #groups_filters.filters
       #groups_search.search
       - if logged_in? && !@current_user.group_id.nil?

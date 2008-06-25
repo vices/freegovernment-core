@@ -1,6 +1,15 @@
 class Groups < Application
   before :find_group, :only => %w{ show edit update destroy }
   before Proc.new{ @nav_active = :groups }
+  params_accessible [
+    :sort_by,
+    :direction,
+    :page,
+    :recaptcha_challenge_field,
+    :recaptcha_response_field,
+    {:group => [:name, :description, :mission]},
+    {:user => [:email, :password, :password_confirmation, :username]}
+  ]
   
   def index
     case params['sort_by']
@@ -17,7 +26,7 @@ class Groups < Application
         @direction = 'asc'
         @order = @sort_by.asc
     end
-    @groups_page = Group.all(:order => [@order])
+    @groups_page = Group.paginate(:page => params[:page], :per_page => 6) # (:order => [@order])
     render
   end
   
@@ -34,8 +43,9 @@ class Groups < Application
   def create(user, group)
     @new_group = Group.new(group)
     @new_user = User.new(user)
-    if verify_recaptcha(params[:recaptcha])
+    if verify_recaptcha
       if @new_group.valid?(:before_user_creation) && @new_user.save
+        @new_group.user_id = @new_user.id
         @new_group.save
         @new_user.group_id = @new_group.id
         @new_user.save 
