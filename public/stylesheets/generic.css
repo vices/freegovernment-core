@@ -191,7 +191,7 @@ a:hover {
   .filter a {
     color: #525252; }
 
-form.button button {
+button {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;
   font-weight: normal;
@@ -203,7 +203,7 @@ form.button button {
   font-size: 12px;
   cursor: pointer; }
 
-form.button.active button {
+button.active {
   color: #fff;
   background-color: #363636;
   font-weight: bold; }
@@ -213,23 +213,11 @@ form.button.active button {
   .voting_options .current_vote {
     margin-left: -999em;
     height: 0px; }
-  .voting_options .standard_voting {
-    display: block; }
-    .voting_options .standard_voting:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html .voting_options .standard_voting {
-      height: 1px; }
-    .voting_options .standard_voting form {
-      float: left; }
-    .voting_options .standard_voting form button {
-      float: left;
-      margin: 10px 10px; }
-  .voting_options form.button button {
+  .voting_options form button {
+    margin: 0 10px;
     text-transform: uppercase; }
+  .voting_options form div {
+    margin-top: 10px; }
 
 .poll {
   display: block;
