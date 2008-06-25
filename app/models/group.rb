@@ -1,5 +1,8 @@
 class Group
   include DataMapper::Resource
+  include DataMapper::Validate
+  include DataMapper::Timestamp
+  include MerbPaginate::Finders::Datamapper
   
   property :id, Integer, :serial => true
   property :name, String, :nullable => false, :length => 20
