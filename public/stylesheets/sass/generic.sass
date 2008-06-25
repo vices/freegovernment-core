@@ -474,36 +474,35 @@ form.button.active
   
   a
     :color white
-#footer_top
-  :height 10px
-  :padding 5px
-  :background #303030
-  :background-image url('/images/patterns/stripe_blue.png')
-  :font-size 11px
-  :line-height 10px
-  :font-weight bold
-  :text-transform uppercase
-#footer_middle
-  :height 500px
-  :padding 5px
-  #footer_middle_content
+  h2
+    :height 10px
+    :padding 5px
+    :background #303030
+    :background-image url('/images/patterns/stripe_blue.png')
+    :font-size 11px
+    :line-height 10px
+    :font-weight bold
+    :text-transform uppercase
+
+  .content
     +clearfix
-    :width 760px
-    h2
+    :height 500px
+    :padding 5px
+
+    h3
       :font-weight bold
       :text-transform uppercase
       :border-top 1px solid #ccc
       :padding 3px 0px
       :margin-bottom 5px
-    #footer_users_etc
+    .left
       :float left
       :width 200px
-      #footer_new_users
+      .users
         :height 375px
         .user
           +clearfix
           :margin 5px 0px
-          :width 200px
           .image
             :float left
             :width 60px
@@ -511,23 +510,22 @@ form.button.active
             :float right
             :width 130px
             :font-weight bold
-    #footer_recent
+    .right
       :float right
       :width 520px
-#footer_bottom
-  :height 40px
-  :padding 2px
-  //:background #525252
-  :background #274156
-  :line-height 20px
-#footer_copyright
-  :float right
-  :text-align right
-#footer_links
-  :text-transform uppercase
-  :clear both
-#footer_about_links
-  :float left
-#footer_info_links
-  :float right
-  :text-align right
+  .bottom
+    :height 40px
+    :padding 2px
+    //:background #525252
+    :background #274156
+    :line-height 20px
+    .copyright
+      :text-align right
+    .links
+      :text-transform uppercase
+      :clear both
+      .left
+        :float left
+      .right
+        :float right
+        :text-align right

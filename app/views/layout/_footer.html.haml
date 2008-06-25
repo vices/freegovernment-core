@@ -1,59 +1,57 @@
 #footer
-  #footer_top
+  %h2
     .girdle
       == Updates
-  #footer_middle
+  .content.girdle
+    .left
+      .users
+        %h3 New Users
+        - unless @updates_newest_users.nil?
+          - @updates_newest_users.each do |user|
+            .user
+              .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
+              .details
+                = link_to user.username, profile_url(user)
+      .donation
+        %h3 Support FreeGovernment.org
+        - form_tag do
+          = text_field :name => 'amount'
+          = submit_button 'donate'
+    .right
+      .topics
+        %h3 Recent Topics
+        - unless @updates_newest_topics.nil?
+          - @updates_newest_topics.each do |post|
+            .topic
+              .image= link_to image_tag(post.user.avatar(:small)), profile_url(post.user)
+              .details
+                .heading
+                  =link_to post.user.username, profile_url(post.user)
+                  %span commented on 
+                  =link_to post.topic.name, url(:topic, :id => post.topic.id)
+                .text
+                  =link_to post.text, url(:topic, :id => post.topic.id)
+      .polls
+        %h3 Recent Polls
+        - unless @updates_newest_polls.nil?
+          - @updates_newest_polls.each do |poll|
+            .poll
+              .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
+              .details
+                .heading
+                .results
+
+  .bottom
     .girdle
-      #footer_middle_content
-        #footer_users_etc
-          #footer_new_users
-            %h2 New Users
-            - unless @updates_newest_users.nil?
-              - @updates_newest_users.each do |user|
-                .user
-                  .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
-                  .details
-                    = link_to user.username, profile_url(user)
-          #footer_donation
-            %h2 Support FreeGovernment.org
-            - form_tag do
-              = text_field :name => 'amount'
-              = submit_button 'donate'
-        #footer_recent
-          #footer_recent_topics
-            %h2 Recent Topics
-            - unless @updates_newest_topics.nil?
-              - @updates_newest_topics.each do |post|
-                .topic
-                  .image= link_to image_tag(post.user.avatar(:small)), profile_url(post.user)
-                  .details
-                    .heading
-                      =link_to post.user.username, profile_url(post.user)
-                      %span commented on 
-                      =link_to post.topic.name, url(:topic, :id => post.topic.id)
-                    .text
-                      =link_to post.text, url(:topic, :id => post.topic.id)
-          #footer_recent_polls
-            %h2 Recent Polls
-            - unless @updates_newest_polls.nil?
-              - @updates_newest_polls.each do |poll|
-                .poll
-                  .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
-                  .details
-                    .heading
-                    .results
- 
-  #footer_bottom
-    .girdle
-      #footer_copyright== &copy; #{Time.now.year} FreeGovernment.org
-      #footer_links
-        #footer_about_links
+      .copyright== &copy; #{Time.now.year} FreeGovernment.org
+      .links
+        .left
           = link_to "About Us"
           %span= '|'
           = link_to "Contact Us"
           %span= '|'
           = link_to "Blog"
-        #footer_info_links
+        .right
           = link_to "Privacy Policy"
           %span= '|'
           = link_to "Terms of Use"

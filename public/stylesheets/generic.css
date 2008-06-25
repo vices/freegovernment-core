@@ -517,82 +517,71 @@ form.button.active button {
   color: white; }
   #footer a {
     color: white; }
-
-#footer_top {
-  height: 10px;
-  padding: 5px;
-  background: #303030;
-  background-image: url('/images/patterns/stripe_blue.png');
-  font-size: 11px;
-  line-height: 10px;
-  font-weight: bold;
-  text-transform: uppercase; }
-
-#footer_middle {
-  height: 500px;
-  padding: 5px; }
-  #footer_middle #footer_middle_content {
+  #footer h2 {
+    height: 10px;
+    padding: 5px;
+    background: #303030;
+    background-image: url('/images/patterns/stripe_blue.png');
+    font-size: 11px;
+    line-height: 10px;
+    font-weight: bold;
+    text-transform: uppercase; }
+  #footer .content {
     display: block;
-    width: 760px; }
-    #footer_middle #footer_middle_content:after {
+    height: 500px;
+    padding: 5px; }
+    #footer .content:after {
       display: block;
       content: ".";
       height: 0;
       clear: both;
       visibility: hidden; }
-    * html #footer_middle #footer_middle_content {
+    * html #footer .content {
       height: 1px; }
-    #footer_middle #footer_middle_content h2 {
+    #footer .content h3 {
       font-weight: bold;
       text-transform: uppercase;
       border-top: 1px solid #ccc;
       padding: 3px 0px;
       margin-bottom: 5px; }
-    #footer_middle #footer_middle_content #footer_users_etc {
+    #footer .content .left {
       float: left;
       width: 200px; }
-      #footer_middle #footer_middle_content #footer_users_etc #footer_new_users {
+      #footer .content .left .users {
         height: 375px; }
-        #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user {
+        #footer .content .left .users .user {
           display: block;
-          margin: 5px 0px;
-          width: 200px; }
-          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user:after {
+          margin: 5px 0px; }
+          #footer .content .left .users .user:after {
             display: block;
             content: ".";
             height: 0;
             clear: both;
             visibility: hidden; }
-          * html #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user {
+          * html #footer .content .left .users .user {
             height: 1px; }
-          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user .image {
+          #footer .content .left .users .user .image {
             float: left;
             width: 60px; }
-          #footer_middle #footer_middle_content #footer_users_etc #footer_new_users .user .details {
+          #footer .content .left .users .user .details {
             float: right;
             width: 130px;
             font-weight: bold; }
-    #footer_middle #footer_middle_content #footer_recent {
+    #footer .content .right {
       float: right;
       width: 520px; }
-
-#footer_bottom {
-  height: 40px;
-  padding: 2px;
-  background: #274156;
-  line-height: 20px; }
-
-#footer_copyright {
-  float: right;
-  text-align: right; }
-
-#footer_links {
-  text-transform: uppercase;
-  clear: both; }
-
-#footer_about_links {
-  float: left; }
-
-#footer_info_links {
-  float: right;
-  text-align: right; }
+  #footer .bottom {
+    height: 40px;
+    padding: 2px;
+    background: #274156;
+    line-height: 20px; }
+    #footer .bottom .copyright {
+      text-align: right; }
+    #footer .bottom .links {
+      text-transform: uppercase;
+      clear: both; }
+      #footer .bottom .links .left {
+        float: left; }
+      #footer .bottom .links .right {
+        float: right;
+        text-align: right; }
