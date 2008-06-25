@@ -26,3 +26,32 @@ user_count = User.count
   Forum.create!(:poll_id => p.id, :name => p.question)
 end
 
+
+poll_count = Poll.count
+
+user_id = 1
+poll_id = 1
+yes_count = 0
+no_count = 0
+(poll_count*user_count).times do
+  srand()
+  preselection = rand(3)
+  case(preselection)
+    when 1
+      Vote.create!(:user_id => user_id, :poll_id => poll_id, :selection => 'yes')
+      yes_count = yes_count + 1
+    when 2
+      Vote.create!(:user_id => user_id, :poll_id => poll_id, :selection => 'no')
+      no_count = no_count + 1
+  end
+  if user_id == user_count
+    user_id = 1
+    poll = Poll.first(:id => poll_id)
+    poll.update_for_votes({:yes => yes_count, :no => no_count})
+    poll_id = poll_id + 1
+    yes_count = 0
+    no_count = 0
+  else
+    user_id = user_id + 1
+  end
+end
