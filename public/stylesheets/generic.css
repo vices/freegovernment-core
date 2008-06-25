@@ -126,11 +126,18 @@ a:hover {
   #home #intro #banner a {
     display: block;
     height: 70px;
-    background: url('/images/home/banner.png') no-repeat;
     text-indent: -999em;
     margin-bottom: 5px; }
-  #home #intro #banner a:hover {
-    background-position: bottom; }
+  #home #intro #banner a.banner1 {
+    background: url('/images/home/banners/1.png') no-repeat; }
+  #home #intro #banner a.banner2 {
+    background: url('/images/home/banners/2.png') no-repeat; }
+  #home #intro #banner a.banner3 {
+    background: url('/images/home/banners/3.png') no-repeat; }
+  #home #intro #banner a.banner4 {
+    background: url('/images/home/banners/4.png') no-repeat; }
+  #home #intro #banner a.banner5 {
+    background: url('/images/home/banners/5.png') no-repeat; }
 #home #freedoms h2 {
   text-transform: uppercase;
   text-align: center;
@@ -507,6 +514,66 @@ form.button.active button {
     width: 500px; }
 #edit_user .current_image {
   text-align: center; }
+
+table tr.alt0 td {
+  background: #e9e9e9; }
+table tr.alt1 td {
+  background: #f4f4f4; }
+
+#forums .section {
+  margin-bottom: 20px; }
+  #forums .section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px; }
+  #forums .section table {
+    width: 760px; }
+    #forums .section table .name {
+      width: 660px; }
+    #forums .section table .topic_count {
+      width: 100px;
+      text-align: center; }
+    #forums .section table tr th, #forums .section table tr td {
+      padding: 10px 15px; }
+    #forums .section table tr th {
+      font-weight: bold;
+      background: #8b8b8b;
+      color: #fff; }
+
+#forum h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px; }
+#forum table {
+  width: 760px;
+  margin-bottom: 20px; }
+  #forum table td, #forum table th {
+    padding: 10px 15px; }
+  #forum table th {
+    font-weight: bold;
+    background-color: #8b8b8b;
+    color: #fff; }
+  #forum table .posts_count, #forum table .author {
+    width: 100px;
+    text-align: center; }
+
+#topic h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px; }
+#topic table {
+  width: 760px;
+  margin-bottom: 20px; }
+  #topic table td, #topic table th {
+    padding: 10px 15px; }
+  #topic table th {
+    font-weight: bold;
+    background-color: #8b8b8b;
+    color: #fff; }
+  #topic table .author {
+    width: 110px; }
+  #topic table .text {
+    width: 650px; }
 
 #push {
   height: 580px; }

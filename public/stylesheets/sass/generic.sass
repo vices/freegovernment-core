@@ -136,11 +136,18 @@ a:hover
     #banner a
       :display block
       :height 70px
-      :background url('/images/home/banner.png') no-repeat
       :text-indent -999em
       :margin-bottom 5px
-    #banner a:hover
-      :background-position bottom
+    #banner a.banner1
+      :background url('/images/home/banners/1.png') no-repeat
+    #banner a.banner2
+      :background url('/images/home/banners/2.png') no-repeat
+    #banner a.banner3
+      :background url('/images/home/banners/3.png') no-repeat
+    #banner a.banner4
+      :background url('/images/home/banners/4.png') no-repeat
+    #banner a.banner5
+      :background url('/images/home/banners/5.png') no-repeat
 
   #freedoms
     h2
@@ -459,6 +466,77 @@ form.button.active
       :width 500px
   .current_image
     :text-align center
+
+// FORUMS
+
+table
+  tr.alt0
+    td
+      :background #e9e9e9
+  tr.alt1
+    td
+      :background #f4f4f4
+
+
+#forums
+  .section
+    :margin-bottom 20px
+    h3
+      :font-size 20px
+      :font-weight bold
+      :margin-bottom 5px
+    table
+      :width 760px
+      .name
+        :width 660px
+      .topic_count
+        :width 100px
+        :text-align center
+      tr
+        th, td
+          :padding 10px 15px
+      tr
+        th
+          :font-weight bold
+          :background #8b8b8b
+          :color #fff
+
+#forum
+  h2
+    :font-size 20px
+    :font-weight bold
+    :margin-bottom 5px
+  table
+    :width 760px
+    :margin-bottom 20px
+    td, th
+      :padding 10px 15px
+    th
+      :font-weight bold
+      :background-color #8b8b8b
+      :color #fff
+    .posts_count, .author
+      :width 100px
+      :text-align center
+
+#topic
+  h2
+    :font-size 20px
+    :font-weight bold
+    :margin-bottom 5px
+  table
+    :width 760px
+    :margin-bottom 20px
+    td, th
+      :padding 10px 15px
+    th
+      :font-weight bold
+      :background-color #8b8b8b
+      :color #fff
+    .author
+      :width 110px
+    .text
+      :width 650px
 
 
 // FOOTER
