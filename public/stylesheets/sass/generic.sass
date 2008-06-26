@@ -237,23 +237,28 @@ button.active
     +clearfix
     :float left
     :width 430px
-    .sidebar
-      :width 60px
+    img
+      :display block
+      :width 62px
       :float left
-      img
-        :border 1px solid #ddd
+      :border 1px solid #ddd
     .main
-      :width 360px
+      :width 358px
       :float right
-      .question, .question a
-        :color #525252
-        :font-size 14px
-        :margin-bottom 5px
+      h3
+        :padding-bottom 4px
+        :background url('/images/patterns/dots.gif') repeat-x bottom
+        a
+          :color #525252
+          :font-size 14px
+          :margin-bottom 5px
       .description
+        :margin-top 10px
         :height 40px
+        :line-height 18px
         :overflow hidden
       .voting_options
-        :margin-bottom 20px
+        :margin 20px 0
       .tags
         :font-style italic
         :color #8b8b8b
@@ -270,24 +275,23 @@ button.active
         :font-size 16px
         :font-weight bold
         :padding-bottom 2px
-        .number
-        .label
-          :text-transform uppercase
+      span
+        :text-transform uppercase
       .stat.yes
-        .label
+        span
           :color #5da203
       .stat.no
-        .label
+        span
           :color #6c0000
       .total
         :font-style italic
         :color #8b8b8b
 
-.index_header
+
+h2.index_header
+  :height 100px
   :margin-bottom 20px
-  h2
-    :height 100px
-    :text-indent -999em
+  :text-indent -999em
   .caption
     :display none
 
@@ -360,9 +364,8 @@ button.active
       :border-left 4px solid #e9e9e9
 
 
-.list_and_filters 
+.list_and_filters
   +clearfix
-  :width 760px
   .list
     :float left
     :width 550px
@@ -433,19 +436,19 @@ button.active
       :background-color #8b8b8b
       :border-bottom 2px solid #111
 
-#polls_index_header
+#polls_index
   h2
     :background-image url('/images/polls/header.png')
-#people_index_header
+#people_index
   h2
     :background-image url('/images/people/header.png')
-#groups_index_header
+#groups_index
   h2
     :background-image url('/images/groups/header.png')
-#bills_index_header
+#bills_index
   h2
     :background-image url('/images/bills/header.png')
-#forums_index_header
+#forums
   h2
     :background-image url('/images/forums/header.png')
 

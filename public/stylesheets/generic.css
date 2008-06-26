@@ -244,23 +244,28 @@ button.active {
       visibility: hidden; }
     * html .poll .details {
       height: 1px; }
-    .poll .details .sidebar {
-      width: 60px;
-      float: left; }
-      .poll .details .sidebar img {
-        border: 1px solid #ddd; }
+    .poll .details img {
+      display: block;
+      width: 62px;
+      float: left;
+      border: 1px solid #ddd; }
     .poll .details .main {
-      width: 360px;
+      width: 358px;
       float: right; }
-      .poll .details .main .question, .poll .details .main .question a {
-        color: #525252;
-        font-size: 14px;
-        margin-bottom: 5px; }
+      .poll .details .main h3 {
+        padding-bottom: 4px;
+        background: url('/images/patterns/dots.gif') repeat-x bottom; }
+        .poll .details .main h3 a {
+          color: #525252;
+          font-size: 14px;
+          margin-bottom: 5px; }
       .poll .details .main .description {
+        margin-top: 10px;
         height: 40px;
+        line-height: 18px;
         overflow: hidden; }
       .poll .details .main .voting_options {
-        margin-bottom: 20px; }
+        margin: 20px 0; }
       .poll .details .main .tags {
         font-style: italic;
         color: #8b8b8b; }
@@ -277,22 +282,21 @@ button.active {
         font-size: 16px;
         font-weight: bold;
         padding-bottom: 2px; }
-        .poll .stats .segment .stat .label {
-          text-transform: uppercase; }
-      .poll .stats .segment .stat.yes .label {
+      .poll .stats .segment span {
+        text-transform: uppercase; }
+      .poll .stats .segment .stat.yes span {
         color: #5da203; }
-      .poll .stats .segment .stat.no .label {
+      .poll .stats .segment .stat.no span {
         color: #6c0000; }
       .poll .stats .segment .total {
         font-style: italic;
         color: #8b8b8b; }
 
-.index_header {
-  margin-bottom: 20px; }
-  .index_header h2 {
-    height: 100px;
-    text-indent: -999em; }
-  .index_header .caption {
+h2.index_header {
+  height: 100px;
+  margin-bottom: 20px;
+  text-indent: -999em; }
+  h2.index_header .caption {
     display: none; }
 
 #link_back {
@@ -376,8 +380,7 @@ button.active {
     border-left: 4px solid #e9e9e9; }
 
 .list_and_filters {
-  display: block;
-  width: 760px; }
+  display: block; }
   .list_and_filters:after {
     display: block;
     content: ".";
@@ -475,19 +478,19 @@ button.active {
       background-color: #8b8b8b;
       border-bottom: 2px solid #111; }
 
-#polls_index_header h2 {
+#polls_index h2 {
   background-image: url('/images/polls/header.png'); }
 
-#people_index_header h2 {
+#people_index h2 {
   background-image: url('/images/people/header.png'); }
 
-#groups_index_header h2 {
+#groups_index h2 {
   background-image: url('/images/groups/header.png'); }
 
-#bills_index_header h2 {
+#bills_index h2 {
   background-image: url('/images/bills/header.png'); }
 
-#forums_index_header h2 {
+#forums h2 {
   background-image: url('/images/forums/header.png'); }
 
 #edit_user .image_upload {
