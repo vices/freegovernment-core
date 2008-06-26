@@ -4,7 +4,7 @@ class Forum
   include DataMapper::Timestamp
   
   property :id, Integer, :serial => true
-  property :name, String, :nullable => false
+  property :name, String, :length => 140, :nullable => false
   property :posts_count, Integer, :default => 0
   property :topics_count, Integer, :default => 0
   property :group_id, Integer

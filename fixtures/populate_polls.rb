@@ -22,8 +22,11 @@ user_count = User.count
 (user_count*8).times do
   srand()
   user_id = 1 + rand(user_count)
-  p = Poll.create!(:question => random_text(25), :description => random_text(100), :user_id => user_id)
-  Forum.create!(:poll_id => p.id, :name => p.question)
+  question_length = 15 + rand(140-15)
+  description_length = rand(65000)
+  p = Poll.create!(:question => random_text(question_length), :description => random_text(description_length), :user_id => user_id)
+  forum = Forum.create!(:poll_id => p.id, :name => p.question)
+  Topic.create!(:forum_id => forum.id, :name => 'Comments', :user_id => user_id)
 end
 
 

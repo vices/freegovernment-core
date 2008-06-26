@@ -18,11 +18,11 @@
               %th.verified Verified Voters
             %tr.yes
               %td.label Yes
-              %td== #{@poll.vote_count > 0 ? @poll.yes_percent.to_s+'%' : 'n/a'}
+              %td== #{@poll.vote_count > 0 ? @poll.yes_percent.precision_round(1).to_s+'%' : 'n/a'}
               %td== #{@poll.verified_vote_count > 0 ? @poll.verified_yes_percent.precision_round(1).to_s+'%' : 'n/a'}
             %tr.no
               %td.label No
-              %td== #{@poll.vote_count > 0 ? @poll.no_percent.to_s+'%' : 'n/a'}
+              %td== #{@poll.vote_count > 0 ? @poll.no_percent.precision_round(1).to_s+'%' : 'n/a'}
               %td== #{@poll.verified_vote_count > 0 ? @poll.verified_no_percent.precision_round(1).to_s+'%' : 'n/a'}
             %tr
               %td.label All
