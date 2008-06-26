@@ -2,16 +2,18 @@
   %h2= @topic.name
   - unless @posts_page.nil? 
     %table
-      %tr
-        %th.author Author
-        %th.post Post
+      %thead
+        %tr
+          %td.author Author
+          %td.post Post
       - i = 0
-      - @posts_page.each do |post|
-        %tr{ :class => "alt#{i}"}
-          %td.author
-            .image= link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
-            .username= link_to post.user.username, profile_url(post.user)
-          %td.text
-            = h post.text
-        - i == 0 ? i = 1 : i = 0
+      %tbody
+        - @posts_page.each do |post|
+          %tr{ :class => "alt#{i}"}
+            %td.author
+              .image= link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
+              .username= link_to post.user.username, profile_url(post.user)
+            %td.text
+              = h post.text
+          - i == 0 ? i = 1 : i = 0
   = link_to "Submit a New Post", url(:new_post, :topic_id => @topic.id)

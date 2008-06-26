@@ -492,7 +492,7 @@ table
     h3
       :font-size 20px
       :font-weight bold
-      :margin-bottom 5px
+      :margin-bottom 10px
     table
       :width 760px
       .name
@@ -501,10 +501,10 @@ table
         :width 100px
         :text-align center
       tr
-        th, td
+        td
           :padding 10px 15px
-      tr
-        th
+      thead
+        td
           :font-weight bold
           :background #8b8b8b
           :color #fff
@@ -513,13 +513,13 @@ table
   h2
     :font-size 20px
     :font-weight bold
-    :margin-bottom 5px
+    :margin-bottom 10px
   table
     :width 760px
     :margin-bottom 20px
-    td, th
+    td
       :padding 10px 15px
-    th
+    thead td
       :font-weight bold
       :background-color #8b8b8b
       :color #fff
@@ -531,20 +531,27 @@ table
   h2
     :font-size 20px
     :font-weight bold
-    :margin-bottom 5px
+    :margin-bottom 10px
   table
     :width 760px
     :margin-bottom 20px
-    td, th
+    td
       :padding 10px 15px
-    th
-      :font-weight bold
-      :background-color #8b8b8b
-      :color #fff
+    thead
+      td
+        :font-weight bold
+        :background-color #8b8b8b
+        :color #fff
+      .author
+        :border-right 1px solid #fff
     .author
       :width 110px
+    tbody .author
+      :border-right 1px solid #fff
+      :text-align center
     .text
       :width 650px
+      :vertical-align top
 
 
 // FOOTER

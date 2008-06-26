@@ -13,31 +13,63 @@
       %h3 General Forums
       - unless @general_forums.nil?
         %table
-          %tr.header
-            %th.name Forum
-            %th.topic_count Topics
+          %thead
+            %tr
+              %td.name Forum
+              %td.topic_count Topics
           - i = 0
-          - @general_forums.each do |forum|
-            %tr{:class => "alt#{i}"}
-              %td.name= link_to forum.name, url(:forum, :id => forum.id)
-              %td.topic_count= forum.topics_count
-            - i == 0 ? i = 1 : i = 0
+          %tbody
+            - @general_forums.each do |forum|
+              %tr{:class => "alt#{i}"}
+                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.topic_count= forum.topics_count
+              - i == 0 ? i = 1 : i = 0
             
     .section
       %h3 Group Forums
       - unless @group_forums.nil?
-        - @group_forums.each do |forum|
-          = link_to forum.name, url(:forum, :id => forum.id)
+        %table
+          %thead
+            %tr
+              %td.name Forum
+              %td.topic_count Topics
+          - i = 0
+          %tbody
+            - @group_forums.each do |forum|
+              %tr{:class => "alt#{i}"}
+                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.topic_count= forum.topics_count
+              - i == 0 ? i = 1 : i = 0
     .section
       %h3 Poll-Related Forums
       - unless @poll_forums.nil?
-        - @poll_forums.each do |forum|
-          = link_to forum.name, url(:forum, :id => forum.id)
+        %table
+          %thead
+            %tr
+              %td.name Forum
+              %td.topic_count Topics
+          - i = 0
+          %tbody
+            - @poll_forums.each do |forum|
+              %tr{:class => "alt#{i}"}
+                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.topic_count= forum.topics_count
+              - i == 0 ? i = 1 : i = 0
     .section
       %h3 Legislation Forums
       - unless @bill_forums.nil?
-        - @bill_forums.each do |forum|
-          = link_to forum.name, url(:forum, :id => forum.id)
+        %table
+          %thead
+            %tr
+              %td.name Forum
+              %td.topic_count Topics
+          - i = 0
+          %tbody
+            - @bill_forums.each do |forum|
+              %tr{:class => "alt#{i}"}
+                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.topic_count= forum.topics_count
+              - i == 0 ? i = 1 : i = 0
   - else
     - @forums_page.each do |forum|
       = forum.name

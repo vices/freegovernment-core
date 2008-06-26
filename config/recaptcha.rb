@@ -1,6 +1,6 @@
 module Ambethia::ReCaptcha::Helper
-  RECAPTCHA_PUBLIC_KEY = '6LcpKgIAAAAAAKgtXWxnEczN0nQ6EMnJahycyBRL'
+  RECAPTCHA_PUBLIC_KEY = '6LcDSgIAAAAAAJjyJOlCB3vpCTZAVReVcg-IVl2T'
 end
 module Ambethia::ReCaptcha::Controller
-  RECAPTCHA_PRIVATE_KEY = '6LcpKgIAAAAAAD0dsk66VCd-EhVM-57cT7Dfey13'
+  RECAPTCHA_PRIVATE_KEY = '6LcDSgIAAAAAAFxfxi3-rJelI3pLf3P7mDGzmp0u'
 end
