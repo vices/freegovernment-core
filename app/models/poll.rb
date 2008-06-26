@@ -34,8 +34,12 @@ class Poll
   validates_length :question, :within => 15..140
 
 
+
+
   def create_tags
+   pp "here before"
     return if @tag_list.nil? || @tag_list.empty?
+    pp "here"
     # Wax all the existing taggings
     self.taggings.each {|t| t.destroy! }
     @tag_list.split(",").each do |t|

@@ -219,76 +219,76 @@ button.active {
   .voting_options form div {
     margin-top: 10px; }
 
-.poll {
+#polls_index .poll {
   display: block;
   border-bottom: 1px solid #ccc;
   padding: 10px 0px;
   margin-bottom: 10px; }
-  .poll:after {
+  #polls_index .poll:after {
     display: block;
     content: ".";
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html .poll {
+  * html #polls_index .poll {
     height: 1px; }
-  .poll .details {
+  #polls_index .poll .details {
     display: block;
     float: left;
     width: 430px; }
-    .poll .details:after {
+    #polls_index .poll .details:after {
       display: block;
       content: ".";
       height: 0;
       clear: both;
       visibility: hidden; }
-    * html .poll .details {
+    * html #polls_index .poll .details {
       height: 1px; }
-    .poll .details img {
+    #polls_index .poll .details img {
       display: block;
       width: 62px;
       float: left;
       border: 1px solid #ddd; }
-    .poll .details .main {
+    #polls_index .poll .details .main {
       width: 358px;
       float: right; }
-      .poll .details .main h3 {
+      #polls_index .poll .details .main h3 {
         padding-bottom: 4px;
         background: url('/images/patterns/dots.gif') repeat-x bottom; }
-        .poll .details .main h3 a {
+        #polls_index .poll .details .main h3 a {
           color: #525252;
           font-size: 14px;
           margin-bottom: 5px; }
-      .poll .details .main .description {
+      #polls_index .poll .details .main .description {
         margin-top: 10px;
         height: 40px;
         line-height: 18px;
         overflow: hidden; }
-      .poll .details .main .voting_options {
+      #polls_index .poll .details .main .voting_options {
         margin: 20px 0; }
-      .poll .details .main .tags {
+      #polls_index .poll .details .main .tags {
         font-style: italic;
         color: #8b8b8b; }
-  .poll .stats {
+  #polls_index .poll .stats {
     float: right;
     width: 110px;
     border-left: 1px solid #ddd;
     text-align: center; }
-    .poll .stats .segment {
+    #polls_index .poll .stats .segment {
       padding: 10px 0; }
-      .poll .stats .segment .title {
+      #polls_index .poll .stats .segment .title {
         padding-bottom: 3px; }
-      .poll .stats .segment .stat {
+      #polls_index .poll .stats .segment .stat {
         font-size: 16px;
         font-weight: bold;
         padding-bottom: 2px; }
-      .poll .stats .segment span {
+      #polls_index .poll .stats .segment span {
         text-transform: uppercase; }
-      .poll .stats .segment .stat.yes span {
+      #polls_index .poll .stats .segment .stat.yes span {
         color: #5da203; }
-      .poll .stats .segment .stat.no span {
+      #polls_index .poll .stats .segment .stat.no span {
         color: #6c0000; }
-      .poll .stats .segment .total {
+      #polls_index .poll .stats .segment .total {
         font-style: italic;
         color: #8b8b8b; }
 
@@ -602,7 +602,7 @@ table tr.alt1 td {
       text-transform: uppercase;
       border-top: 1px solid #ccc;
       padding: 3px 0px;
-      margin-bottom: 5px; }
+      margin-bottom: 10px; }
     #footer .content .left {
       float: left;
       width: 200px; }
@@ -610,7 +610,7 @@ table tr.alt1 td {
         height: 375px; }
         #footer .content .left .users .user {
           display: block;
-          margin: 5px 0px; }
+          margin: 10px 0px; }
           #footer .content .left .users .user:after {
             display: block;
             content: ".";
@@ -629,6 +629,23 @@ table tr.alt1 td {
     #footer .content .right {
       float: right;
       width: 520px; }
+      #footer .content .right .topic, #footer .content .right .poll {
+        display: block;
+        margin: 10px 0px; }
+        #footer .content .right .topic:after,         #footer .content .right .poll:after {
+          display: block;
+          content: ".";
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        * html #footer .content .right .topic,         * html #footer .content .right .poll {
+          height: 1px; }
+        #footer .content .right .topic .image,         #footer .content .right .poll .image {
+          float: left;
+          width: 60px; }
+        #footer .content .right .topic .details,         #footer .content .right .poll .details {
+          width: 450px;
+          float: right; }
   #footer .bottom {
     height: 40px;
     padding: 2px;

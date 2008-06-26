@@ -6,5 +6,9 @@ class FeedItem
   property :user_id, Integer
   property :poll_id, Integer
   property :post_id, Integer
+  
+  belongs_to :user
+  belongs_to :poll
+  belongs_to :post
 
 end

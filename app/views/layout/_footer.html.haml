@@ -11,7 +11,14 @@
             .user
               .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
               .details
-                = link_to user.username, profile_url(user)
+                .username= link_to user.username, profile_url(user)
+                - unless user.address.nil?
+                  - if !user.address.city.nil? and !user.address.state.nil?
+                    .location== #{user.address.city}, #{user.address.state}
+                  - elsif !user.address.city.nil?
+                    .location== #{user.address.city}
+                  - elsif !user.address.state.nil?
+                    .location== #{user.address.state}
       .donation
         %h3 Support FreeGovernment.org
         - form_tag do
@@ -38,9 +45,8 @@
             .poll
               .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
               .details
-                .heading
-                .results
-
+                .heading== "#{poll.question}" (#{poll.vote_count} votes)
+                .results== #{poll.yes_percent} Yes | #{poll.no_percent} No
   .bottom
     .girdle
       .copyright== &copy; #{Time.now.year} FreeGovernment.org

@@ -227,65 +227,65 @@ button.active
     div
       :margin-top 10px
 
-    
-.poll
-  +clearfix
-  :border-bottom 1px solid #ccc
-  :padding 10px 0px
-  :margin-bottom 10px
-  .details
+#polls_index    
+  .poll
     +clearfix
-    :float left
-    :width 430px
-    img
-      :display block
-      :width 62px
+    :border-bottom 1px solid #ccc
+    :padding 10px 0px
+    :margin-bottom 10px
+    .details
+      +clearfix
       :float left
-      :border 1px solid #ddd
-    .main
-      :width 358px
+      :width 430px
+      img
+        :display block
+        :width 62px
+        :float left
+        :border 1px solid #ddd
+      .main
+        :width 358px
+        :float right
+        h3
+          :padding-bottom 4px
+          :background url('/images/patterns/dots.gif') repeat-x bottom
+          a
+            :color #525252
+            :font-size 14px
+            :margin-bottom 5px
+        .description
+          :margin-top 10px
+          :height 40px
+          :line-height 18px
+          :overflow hidden
+        .voting_options
+          :margin 20px 0
+        .tags
+          :font-style italic
+          :color #8b8b8b
+    .stats
       :float right
-      h3
-        :padding-bottom 4px
-        :background url('/images/patterns/dots.gif') repeat-x bottom
-        a
-          :color #525252
-          :font-size 14px
-          :margin-bottom 5px
-      .description
-        :margin-top 10px
-        :height 40px
-        :line-height 18px
-        :overflow hidden
-      .voting_options
-        :margin 20px 0
-      .tags
-        :font-style italic
-        :color #8b8b8b
-  .stats
-    :float right
-    :width 110px
-    :border-left 1px solid #ddd
-    :text-align center
-    .segment
-      :padding 10px 0
-      .title
-        :padding-bottom 3px
-      .stat
-        :font-size 16px
-        :font-weight bold
-        :padding-bottom 2px
-      span
-        :text-transform uppercase
-      .stat.yes
+      :width 110px
+      :border-left 1px solid #ddd
+      :text-align center
+      .segment
+        :padding 10px 0
+        .title
+          :padding-bottom 3px
+        .stat
+          :font-size 16px
+          :font-weight bold
+          :padding-bottom 2px
         span
-          :color #5da203
-      .stat.no
-        span
-          :color #6c0000
-      .total
-        :font-style italic
-        :color #8b8b8b
+          :text-transform uppercase
+        .stat.yes
+          span
+            :color #5da203
+        .stat.no
+          span
+            :color #6c0000
+        .total
+          :font-style italic
+          :color #8b8b8b
 
 
 h2.index_header
@@ -460,7 +460,6 @@ h2.index_header
       :color #222
       :margin-top 15px
       :margin-bottom 5px
-
     :text-align center
     .file
       :margin 0 auto
@@ -570,7 +569,7 @@ table
       :text-transform uppercase
       :border-top 1px solid #ccc
       :padding 3px 0px
-      :margin-bottom 5px
+      :margin-bottom 10px
     .left
       :float left
       :width 200px
@@ -578,7 +577,7 @@ table
         :height 375px
         .user
           +clearfix
-          :margin 5px 0px
+          :margin 10px 0px
           .image
             :float left
             :width 60px
@@ -589,6 +588,15 @@ table
     .right
       :float right
       :width 520px
+      .topic, .poll
+        +clearfix
+        :margin 10px 0px
+        .image
+          :float left
+          :width 60px
+        .details
+          :width 450px
+          :float right
   .bottom
     :height 40px
     :padding 2px

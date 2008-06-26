@@ -89,6 +89,9 @@ dependency 'dm-aggregates'
 dependency 'dm-geokit'
 dependency 'dm-paperclip'
 dependency 'dm-observer'
+if Merb.environment != 'production'
+  dependency 'pp'
+end
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
