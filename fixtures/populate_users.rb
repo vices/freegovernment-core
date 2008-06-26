@@ -291,18 +291,3 @@ users.each do |user|
   end
 
 end
-
-=begin
-user_count = User.count
-people_count = Person.count
-group_count = Group.count
-
-user_id = 1
-contact_id = 1
-(person_count*person_count).times do
-  srand()
-  if(rand(2) == 1 && user_id != contact_id)
-    is_accepted = rand(2)
-  end
-end
-=end

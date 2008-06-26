@@ -9,4 +9,6 @@ class ContactRelationship
   property :is_accepted, Boolean, :default => 1, :nullable => false
   property :created_at, DateTime
   property :modified_at, DateTime
+  
+  validates_is_unique :contact_id, :scope => [:user_id]
 end
