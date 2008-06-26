@@ -23,10 +23,10 @@
                 .title All Users
                 - if poll.vote_count > 0
                   .stat.yes
-                    %span.number== #{poll.yes_percent}%
+                    %span.number== #{poll.yes_percent.precision_round(1)}%
                     %span.label Yes 
                   .stat.no
-                    %span.number== #{poll.no_percent}%
+                    %span.number== #{poll.no_percent.precision_round(1)}%
                     %span.label No
                 - else
                   .stat.yes
@@ -40,10 +40,10 @@
                 .title Verified Voters
                 - if poll.verified_vote_count > 0
                   .stat.yes
-                    = #{poll.verified_yes_percent}%
+                    = #{poll.verified_yes_percent.precision_round(1)}%
                     %span Yes 
                   .stat.no
-                    = #{poll.verified_no_percent}%
+                    = #{poll.verified_no_percent.precision_round(1)}%
                     %span No
                 - else
                   .stat.yes
