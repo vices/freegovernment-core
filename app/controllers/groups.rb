@@ -26,7 +26,7 @@ class Groups < Application
         @direction = 'asc'
         @order = @sort_by.asc
     end
-    @groups_page = Group.paginate(:page => params[:page], :per_page => 6) # (:order => [@order])
+    @groups_page = Group.paginate(:page => params[:page], :per_page => 8) # (:order => [@order])
     render
   end
   

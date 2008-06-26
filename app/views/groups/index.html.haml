@@ -11,6 +11,10 @@
             .photo_and_details
               .photo
                 =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user)
+              .details
+                =link_to group.name, profile_url(group.user)
+      = merb_paginate @groups_page
+      = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search
       - if logged_in? && !@current_user.group_id.nil?

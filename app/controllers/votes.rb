@@ -1,21 +1,8 @@
 class Votes < Application
   before :login_required, :only => 'create'
   params_accessible [
-    :selection,
-    {:vote => [:is_yes, :is_no, :is_adviser_decided]}  
+    {:vote => [:poll_id, :selection]}  
   ]
-
-=begin
-  params_accessible [
-    :sort_by,
-    :direction,
-    :page,
-    :recaptcha_challenge_field,
-    :recaptcha_response_field,
-    {:group => [:name, :description, :mission]},
-    {:user => [:email, :password, :password_confirmation, :username]}
-  ]
-=end
 
   def create
     set_old_and_new_vote
@@ -37,8 +24,6 @@ class Votes < Application
     if @current_user.is_adviser?
       vote_diffs = Vote.update_advisee_votes(@old_vote, @new_vote, @current_user.advisee_list)
       Poll.first(:id => @new_vote.poll_id).update_for_votes(vote_diffs)
-      #does the next line need to be there?
-      pp @new_vote.poll_id
     end  
   end
   
@@ -49,10 +34,8 @@ class Votes < Application
     @old_vote = Vote.first(:poll_id => params[:vote][:poll_id].to_i, :user_id => session[:user_id])
     
     if (@old_vote == nil)
-      pp "it said old vote equaled nil"
       @new_vote = Vote.new(params[:vote].merge(:user_id => session[:user_id]))
     else
-      pp "it said there was an old vote"
       @new_vote = @old_vote
       @old_vote = Vote.new(:selection => @old_vote.selection)
       

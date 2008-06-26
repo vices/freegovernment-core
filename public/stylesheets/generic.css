@@ -205,7 +205,7 @@ button {
 
 button.active {
   color: #fff;
-  background-color: #363636;
+  background-color: #525252;
   font-weight: bold; }
 
 .voting_options {
@@ -246,7 +246,7 @@ button.active {
       height: 1px; }
     #polls_index .poll .details img {
       display: block;
-      width: 62px;
+      width: 60px;
       float: left;
       border: 1px solid #ddd; }
     #polls_index .poll .details .main {
