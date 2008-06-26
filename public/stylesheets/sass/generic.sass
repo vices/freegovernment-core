@@ -227,7 +227,7 @@ button.active
     div
       :margin-top 10px
 
-#polls_index    
+#polls_index
   .poll
     +clearfix
     :border-bottom 1px solid #ccc
@@ -299,20 +299,28 @@ h2.index_header
   :margin-bottom 15px
 
 #poll
-  #poll_image_and_details
+  #poll_details
     +clearfix
     :margin-bottom 20px
-    #poll_image
+    img
+      :display block
       :float left
-      :width 100px
-      img
-        :border 1px solid #ddd
-    #poll_details
+      :border 1px solid #ddd
+    .details
       :float right
       :width 650px
       .question
         :font-size 24px
         :line-height 1.5em
+        :margin-bottom 10px
+        :width 360px
+        :float left
+      .voting_options
+        :width 280px
+        :float right
+        :padding 18px 0
+        :border 1px solid #ddd
+        :background #fafafa
   #poll_description_and_comments
     +clearfix
     :width 760px

@@ -1,10 +1,9 @@
 #poll
   #link_back
     =link_to "<< back to all polls", url(:polls)
-  #poll_image_and_details
-    #poll_image
-      = image_tag @poll.icon.url(:medium)
-    #poll_details
+  #poll_details
+    = image_tag @poll.icon.url(:medium)
+    .details
       .question= @poll.question
       = partial 'polls/voting_options', :poll => @poll, :vote => logged_in? ? @poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
   #poll_description_and_comments
