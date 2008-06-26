@@ -125,10 +125,8 @@ users = [
 ]
 
 users.each do |user|
-  u = User.new(user.except(:person))
-  u.save
-  p = Person.new(user[:person].merge(:user_id => u.id))
-  p.save
+  u = User.create!(user.except(:person))
+  p = Person.create!(user[:person].merge(:user_id => u.id))
   u.person_id = p.id
   u.save
 end

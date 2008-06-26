@@ -95,6 +95,7 @@ end
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
+dependency 'lib/support/float'
 dependency 'lib/merb_recaptcha'
 dependency 'net/http'
 Merb::BootLoader.after_app_loads do
