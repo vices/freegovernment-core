@@ -15,4 +15,4 @@
             %td.posts_count= topic.posts_count
             %td.author= link_to topic.user.username, url(:user, :id => topic.user.username)
           - i == 0 ? i = 1 : i = 0
-  = link_to "Add a New Topic", url(:new_topic, :forum_id => @forum.id)
+  = link_to "new topic", url(:new_topic, :forum_id => @forum.id), :class => 'button'

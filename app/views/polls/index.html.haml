@@ -53,8 +53,9 @@
                     n/a
                     %span No
                 .total== #{poll.verified_vote_count} votes
-      = merb_paginate @polls_page
-      = page_entries_info @polls_page
+      .pagination
+        = merb_paginate @polls_page
+        = page_entries_info @polls_page
     .filters
       #poll_search
       #poll_creation.attention

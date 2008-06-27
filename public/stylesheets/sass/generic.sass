@@ -215,6 +215,16 @@ button.active
   :background-color #525252
   :font-weight bold
 
+.button
+  +font
+  :padding 5px 10px
+  :color #fff
+  :background-color #525252
+  :font-weight bold
+  :border none
+  :font-size 12px
+  :cursor pointer
+
 .voting_options
   :text-align center
   .current_vote
@@ -496,9 +506,10 @@ table
     table
       :width 760px
       .name
-        :width 660px
+        :width 690px
+        :border-right 1px solid #fff
       .topic_count
-        :width 100px
+        :width 70px
         :text-align center
       tr
         td
@@ -524,8 +535,13 @@ table
       :background-color #8b8b8b
       :color #fff
     .posts_count, .author
-      :width 100px
+      :width 70px
       :text-align center
+      :border-left 1px solid #fff
+  .button
+    :float right
+    :padding 8px 10px
+    :border 1px solid #DADADA
 
 #topic
   h2
@@ -552,6 +568,14 @@ table
     .text
       :width 650px
       :vertical-align top
+  .button
+    :float right
+    :padding 8px 10px
+    :border 1px solid #DADADA
+
+#new_topic
+  textarea
+    :height 250px
 
 
 // FOOTER

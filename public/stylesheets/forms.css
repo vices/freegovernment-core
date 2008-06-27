@@ -9,7 +9,7 @@ form.standard button, form.full button {
   font-size: 12px;
   font-family: Arial, sans-serif;
   padding: 5px; }
-form.standard input, form.full input {
+form.standard input, form.standard textarea, form.full input, form.full textarea {
   font-family: Arial, Verdana, sans-serif;
   font-weight: normal;
   font-size: 16px;
