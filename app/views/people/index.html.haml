@@ -20,8 +20,9 @@
                 = submit_button("add to contacts")
               - form_for Vote.new, :class => 'button' do
                 = submit_button("add as adviser")
-      = merb_paginate(@people_page)
-      = page_entries_info(@people_page)
+      .pagination
+        = merb_paginate(@people_page)
+        = page_entries_info(@people_page)
     #people_filters.filters
       #person_search
       - if logged_in? && !@current_user.person_id.nil?

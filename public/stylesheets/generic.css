@@ -421,6 +421,10 @@ h2.index_header {
     .list_and_filters .filters .filter {
       margin-bottom: 10px; }
 
+.pagination {
+  text-align: center;
+  line-height: 200%; }
+
 #people_index .person {
   display: block;
   width: 550px;
