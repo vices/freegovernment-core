@@ -491,9 +491,11 @@ h2.index_header {
   #person #person_photo_etc {
     float: left;
     width: 225px; }
-    #person #person_photo_etc #person_photo img {
-      padding: 10px;
-      border: 1px solid #ddd; }
+    #person #person_photo_etc .photo {
+      text-align: center; }
+      #person #person_photo_etc .photo img {
+        padding: 10px;
+        border: 1px solid #ddd; }
   #person #person_details_etc {
     float: right;
     width: 525px; }
