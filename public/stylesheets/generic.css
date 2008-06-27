@@ -565,6 +565,60 @@ h2.index_header {
       font-style: italic;
       color: #8b8b8b; }
 
+#group {
+  display: block;
+  width: 760px; }
+  #group:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #group {
+    height: 1px; }
+  #group #group_photo_etc {
+    float: left;
+    width: 225px; }
+    #group #group_photo_etc .photo {
+      text-align: center; }
+      #group #group_photo_etc .photo img {
+        padding: 10px;
+        border: 1px solid #ddd; }
+  #group #group_details_etc {
+    float: right;
+    width: 525px; }
+    #group #group_details_etc #group_details .name {
+      font-size: 24px;
+      font-weight: bold; }
+  #group .block {
+    margin-top: 10px; }
+    #group .block .title {
+      background-color: #e9e9e9;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-bottom: 2px solid #999; }
+    #group .block .alt_title {
+      color: #fff;
+      background-color: #8b8b8b;
+      border-bottom: 2px solid #111; }
+    #group .block .avatars {
+      display: block; }
+      #group .block .avatars:after {
+        display: block;
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html #group .block .avatars {
+        height: 1px; }
+      #group .block .avatars a {
+        float: left;
+        width: 60px;
+        height: 60px;
+        margin: 7px; }
+        #group .block .avatars a img {
+          border: 1px solid #ddd; }
+
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }
 

@@ -13,7 +13,7 @@
               .main
                 %h3
                   = link_to group.name, profile_url(group.user)
-                  %span ( # members )
+                  %span== ( #{ group.members.length } members )
                 .description
                   = group.description
                 .tags

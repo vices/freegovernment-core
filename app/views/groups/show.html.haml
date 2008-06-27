@@ -1,5 +1,28 @@
 / Groups View
-.group
-  .name= @group.name
-  .description= @group.description
-  .mission= @group.mission
+#group
+  #group_photo_etc
+    .photo= image_tag @user.avatar.url(:large)
+    #group_donations_block.block
+      .title Donations Earned to Date
+    #group_members_block.block
+      .title Group Members
+      .avatars
+        - @group.members.each do |member|
+          =link_to image_tag(member.user.avatar.url(:small)), url(:person, :id => member.user.username)
+    #group_photos_block.block
+      .title Group Photos
+    #group_videos_block.block
+      .title Group Videos
+  #group_details_etc
+    #group_details
+      .name== #{@group.name}
+    - unless @group.description.nil?
+      #group_description.block
+        .title About Us
+        .content
+          = h @group.description
+    - unless @group.mission.nil?
+      #group_mission.block
+        .title Our Mission Statement
+        .content
+          = h @group.mission
