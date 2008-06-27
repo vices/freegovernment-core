@@ -215,7 +215,7 @@ button.active
   :background-color #525252
   :font-weight bold
 
-.button
+.button_black
   +font
   :padding 5px 10px
   :color #fff
@@ -453,7 +453,15 @@ h2.index_header
       :color #fff
       :background-color #8b8b8b
       :border-bottom 2px solid #111
-
+    .avatars
+      +clearfix
+      a
+        :float left
+        :width 60px
+        :height 60px
+        :margin 7px
+        img
+          :border 1px solid #ddd
 #polls_index
   h2
     :background-image url('/images/polls/header.png')
@@ -538,7 +546,7 @@ table
       :width 70px
       :text-align center
       :border-left 1px solid #fff
-  .button
+  .button_black
     :float right
     :padding 8px 10px
     :border 1px solid #DADADA
@@ -568,7 +576,7 @@ table
     .text
       :width 650px
       :vertical-align top
-  .button
+  .button_black
     :float right
     :padding 8px 10px
     :border 1px solid #DADADA

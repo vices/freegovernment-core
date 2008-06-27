@@ -12,8 +12,14 @@
         .title Advisees
     #person_contacts_block.block
       .title Contacts
+      .avatars
+        - @person.contacts.each do |contact|
+          =link_to image_tag(contact.user.avatar.url(:small)), url(:person, :id => contact.user.username)
     #person_groups_block.block
       .title Groups
+      .avatars
+        - @person.groups.each do |group|
+          =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
     #watched_bills.block
       .title Watched Bills
     #watched_polls.block

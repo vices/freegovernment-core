@@ -208,7 +208,7 @@ button.active {
   background-color: #525252;
   font-weight: bold; }
 
-.button {
+.button_black {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;
   font-weight: normal;
@@ -498,6 +498,23 @@ h2.index_header {
       color: #fff;
       background-color: #8b8b8b;
       border-bottom: 2px solid #111; }
+    #person .block .avatars {
+      display: block; }
+      #person .block .avatars:after {
+        display: block;
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html #person .block .avatars {
+        height: 1px; }
+      #person .block .avatars a {
+        float: left;
+        width: 60px;
+        height: 60px;
+        margin: 7px; }
+        #person .block .avatars a img {
+          border: 1px solid #ddd; }
 
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }
@@ -570,7 +587,7 @@ table tr.alt1 td {
     width: 70px;
     text-align: center;
     border-left: 1px solid #fff; }
-#forum .button {
+#forum .button_black {
   float: right;
   padding: 8px 10px;
   border: 1px solid #DADADA; }
@@ -598,7 +615,7 @@ table tr.alt1 td {
   #topic table .text {
     width: 650px;
     vertical-align: top; }
-#topic .button {
+#topic .button_black {
   float: right;
   padding: 8px 10px;
   border: 1px solid #DADADA; }
