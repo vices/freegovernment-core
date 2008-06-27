@@ -248,11 +248,11 @@ button.active
       +clearfix
       :float left
       :width 430px
-      img
-        :display block
-        :width 60px
+      .img
         :float left
-        :border 1px solid #ddd
+        :width 60px
+        img
+          :border 1px solid #ddd
       .main
         :width 358px
         :float right
@@ -405,20 +405,29 @@ h2.index_header
     :width 550px
     :padding 10px 0px
     :border-bottom 1px solid #ddd
-    .photo_and_details
+    .details
       +clearfix
       :float left
       :width 440px
-      .photo
+      .img
         :float left
         :width 100px
         img
           :border 1px solid #ddd
-      .details
+      .main
         :float right
-        :width 320px
-        .full_name, .full_name a
-          :font-size 16px
+        :width 330px
+        div
+          :margin-top 5px
+        h3
+          a
+            :color #525252
+            :font-size 16px
+            :margin-bottom 5px
+        .description
+          :margin-top 15px
+          span
+            :font-weight bold
     .actions
       :float right
       :width 110px
@@ -475,10 +484,10 @@ h2.index_header
     :margin-bottom 10px
     .details
       .img
-        :display block
-        :width 60px
         :float left
-        :border 1px solid #ddd
+        :width 60px
+        img
+          :border 1px solid #ddd
       .main
         :width 480px
         :float right

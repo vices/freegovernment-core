@@ -9,7 +9,7 @@
         - @polls_page.each do |poll|
           .poll
             .details
-              = link_to image_tag("polls/missing_icon_small.png"), url(:poll, :id => poll.id)
+              = link_to image_tag("polls/missing_icon_small.png"), url(:poll, :id => poll.id), :class => 'img'
               .main
                 %h3= link_to "#{poll.question}", url(:poll, :id => poll.id)
                 .description= poll.description

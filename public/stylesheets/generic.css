@@ -258,11 +258,11 @@ button.active {
       visibility: hidden; }
     * html #polls_index .poll .details {
       height: 1px; }
-    #polls_index .poll .details img {
-      display: block;
-      width: 60px;
+    #polls_index .poll .details .img {
       float: left;
-      border: 1px solid #ddd; }
+      width: 60px; }
+      #polls_index .poll .details .img img {
+        border: 1px solid #ddd; }
     #polls_index .poll .details .main {
       width: 358px;
       float: right; }
@@ -439,28 +439,36 @@ h2.index_header {
     visibility: hidden; }
   * html #people_index .person {
     height: 1px; }
-  #people_index .person .photo_and_details {
+  #people_index .person .details {
     display: block;
     float: left;
     width: 440px; }
-    #people_index .person .photo_and_details:after {
+    #people_index .person .details:after {
       display: block;
       content: ".";
       height: 0;
       clear: both;
       visibility: hidden; }
-    * html #people_index .person .photo_and_details {
+    * html #people_index .person .details {
       height: 1px; }
-    #people_index .person .photo_and_details .photo {
+    #people_index .person .details .img {
       float: left;
       width: 100px; }
-      #people_index .person .photo_and_details .photo img {
+      #people_index .person .details .img img {
         border: 1px solid #ddd; }
-    #people_index .person .photo_and_details .details {
+    #people_index .person .details .main {
       float: right;
-      width: 320px; }
-      #people_index .person .photo_and_details .details .full_name, #people_index .person .photo_and_details .details .full_name a {
-        font-size: 16px; }
+      width: 330px; }
+      #people_index .person .details .main div {
+        margin-top: 5px; }
+      #people_index .person .details .main h3 a {
+        color: #525252;
+        font-size: 16px;
+        margin-bottom: 5px; }
+      #people_index .person .details .main .description {
+        margin-top: 15px; }
+        #people_index .person .details .main .description span {
+          font-weight: bold; }
   #people_index .person .actions {
     float: right;
     width: 110px; }
@@ -535,10 +543,10 @@ h2.index_header {
   * html #groups_index .group {
     height: 1px; }
   #groups_index .group .details .img {
-    display: block;
-    width: 60px;
     float: left;
-    border: 1px solid #ddd; }
+    width: 60px; }
+    #groups_index .group .details .img img {
+      border: 1px solid #ddd; }
   #groups_index .group .details .main {
     width: 480px;
     float: right; }

@@ -7,11 +7,14 @@
     #people_list.list
       - @people_page.each do |person|
         .person
-          .photo_and_details
-            .photo
-              =link_to image_tag(person.user.avatar.url(:medium)), url(:person, :id => person.user.username)
-            .details
-              .full_name= link_to person.full_name, url(:person, :id => person.user.username)
+          .details
+            =link_to image_tag(person.user.avatar.url(:medium)), url(:person, :id => person.user.username), :class => 'img'
+            .main
+              %h3= link_to person.full_name, url(:person, :id => person.user.username)
+              .address= person.user.address_text
+              .description
+                %span About me:
+                = person.description
           .actions
             - if logged_in? and @current_user.id == person.user.id
               = link_to "edit my profile", url(:person, :id => person.user.username), :class => 'button_link'
