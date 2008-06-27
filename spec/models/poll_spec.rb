@@ -119,8 +119,19 @@ describe Poll, "updating for vote changes" do
     @poll.update_for_votes(diffs)
     @poll.yes_count.should == 2
     @poll.no_count.should == -1
-    
+   
   end
+  
+  it "should subtract 1 from total_count when yes -> undecided" do
+    diffs = [{:yes => -1, :no => 0}]
+    @poll.update_for_votes(diffs)
+    @poll.yes_count.should == -1
+    @poll.no_count.should == 0
+    @poll.vote_count.should == -1
+
+  end
+    
+  
   
   it "should total the vote count"  do
     @poll.update_for_votes({:yes => 1, :no => 1})
@@ -176,4 +187,55 @@ describe Poll, "updating for vote changes" do
     @poll.stub!(:verified_vote_count).and_return(0)
     @poll.verified_no_percent.should be_nil
   end
+end
+
+  
+describe Poll, "#tags" do 
+  include PollSpecHelper 
+  before(:each) do 
+    Poll.auto_migrate! 
+    @poll = Poll.new 
+  end
+
+  it "should have a tag_list accessor" do
+    @poll.should respond_to(:tag_list) 
+  end
+
+  it "should find a tag if it exists"  do
+  mock tag
+  stub first and return @new_tag
+  tag should receive first and return @new_tag
+  
+  
+  end
+
+
+  it "should create a something" do  #for test purposes, tag_list must be changed in order to go to "create", otherwise it is "found" with first
+    @poll.attributes = valid_new_poll.merge(:tag_list => "osf@@ssC, tCs3sfCCSSod, TSsCCfd")
+    #@poll.tag_list.should == ['one','two','three'] 
+    #@new_tag = mock(:tag)
+    #Tag.stub!(:create).and_return(@new_tag)
+    #Tag.should_receive(:first).exactly(3).times
+    #Tag.should_receive(:create).with(:name => "one").and_return(@new_tag)
+    #Tag.should_receive(:create).tywice
+    #Tagging.should_receive(:create).exactly(3).times
+    
+    
+    
+    @poll.create_tags
+    @poll.tags.should == "one, two, three"
+    
+    
+    #pp @poll.Tag.permalink
+    
+    #@poll.tag_list.should == "blah"
+    #Tag.stub!(:first).and_return(:name => 'one')
+    
+    
+    #Tag.should_receive(:first).with(:name => 'one')
+    #Tag.first.name.should == "one"
+    
+   
+   end
+
 end

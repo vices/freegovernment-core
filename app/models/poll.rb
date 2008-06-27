@@ -37,23 +37,26 @@ class Poll
 
 
   def create_tags
-   pp "here before"
+
     return if @tag_list.nil? || @tag_list.empty?
-    pp "here"
     # Wax all the existing taggings
     self.taggings.each {|t| t.destroy! }
     @tag_list.split(",").each do |t|
       unless t.empty?
-        unless(tag = Tag.first(:name => t.strip.downcase)).nil?
-          tag = Tag.create(:name => t.strip.downcase)
-        end 
-        Tagging.create(:poll_id => self.id, :tag_id => tag.id)
+        if (pp tag = Tag.first(:name => t.strip.downcase)).nil? 
+          pp tag = Tag.create(:name => t.strip.downcase) 
+        end
+         pp self.taggings << Tagging.create(:poll_id => self.id, :tag_id => tag.id)
       end
-    end
+     end
   end
 
   def tags
-    taggings.map { |tagging| tagging.tag.name }.join(", ")
+    taggings.collect{ |tagging| tagging.tag }
+  end
+
+  def tags_text
+    taggings.collect{ |tagging| tagging.tag.name }.join(", ")
   end
 
 

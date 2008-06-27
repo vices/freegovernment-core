@@ -3,6 +3,13 @@ class People < Application
   before :find_person, :only => %w{ show edit update }
   before :check_edit_permissions, :only => %w{ edit update }
 
+  params_accessible [
+    {:person => [:full_name, :date_of_birth, :descripton, :interests, :political_beliefs]},
+    {:user => [:email, :password, :password_confirmation, :username]},
+    :recaptcha_challenge_field, 
+    :recaptcha_response_field 
+  ]
+
   def index
     case params['sort_by']
       when 'name'

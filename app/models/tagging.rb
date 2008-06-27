@@ -6,5 +6,7 @@ class Tagging
 
   belongs_to :poll
   belongs_to :tag
+  
+  validates_is_unique :tag_id, :scope => [:poll_id]
 
 end

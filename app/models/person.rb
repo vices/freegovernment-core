@@ -20,4 +20,15 @@ class Person
   validates_present :user_id, :context => [:default]
   
   belongs_to :user
+  
+  has n, :contact_relationships
+  has n, :group_relationships
+  
+  def contacts(options = {:page => 1, :per_page => 6 })
+    self.contact_relationships.paginate(:page => options[:page], :per_page => options[:per_page], :is_accepted => true).collect{|cr| cr.contact}
+  end
+  
+  def groups(options = {:page => 1, :per_page => 6})
+    self.group_relationships.paginate(:page => options[:page], :per_page => options[:per_page], :is_accepted => true).collect{|gr| gr.group}
+  end
 end

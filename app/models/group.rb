@@ -19,4 +19,10 @@ class Group
   validates_present :user_id, :context => [:default]
   
   belongs_to :user
+  
+  has n, :group_relationships
+  
+  def members(options = {:page => 1, :per_page => 6})
+    self.group_relationships.paginate(:page => options[:page], :per_page => options[:per_page], :is_accepted => true).collect{|gr| gr.person}
+  end
 end
