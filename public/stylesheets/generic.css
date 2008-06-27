@@ -113,13 +113,6 @@ a:hover {
     margin-top: 10px;
     line-height: 1.3em;
     padding: 8px 16px; }
-  #home #intro #login label {
-    margin: 3px 0px; }
-  #home #intro #login input {
-    width: 217px; }
-  #home #intro #login .links {
-    float: left;
-    padding: 8px 0px; }
   #home #intro .right {
     width: 500px;
     float: right; }
@@ -169,6 +162,14 @@ a:hover {
       height: 88px;
       line-height: 1.3em;
       font-size: 14px; }
+
+#login label {
+  margin: 3px 0px; }
+#login input {
+  width: 217px; }
+#login .links {
+  float: left;
+  padding: 8px 0px; }
 
 .attention {
   font-size: 16px;
@@ -626,6 +627,25 @@ table tr.alt1 td {
 
 #new_topic textarea {
   height: 250px; }
+
+#login_page {
+  display: block; }
+  #login_page:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #login_page {
+    height: 1px; }
+  #login_page #login {
+    width: 250px;
+    float: left; }
+  #login_page .info {
+    float: right;
+    width: 470px;
+    border-left: 1px solid #ddd;
+    padding-left: 20px; }
 
 #push {
   height: 580px; }

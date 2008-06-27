@@ -123,15 +123,6 @@ a:hover
       :line-height 1.3em
       :padding 8px 16px
     
-    #login
-      label
-        :margin 3px 0px
-      input
-        :width 217px
-      .links
-        :float left
-        :padding 8px 0px
-    
     .right
       :width 500px
       :float right
@@ -178,7 +169,17 @@ a:hover
           :height 88px
           :line-height 1.3em
           :font-size 14px
-
+          
+#login
+  label
+    :margin 3px 0px
+  input
+    :width 217px
+  .links
+    :float left
+    :padding 8px 0px
+    
+    
 .attention
   :font-size 16px
   :background-color #d9e0e4
@@ -588,7 +589,17 @@ table
   textarea
     :height 250px
 
-
+#login_page
+  +clearfix
+  #login
+    :width 250px
+    :float left
+  .info
+    :float right
+    :width 470px
+    :border-left 1px solid #ddd
+    :padding-left 20px
+    
 // FOOTER
 
 #push
