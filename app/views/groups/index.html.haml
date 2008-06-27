@@ -8,13 +8,21 @@
       - if !@groups_page.nil?
         - @groups_page.each do |group|
           .group
-            .photo_and_details
-              .photo
-                =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user)
-              .details
-                =link_to group.name, profile_url(group.user)
-      = merb_paginate @groups_page
-      = page_entries_info(@groups_page)
+            .details
+              = link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user), :class => 'img'
+              .main
+                %h3
+                  = link_to group.name, profile_url(group.user)
+                  %span ( # members )
+                .description
+                  = group.description
+                .tags
+                  tags:
+                  - if true || group.tags.nil?
+                    %span no associated tags
+      .pagination
+        = merb_paginate @groups_page
+        = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search
       - if logged_in? && !@current_user.group_id.nil?
