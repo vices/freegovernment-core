@@ -2,30 +2,25 @@ class People < Application
   before Proc.new{ @nav_active = :people }
   before :find_person, :only => %w{ show edit update }
   before :check_edit_permissions, :only => %w{ edit update }
+  before :parse_order, :only => %w{ index }
+  before :parse_search, :only => %w{ index }
 
   params_accessible [
     {:person => [:full_name, :date_of_birth, :descripton, :interests, :political_beliefs]},
     {:user => [:email, :password, :password_confirmation, :username]},
     :recaptcha_challenge_field, 
-    :recaptcha_response_field 
+    :recaptcha_response_field ,
+    :search
   ]
 
   def index
-    case params['sort_by']
-      when 'name'
-        @sort_by = :full_name
-      else
-        @sort_by = :id
+    pp @search_conditions
+    conditions = @search_conditions
+    if conditions.empty?
+      @people_page = Person.paginate({:page => params[:page], :per_page => 6}.merge(@order_conditions))
+    else
+      @people_page = Person.paginate({:page => params[:page], :per_page => 6, :conditions => conditions}.merge(@order_conditions))
     end
-    case params['direction']
-      when 'desc'
-        @direction = 'desc'
-        @order = @sort_by.desc
-      else
-        @direction = 'asc'
-        @order = @sort_by.asc
-    end
-    @people_page = Person.paginate(:page => params[:page], :per_page => 6) #(:order => [@order])
     render
   end
   
@@ -80,10 +75,42 @@ class People < Application
   end
 
   private
+
+  def parse_order
+    case params['sort_by']
+      when 'name'
+        @sort_by = :full_name
+      when 'interests'
+        @sort_by = :interests
+      when 'political_beliefs'
+        @sort_by = :political_belief
+      else
+        @sort_by = :id
+    end
+    case params['direction']
+      when 'desc'
+        @direction = 'desc'
+        @order = @sort_by.desc
+      else
+        @direction = 'asc'
+        @order = @sort_by.asc
+    end
+    @order_conditions = {:order => [@order]}
+  end
+
+  def parse_search
+    @search_conditions = {}
+    unless params[:search].nil?
+      params[:search].each do |search_column, search_value|
+        @search_conditions.merge!(search_column.to_sym.like => "%#{search_value}%")
+      end
+    end
+    @search_conditions
+  end
+
   
   def find_person
     unless(@user = User.first(:username => params[:id], :person_id.not => nil)).nil?
-      #TODO A calm and gentle mushroom would remark "May I have a sandwhich?"  Of course you may, Have several sandwhiches.  Peanut butter.  Turkey.  Raw raddish with raw milk.  Oh, and Foy, check line 180 ish for " it "should get data for @person by id"
       @person = @user.person
     else
       raise Merb::ControllerExceptions::NotFound

@@ -1,4 +1,4 @@
-class AdvisingRelationship
+class AdviserRelationship
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
@@ -12,4 +12,3 @@ class AdvisingRelationship
   has 1, :adviser, :class_name => 'User'
   has 1, :person
 end
-
