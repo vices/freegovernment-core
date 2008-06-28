@@ -26,11 +26,17 @@
       %li.last
         %h3 4. Improve
         .content Freedom to improve the government for the benefit of all society with the support of others.
-  #blog
-    - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
-    - if rss.entries.length > 0
-      - rss.entries.each do |entry|
-        %h2= entry.title
-        = entry.content
-        = link_to "See full post", entry.urls.first
+  #info
+    .left
+    .right
+      #blog
+        %h2
+          = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
+        - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+        - if rss.entries.length > 0
+          - rss.entries.each do |entry|
+            .entry
+              %h3= entry.title
+              = entry.content
+              = link_to "See full post", entry.urls.first
 
