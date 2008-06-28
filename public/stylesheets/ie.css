@@ -1,0 +1,11 @@
+body { text-align: center; }
+
+.girdle { text-align: left; }
+
+#freedoms ul li { width: 182px !important; }
+#freedoms ul li.last { width: 184px !important; }
+
+#navigation { position: relative; top: 12px; }
+#navigation li { text-align: center; }
+
+.block .avatars a { margin: 6px !important; }
