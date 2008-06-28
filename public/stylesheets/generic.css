@@ -148,8 +148,8 @@ a:hover {
     height: 1px; }
   #home #freedoms ul li {
     float: left;
-    width: 180px;
-    margin: 0 5px;
+    width: 182px;
+    margin-right: 10px;
     height: 100%; }
     #home #freedoms ul li h3 {
       font-size: 22px;
@@ -162,6 +162,9 @@ a:hover {
       height: 88px;
       line-height: 1.3em;
       font-size: 14px; }
+  #home #freedoms ul li.last {
+    width: 184px;
+    margin-right: 0; }
 
 #login label {
   margin: 3px 0px; }
@@ -453,12 +456,12 @@ h2.index_header {
       height: 1px; }
     #people_index .person .details .img {
       float: left;
-      width: 100px; }
+      width: 60px; }
       #people_index .person .details .img img {
         border: 1px solid #ddd; }
     #people_index .person .details .main {
       float: right;
-      width: 330px; }
+      width: 370px; }
       #people_index .person .details .main div {
         margin-top: 5px; }
       #people_index .person .details .main h3 a {

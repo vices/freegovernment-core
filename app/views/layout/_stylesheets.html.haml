@@ -1,2 +1,4 @@
 = css_include_tag 'resets', 'clearfixes', 'generic', 'forms', 'facebox'
 = include_required_css
+/[if IE]
+  = css_include_tag 'ie'

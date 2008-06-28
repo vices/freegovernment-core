@@ -8,7 +8,7 @@
       - @people_page.each do |person|
         .person
           .details
-            =link_to image_tag(person.user.avatar.url(:medium)), url(:person, :id => person.user.username), :class => 'img'
+            =link_to image_tag(person.user.avatar.url(:small)), url(:person, :id => person.user.username), :class => 'img'
             .main
               %h3= link_to person.full_name, url(:person, :id => person.user.username)
               .address= person.user.address_text
