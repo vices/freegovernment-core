@@ -58,11 +58,13 @@
       #blog
         %h2
           = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
-        - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
-        - if rss.entries.length > 0
-          - rss.entries.each do |entry|
-            .entry
-              %h3= entry.title
-              = entry.content
-              = link_to "See full post", entry.urls.first
+        - begin
+          - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+          - if rss.entries.length > 0
+            - rss.entries.each do |entry|
+              .entry
+                %h3= entry.title
+                = entry.content
+                = link_to "See full post", entry.urls.first
+        - rescue
 
