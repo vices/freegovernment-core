@@ -643,6 +643,36 @@ h2.index_header
         img
           :border 1px solid #ddd
 
+.comments
+  :background #eee
+  .content
+    :padding 10px
+    form
+      :padding 0
+      :border none
+      label
+        :margin 4px 0
+        :color #aaa
+      textarea
+        :width 487px
+        :height 100px
+    .comment
+      +clearfix
+      :background #fff
+      :margin 20px 0 10px
+      :padding 10px
+      .avatar
+        :float left
+        :width 60px
+        img
+          :border 1px solid #ddd
+      .main
+        :float right
+        :width 400px
+        .meta
+          :color #666
+          :padding-bottom 3px
+          :border-bottom 1px solid #ddd
 #polls_index
   h2
     :background-image url('/images/polls/header.png')

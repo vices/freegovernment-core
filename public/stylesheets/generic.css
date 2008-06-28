@@ -716,6 +716,45 @@ h2.index_header {
         #group .block .avatars a img {
           border: 1px solid #ddd; }
 
+.comments {
+  background: #eee; }
+  .comments .content {
+    padding: 10px; }
+    .comments .content form {
+      padding: 0;
+      border: none; }
+      .comments .content form label {
+        margin: 4px 0;
+        color: #aaa; }
+      .comments .content form textarea {
+        width: 487px;
+        height: 100px; }
+    .comments .content .comment {
+      display: block;
+      background: #fff;
+      margin: 20px 0 10px;
+      padding: 10px; }
+      .comments .content .comment:after {
+        display: block;
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html .comments .content .comment {
+        height: 1px; }
+      .comments .content .comment .avatar {
+        float: left;
+        width: 60px; }
+        .comments .content .comment .avatar img {
+          border: 1px solid #ddd; }
+      .comments .content .comment .main {
+        float: right;
+        width: 400px; }
+        .comments .content .comment .main .meta {
+          color: #666;
+          padding-bottom: 3px;
+          border-bottom: 1px solid #ddd; }
+
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }
 

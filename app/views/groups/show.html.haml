@@ -35,4 +35,24 @@
       #group_mission.block
         .title Our Mission Statement
         .content
-          = h @group.mission
+          = @group.mission.render_textile
+    #group_comments.comments.block
+      .title.alt_title Group Comments
+      .content
+        %form.standard
+          %label type your post here
+          %textarea
+          %button
+            submit post
+        .comment
+          =link_to image_tag(@user.avatar.url(:small)), url(:group, :id => @user.username), :class => 'avatar'
+          .main
+            .meta
+              = link_to @group.name, url(:group, :id => @group.name)
+              , Concord, NH
+            %p In hac habitasse platea dictumst. Proin bibendum pede in justo. Aliquam consectetuer gravida nisi. Curabitur nec turpis. Cras in nisi. Aenean sit amet sapien. In a diam id ipsum commodo malesuada. Aliquam dictum libero vel nisi. Nam commodo blandit lectus. Sed vel erat eu justo interdum malesuada. Morbi condimentum ligula cursus quam. Donec velit.
+            %p Aliquam feugiat risus in massa. Maecenas nisl lorem, pharetra sodales, rhoncus nec, facilisis in, purus. Donec non lorem aliquet mi porttitor pretium. Duis commodo purus id ipsum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc lectus eros, ultrices quis, viverra ac, suscipit et, nulla.
+        .comment
+          Test
+        .comment
+          Test
