@@ -49,7 +49,7 @@
       #description.block
         .title About Me
         .content
-          = h @person.description
+          = @person.description.render_textile
     - unless @person.political_beliefs.nil?
       #political_beliefs.block
         .title Political Beliefs

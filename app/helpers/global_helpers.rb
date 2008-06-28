@@ -19,7 +19,7 @@ module Merb
       divisor = ((max - min) / classes.size) + 1
       tags.each do |t|
         yield t, classes[(t.taggings.count.to_i - min) / divisor]
-      end  
+      end
+    end
   end
-end
 end

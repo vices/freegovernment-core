@@ -30,7 +30,7 @@
       #group_description.block
         .title About Us
         .content
-          = h @group.description
+          = @group.description.render_textile
     - unless @group.mission.nil?
       #group_mission.block
         .title Our Mission Statement

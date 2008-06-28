@@ -561,12 +561,12 @@ h2.index_header {
         border: 1px solid #ddd; }
   #person #person_details_etc {
     float: right;
-    width: 525px; }
+    width: 515px; }
     #person #person_details_etc #person_details .name {
       font-size: 24px;
       font-weight: bold; }
   #person .block {
-    margin-top: 10px; }
+    margin: 10px 0 20px; }
     #person .block .title {
       background-color: #e9e9e9;
       font-weight: bold;
@@ -576,6 +576,9 @@ h2.index_header {
       color: #fff;
       background-color: #8b8b8b;
       border-bottom: 2px solid #111; }
+    #person .block p {
+      margin: 10px 0;
+      line-height: 16px; }
     #person .block .avatars {
       display: block; }
       #person .block .avatars:after {
@@ -619,8 +622,6 @@ h2.index_header {
         background: url('/images/other/delete.gif') no-repeat; }
         #recent_activity ul li form button span {
           display: none; }
-  #recent_activity ul li:hover {
-    background: #fbfbfb; }
 
 #groups_index .group {
   display: block;
@@ -679,7 +680,7 @@ h2.index_header {
         border: 1px solid #ddd; }
   #group #group_details_etc {
     float: right;
-    width: 525px; }
+    width: 515px; }
     #group #group_details_etc #group_details .name {
       font-size: 24px;
       font-weight: bold; }
@@ -694,6 +695,9 @@ h2.index_header {
       color: #fff;
       background-color: #8b8b8b;
       border-bottom: 2px solid #111; }
+    #group .block p {
+      margin: 10px 0;
+      line-height: 16px; }
     #group .block .avatars {
       display: block; }
       #group .block .avatars:after {
