@@ -976,3 +976,12 @@ table tr.alt1 td {
       #footer .bottom .links .right {
         float: right;
         text-align: right; }
+  #footer .poll .heading a {
+    font-size: 14px; }
+  #footer .poll .vote_count {
+    margin-top: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #888; }
+  #footer .poll .results {
+    margin-top: 5px;
+    font-size: 16px; }
