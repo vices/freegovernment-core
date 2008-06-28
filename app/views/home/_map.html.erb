@@ -12,12 +12,14 @@
     map.setCenter(new google.maps.LatLng(42, -71), 4);
     //map.openInfoWindow(map.getCenter(),document.createTextNode('FreeGovernment.org launched!'));
     what_where = [
-      <% @map_items.each do |map_item| %>
-        {
-          what: '<%= link_to map_item.user.username, profile_url(map_item.user) %>',
-          where: [<%= map_item.user.address_lat %>, <%= map_item.user.address_lng %>],
-          image: "<%= map_item.user.avatar.url(:small) %>"
-        },
+      <% unless @map_items.nil? %>
+        <% @map_items.each do |map_item| %>
+          {
+            what: '<%= link_to map_item.user.username, profile_url(map_item.user) %>',
+            where: [<%= map_item.user.address_lat %>, <%= map_item.user.address_lng %>],
+            image: "<%= map_item.user.avatar.url(:small) %>"
+          },
+        <% end %>
       <% end %>
     ];
  
