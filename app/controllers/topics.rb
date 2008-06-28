@@ -4,6 +4,9 @@ class Topics < Application
   before :find_topic, :only => %w{ show }
   before :find_forum, :only => %w{ new create }
   before :check_create_permissions, :only => 'create'
+  params_accessible [
+    {:topic => [:name]}  
+  ]
 
   # Shows topic / Lists paginated posts
   def show

@@ -40,17 +40,29 @@ class Poll
 
     return if @tag_list.nil? || @tag_list.empty?
     # Wax all the existing taggings
+    pp "before taggings"
     self.taggings.each {|t| t.destroy! }
+    pp "before split"
     @tag_list.split(",").each do |t|
+     pp "after split"
+     
       unless t.empty?
-        if (pp tag = Tag.first(:name => t.strip.downcase)).nil? 
-          pp tag = Tag.create(:name => t.strip.downcase) 
+        pp "t wasn't empty"
+        if ( tag = Tag.first(:name => t.strip.downcase)).nil? 
+          tag = Tag.create(:name => t.strip.downcase) 
+          pp "tag was created"
         end
-         pp self.taggings << Tagging.create(:poll_id => self.id, :tag_id => tag.id)
+          self.taggings << Tagging.create(:poll_id => self.id, :tag_id => tag.id)
+          pp "self taggings"
       end
      end
   end
 
+  # [Tag, Tag, Tag]
+  # if it was name
+  # ['one', 'two', 'three']
+  # if it uses the join
+  # "one, two, three"
   def tags
     taggings.collect{ |tagging| tagging.tag }
   end

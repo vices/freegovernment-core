@@ -194,6 +194,7 @@ describe Poll, "#tags" do
   include PollSpecHelper 
   before(:each) do 
     Poll.auto_migrate! 
+    Tag.auto_migrate!
     @poll = Poll.new 
   end
 
@@ -201,15 +202,83 @@ describe Poll, "#tags" do
     @poll.should respond_to(:tag_list) 
   end
 
+=begin
   it "should find a tag if it exists"  do
-  mock tag
-  stub first and return @new_tag
-  tag should receive first and return @new_tag
-  
-  
+    #@poll.attributes = valid_new_poll.merge(:tag_list => "osf")
+    #Tag.stub!(:first).with(nil)
+    @poll = mock(:poll)
+    @poll.stub!(:create_tags)
+    @poll.stub!(:tag_list).and_return("osf")
+    
+    #@tag = mock(:tag)
+    #Tag.stub!(:first).with(:name => "osf")
+    Tag.should_receive(:first).with(:name => "osf").and_return(:fingers)
+    @poll.create_tags
   end
 
 
+      Vote.stub!(:first).with(:poll_id => valid_new_vote[:poll_id], :user_id => controller.session[:user_id]).and_return(@old_vote)
+      Vote.should_receive(:first).with(:user_id => controller.session[:user_id], :poll_id 
+      => valid_new_vote[:poll_id]).and_return(@old_vote)
+=end
+
+  it "should search for a tag from the :tag_list" do
+    @poll.attributes = valid_new_poll.merge(:tag_list => "osf")
+    Tag.should_receive(:first).with(:name => "osf")
+    @poll.create_tags
+  end
+
+  it "should create a tag if it is not found" do
+    @poll.attributes = valid_new_poll.merge(:tag_list => "osfive")
+    Tag.should_receive(:create).with(:name => "osfive")
+    @poll.create_tags
+  end
+  
+  it "should create taggings for poll_id and tag_id" do
+    @poll.tag_list = "five"
+    @poll.stub!(:id).and_return(1) 
+    Tagging.should_receive(:create).with(:poll_id => 1, :tag_id => 1).and_return(@new_tagging)
+    @poll.create_tags
+  end
+  #    taggings.collect{ |tagging| tagging.tag.name }.join(", ")
+  
+  it "should get the tagging text with tags_text" do
+    #@poll.stub!(:taggings).and_return("five")
+    
+    @poll.taggings.should_receive(:collect)
+    pp @poll.tags
+    #pp @poll.tags_text
+  end
+  
+=begin
+  it "should make a new tag if it doesn't exist" do
+  mock tag
+  taglist = stuff
+  stub first and return nil
+  tag should receive first and return nil
+  stub create and return @new_tag
+  tag should receive create and return @new tag
+  end
+
+
+=begin
+  it "should create taggings for poll_id and tag_id"  do
+  mock tagging
+  stub tag id =
+  stub poll id = 
+  stub tagging create and return taggings
+  tagging.should recieve create with tag_id and poll_id and return taggings
+  
+  end
+  
+  it "should get list of tags from tags_text" do
+  mock tag
+  stub taggings collect with tags
+  taggings should receive collect with tagging.tag.name and return joined tags
+  
+  end
+=end
+  
   it "should create a something" do  #for test purposes, tag_list must be changed in order to go to "create", otherwise it is "found" with first
     @poll.attributes = valid_new_poll.merge(:tag_list => "osf@@ssC, tCs3sfCCSSod, TSsCCfd")
     #@poll.tag_list.should == ['one','two','three'] 

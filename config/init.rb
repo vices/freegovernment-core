@@ -97,6 +97,7 @@ if Merb.environment == 'test'
 end
 dependency 'lib/support/float'
 dependency 'lib/merb_recaptcha'
+dependency 'feed-normalizer'
 dependency 'net/http'
 Merb::BootLoader.after_app_loads do
   # Add dependencies here that must load after the application loads:

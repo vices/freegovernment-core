@@ -1,12 +1,13 @@
 require File.join(File.dirname(__FILE__),'helper')
 
+
+p 'Creating contact relationships'
+
 user_count = User.count
 person_count = Person.count
 group_count = Group.count
 
 people = Person.all
-
-pp 'here'
 
 people.each do |person|
   people.each do |contact|
@@ -21,15 +22,14 @@ people.each do |person|
   end
 end
 
-pp 'now here'
+
+p 'Creating group relationships'
 
 people = Person.all
 groups = Group.all
 
 groups.each do |group|
-  p group.name
   people.each do |person|
-    p person.full_name
     srand()
     if(rand(2) == 1)
       is_accepted = rand(2)
@@ -38,3 +38,15 @@ groups.each do |group|
   end
 end
 
+p 'Creating adviser relationships'
+
+advisers = User.all(:is_adviser => true)
+people = Person.all
+
+advisers.each do |adviser|
+  people.each do |person|
+  srand()
+  if(rand(2) == 1)
+    AdviserRelationship.create(:adviser_id => adviser.id, :person_id => person.id)
+  end
+end
