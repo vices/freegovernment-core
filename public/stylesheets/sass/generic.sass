@@ -539,6 +539,33 @@ h2.index_header
         img
           :border 1px solid #ddd
 
+#recent_activity
+  ul
+    :margin 5px 0
+    li
+      :line-height 18px
+      :border-bottom 1px solid #ddd
+      :position relative
+      :padding 3px 25px 3px 100px
+      span
+        :position absolute
+        :left 10px
+        :color #666
+      form
+        :width 10px
+        :height 10px
+        :position absolute
+        :right 5px
+        :top 7px
+        button
+          :display block
+          :padding 0
+          :height 10px
+          :width 10px
+          :background url('/images/other/delete.gif') no-repeat
+          span
+            :display none
+
 #groups_index
   .group
     +clearfix

@@ -594,6 +594,34 @@ h2.index_header {
         #person .block .avatars a img {
           border: 1px solid #ddd; }
 
+#recent_activity ul {
+  margin: 5px 0; }
+  #recent_activity ul li {
+    line-height: 18px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding: 3px 25px 3px 100px; }
+    #recent_activity ul li span {
+      position: absolute;
+      left: 10px;
+      color: #666; }
+    #recent_activity ul li form {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 5px;
+      top: 7px; }
+      #recent_activity ul li form button {
+        display: block;
+        padding: 0;
+        height: 10px;
+        width: 10px;
+        background: url('/images/other/delete.gif') no-repeat; }
+        #recent_activity ul li form button span {
+          display: none; }
+  #recent_activity ul li:hover {
+    background: #fbfbfb; }
+
 #groups_index .group {
   display: block;
   border-bottom: 1px solid #ccc;

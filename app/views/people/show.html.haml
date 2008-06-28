@@ -31,6 +31,20 @@
         .address= @user.address
     #recent_activity.block
       .title.alt_title Recent Activity
+      .content
+        %ul
+          %li
+            %span Today
+            Sophia voted YES on poll Do rock have feelings? Sophia voted YES on poll Do rock have feelings? Sophia voted YES on poll Do rock have feelings?
+            %form
+              %button
+                %span Delete
+          %li
+            %span Today
+            Sophia voted YES on poll Do rock have feelings?
+            %form
+              %button
+                %span Delete
     - unless @person.description.nil?
       #description.block
         .title About Me

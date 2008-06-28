@@ -16,6 +16,16 @@
   #group_details_etc
     #group_details
       .name== #{@group.name}
+    #recent_activity.block
+      .title.alt_title Recent Activity
+      .content
+        %ul
+          %li
+            %span Today
+            Added a new event, "Event name"
+            %form
+              %button
+                %span Delete
     - unless @group.description.nil?
       #group_description.block
         .title About Us
