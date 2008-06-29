@@ -52,7 +52,7 @@ class User
   before :save, :encrypt_password
   
   def address_text=(value)
-    @address_text = value
+    attribute_set(:address_text, value)
     self.address = value
   end
   
