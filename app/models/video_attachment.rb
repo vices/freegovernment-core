@@ -30,8 +30,12 @@ class VideoAttachment
   
   before :save do
     if self.site == 'youtube'
-      feed = REXML::Document.new open('http://gdata.youtube.com/feeds/api/videos/' + self.resource)
-      p self.title = feed.root.get_elements('title')[0].get_text
+      begin
+        feed = REXML::Document.new open('http://gdata.youtube.com/feeds/api/videos/' + self.resource)
+        p self.title = feed.root.get_elements('title')[0].get_text
+      rescue
+        self.title = 'http://pl.youtube.com/watch?v=' + self.resource
+      end
     end
   end
   
