@@ -40,9 +40,9 @@
                 %td.name= link_to forum.name, url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
-        .pagination
-          = merb_paginate @group_forums, :param_name => :group_page
-          = page_entries_info @group_forums
+        .bottom
+          = link_to "Show All »", url(:group_index), :class => 'button_black'
+
     .section
       %h3 Poll-Related Forums
       - unless @poll_forums.nil?
@@ -58,9 +58,8 @@
                 %td.name= link_to forum.name, url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
-        .pagination
-          = merb_paginate @poll_forums, :param_name => :poll_page
-          = page_entries_info @poll_forums
+        .bottom
+          = link_to "Show All »", url(:poll_index), :class => 'button_black'
     .section
       %h3 Legislation Forums
       - unless @bill_forums.nil?

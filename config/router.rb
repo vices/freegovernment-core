@@ -35,7 +35,12 @@ Merb::Router.prepare do |r|
   r.resources :polls
   r.resources :votes
   
+  r.to(:controller => 'forums') do |f|
+    f.match('/forums/group').to(:action => 'group_index').name(:group_index)
+    f.match('/forums/poll').to(:action => 'poll_index').name(:poll_index)
+  end
   r.resources :forums
+
   r.resources :topics
   r.resources :posts
 

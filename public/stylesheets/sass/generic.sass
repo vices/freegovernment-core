@@ -752,7 +752,34 @@ table
           :font-weight bold
           :background #555
           :color #fff
+    .bottom
+      :margin 10px 0
+      +clearfix
+      .button_black
+        :float right
+        :padding 8px
 
+
+#forums.specified .section
+  table
+    :margin-bottom 10px
+  h3
+    :position relative
+    a
+      :position absolute
+      :right 0
+      :bottom 0
+  .bottom
+    +clearfix
+    :position relative
+    .button_black
+      :position absolute
+      :left 0
+      :top 0
+      :padding 8px 10px
+      :border 1px solid #DADADA
+    .pagination
+      :margin-top 0
 #forum
   h2
     :font-size 20px

@@ -823,6 +823,48 @@ table tr.alt1 td {
       font-weight: bold;
       background: #555;
       color: #fff; }
+  #forums .section .bottom {
+    margin: 10px 0;
+    display: block; }
+    #forums .section .bottom:after {
+      display: block;
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #forums .section .bottom {
+      height: 1px; }
+    #forums .section .bottom .button_black {
+      float: right;
+      padding: 8px; }
+
+#forums.specified .section table {
+  margin-bottom: 10px; }
+#forums.specified .section h3 {
+  position: relative; }
+  #forums.specified .section h3 a {
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+#forums.specified .section .bottom {
+  display: block;
+  position: relative; }
+  #forums.specified .section .bottom:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #forums.specified .section .bottom {
+    height: 1px; }
+  #forums.specified .section .bottom .button_black {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 8px 10px;
+    border: 1px solid #DADADA; }
+  #forums.specified .section .bottom .pagination {
+    margin-top: 0; }
 
 #forum h2 {
   font-size: 20px;

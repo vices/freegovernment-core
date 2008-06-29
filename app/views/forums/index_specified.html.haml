@@ -1,0 +1,23 @@
+#forums.specified
+  .section
+    %h3
+      == #{ @what } Forums
+      = link_to 'Back to forums index', url(:forums)
+    - unless @forums_page.nil?
+      %table
+        %thead
+          %tr
+            %td.name Forum
+            %td.topic_count Topics
+        - i = 0
+        %tbody
+          - @forums_page.each do |forum|
+            %tr{:class => "alt#{i}"}
+              %td.name= link_to forum.name, url(:forum, :id => forum.id)
+              %td.topic_count= forum.topics_count
+            - i == 0 ? i = 1 : i = 0
+    .bottom
+      .pagination
+        = merb_paginate @forums_page
+        = page_entries_info @forums_page
+      = link_to "« All Forums", url(:forums), :class => 'button_black'
