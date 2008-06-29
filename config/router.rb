@@ -39,6 +39,15 @@ Merb::Router.prepare do |r|
   r.resources :topics
   r.resources :posts
 
+  r.resource :adviser_relationships
+  r.resource :contact_relationships
+  r.resource :group_relationships
+
+  r.to(:controller => 'pages') do |p|
+    p.match('/terms').to(:action => 'terms').name(:terms)
+    p.match('/privacy').to(:action => 'privacy').name(:privacy)
+  end
+
   # This is the default route for /:controller/:action/:id
   # This is fine for most cases.  If you're heavily using resource-based
   # routes, you may want to comment/remove this line to prevent

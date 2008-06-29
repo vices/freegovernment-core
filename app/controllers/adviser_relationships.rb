@@ -1,11 +1,12 @@
-class AdvisingRelationships < Application
+class AdviserRelationships < Application
   before :login_required
   before :check_user_is_person, :only => 'create'
   before :check_for_adviser, :only => 'create'
 
   def create
-    ar = AdvisingRelationship.new({:adviser_id => @adviser.id, :person_id => @person.id})
+    ar = AdviserRelationship.new({:adviser_id => @adviser.id, :person_id => @current_user.person_id})
     if ar.save
+     Vote.update_user_votes_for_adviser(@current_user.id, @adviser.id)
     else
     end
     redirect profile_url(@adviser)
@@ -18,7 +19,7 @@ class AdvisingRelationships < Application
   private
   
   def check_user_is_person
-    if (@person = @current_user.person).nil?
+    if @current_user.person_id.nil?
       raise Merb::ControllerExceptions::NotAcceptable
     end
   end

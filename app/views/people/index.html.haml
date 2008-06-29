@@ -21,8 +21,10 @@
             - else
               - form_for Vote.new, :class => 'button' do
                 = submit_button("add to contacts")
-              - form_for Vote.new, :class => 'button' do
-                = submit_button("add as adviser")
+              - if person.user.is_adviser
+                - form_tag :action => url(:adviser_relationships) do
+                  = hidden_field :name => 'adviser', :value => person.user.username
+                  = submit_button("add as adviser")
       .pagination
         = merb_paginate(@people_page)
         = page_entries_info(@people_page)
