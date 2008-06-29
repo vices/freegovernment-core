@@ -29,7 +29,7 @@
     .pagination
       = merb_paginate @posts_page
       = page_entries_info @posts_page
-    = link_to "« Topics index", url(:forum, :id => @forum.id), :class => 'navlink'
+    = link_to "Â« Topics index", url(:forum, :id => @topic.forum_id), :class => 'navlink'
     = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
 
   - unless @videos.empty?
