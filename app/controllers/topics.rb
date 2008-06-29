@@ -22,10 +22,12 @@ class Topics < Application
   end
 
   def create
-    p 'here'
     if @new_topic.save
       @new_post.topic_id = @new_topic.id
       if @new_post.save
+        VideoAttachment.parse_for_videos(@new_post.text).each do |video|
+          VideoAttachment.create(:post_id => @new_post.id, :forum_id => @new_topic.forum_id, :topic_id => @new_topic.id, :user_id => session[:user_id], :site => video[0], :resource => video[1])
+        end
         redirect url(:forum, :id => @new_topic.forum_id)
       else
         render :new

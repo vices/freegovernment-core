@@ -11,7 +11,7 @@ class Post
   property :created_at, DateTime
   property :updated_at, DateTime
   
-  validates_length :text, :within => 1..100
+  validates_length :text, :within => 1..10000
   
   belongs_to :parent, :class_name => "Post"
   belongs_to :topic

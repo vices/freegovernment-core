@@ -3,7 +3,7 @@ class VideoAttachment
   include DataMapper::Validate
   
   VIDEO_REGEXES = {
-    :youtube => /youtube\.com(?:\/watch|)\?v=([a-z0-9_]+)/i,
+    :youtube => /youtube\.com(?:\/watch|)\?v=([a-z0-9_-]+)/i,
     :myspace => /(?:myspacetv\.com|vids\.myspace\.com)\/index\.cfm\?fuseaction=vids\.individual&videoid=([0-9]+)/i
   }
   
@@ -14,17 +14,25 @@ class VideoAttachment
 
   
   property :id, Integer, :serial => true
+  property :title, String
   property :post_id, Integer, :nullable => false
   property :forum_id, Integer, :nullable => false
   property :topic_id, Integer, :nullable => false
   property :user_id, Integer, :nullable => false
-  property :type, String, :nullable => false
+  property :site, String, :nullable => false
   property :resource, String, :length => 300, :nullable => false
   
   belongs_to :post
   
   def to_embed
     VIDEO_EMBEDS[self.type.to_sym].gsub('$$RESOURCE$$', self.resource)
+  end
+  
+  before :save do
+    if self.site == 'youtube'
+      feed = REXML::Document.new open('http://gdata.youtube.com/feeds/api/videos/' + self.resource)
+      p self.title = feed.root.get_elements('title')[0].get_text
+    end
   end
   
   class << self

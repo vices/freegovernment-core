@@ -17,7 +17,7 @@ class Posts < Application
   def create
     if @new_post.save
       VideoAttachment.parse_for_videos(@new_post.text).each do |video|
-        VideoAttachment.create(:post_id => @new_post.id, :forum_id => @topic.forum_id, :topic_id => @topic.id, :user_id => session[:user_id], :type => video[0], :resource => video[1])
+        p VideoAttachment.create(:post_id => @new_post.id, :forum_id => @topic.forum_id, :topic_id => @topic.id, :user_id => session[:user_id], :site => video[0], :resource => video[1])
       end
       redirect url(:topic, :id => @topic.id)
     else
