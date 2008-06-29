@@ -23,8 +23,15 @@ class Topics < Application
 
   def create
     if @new_topic.save
+      @forum.topics_count = @forum.topics_count + 1
+      @forum.save
       @new_post.topic_id = @new_topic.id
+      @new_post.post_number = 1
       if @new_post.save
+        @forum.posts_count = @forum.posts_count + 1
+        @forum.save
+        @new_topic.posts_count = 1
+        @new_topic.save
         VideoAttachment.parse_for_videos(@new_post.text).each do |video|
           VideoAttachment.create(:post_id => @new_post.id, :forum_id => @new_topic.forum_id, :topic_id => @new_topic.id, :user_id => session[:user_id], :site => video[0], :resource => video[1])
         end

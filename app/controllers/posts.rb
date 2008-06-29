@@ -15,10 +15,14 @@ class Posts < Application
   end
 
   def create
+    new_posts_count = @topic.posts_count + 1
+    @new_post.post_number = new_posts_count
     if @new_post.save
       VideoAttachment.parse_for_videos(@new_post.text).each do |video|
-        p VideoAttachment.create(:post_id => @new_post.id, :forum_id => @topic.forum_id, :topic_id => @topic.id, :user_id => session[:user_id], :site => video[0], :resource => video[1])
+        VideoAttachment.create(:post_id => @new_post.id, :forum_id => @topic.forum_id, :topic_id => @topic.id, :user_id => session[:user_id], :site => video[0], :resource => video[1])
       end
+      @topic.posts_count = new_posts_count
+      @topic.save
       redirect url(:topic, :id => @topic.id)
     else
       render :new

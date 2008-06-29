@@ -7,6 +7,7 @@ class Post
   property :text, DM::Text, :nullable => false, :length => 10000
   property :user_id, Integer, :nullable => false
   property :topic_id, Integer, :nullable => false
+  property :post_number, Integer, :nullable => false
   property :parent_id, Integer
   property :created_at, DateTime
   property :updated_at, DateTime

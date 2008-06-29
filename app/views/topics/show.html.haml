@@ -20,7 +20,7 @@
                   = post.user.address_text
             %td.text
               .meta
-                = link_to '#1', '#'
+                = link_to '#' + post.post_number.to_s, '#'
                 %span.chrono
                   = post.created_at.strftime('%b %d, %Y %I:%M%P')
               = post.text.render_textile
@@ -32,7 +32,7 @@
   
     = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
 
-  - unless @videos.nil?
+  - unless @videos.empty?
     #topic_media
       %h2 Topic media
       %table
@@ -47,6 +47,6 @@
               %td
                 = link_to video.title, 'http://pl.youtube.com/watch?v=' + video.resource
               %td.narrow
-                = link_to 'Go: #' + video.post.id.to_s, '#'
+                = link_to 'Go: #' + video.post.post_number.to_s, '#'
               %td.narrow
                 = link_to 'raindrops', profile_url(video.post.user)
