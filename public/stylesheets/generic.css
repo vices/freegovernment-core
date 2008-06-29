@@ -490,8 +490,17 @@ h2.index_header {
       margin-bottom: 10px; }
 
 .pagination {
+  margin-top: 10px;
   text-align: center;
   line-height: 200%; }
+  .pagination a {
+    border: 1px solid #f0f0f0;
+    background: #fafafa;
+    padding: 3px 7px;
+    margin: 0 3px; }
+  .pagination a:hover {
+    text-decoration: none;
+    background: #f0f0f0; }
 
 #people_index .person {
   display: block;

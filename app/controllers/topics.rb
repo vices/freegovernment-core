@@ -10,7 +10,7 @@ class Topics < Application
 
   # Shows topic / Lists paginated posts
   def show
-    @posts_page = @topic.posts.paginate(:page => params[:page], :per_page => 2)
+    @posts_page = @topic.posts.paginate(:page => params[:page], :per_page => 10)
     @videos = VideoAttachment.all(:topic_id => @topic.id)
     render
   end
