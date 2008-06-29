@@ -16,7 +16,10 @@ class Posts < Application
 
   def create
     if @new_post.save
-      redirect url(:topics, :id => @topic.id)
+      VideoAttachment.parse_for_videos(@new_post.text).each do |video|
+        VideoAttachment.create(:post_id => @new_post.id, :type => video[0], :resource => video[1])
+      end
+      redirect url(:topic, :id => @topic.id)
     else
       render :new
     end

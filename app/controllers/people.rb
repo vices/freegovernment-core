@@ -2,9 +2,10 @@ class People < Application
   before Proc.new{ @nav_active = :people }
   before :find_person, :only => %w{ show edit update }
   before :check_edit_permissions, :only => %w{ edit update }
-  before :parse_order, :only => %w{ index }
+ 
   before :parse_search, :only => %w{ index }
-
+  before :parse_order, :only => %w{ index }
+  
   params_accessible [
     {:person => [:full_name, :date_of_birth, :descripton, :interests, :political_beliefs]},
     {:user => [:email, :password, :password_confirmation, :username]},
@@ -15,6 +16,9 @@ class People < Application
 
   def index
     pp @search_conditions
+    pp @order_conditions
+    pp @sort_by
+    pp @direction
     conditions = @search_conditions
     if conditions.empty?
       @people_page = Person.paginate({:page => params[:page], :per_page => 6}.merge(@order_conditions))
@@ -77,6 +81,7 @@ class People < Application
   private
 
   def parse_order
+    p 'in parse order'
     case params['sort_by']
       when 'name'
         @sort_by = :full_name

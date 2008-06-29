@@ -4,9 +4,9 @@ class Topics < Application
   before :find_topic, :only => %w{ show }
   before :find_forum, :only => %w{ new create }
   before :check_create_permissions, :only => 'create'
-  params_accessible [
-    {:topic => [:name]}  
-  ]
+  #params_accessible [
+  #  {:topic => [:name, :forum_id], :post => [:text]}  
+  #]
 
   # Shows topic / Lists paginated posts
   def show
@@ -21,6 +21,7 @@ class Topics < Application
   end
 
   def create
+    p 'here'
     if @new_topic.save
       @new_post.topic_id = @new_topic.id
       if @new_post.save
@@ -51,7 +52,10 @@ class Topics < Application
     else
       forum_id = params[:forum_id]
     end
+    p 'hi'
+    p forum_id
     if(@forum = Forum.first(:id => forum_id)).nil?
+    pp "hey"
       raise Merb::ControllerExceptions::NotFound
     end
   end

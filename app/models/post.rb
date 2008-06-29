@@ -16,4 +16,7 @@ class Post
   belongs_to :parent, :class_name => "Post"
   belongs_to :topic
   belongs_to :user
+  
+  has n, :video_attachments
+  
 end

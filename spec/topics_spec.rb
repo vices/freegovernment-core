@@ -163,6 +163,31 @@ include TopicsSpecHelper
 =end
 
 end
+
 describe Topics, "#index" do
 
+end
+
+p 'here'
+
+describe Topics, "#create", "testing raise err for find forum" do
+  it "should raise err 404 when forum.nil" do
+=begin
+    class Topics < Application
+      def create
+        # overloaded so you don't need to test this particular
+        # part of the controller, you want to isolate
+        # the before filter
+        'completed'
+      end
+    end
+=end
+    @forum = mock(:forum)
+    @forum.stub!(:id).and_return(1)
+      
+    Forum.should_receive(:first).with(:id => 1).and_return(nil)
+    params = {:topic => {:forum_id => 1}}
+    
+    lambda { dispatch_to(Topics, :create, params) }.should raise_error(::Merb::ControllerExceptions::NotFound)
+  end
 end

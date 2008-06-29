@@ -1,6 +1,22 @@
 class Users < Application
   before :find_user
   before :check_edit_permissions
+  params_accessible [
+    :avatar, 
+    {:user => [:username, :email]}  
+  ]
+
+=begin
+  params_accessible [
+    :sort_by,
+    :direction,
+    :page,
+    :recaptcha_challenge_field,
+    :recaptcha_response_field,
+    {:group => [:name, :description, :mission]},
+    {:user => [:email, :password, :password_confirmation, :username]}
+  ]
+=end
 
   def edit
     render
@@ -29,7 +45,7 @@ class Users < Application
   end
 
   def check_edit_permissions
-    unless @user.id = session[:user_id]
+    unless @user.id == session[:user_id]
       raise Merb::ControllerExceptions::NotAcceptable
     end
   end
