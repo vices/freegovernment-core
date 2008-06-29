@@ -22,7 +22,7 @@ class User
   has 0..1, :person
   has 0..1, :group
   
-  has n, :advising_relationships
+  has n, :adviser_relationships
   has n, :contact_relationships
   has n, :group_relationships
 
