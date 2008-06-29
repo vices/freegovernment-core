@@ -857,9 +857,24 @@ table tr.alt1 td {
   #topic table tbody .author {
     border-right: 1px solid #fff;
     text-align: center; }
+    #topic table tbody .author .image a img {
+      border: 1px solid #ddd; }
+    #topic table tbody .author .username {
+      margin-top: 10px; }
+    #topic table tbody .author .address {
+      margin-top: 5px;
+      color: #888; }
   #topic table .text {
     width: 650px;
     vertical-align: top; }
+    #topic table .text .meta {
+      margin-bottom: 10px;
+      color: #aaa;
+      position: relative; }
+      #topic table .text .meta a {
+        color: #aaa;
+        position: absolute;
+        right: 0px; }
 #topic .button_black {
   float: right;
   padding: 8px 10px;

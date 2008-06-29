@@ -11,12 +11,18 @@
         - @posts_page.each do |post|
           %tr{ :class => "alt#{i}"}
             %td.author
-              .image= link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
-              .username= link_to post.user.username, profile_url(post.user)
+              .image
+                = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
+              .username
+                = link_to post.user.username, profile_url(post.user)
+              - unless post.user.address_text.nil?
+                .address
+                  = post.user.address_text
             %td.text
-              - unless post.video_attachments.nil?
-                - post.video_attachments.each do |video|
-                  = video.to_embed
-              = h post.text
+              .meta
+                = link_to '#1', '#'
+                %span.chrono
+                  = post.created_at.strftime('%b %d, %Y %I:%M%P')
+              = post.text.render_textile
           - i == 0 ? i = 1 : i = 0
-  = link_to "reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
+  = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
