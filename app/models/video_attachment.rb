@@ -15,6 +15,9 @@ class VideoAttachment
   
   property :id, Integer, :serial => true
   property :post_id, Integer, :nullable => false
+  property :forum_id, Integer, :nullable => false
+  property :topic_id, Integer, :nullable => false
+  property :user_id, Integer, :nullable => false
   property :type, String, :nullable => false
   property :resource, String, :length => 300, :nullable => false
   
