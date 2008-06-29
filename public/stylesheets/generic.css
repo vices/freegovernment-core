@@ -961,6 +961,10 @@ table tr.alt1 td {
     visibility: hidden; }
   * html #topic .bottom {
     height: 1px; }
+  #topic .bottom .navlink {
+    position: absolute;
+    left: 0;
+    top: 0; }
   #topic .bottom .button_black {
     position: absolute;
     right: 0;
