@@ -15,7 +15,7 @@ class Forums < Application
   
   # Shows forum / Lists paginated topics of forum
   def show
-    @topics_page = Topic.all(:forum_id => @forum.id)
+    @topics_page = Topic.paginate(:page => params[:page], :per_page => 10, :conditions => {:forum_id => @forum.id})
     render
   end
   

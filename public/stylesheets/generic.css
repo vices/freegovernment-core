@@ -830,7 +830,7 @@ table tr.alt1 td {
   margin-bottom: 10px; }
 #forum table {
   width: 760px;
-  margin-bottom: 20px; }
+  margin-bottom: 10px; }
   #forum table td {
     padding: 10px 15px; }
   #forum table thead td {
@@ -845,6 +845,25 @@ table tr.alt1 td {
   float: right;
   padding: 8px 10px;
   border: 1px solid #DADADA; }
+#forum .bottom {
+  display: block;
+  position: relative; }
+  #forum .bottom:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #forum .bottom {
+    height: 1px; }
+  #forum .bottom .button_black {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px 10px;
+    border: 1px solid #DADADA; }
+  #forum .bottom .pagination {
+    margin-top: 0; }
 
 #topic h2 {
   font-size: 20px;
@@ -885,14 +904,8 @@ table tr.alt1 td {
         position: absolute;
         right: 0px; }
 #topic .bottom {
-  position: relative;
-  display: block; }
-  #topic .bottom .button_black {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 8px 10px;
-    border: 1px solid #DADADA; }
+  display: block;
+  position: relative; }
   #topic .bottom:after {
     display: block;
     content: ".";
@@ -901,6 +914,14 @@ table tr.alt1 td {
     visibility: hidden; }
   * html #topic .bottom {
     height: 1px; }
+  #topic .bottom .button_black {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px 10px;
+    border: 1px solid #DADADA; }
+  #topic .bottom .pagination {
+    margin-top: 0; }
 
 #topic_media {
   margin-top: 20px; }

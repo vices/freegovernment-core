@@ -2,7 +2,8 @@ class Topic
   include DataMapper::Resource
   include DataMapper::Validate
   include DataMapper::Timestamp
-  
+  include MerbPaginate::Finders::Datamapper
+
   property :id, Integer, :serial => true
   property :name, String, :nullable => false, :length => 140
   property :forum_id, Integer, :nullable => false

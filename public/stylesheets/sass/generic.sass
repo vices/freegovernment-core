@@ -760,7 +760,7 @@ table
     :margin-bottom 10px
   table
     :width 760px
-    :margin-bottom 20px
+    :margin-bottom 10px
     td
       :padding 10px 15px
     thead
@@ -776,7 +776,17 @@ table
     :float right
     :padding 8px 10px
     :border 1px solid #DADADA
-
+  .bottom
+    +clearfix
+    :position relative
+    .button_black
+      :position absolute
+      :right 0
+      :top 0
+      :padding 8px 10px
+      :border 1px solid #DADADA
+    .pagination
+      :margin-top 0
 #topic
   h2
     :font-size 20px
@@ -818,6 +828,7 @@ table
           :position absolute
           :right 0px
   .bottom
+    +clearfix
     :position relative
     .button_black
       :position absolute
@@ -826,8 +837,7 @@ table
       :padding 8px 10px
       :border 1px solid #DADADA
     .pagination
-
-    +clearfix
+      :margin-top 0
 
 #topic_media
   :margin-top 20px
