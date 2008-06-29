@@ -787,8 +787,10 @@ h2.index_header {
 #edit_user .current_image {
   text-align: center; }
 
+table td {
+  border-bottom: 1px solid #ddd; }
 table tr.alt0 td {
-  background: #e9e9e9; }
+  background: #fafafa; }
 table tr.alt1 td {
   background: #f4f4f4; }
 
@@ -810,7 +812,7 @@ table tr.alt1 td {
       padding: 10px 15px; }
     #forums .section table thead td {
       font-weight: bold;
-      background: #8b8b8b;
+      background: #555;
       color: #fff; }
 
 #forum h2 {
@@ -824,7 +826,7 @@ table tr.alt1 td {
     padding: 10px 15px; }
   #forum table thead td {
     font-weight: bold;
-    background-color: #8b8b8b;
+    background: #555;
     color: #fff; }
   #forum table .posts_count, #forum table .author {
     width: 70px;
@@ -846,7 +848,7 @@ table tr.alt1 td {
     padding: 10px 15px; }
   #topic table thead td {
     font-weight: bold;
-    background-color: #8b8b8b;
+    background: #555;
     color: #fff; }
   #topic table thead .author {
     border-right: 1px solid #fff; }
