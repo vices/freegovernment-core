@@ -880,9 +880,11 @@ table tr.alt1 td {
   padding: 8px 10px;
   border: 1px solid #DADADA; }
 
-#topic_media .narrow {
-  width: 50px;
-  text-align: center; }
+#topic_media {
+  margin-top: 50px; }
+  #topic_media table .narrow {
+    width: 50px;
+    text-align: center; }
 
 #new_topic textarea {
   height: 250px; }

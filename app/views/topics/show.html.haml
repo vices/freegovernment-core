@@ -25,27 +25,32 @@
                   = post.created_at.strftime('%b %d, %Y %I:%M%P')
               = post.text.render_textile
           - i == 0 ? i = 1 : i = 0
-  %h2 Topic media
-  %table#topic_media
-    %thead
-      %tr
-        %td Resource
-        %td.narrow Post
-        %td.narrow User
-    %tbody
-      %tr
-        %td
-          = link_to 'US Government Immorality Will Lead to Bankruptcy', 'http://pl.youtube.com/watch?v=OS2fI2p9iVs'
-        %td.narrow
-          = link_to 'Go: #36', '#'
-        %td.narrow
-          = link_to 'raindrops', '#'
-      %tr
-        %td
-          = link_to 'America\'s Financial Future (Part 1)', 'http://pl.youtube.com/watch?v=KIgrxpp97OQ'
-        %td.narrow
-          = link_to 'Go: #42', '#'
-        %td.narrow
-          = link_to 'sophia', '#'
-
+  .pagination
+    = merb_paginate @posts_page
+    = page_entries_info @posts_page
+    
   = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
+
+  #topic_media
+    %h2 Topic media
+    %table
+      %thead
+        %tr
+          %td Resource
+          %td.narrow Post
+          %td.narrow User
+      %tbody
+        %tr
+          %td
+            = link_to 'US Government Immorality Will Lead to Bankruptcy', 'http://pl.youtube.com/watch?v=OS2fI2p9iVs'
+          %td.narrow
+            = link_to 'Go: #36', '#'
+          %td.narrow
+            = link_to 'raindrops', '#'
+        %tr
+          %td
+            = link_to 'America\'s Financial Future (Part 1)', 'http://pl.youtube.com/watch?v=KIgrxpp97OQ'
+          %td.narrow
+            = link_to 'Go: #42', '#'
+          %td.narrow
+            = link_to 'sophia', '#'
