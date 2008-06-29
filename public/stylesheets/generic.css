@@ -116,6 +116,10 @@ a:hover {
     margin-top: 10px;
     line-height: 1.3em;
     padding: 8px 16px; }
+  #home #intro #group_signup {
+    background: #e3ebd6; }
+    #home #intro #group_signup a {
+      color: #525252; }
   #home #intro .right {
     width: 500px;
     float: right; }
