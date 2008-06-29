@@ -41,7 +41,7 @@
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
-          = link_to "Show All »", url(:group_index), :class => 'button_black'
+          = link_to "Show All »", url(:group_index), :class => 'navlink'
 
     .section
       %h3 Poll-Related Forums
@@ -59,7 +59,7 @@
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
-          = link_to "Show All »", url(:poll_index), :class => 'button_black'
+          = link_to "Show All »", url(:poll_index), :class => 'navlink'
     .section
       %h3 Legislation Forums
       - unless @bill_forums.nil?

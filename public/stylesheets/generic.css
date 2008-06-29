@@ -803,6 +803,14 @@ table tr.alt0 td {
 table tr.alt1 td {
   background: #f4f4f4; }
 
+.bottom .navlink {
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+  padding: 5px 10px; }
+.bottom .navlink:hover {
+  text-decoration: none;
+  background: #f0f0f0; }
+
 #forums .section {
   margin-bottom: 20px; }
   #forums .section h3 {
@@ -834,9 +842,8 @@ table tr.alt1 td {
       visibility: hidden; }
     * html #forums .section .bottom {
       height: 1px; }
-    #forums .section .bottom .button_black {
-      float: right;
-      padding: 8px; }
+    #forums .section .bottom .navlink {
+      float: right; }
 
 #forums.specified .section table {
   margin-bottom: 10px; }
@@ -857,12 +864,10 @@ table tr.alt1 td {
     visibility: hidden; }
   * html #forums.specified .section .bottom {
     height: 1px; }
-  #forums.specified .section .bottom .button_black {
+  #forums.specified .section .bottom .navlink {
     position: absolute;
     left: 0;
-    top: 0;
-    padding: 8px 10px;
-    border: 1px solid #DADADA; }
+    top: 0; }
   #forums.specified .section .bottom .pagination {
     margin-top: 0; }
 
