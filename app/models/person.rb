@@ -10,6 +10,8 @@ class Person
   property :user_id, Integer
   property :description, DM::Text
   property :political_beliefs, DM::Text
+  property :political_affiliation, String
+  property :political_view, String
   property :interests, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
