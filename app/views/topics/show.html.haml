@@ -25,11 +25,12 @@
                   = post.created_at.strftime('%b %d, %Y %I:%M%P')
               = post.text.render_textile
           - i == 0 ? i = 1 : i = 0
-  .pagination
-    = merb_paginate @posts_page
-    = page_entries_info @posts_page
-    
-  = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
+  .bottom
+    .pagination
+      = merb_paginate @posts_page
+      = page_entries_info @posts_page
+  
+    = link_to "Reply", url(:new_post, :topic_id => @topic.id), :class => 'button_black'
 
   #topic_media
     %h2 Topic media

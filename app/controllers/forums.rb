@@ -8,8 +8,8 @@ class Forums < Application
   # Lists forums (paginated?)
   def index
     @general_forums = Forum.all(:poll_id => nil, :group_id => nil)
-    @group_forums = Forum.paginate(:page => params[:page], :per_page => 6, :conditions => {:group_id.not => nil})
-    @poll_forums = Forum.paginate(:page => params[:page], :per_page => 6, :conditions => {:poll_id.not => nil})
+    @group_forums = Forum.paginate(:page => params[:group_page], :per_page => 6, :conditions => {:group_id.not => nil})
+    @poll_forums = Forum.paginate(:page => params[:poll_page], :per_page => 6, :conditions => {:poll_id.not => nil})
     render
   end
   

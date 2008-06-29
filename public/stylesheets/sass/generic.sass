@@ -775,7 +775,7 @@ table
     :margin-bottom 10px
   table
     :width 760px
-    :margin-bottom 20px
+    :margin-bottom 10px
     td
       :padding 10px 15px
     thead
@@ -808,13 +808,20 @@ table
           :color #aaa
           :position absolute
           :right 0px
-  .button_black
-    :float right
-    :padding 8px 10px
-    :border 1px solid #DADADA
+  .bottom
+    :position relative
+    .button_black
+      :position absolute
+      :right 0
+      :top 0
+      :padding 8px 10px
+      :border 1px solid #DADADA
+    .pagination
+
+    +clearfix
 
 #topic_media
-  :margin-top 50px
+  :margin-top 20px
   table
     .narrow
       :width 50px
