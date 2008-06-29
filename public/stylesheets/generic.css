@@ -992,3 +992,10 @@ table tr.alt1 td {
       font-size: 14px; }
   #footer .topic .text {
     margin-top: 10px; }
+  #footer .user a {
+    font-size: 14px; }
+  #footer .user .location, #footer .user .other {
+    margin-top: 7px;
+    color: #bbb; }
+  #footer .user .location:hover, #footer .user .other:hover {
+    color: #ddd; }
