@@ -300,6 +300,58 @@ button.active {
   .voting_options form div {
     margin-top: 10px; }
 
+#bills_index .bill {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0px;
+  margin-bottom: 10px; }
+  #bills_index .bill:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bills_index .bill {
+    height: 1px; }
+  #bills_index .bill .img {
+    float: left;
+    width: 60px; }
+    #bills_index .bill .img img {
+      border: 1px solid #ddd; }
+  #bills_index .bill .main {
+    width: 470px;
+    float: right; }
+    #bills_index .bill .main .number {
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #666; }
+      #bills_index .bill .main .number span {
+        color: #20adbb;
+        margin-left: 20px; }
+    #bills_index .bill .main h3 {
+      padding-bottom: 4px;
+      background: url('/images/patterns/dots.gif') repeat-x bottom; }
+      #bills_index .bill .main h3 a {
+        color: #525252;
+        font-size: 16px;
+        margin-bottom: 5px; }
+    #bills_index .bill .main .description {
+      margin: 10px 0 20px;
+      height: 40px;
+      line-height: 18px;
+      overflow: hidden; }
+      #bills_index .bill .main .description h4 {
+        font-weight: bold; }
+    #bills_index .bill .main .tags {
+      font-style: italic;
+      color: #8b8b8b; }
+    #bills_index .bill .main .actions {
+      text-align: right;
+      margin-top: 10px; }
+      #bills_index .bill .main .actions a {
+        font-weight: bold; }
+
 #polls_index .poll {
   display: block;
   border-bottom: 1px solid #ccc;
