@@ -12,8 +12,8 @@ class Bill
   property :poll_id, Integer, :nullable => false
 
   def text=(value)
-    property_set(:text, value)
-    property_set(:sectioned_text, section_text.to_yaml)
+    attribute_set(:text, value)
+    attribute_set(:sectioned_text, section_text.to_yaml)
   end
 
   def sectioned_text
@@ -27,7 +27,8 @@ class Bill
   private
 
   def section_text
-    text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\. (?:[A-Z ',;\-0-9\n]+)\.\n)/)  
+    #text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\. (?:[A-Z ',;\-0-9\n]+)\.\n)/) 
+    text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\.(?:[A-Z ',;\-0-9\.]+|)\n)/)  
     sections = []
     section_num = -1
     text_split.each do |part|
