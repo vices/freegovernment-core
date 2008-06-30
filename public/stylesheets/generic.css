@@ -399,11 +399,19 @@ button.active {
       right: 10px;
       bottom: 10px; }
 #bill #content {
-  margin-top: 20px; }
+  margin-top: 20px;
+  display: block; }
+  #bill #content:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bill #content {
+    height: 1px; }
   #bill #content .left {
     width: 180px;
-    float: left;
-    border-right: 1px solid; }
+    float: left; }
     #bill #content .left div {
       background: url('/images/bills/list.png') no-repeat;
       width: 160px; }
@@ -423,6 +431,37 @@ button.active {
         #bill #content .left div ul li {
           margin-top: 8px;
           padding-right: 5px; }
+  #bill #content .right {
+    float: right;
+    width: 580px; }
+    #bill #content .right #summary, #bill #content .right #sections {
+      padding: 10px;
+      line-height: 16px; }
+      #bill #content .right #summary h3,       #bill #content .right #sections h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px; }
+      #bill #content .right #summary p,       #bill #content .right #sections p {
+        margin: 10px; }
+    #bill #content .right #summary {
+      border-left: 5px solid #525252;
+      background: #ebf3f7;
+      margin-bottom: 20px; }
+    #bill #content .right #sections {
+      border-left: 5px solid #ddd;
+      background: #fafafa; }
+      #bill #content .right #sections .full_text {
+        margin: 10px 0;
+        text-align: right; }
+        #bill #content .right #sections .full_text a {
+          font-size: 14px;
+          font-weight: bold; }
+      #bill #content .right #sections .entire_bill {
+        margin-top: 30px;
+        text-align: center; }
+        #bill #content .right #sections .entire_bill a {
+          font-size: 18px;
+          font-weight: bold; }
 
 #polls_index .poll {
   display: block;
