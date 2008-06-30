@@ -290,7 +290,12 @@ button.active {
   cursor: pointer; }
 
 .voting_options {
-  text-align: center; }
+  text-align: center;
+  position: relative; }
+  .voting_options .title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px; }
   .voting_options .current_vote {
     margin-left: -999em;
     height: 0px; }
@@ -299,6 +304,8 @@ button.active {
     text-transform: uppercase; }
   .voting_options form div {
     margin-top: 10px; }
+  .voting_options .bottom {
+    text-align: right; }
 
 #bills_index .bill {
   display: block;
@@ -319,7 +326,7 @@ button.active {
     #bills_index .bill .img img {
       border: 1px solid #ddd; }
   #bills_index .bill .main {
-    width: 470px;
+    width: 480px;
     float: right; }
     #bills_index .bill .main .number {
       margin-bottom: 5px;
@@ -350,7 +357,47 @@ button.active {
       text-align: right;
       margin-top: 10px; }
       #bills_index .bill .main .actions a {
-        font-weight: bold; }
+        font-weight: bold;
+        margin: 0 10px; }
+
+#bill #main {
+  display: block; }
+  #bill #main:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bill #main {
+    height: 1px; }
+  #bill #main #title {
+    width: 390px;
+    float: left;
+    padding-left: 80px;
+    background: url('/images/bills/congressbot.png') no-repeat; }
+    #bill #main #title .number {
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #666; }
+      #bill #main #title .number span {
+        color: #20adbb;
+        margin-left: 20px; }
+    #bill #main #title h2 {
+      font-size: 22px;
+      font-weight: bold; }
+  #bill #main .voting_options {
+    position: relative;
+    width: 270px;
+    float: right;
+    padding: 18px 0 36px;
+    border: 1px solid #ddd;
+    background: #fafafa; }
+    #bill #main .voting_options .bottom {
+      position: absolute;
+      right: 10px;
+      bottom: 10px; }
 
 #polls_index .poll {
   display: block;

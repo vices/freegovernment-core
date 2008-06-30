@@ -293,6 +293,11 @@ button.active
 
 .voting_options
   :text-align center
+  :position relative
+  .title
+    :font-size 14px
+    :font-weight bold
+    :margin-bottom 15px
   .current_vote
     :margin-left -999em
     :height 0px
@@ -302,7 +307,8 @@ button.active
       :text-transform uppercase
     div
       :margin-top 10px
-      
+  .bottom
+    :text-align right
 
 #bills_index
   .bill
@@ -316,7 +322,7 @@ button.active
       img
         :border 1px solid #ddd
     .main
-      :width 470px
+      :width 480px
       :float right
       .number
         :margin-bottom 5px
@@ -348,6 +354,39 @@ button.active
         :margin-top 10px
         a
           :font-weight bold
+          :margin 0 10px
+
+#bill
+  #main
+    +clearfix
+    #title
+      :width 390px
+      :float left
+      :padding-left 80px
+      :background url('/images/bills/congressbot.png') no-repeat
+      .number
+        :font-size 16px
+        :margin-bottom 5px
+        :font-weight bold
+        :text-transform uppercase
+        :color #666
+        span
+          :color #20adbb
+          :margin-left 20px
+      h2
+        :font-size 22px
+        :font-weight bold
+    .voting_options
+      :position relative
+      :width 270px
+      :float right
+      :padding 18px 0 36px
+      :border 1px solid #ddd
+      :background #fafafa
+      .bottom
+        :position absolute
+        :right 10px
+        :bottom 10px
 
 #polls_index
   .poll
