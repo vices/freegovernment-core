@@ -433,14 +433,15 @@ button.active {
           padding-right: 5px; }
   #bill #content .right {
     float: right;
-    width: 580px; }
+    width: 540px;
+    margin-right: 40px; }
     #bill #content .right #summary, #bill #content .right #sections {
-      padding: 10px;
+      padding: 1px 10px;
       line-height: 16px; }
       #bill #content .right #summary h3,       #bill #content .right #sections h3 {
         font-size: 18px;
         font-weight: bold;
-        margin-bottom: 10px; }
+        margin: 10px 0; }
       #bill #content .right #summary p,       #bill #content .right #sections p {
         margin: 10px; }
     #bill #content .right #summary {
@@ -450,14 +451,38 @@ button.active {
     #bill #content .right #sections {
       border-left: 5px solid #ddd;
       background: #fafafa; }
-      #bill #content .right #sections .full_text {
-        margin: 10px 0;
-        text-align: right; }
-        #bill #content .right #sections .full_text a {
-          font-size: 14px;
-          font-weight: bold; }
+      #bill #content .right #sections .section {
+        border-bottom: 1px solid #ddd;
+        position: relative; }
+        #bill #content .right #sections .section .comments_link {
+          position: absolute;
+          top: 0;
+          right: -50px;
+          width: 26px;
+          height: 22px; }
+          #bill #content .right #sections .section .comments_link a {
+            display: block;
+            width: 39px;
+            height: 34px;
+            background: url('/images/bills/bubble.png') no-repeat;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px; }
+            #bill #content .right #sections .section .comments_link a span {
+              display: none; }
+          #bill #content .right #sections .section .comments_link a:hover {
+            text-decoration: none;
+            background-position: bottom; }
+        #bill #content .right #sections .section .full_text {
+          margin: 10px 0;
+          text-align: right; }
+          #bill #content .right #sections .section .full_text a {
+            font-size: 14px;
+            font-weight: bold; }
       #bill #content .right #sections .entire_bill {
-        margin-top: 30px;
+        margin: 20px 0 10px;
         text-align: center; }
         #bill #content .right #sections .entire_bill a {
           font-size: 18px;
