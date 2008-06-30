@@ -9,3 +9,17 @@ body { text-align: center; }
 #navigation li { text-align: center; }
 
 .block .avatars a { margin: 6px !important; }
+
+button { width:auto; overflow:visible; }
+
+#bill .left .title {
+  width: 150px !important;
+}
+#bill .right {
+  width: 580px !important;
+}
+#bill .right .section h3 { margin-left: 5px !important; }
+#bill .right .section .comments_link {
+  right: -10px !important;
+}
+#bill #title { width: 490px !important; }

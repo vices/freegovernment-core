@@ -475,7 +475,7 @@ button.active {
               display: none; }
           #bill #content .right #sections .section .comments_link a:hover {
             text-decoration: none;
-            background-position: bottom; }
+            background-position: 0 -34px; }
         #bill #content .right #sections .section .full_text {
           margin: 10px 0;
           text-align: right; }
