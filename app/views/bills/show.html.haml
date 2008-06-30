@@ -6,3 +6,14 @@
         %span FG BILL #1247
       %h2 Condemning the further use of Lorem ipsum as filler text on mockups.
     = partial 'polls/voting_options', :title => 'Do you support this bill?', :bottom => link_to('Show bill poll page »', '#'), :poll => Poll.first, :vote => logged_in? ? Poll.first.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
+  
+  #content
+    .left
+      .topics
+        .title Discussion topics
+        %ul
+          %li lorem ipsum kinda rocks guys
+          %li lorem ipsum isn't supreme for mocks
+          %li what's up holla!
+          %li jabberwock is so much better
+    .right
