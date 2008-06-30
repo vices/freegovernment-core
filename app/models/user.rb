@@ -18,6 +18,8 @@ class User
   property :created_at, DateTime
   property :updated_at, DateTime
   property :address_text, DM::Text
+  property :private_votes, Boolean, :default => 0
+  property :private_profile, Boolean, :default => 0
 
   has 0..1, :person
   has 0..1, :group

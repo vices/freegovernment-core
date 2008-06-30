@@ -1,5 +1,5 @@
 class ContactRelationships < Application
-  before :logged_in
+  before :login_required
   before :check_user_is_person
   before :find_contact_relationship, :only => %w{ destroy }
 

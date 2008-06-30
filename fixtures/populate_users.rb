@@ -271,6 +271,17 @@ users = [
     :name => 'Edumacators of Raleigh',
     :description => random_text(100)
   }
+},{
+  :username => 'mrprivate',
+  :email => 'myprivate@gmail.com',
+  :password => 'password',
+  :password_confirmation => 'password',
+  :private_profile => true,
+  :private_votes => true,
+  :person => {
+    :full_name => 'Private Mr Private',
+    :date_of_birth => '1950-01-01'
+  }
 }
 ]
 

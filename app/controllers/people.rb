@@ -1,11 +1,9 @@
 class People < Application
   before Proc.new{ @nav_active = :people }
   before :find_person, :only => %w{ show edit update }
+  before :check_show_permissions, :only => %w{ show }
   before :check_edit_permissions, :only => %w{ edit update }
- 
-  before :parse_search, :only => %w{ index }
-  before :parse_order, :only => %w{ index }
-  
+
   params_accessible [
     {:person => [:full_name, :date_of_birth, :descripton, :interests, :political_beliefs]},
     {:user => [:email, :password, :password_confirmation, :username]},
@@ -15,16 +13,7 @@ class People < Application
   ]
 
   def index
-    pp @search_conditions
-    pp @order_conditions
-    pp @sort_by
-    pp @direction
-    conditions = @search_conditions
-    if conditions.empty?
-      @people_page = Person.paginate({:page => params[:page], :per_page => 6}.merge(@order_conditions))
-    else
-      @people_page = Person.paginate({:page => params[:page], :per_page => 6, :conditions => conditions}.merge(@order_conditions))
-    end
+    @people_page = Person.paginate({:page => params[:page], :per_page => 6}.merge(search_conditions).merge(order_conditions))
     render
   end
   
@@ -80,37 +69,36 @@ class People < Application
 
   private
 
-  def parse_order
-    p 'in parse order'
-    case params['sort_by']
-      when 'name'
-        @sort_by = :full_name
-      when 'interests'
-        @sort_by = :interests
-      when 'political_beliefs'
-        @sort_by = :political_belief
-      else
-        @sort_by = :id
+def order_conditions
+    params['sort_by'] = '' if params['sort_by'].nil?
+    sort_by = case params['sort_by'].downcase
+    when 'name'
+      :full_name
+    when 'interests'
+      :interests
+    when 'political_belief'
+      :political_belief
+    else
+      :id
     end
-    case params['direction']
-      when 'desc'
-        @direction = 'desc'
-        @order = @sort_by.desc
-      else
-        @direction = 'asc'
-        @order = @sort_by.asc
-    end
-    @order_conditions = {:order => [@order]}
+
+    params['direction'] = '' if params['direction'].nil?    
+    order = params['direction'].downcase == 'desc' ? sort_by.desc : sort_by.asc
+    
+    {:order => [order]}
   end
 
-  def parse_search
-    @search_conditions = {}
-    unless params[:search].nil?
-      params[:search].each do |search_column, search_value|
-        @search_conditions.merge!(search_column.to_sym.like => "%#{search_value}%")
+  def search_conditions
+    out = {}
+    unless params[:search].nil? || params[:search].empty?
+      params[:search].each_pair do |col, val|
+        out[col.to_sym.like] = "%#{val}%"
       end
     end
-    @search_conditions
+    if !out.empty?
+      out = {:conditions => out}
+    end
+    out
   end
 
   
@@ -119,6 +107,41 @@ class People < Application
       @person = @user.person
     else
       raise Merb::ControllerExceptions::NotFound
+    end
+  end
+  
+  def check_show_permissions
+    unless !@user.private_profile || @user.id == session[:user_id]
+      if(@relationship = is_associate?).nil?
+        if !logged_in?
+          throw :halt, Proc.new{|c| c.redirect url(:login)}
+        else
+          if !@current_user.group_id.nil?
+            throw :halt, Proc.new { |c|
+              c.redirect url(:new_group_relationships)
+            }
+          else
+            throw :halt, Proc.new { |c|
+              c.redirect url(:new_contact_relationship)
+            }
+          end
+        end
+      end
+    else
+      @relationship = is_associate?
+    end
+  end
+  
+  def is_associate?
+    if logged_in?
+      if !@current_user.person_id.nil?
+        r = ContactRelationship.first(:person_id => @current_user.person_id, :contact_id => @person.id, :is_accepted => true)
+      else
+        r = GroupRelationship.first(:group_id => @current_user.group_id, :person_id => @person.id, :is_accepted => true)
+      end
+      r
+    else
+      nil
     end
   end
   

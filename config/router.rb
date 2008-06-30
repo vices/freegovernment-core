@@ -44,9 +44,9 @@ Merb::Router.prepare do |r|
   r.resources :topics
   r.resources :posts
 
-  r.resource :adviser_relationships
-  r.resource :contact_relationships
-  r.resource :group_relationships
+  r.resources :adviser_relationships
+  r.resources :contact_relationships
+  r.resources :group_relationships
 
   r.to(:controller => 'pages') do |p|
     p.match('/terms').to(:action => 'terms').name(:terms)
