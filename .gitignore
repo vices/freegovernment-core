@@ -3,3 +3,5 @@ database.yml
 coverage/*
 deploy.rb
 public/avatars/*
+tmp/*
+public/cache/*

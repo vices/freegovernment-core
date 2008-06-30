@@ -16,15 +16,6 @@
                 %span About me:
                 = person.description
           .actions
-            - if logged_in? and @current_user.id == person.user.id
-              = link_to "edit my profile", url(:person, :id => person.user.username), :class => 'button_link'
-            - else
-              - form_for Vote.new, :class => 'button' do
-                = submit_button("add to contacts")
-              - if person.user.is_adviser
-                - form_tag :action => url(:adviser_relationships) do
-                  = hidden_field :name => 'adviser', :value => person.user.username
-                  = submit_button("add as adviser")
       .pagination
         = merb_paginate(@people_page)
         = page_entries_info(@people_page)

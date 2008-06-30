@@ -84,6 +84,7 @@ dependency 'merb_helpers'
 dependency 'merb_paginate'
 dependency 'merb_param_protection'
 dependency 'merb_has_flash'
+dependency 'merb-cache'
 dependency 'dm-timestamps'
 dependency 'dm-validations'
 dependency 'dm-aggregates'
@@ -181,3 +182,13 @@ end
 # And the result is:
 # irb> "wife".plural
 # => wives
+
+Merb::Plugins.config[:merb_cache] = {
+  :cache_html_directory => Merb.dir_for(:public) / "cache",
+  
+  #:disable => "development",
+  #:disable => true,
+  
+  :store => "file",
+  :cache_directory => Merb.root_path("tmp/cache")
+}

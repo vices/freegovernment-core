@@ -26,11 +26,16 @@ class Application < Merb::Controller
   end
 
   def store_location
-    session[:return_to] = request.uri
+    if request.method == :post
+      session[:return_to] = request.referer
+    else
+      session[:return_to] = request.uri
+    end
+    pp session
   end
 
   def redirect_back_or_default(default)
-    loc = session[:redirect_to] || default
+    loc = session[:return_to] || default
     session[:return_to] = nil
     redirect loc
   end
@@ -46,9 +51,11 @@ class Application < Merb::Controller
   private
 
   def set_updates_data
-    @updates_newest_users = User.all(:limit => 5, :order => [:id.desc])
-    @updates_newest_topics = Post.all(:limit => 3, :order => [:id.desc])
-    @updates_newest_polls = Poll.all(:limit => 3, :order => [:id.desc])
+    unless cached?("application_footer")
+      @updates_newest_users = User.all(:limit => 5, :order => [:id.desc])
+      @updates_newest_topics = Post.all(:limit => 3, :order => [:id.desc])
+      @updates_newest_polls = Poll.all(:limit => 3, :order => [:id.desc])
+    end
   end
 
 end

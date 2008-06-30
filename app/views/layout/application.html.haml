@@ -8,4 +8,5 @@
       #center.girdle
         = catch_content :for_layout
       #push
-    = partial 'layout/footer'
+    - cache "application_footer", 10 do
+      = partial 'layout/footer'

@@ -10,7 +10,8 @@
         = link_to "Sign your group up here", url(:new_group)
     .right
       = partial 'home/banner'
-      = partial 'home/map'
+      - cache "home_map", 10 do
+        = partial 'home/map'
   #freedoms
     %h2 The Four Defining Freedoms of Free Government
     %ul
@@ -58,13 +59,14 @@
       #blog
         %h2
           = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
-        - begin
-          - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
-          - if rss.entries.length > 0
-            - rss.entries.each do |entry|
-              .entry
-                %h3= entry.title
-                = entry.content
-                = link_to "See full post", entry.urls.first
-        - rescue
+        - cache "home_blog", 180 do
+          - begin
+            - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+            - if rss.entries.length > 0
+              - rss.entries.each do |entry|
+                .entry
+                  %h3= entry.title
+                  = entry.content
+                  = link_to "See full post", entry.urls.first
+          - rescue
 

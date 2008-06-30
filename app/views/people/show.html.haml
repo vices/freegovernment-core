@@ -4,6 +4,16 @@
       .photo= image_tag @user.avatar.url(:large)
     #person_actions
       .actions
+        - if logged_in? and @current_user.id == @user.id
+          = link_to "edit my profile", url(:person, :id => @user.username), :class => 'button_link'
+        - else
+          - form_tag :action => url(:contact_relationship) do
+            = hidden_field :name => 'contact', :value => @user.username
+            = submit_button("add to contacts")
+          - if @user.is_adviser
+            - form_tag :action => url(:adviser_relationships) do
+              = hidden_field :name => 'adviser', :value => @user.username
+              = submit_button("add as adviser")
     - if @user.is_adviser?
       #person_advisees_block.block
         .title Advisers
