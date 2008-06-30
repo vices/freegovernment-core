@@ -1,0 +1,12 @@
+- form_tag :action => "https://www.paypal.com/cgi-bin/webscr", :method => "post" do
+  = hidden_field :name => "cmd", :value => "_donations"
+  = hidden_field :name => "business", :value => "donations@freegovernment.org"
+  = hidden_field :name => "item_name", :value => "FreeGovernment.org"
+  = hidden_field :name => "no_shipping", :value => "0"
+  = hidden_field :name => "no_note", :value => "1"
+  = hidden_field :name => "currency_code", :value => "USD"
+  = hidden_field :name => "tax", :value => "0"
+  = hidden_field :name => "lc", :value => "US"
+  = hidden_field :name =>"bn", :value => "PP-DonationsBF"
+  = text_field :name => "amount", :label => '$'
+  = submit_button "donate"

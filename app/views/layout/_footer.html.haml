@@ -20,9 +20,7 @@
                 /.location== #{user.address.state}
       .donation
         %h3 Support FreeGovernment.org
-        - form_tag do
-          = text_field :name => 'amount'
-          = submit_button 'donate'
+        = partial 'layout/donate'
     .right
       .topics
         %h3 Recent Topics
