@@ -493,7 +493,7 @@ h2.index_header {
   margin-top: 10px;
   text-align: center;
   line-height: 200%; }
-  .pagination a {
+  .pagination a, .pagination span {
     border: 1px solid #f0f0f0;
     background: #fafafa;
     padding: 3px 7px;
@@ -501,6 +501,11 @@ h2.index_header {
   .pagination a:hover {
     text-decoration: none;
     background: #f0f0f0; }
+  .pagination .current {
+    background: #333;
+    color: #fff; }
+  .pagination .disabled {
+    display: none; }
 
 #people_index .person {
   display: block;
