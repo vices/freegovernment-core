@@ -433,8 +433,9 @@ button.active {
           padding-right: 5px; }
   #bill #content .right {
     float: right;
-    width: 540px;
-    margin-right: 40px; }
+    width: 539px;
+    border-right: 1px solid #ddd;
+    padding-right: 40px; }
     #bill #content .right #summary, #bill #content .right #sections {
       padding: 1px 10px;
       line-height: 16px; }
