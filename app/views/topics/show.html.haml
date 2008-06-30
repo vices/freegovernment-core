@@ -9,7 +9,7 @@
       - i = 0
       %tbody
         - @posts_page.each do |post|
-          %tr{ :class => "alt#{i}"}
+          %tr{ :class => "alt#{i}", :id => 'p-%s' % post.id.to_s}
             %td.author
               .image
                 = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
@@ -20,7 +20,7 @@
                   = post.user.address_text
             %td.text
               .meta
-                = link_to '#' + post.post_number.to_s, '#'
+                = link_to '#' + post.post_number.to_s, post_url(post)
                 %span.chrono
                   = post.created_at.strftime('%b %d, %Y %I:%M%P')
               = post.text.render_textile
@@ -47,6 +47,6 @@
               %td
                 = link_to video.title, 'http://pl.youtube.com/watch?v=' + video.resource
               %td.narrow
-                = link_to 'Go: #' + video.post.post_number.to_s, '#'
+                = link_to 'Go: #' + video.post.post_number.to_s, post_url(video.post)
               %td.narrow
                 = link_to 'raindrops', profile_url(video.post.user)

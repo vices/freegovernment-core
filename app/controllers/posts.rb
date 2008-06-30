@@ -23,7 +23,7 @@ class Posts < Application
       end
       @topic.posts_count = new_posts_count
       @topic.save
-      redirect url(:topic, :id => @topic.id)
+      redirect post_url(@new_post)
     else
       render :new
     end

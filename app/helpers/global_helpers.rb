@@ -21,5 +21,10 @@ module Merb
         yield t, classes[(t.taggings.count.to_i - min) / divisor]
       end
     end
+    
+    def post_url(post)
+      page = (post.post_number.to_f / 10).ceil if (post.post_number.to_f / 10).ceil > 1
+      url(:topic, :id => post.topic_id, :page => page) + '#p-%s' % post.id.to_s
+    end
   end
 end
