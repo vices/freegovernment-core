@@ -9,7 +9,7 @@
       - i = 0
       %tbody
         - @posts_page.each do |post|
-          %tr{ :class => "alt#{i}", :id => 'p-%s' % post.id.to_s}
+          %tr{ :class => "alt#{i}", :id => 'p-%s' % post.post_number.to_s}
             %td.author
               .image
                 = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)

@@ -36,7 +36,7 @@
                   %span commented on 
                   =link_to post.topic.name, url(:topic, :id => post.topic.id)
                 .text
-                  =link_to post.text, url(:topic, :id => post.topic.id)
+                  =link_to post.text, post_url(post)
       .polls
         %h3 Recent Polls
         - unless @updates_newest_polls.nil?
