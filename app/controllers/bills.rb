@@ -6,6 +6,7 @@ class Bills < Application
   end
 
   def new
+    @new_bill = Bill.new
     render
   end
 

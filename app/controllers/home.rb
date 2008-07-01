@@ -7,4 +7,5 @@ class Home < Application
     end
     render
   end
+
 end

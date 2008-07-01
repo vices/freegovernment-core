@@ -1,13 +1,15 @@
-<script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
+<!-- <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script> -->
 <script type="text/javascript">
+  has_map = true;
+
+
   function randOrd(){
     return (Math.round(Math.random())-0.5);
   }
 
-  google.load("maps", "2");
 
   // Call this function when the page has been loaded
-  function initialize() {
+  function initializeMap() {
     var map = new google.maps.Map2(document.getElementById("map"));
     map.setCenter(new google.maps.LatLng(42, -71), 4);
     //map.openInfoWindow(map.getCenter(),document.createTextNode('FreeGovernment.org launched!'));
@@ -44,6 +46,28 @@
         num++;
     }, 10000);
   }
-  google.setOnLoadCallback(initialize);
+
+  jQuery(document).ready(function(){
+//    loadMapScript();
+  });
+
+  function loadMapScript() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>&async=2&callback=loadMap";
+    document.body.appendChild(script);
+  }
+
+  function loadMap() {
+    google.load("maps", "2", {"callback": initializeMap});
+  }
+
+  function startMap() {
+    $('#map_preimage').hide();
+    $('#map').show();  
+    loadMapScript();
+  }
+
 </script>
-<div id="map" style="width: 500px; height: 275px"></div>
+<a id="map_preimage" onclick="startMap()" style="cursor: pointer"><img src="/images/home/googlemap.png" /></a>
+<div id="map" style="display: none; width: 500px; height: 275px"></div>

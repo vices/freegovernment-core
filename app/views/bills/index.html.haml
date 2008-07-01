@@ -1,16 +1,19 @@
 #bills_index
+  %h2.index_header
+    Bills
+    .caption debate bills paragraph-by-paragraph
+    .caption create new bills and seek out the support of others
   .list_and_filters
     .list
-
       .bill
         %a.img
           %img{:src => '/avatars/1/small/sophia.jpg'}
         .main
           .number
-            [H.CON.RES. 87324]
-            %span FG BILL #287
+            [FG Bill #287]
+            /%span FG BILL #287
           %h3
-            %a Lorem ipsum dolor sit amet…
+            = link_to "Lorem ipsum dolor sit amet…", url(:bill, :id => 1)
           .description
             %h4 Summary
             %p Aliquam erat volutpat. Nulla mattis, eros sit amet tempus luctus, diam nisi dapibus justo, porttitor pulvinar justo erat non quam. Maecenas purus. In ut purus. Nullam rutrum, erat at sodales vestibulum, quam diam imperdiet ante, id rutrum dui erat eu lorem. Aliquam a purus eu orci lobortis blandit.
@@ -19,34 +22,14 @@
             - if true || poll.tags.nil?
               %span no associated tags
           .actions
-            %a view bill
+            = link_to "view bill", url(:vote, :id => 1)
             |
-            %a view this bill in the Polls
-      .bill
-        %a.img
-          %img{:src => '/avatars/1/small/sophia.jpg'}
-        .main
-          .number
-            [H.CON.RES. 87324]
-            %span FG BILL #287
-          %h3
-            %a Lorem ipsum dolor sit amet…
-          .description
-            %h4 Summary
-            %p Aliquam erat volutpat. Nulla mattis, eros sit amet tempus luctus, diam nisi dapibus justo, porttitor pulvinar justo erat non quam. Maecenas purus. In ut purus. Nullam rutrum, erat at sodales vestibulum, quam diam imperdiet ante, id rutrum dui erat eu lorem. Aliquam a purus eu orci lobortis blandit.
-          .tags
-            tags:
-            - if true || poll.tags.nil?
-              %span no associated tags
-          .actions
-            %a view bill
-            |
-            %a view this bill in the Polls
+            = link_to "view this bill in the polls", url(:poll, :id => 1)
     
     .filters
       #bill_search
       #bill_creation.attention
-        .title Want to create bill to share with FG community?
-        = link_to "Click to get started", url(:new_poll)
+        .title Want to create a bill to share with FG community?
+        = link_to "Click to get started", url(:new_bill)
       #bill_tags.filter
-        .title Poll Tags
+        .title Bill Tags
