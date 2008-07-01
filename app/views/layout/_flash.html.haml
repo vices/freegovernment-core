@@ -1,0 +1,7 @@
+#flash
+  - if flash[:warning]
+    = flash[:warning]
+  - elsif flash[:notice]
+    = flash[:notice]
+  - elsif flash[:error]
+    = flash[:error]
