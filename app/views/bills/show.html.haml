@@ -3,8 +3,7 @@
   #main
     #title
       .number
-        H.CON.RES. 108.2H
-        %span FG BILL #1247
+        == FG BILL ##{@bill.id}
       %h2 Condemning the further use of Lorem ipsum as filler text on mockups.
     = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show bill poll page »', '#'), :poll => Poll.first, :vote => logged_in? ? Poll.first.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
   
@@ -18,46 +17,24 @@
           %li what's up holla!
           %li jabberwock is so much better
     .right
-      #summary
-        %h3 Summary
-        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed pede tellus, vulputate at, consectetuer non, lacinia id, eros. Aenean nisi felis, pretium vel, fringilla nec, eleifend pharetra, libero. Sed mauris ipsum, iaculis rutrum, viverra nec, vestibulum ut, tortor. Aliquam sagittis. Nullam ante. Sed auctor sagittis dolor. Suspendisse viverra sapien at turpis. Sed in velit ut odio hendrerit faucibus. Donec iaculis ante id turpis. Vestibulum elit diam, cursus a, commodo ut, ornare at, augue.
-        %p Proin elit. Mauris ullamcorper suscipit nisi. Phasellus mattis nisi nec massa. Aenean purus. Suspendisse vitae felis ut massa iaculis tempor. Nulla sit amet dui nec erat pretium interdum. Sed et mauris. Morbi rutrum suscipit dui. Curabitur vel turpis. Nam malesuada. Curabitur sit amet lacus. 
-      #sections
-        .section
-          %h3 Section 7.03
-          %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed pede tellus, vulputate at, consectetuer non, lacinia id, eros. Aenean nisi felis, pretium vel, fringilla nec, eleifend pharetra, libero. Sed mauris ipsum, iaculis rutrum, viverra nec, vestibulum ut, tortor. Aliquam sagittis. Nullam ante. Sed auctor sagittis dolor. Suspendisse viverra sapien at turpis. Sed in velit ut odio hendrerit faucibus. Donec iaculis ante id turpis. Vestibulum elit diam, cursus a, commodo ut, ornare at, augue.
-          %p Proin elit. Mauris ullamcorper suscipit nisi. Phasellus mattis nisi nec massa. Aenean purus. Suspendisse vitae felis ut massa iaculis tempor. Nulla sit amet dui nec erat pretium interdum. Sed et mauris. Morbi rutrum suscipit dui. Curabitur vel turpis. Nam malesuada. Curabitur sit amet lacus. 
-          .comments_link
-            %a
-              3
-              %span comments
-        .section
-          %h3 Section 7.04a
-          %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed pede tellus, vulputate at, consectetuer non, lacinia id, eros. Aenean nisi felis, pretium vel, fringilla nec, eleifend pharetra, libero. Sed mauris ipsum, iaculis rutrum, viverra nec, vestibulum ut, tortor. Aliquam sagittis. Nullam ante. Sed auctor sagittis dolor. Suspendisse viverra sapien at turpis. Sed in velit ut odio hendrerit faucibus. Donec iaculis ante id turpis. Vestibulum elit diam, cursus a, commodo ut, ornare at, augue.
-          %p Proin elit. Mauris ullamcorper suscipit nisi. Phasellus mattis nisi nec massa. Aenean purus. Suspendisse vitae felis ut massa iaculis tempor. Nulla sit amet dui nec erat pretium interdum. Sed et mauris. Morbi rutrum suscipit dui. Curabitur vel turpis. Nam malesuada. Curabitur sit amet lacus. 
-          .comments_link
-            %a
-              5
-              %span comments
-          .full_text
-            %a See Full Text
-        .section
-          %h3 Section 7.04b
-          %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed pede tellus, vulputate at, consectetuer non, lacinia id, eros. Aenean nisi felis, pretium vel, fringilla nec, eleifend pharetra, libero. Sed mauris ipsum, iaculis rutrum, viverra nec, vestibulum ut, tortor. Aliquam sagittis. Nullam ante. Sed auctor sagittis dolor. Suspendisse viverra sapien at turpis. Sed in velit ut odio hendrerit faucibus. Donec iaculis ante id turpis. Vestibulum elit diam, cursus a, commodo ut, ornare at, augue.
-          %p Proin elit. Mauris ullamcorper suscipit nisi. Phasellus mattis nisi nec massa. Aenean purus. Suspendisse vitae felis ut massa iaculis tempor. Nulla sit amet dui nec erat pretium interdum. Sed et mauris. Morbi rutrum suscipit dui. Curabitur vel turpis. Nam malesuada. Curabitur sit amet lacus. 
-          .comments_link
-            %a
-              0
-              %span comments
-          .full_text
-            %a See Full Text
-        .section
-          %h3 Section 7.05
-          %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed pede tellus, vulputate at, consectetuer non, lacinia id, eros. Aenean nisi felis, pretium vel, fringilla nec, eleifend pharetra, libero. Sed mauris ipsum, iaculis rutrum, viverra nec, vestibulum ut, tortor. Aliquam sagittis. Nullam ante. Sed auctor sagittis dolor. Suspendisse viverra sapien at turpis. Sed in velit ut odio hendrerit faucibus. Donec iaculis ante id turpis. Vestibulum elit diam, cursus a, commodo ut, ornare at, augue.
-          %p Proin elit. Mauris ullamcorper suscipit nisi. Phasellus mattis nisi nec massa. Aenean purus. Suspendisse vitae felis ut massa iaculis tempor. Nulla sit amet dui nec erat pretium interdum. Sed et mauris. Morbi rutrum suscipit dui. Curabitur vel turpis. Nam malesuada. Curabitur sit amet lacus. 
-          .comments_link
-            %a
-              2
-              %span comments
-        .entire_bill
-          %a See Entire Bill
+      - unless @bill.summary.nil?
+        #summary
+          %h3 Summary
+          %p= h(@bill.summary).gsub("\n",'<br />')
+      - if @bill.sectioned_text.nil? || @bill.sectioned_text.empty?
+        #sections
+          .section
+            %h3 Bill Text
+            %p= h(@bill.text).gsub("\n",'<br />')  
+      - else
+        #sections
+          - @bill.sectioned_text.each do |section|
+            .section
+              %h3= section[0]
+              %p= section[1]
+              .comments_link
+                %a
+                  3
+                  %span comments
+          .entire_bill
+            %a See Entire Bill

@@ -98,6 +98,7 @@ if Merb.environment == 'test'
   dependency 'merb_stories'
 end
 dependency 'lib/support/float'
+dependency 'lib/support/string'
 dependency 'lib/merb_recaptcha'
 dependency 'lib/string'
 dependency 'feed-normalizer'

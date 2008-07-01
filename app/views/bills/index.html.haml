@@ -5,27 +5,31 @@
     .caption create new bills and seek out the support of others
   .list_and_filters
     .list
-      .bill
-        %a.img
-          %img{:src => '/avatars/1/small/sophia.jpg'}
-        .main
-          .number
-            [FG Bill #287]
-            /%span FG BILL #287
-          %h3
-            = link_to "Lorem ipsum dolor sit amet…", url(:bill, :id => 1)
-          .description
-            %h4 Summary
-            %p Aliquam erat volutpat. Nulla mattis, eros sit amet tempus luctus, diam nisi dapibus justo, porttitor pulvinar justo erat non quam. Maecenas purus. In ut purus. Nullam rutrum, erat at sodales vestibulum, quam diam imperdiet ante, id rutrum dui erat eu lorem. Aliquam a purus eu orci lobortis blandit.
-          .tags
-            tags:
-            - if true || poll.tags.nil?
-              %span no associated tags
-          .actions
-            = link_to "view bill", url(:vote, :id => 1)
-            |
-            = link_to "view this bill in the polls", url(:poll, :id => 1)
-    
+      - @bills_page.each do |bill|
+        .bill
+          .img= link_to image_tag(bill.user.avatar(:small)), profile_url(bill.user)
+          .main
+            .number
+              ==[FG Bill ##{bill.id}]
+              /%span FG BILL #287
+            %h3
+              = link_to bill.title, url(:bill, :id => bill.id)
+            .description
+              - unless bill.summary.nil?
+                %h4 Summary
+                %p= h bill.summary.ellipsis(150)
+              - else
+                %h4 Bill Text
+                %p= h bill.text.ellipsis(150)
+            .tags
+              tags:
+              - if true || poll.tags.nil?
+                %span no associated tags
+            .actions
+              = link_to "view related poll", url(:poll, :id => bill.poll_id)
+              |
+              = link_to "view bill", url(:bill, :id => bill.id)
+      = merb_paginate @bills_page
     .filters
       #bill_search
       #bill_creation.attention
