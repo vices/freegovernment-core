@@ -20,58 +20,15 @@ class Poll
   property :created_at, DateTime
   property :updated_at, DateTime
 
-  attr_accessor :tag_list
+  has n, :votes
 
-
-  has n, :taggings
-
-  
   has_attached_file :icon,
     :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
     :default_url => "polls/missing_icon_:style.png",
     :whiny_thumbnails => true
   
+
   validates_length :question, :within => 15..140
-
-
-
-
-  def create_tags
-
-    return if @tag_list.nil? || @tag_list.empty?
-    # Wax all the existing taggings
-    pp "before taggings"
-    self.taggings.each {|t| t.destroy! }
-    pp "before split"
-    @tag_list.split(",").each do |t|
-     pp "after split"
-     
-      unless t.empty?
-        pp "t wasn't empty"
-        if ( tag = Tag.first(:name => t.strip.downcase)).nil? 
-          tag = Tag.create(:name => t.strip.downcase) 
-          pp "tag was created"
-        end
-          self.taggings << Tagging.create(:poll_id => self.id, :tag_id => tag.id)
-          pp "self taggings"
-      end
-     end
-  end
-
-  # [Tag, Tag, Tag]
-  # if it was name
-  # ['one', 'two', 'three']
-  # if it uses the join
-  # "one, two, three"
-  def tags
-    taggings.collect{ |tagging| tagging.tag }
-  end
-
-  def tags_text
-    taggings.collect{ |tagging| tagging.tag.name }.join(", ")
-  end
-
-
 
   def update_for_votes(diffs)
     unless diffs.is_a? Array
@@ -120,7 +77,5 @@ class Poll
       nil
     end  
   end
-
-  has n, :votes
 
 end
