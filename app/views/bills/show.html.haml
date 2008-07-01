@@ -20,12 +20,12 @@
       - unless @bill.summary.nil?
         #summary
           %h3 Summary
-          %p= h(@bill.summary).gsub("\n",'<br />')
+          %p= h(@bill.summary).paragraphize
       - if @bill.sectioned_text.nil? || @bill.sectioned_text.empty?
         #sections
           .section
             %h3 Bill Text
-            %p= h(@bill.text).gsub("\n",'<br />')  
+            %p= h(@bill.text).paragraphize
       - else
         #sections
           - @bill.sectioned_text.each do |section|
