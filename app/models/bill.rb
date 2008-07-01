@@ -37,8 +37,6 @@ class Bill
     sections = []
     section_num = -1
     text_split.each do |part|
-      pp part
-      pp section_num
       if part =~ /^(?:SECTION|SEC\.)/
         section_num = section_num + 1
         sections[section_num] = []

@@ -75,9 +75,8 @@
                 %td.name= link_to forum.name, url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
-        .pagination
-          = merb_paginate @bill_forums, :param_name => :bill_page
-          = page_entries_info @bill_forums
+        .bottom
+          = link_to "Show All »", url(:bill_index), :class => 'navlink'
   - else
     - @forums_page.each do |forum|
       = forum.name

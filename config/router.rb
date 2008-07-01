@@ -38,6 +38,7 @@ Merb::Router.prepare do |r|
   r.to(:controller => 'forums') do |f|
     f.match('/forums/group').to(:action => 'group_index').name(:group_index)
     f.match('/forums/poll').to(:action => 'poll_index').name(:poll_index)
+    f.match('/forums/bill').to(:action => 'bill_index').name(:bill_index)
   end
   r.resources :forums
 

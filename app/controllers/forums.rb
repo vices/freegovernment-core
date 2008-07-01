@@ -9,7 +9,8 @@ class Forums < Application
   def index
     @general_forums = Forum.all(:poll_id => nil, :group_id => nil)
     @group_forums = Forum.paginate(:page => params[:group_page], :per_page => 6, :conditions => {:group_id.not => nil})
-    @poll_forums = Forum.paginate(:page => params[:poll_page], :per_page => 6, :conditions => {:poll_id.not => nil})
+    @poll_forums = Forum.paginate(:page => params[:poll_page], :per_page => 6, :conditions => {:poll_id.not => nil, :bill_id => nil})
+    @bill_forums = Forum.paginate(:page => params[:poll_page], :per_page => 6, :conditions => {:bill_id.not => nil})
     render
   end
   
@@ -21,7 +22,13 @@ class Forums < Application
 
   def poll_index
     @what = 'Poll-Related'
-    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:poll_id.not => nil})
+    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:poll_id.not => nil, :bill_id => nil})
+    render :template => 'forums/index_specified.html'
+  end
+
+  def bill_index
+    @what = 'Bill-Related'
+    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:bill_id.not => nil})
     render :template => 'forums/index_specified.html'
   end
 
