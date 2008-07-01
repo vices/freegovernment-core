@@ -5,12 +5,15 @@ class Tag
   property :name, String, :nullable => false, :length => 30
   property :permalink, String, :length => 1000
 
+
   has n, :taggings
+
 
   before :create do 
     pp self.name
     self.permalink = self.name.downcase.gsub(/[^a-z0-9]+/i, '')
   end
+
 
   class << self
 
@@ -19,6 +22,7 @@ class Tag
     end
 
   end
+
 
   def get_tagged(object_type)
     klass = Kernel.const_get(object_type.capitalize)

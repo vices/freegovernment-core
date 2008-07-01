@@ -5,9 +5,12 @@ class Tagging
   property :object_id, Integer
   property :tag_id, Integer
 
+
   belongs_to :tag
 
+
   class << self
+
     def get_taggings(object)
       if object.class == String
         Tagging.all(:object_type => object.downcase)
@@ -17,7 +20,7 @@ class Tagging
         Tagging.all(:object_type => object_type, :object_id => object_id)
       end
     end
-    
+
     def tag_object(object, tag_list)
       if object and tag_list
         Tag.get_tags(object).each { |t| t.destroy! }
