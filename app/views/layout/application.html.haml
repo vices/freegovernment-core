@@ -6,6 +6,8 @@
     #non_footer
       = partial 'layout/header'
       #center.girdle
+        - if flash.empty?
+          = partial 'layout/flash'
         = catch_content :for_layout
       #push
     - cache "application_footer", 10 do
