@@ -158,12 +158,43 @@ class Vote
                 dn = -1
             end
         end
-#TOO FAR! GO UP!
       else
         dy = 0
         dn = 0
       end
       {:yes => dy, :no => dn}
+    end
+
+    def update_user_votes_for_added_adviser(user_id, adviser_id)
+      votes = Vote.all(:user_id => adviser_id)
+      poll_ids = []
+      DataMapper::Transaction.new do
+        votes.each do |vote|
+          unless Vote.create(:user_id => user_id, :poll_id => vote.poll_id, :is_yes => vote.is_yes, :is_no => vote.is_no, :adviser_yes_count => vote.is_yes, :adviser_no_count => vote.is_no)
+            poll_ids << vote.poll_id
+            Vote.first(:user_id => user_id, :poll_id => vote.poll_id).update!(:adviser_yes_count => :adviser_yes_count + vote.is_yes, :adviser_no_count => :adviser_no_count + vote.is_no)
+          end
+        end
+        Vote.update_votes_after_adviser_change([user_id],poll_ids)
+      end
+    end
+
+    def update_user_votes_for_removed_adviser(user_id, adviser_id)
+      votes = Vote.all(:user_id => adviser_id)
+      poll_ids = []
+      DataMapper::Transaction.new do
+        votes.each do |vote|
+          Vote.first(:user_id => user_id, :poll_id => vote.poll_id).update!(:adviser_yes_count => :adviser_yes_count - vote.is_yes, :adviser_no_count => :adviser_no_count - vote.is_no)
+        end
+        Vote.update_votes_after_adviser_change([user_id],poll_ids)
+      end
+    end   
+
+
+    def update_votes_after_adviser_change(user_ids, poll_ids)
+        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.gt => :adviser_no_count).update!(:is_yes => 1, :is_no => 0)
+        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.lt => :adviser_no_count).update!(:is_yes => 0, :is_no => 1)
+        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.eql => :adviser_no_count).update!(:is_yes => 0, :is_no => 0)
     end
 
   end

@@ -48,7 +48,9 @@ class Groups < Application
         @new_group.user_id = @new_user.id
         @new_group.save
         @new_user.group_id = @new_group.id
-        @new_user.save 
+        @new_user.save
+        forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name, :topic_count => 1)
+        Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => @new_user.id)
         redirect url(:home) 
       else
         render :new

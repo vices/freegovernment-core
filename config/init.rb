@@ -91,6 +91,7 @@ dependency 'dm-aggregates'
 dependency 'dm-geokit'
 dependency 'dm-paperclip'
 dependency 'dm-observer'
+dependency 'dm-adjust'
 if Merb.environment != 'production'
   dependency 'pp'
 end
