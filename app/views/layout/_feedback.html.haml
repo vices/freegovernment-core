@@ -1,4 +1,4 @@
-- form_for Feedback.new, :action => url(:controller => 'feedback', :action => 'create'), :class => 'standard', :id => 'feedback_form' do
+- form_for Feedback.new, :action => url(:send_feedback), :class => 'standard', :id => 'feedback_form' do
   %p FreeGovernment.org is in active development. We consider your feedback critical to our success, so please share your suggestions through this form.
   = hidden_control :controller, :value => params[:controller]
   = hidden_control :action, :value => params[:action]

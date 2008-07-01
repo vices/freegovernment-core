@@ -63,4 +63,6 @@ Merb::Router.prepare do |r|
   # Change this for your home page to be available at /
   r.match('/home/map').to(:controller => 'home', :action =>'map').name(:map)
   r.match('/').to(:controller => 'home', :action =>'index').name(:home)
+  
+  r.match('/feedbacks/create').to(:controller => 'feedbacks', :action => 'create').name(:send_feedback)
 end
