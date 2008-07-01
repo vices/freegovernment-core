@@ -16,8 +16,11 @@
                 = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
                 .tags
                   tags:
-                  - if true || poll.tags.nil?
+                  - if (tags = Tag.get_tags(poll)).empty?
                     %span no associated tags
+                  - else
+                    = partial 'partials/taglist', :tags => tags
+                  
             .stats
               .segment
                 .title All Users

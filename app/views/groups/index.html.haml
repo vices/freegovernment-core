@@ -18,8 +18,10 @@
                   = group.description
                 .tags
                   tags:
-                  - if true || group.tags.nil?
+                  - if (tags = Tag.get_tags(group)).empty?
                     %span no associated tags
+                  - else
+                    = partial 'partials/taglist', :tags => tags
       .pagination
         = merb_paginate @groups_page
         = page_entries_info(@groups_page)

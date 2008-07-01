@@ -1,0 +1,6 @@
+- i = 1
+- tags.each do |tag|
+  %a<
+    = tag.name
+  = (i == tags.length) ? '.' : ', '
+  - i = i + 1
