@@ -1,7 +1,7 @@
 .voting_options
-  /- unless title.nil?
-  /  .title
-  /    = title
+  - unless box_title.empty?
+    .title
+      = box_title
   .current_vote== Your vote is set to #{vote.selection}
   - form_for Vote.new, :action => url(:votes) do
     = hidden_control :poll_id, :value => poll.id
@@ -11,6 +11,6 @@
     - if !logged_in? || !@current_user.is_adviser?
       %div
         = submit_button "Let Advisers Decide", :name => 'vote[selection]', :value => 'adviser', :class => "#{ vote.selection == 'adviser' ? 'active'  : '' }"
-  /- if bottom
-  /  .bottom
-  /    = bottom
+  - unless bottom.empty?
+    .bottom
+      = bottom

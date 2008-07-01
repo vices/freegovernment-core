@@ -13,7 +13,7 @@
               .main
                 %h3= link_to "#{poll.question}", url(:poll, :id => poll.id)
                 .description= poll.description
-                = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
+                = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new, :box_title => '', :bottom => ''
                 .tags
                   tags:
                   - if (tags = Tag.get_tags(poll)).empty?
