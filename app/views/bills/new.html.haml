@@ -1,9 +1,9 @@
 #new_bill
-  - form_for @new_bill, :action => url(:topics), :class => 'full' do
+  - form_for @new_bill, :action => url(:bills), :class => 'full' do
     %h1 Want to create a new bill?
     = error_messages_for @new_bill
     = text_control :title, :label => 'bill title:'
-    = text_area_control :text, :label => 'summary:'
+    = text_area_control :summary, :label => 'summary:'
     = text_area_control :text, :label => 'text:'
     .actions
       .cancel

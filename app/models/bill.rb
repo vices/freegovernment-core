@@ -2,16 +2,21 @@ class Bill
   include DataMapper::Resource
   include DataMapper::Timestamp
   include DataMapper::Validate
+  include MerbPaginate::Finders::Datamapper 
 
   property :id, Integer, :serial => true
   property :title, String, :length => 1000
   property :summary, DM::Text
   property :text, DM::Text, :nullable => false
-  property :sectioned_text, DM::Text, :nullable => false
+  property :sectioned_text, DM::Text
   property :user_id, Integer, :nullable => false
-  property :poll_id, Integer, :nullable => false
+  property :poll_id, Integer
+  property :forum_id, Integer
+
+  belongs_to :user
 
   def text=(value)
+    value.gsub!("\r\n", "\n")
     attribute_set(:text, value)
     attribute_set(:sectioned_text, section_text.to_yaml)
   end
@@ -28,10 +33,12 @@ class Bill
 
   def section_text
     #text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\. (?:[A-Z ',;\-0-9\n]+)\.\n)/) 
-    text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\.(?:[A-Z ',;\-0-9\.]+|)\n)/)  
+    text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\.(?:[A-Z ',;\-0-9\.]+|)\n)/) 
     sections = []
     section_num = -1
     text_split.each do |part|
+      pp part
+      pp section_num
       if part =~ /^(?:SECTION|SEC\.)/
         section_num = section_num + 1
         sections[section_num] = []
