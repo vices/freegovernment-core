@@ -13,13 +13,16 @@ class Tag
   end
 
   class << self
-    def get_all_tags(object_type)
-      Tagging.get_all_taggings(object_type).collect{ |t| t.tag }
+
+    def get_tags(object)
+        Tagging.get_taggings(object).collect{ |t| t.tag }
     end
+
   end
-  
+
   def get_tagged(object_type)
     klass = Kernel.const_get(object_type.capitalize)
     klass.all(:id.in => self.taggings.all(:object_type => object_type.downcase).collect { |t| t.object_id })
   end
+
 end
