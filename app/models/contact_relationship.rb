@@ -7,7 +7,7 @@ class ContactRelationship
   property :id, Integer, :serial => true
   property :person_id, Integer, :nullable => false
   property :contact_id, Integer, :nullable => false
-  property :is_accepted, Boolean, :default => 1, :nullable => false
+  property :is_accepted, Boolean, :default => 0, :nullable => false
   property :created_at, DateTime
   property :modified_at, DateTime
   
