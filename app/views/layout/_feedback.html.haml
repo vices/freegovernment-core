@@ -4,5 +4,5 @@
   = hidden_control :action, :value => params[:action]
   = text_area_control :message, :label => 'Your message'
   %div
-    = submit_button 'Send Feedback!'
+    = submit_button 'Send Feedback!', :class => 'submit'
     %button{ :class => 'close', :type => 'button' } Close
