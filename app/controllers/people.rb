@@ -114,14 +114,19 @@ def order_conditions
     unless !@user.private_profile || @user.id == session[:user_id]
       if(@relationship = is_associate?).nil?
         if !logged_in?
-          throw :halt, Proc.new{|c| c.redirect url(:login)}
+          throw :halt, Proc.new{ |c| 
+            c.flash[:notice] = "#{@user.username}'s profile is private. You must be logged in to see it."
+            c.redirect url(:login)
+          }
         else
           if !@current_user.group_id.nil?
             throw :halt, Proc.new { |c|
+              c.flash[:notice] = "#{@user.username}'s profile is private. You must be a contact to see it."
               c.redirect url(:new_group_relationships)
             }
           else
             throw :halt, Proc.new { |c|
+              c.flash[:halt] = "#{@user.username}'s profile is private. #{@user.username} must be a group member for you to see it."
               c.redirect url(:new_contact_relationship)
             }
           end
