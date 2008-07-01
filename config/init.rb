@@ -97,8 +97,6 @@ end
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
-dependency 'lib/support/float'
-dependency 'lib/support/string'
 dependency 'lib/merb_recaptcha'
 dependency 'feed-normalizer'
 dependency 'net/http'
@@ -106,6 +104,8 @@ dependency 'net/http'
 Merb::BootLoader.after_app_loads do
   # Add dependencies here that must load after the application loads:
   dependency "redcloth"
+  dependency 'lib/support/float'
+  dependency 'lib/support/string'
   # dependency "magic_admin" # this gem uses the app's model classes
   require File.join(File.dirname(__FILE__),'recaptcha')
   require File.join(File.dirname(__FILE__),'geokit')

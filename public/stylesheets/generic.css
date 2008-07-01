@@ -589,9 +589,10 @@ h2.index_header {
     border: 1px solid #ddd; }
   #poll #poll_details .details {
     float: right;
-    width: 650px; }
+    width: 690px; }
     #poll #poll_details .details .question {
-      font-size: 24px;
+      font-size: 22px;
+      font-weight: bold;
       line-height: 1.5em;
       margin-bottom: 10px;
       width: 360px;
