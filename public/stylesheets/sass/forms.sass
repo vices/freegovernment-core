@@ -129,20 +129,33 @@ form.full
       :left 0
 
 
-#donate_form
-  +clearfix
-  input.text
-    :padding 2px
-    :width 112px
-    :float left
-    :padding-left 16px
-    :background #f4f4f4 url('/images/layout/dollar.gif') no-repeat left
-    :border 1px solid #dadada
-  button
-    :padding 3px
-    :padding-right 20px
-    :background #e9e9e9 url('/images/layout/paypal.gif') no-repeat right
-    :float right
-    :width 65px
-    :font-size 11px
-    
+#footer .donation, #support_block
+  form
+    +clearfix
+    input.text
+      :padding 2px
+      :width 112px
+      :float left
+      :padding-left 16px
+      :background #f4f4f4 url('/images/layout/dollar.gif') no-repeat left
+      :border 1px solid #dadada
+    button
+      :padding 3px
+      /:padding-right 20px
+      /:background #e9e9e9 url('/images/layout/paypal.gif') no-repeat right
+      :float right
+      :width 65px
+      :font-size 11px
+#support_block
+  h4
+    :margin-bottom 10px
+  form
+    input.text
+      :padding 4px
+      :padding-left 16px
+      :background #fafafa url('/images/layout/dollar_light.gif') no-repeat left
+      :width 138px
+    button
+      :padding 5px
+      :background #333
+      :color #fff
