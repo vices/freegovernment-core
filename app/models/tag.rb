@@ -19,10 +19,11 @@ class Tag
 
     def get_tags(object)
       ids = []
-      tags = Tagging.get_taggings(object).collect do |t|
+      tags = []
+      Tagging.get_taggings(object).each do |t|
         unless ids.index(t.tag.id)
           ids << t.tag.id
-          t.tag
+          tags << t.tag
         end
       end
       return tags

@@ -66,4 +66,7 @@
         = link_to "Click here to create it.", url(:new_poll)
       #poll_tags.filter
         .title Poll Tags
-        = tag_cloud(Tag.get_tags('poll'),['t1','t2','t3'])
+        - tag_cloud(Tag.get_tags('poll'),['t1','t2','t3']) do |t, c|
+          = t.name
+          = c
+          
