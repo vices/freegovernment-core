@@ -51,6 +51,7 @@ class Groups < Application
   def create(user, group)
     @new_group = Group.new(group)
     @new_user = User.new(user)
+    @group_tags = params[:group_tags]
     if verify_recaptcha
       if @new_group.valid?(:before_user_creation) && @new_user.save
         @new_group.user_id = @new_user.id
@@ -59,7 +60,8 @@ class Groups < Application
         @new_user.save
         forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name, :topic_count => 1)
         Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => @new_user.id)
-        redirect url(:home) 
+        Tagging.tag_object(@new_group, @group_tags)
+        redirect url(:home)
       else
         render :new
       end

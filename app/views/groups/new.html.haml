@@ -12,6 +12,7 @@
     = text_control :username, :label => 'Username'
     = password_control :password, :label => 'Password'
     = password_control :password_confirmation, :label => 'Confirm Password'
+  = text_field :name => 'group_tags', :id => 'group_tags', :label => 'group tags ( comma separated )', :value => @group_tags
   .captcha
     = recaptcha_tags
   .actions
