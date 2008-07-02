@@ -31,6 +31,14 @@ class Groups < Application
   end
   
   def show
+    if logged_in?
+      if !@current_user.person_id.nil?
+      @gr = GroupRelationship.first(:person_id => @current_user.person_id, :group_id => @group.id)
+      end
+      if @user.is_adviser && !@current_user.is_adviser
+        @ar = AdviserRelationship.first(:adviser_id => @user.id, :person_id => @current_user.person_id)
+      end
+    end
     render
   end
   

@@ -4,7 +4,7 @@ class GroupRelationships < Application
   before :check_user_is_group, :only => %w{ index update }
   before :find_group, :only => %w{ create }
   before :find_person, :only => %w{ update }
-  before :find_both, :only => %w{ delete }
+  before :find_both, :only => %w{ destroy }
 
   def index
     @new_grs = GroupRelationship.all(:group_id => @current_user.group_id, :is_accepted => 0)
@@ -30,7 +30,7 @@ class GroupRelationships < Application
   end
   
   def destroy
-    unless(@group_relationship = ContactRelationship.first(:group_id => @group_user.group_id, :person_id => @person_user.person_id)).nil?
+    unless(@group_relationship = GroupRelationship.first(:group_id => @group_user.group_id, :person_id => @person_user.person_id)).nil?
       @group_relationship.destroy
     end
     redirect profile_url(@group_user)
@@ -63,6 +63,7 @@ class GroupRelationships < Application
   end
 
   def find_both
+    p 'hi'
     if @current_user.group_id.nil?
       find_group
       @person_user = @current_user
