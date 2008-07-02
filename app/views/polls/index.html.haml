@@ -11,8 +11,8 @@
             .details
               = link_to image_tag("polls/missing_icon_small.png"), url(:poll, :id => poll.id), :class => 'img'
               .main
-                %h3= link_to "#{poll.question}", url(:poll, :id => poll.id)
-                .description= poll.description
+                %h3= link_to "#{h poll.question}", url(:poll, :id => poll.id)
+                .description= h poll.description
                 = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new, :box_title => '', :bottom => ''
                 .tags
                   tags:
