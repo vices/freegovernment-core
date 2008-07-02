@@ -71,10 +71,12 @@ class Groups < Application
   end
   
   def edit
+    @group_tags = Tag.get_tags(@group).collect { |t| t.name }.join(', ')
     render
   end 
   
   def update
+    @group_tags = params[:group_tags]
     if @user.update_attributes(params[:user])
       if @group.update_attributes(params[:group])
         redirect url(:group, :id => @user.username)
