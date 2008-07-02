@@ -30,13 +30,14 @@ class Votes < Application
   def set_old_and_new_vote
     clean_vote_for_advisers
     @old_vote = Vote.first(:poll_id => params[:vote][:poll_id].to_i, :user_id => session[:user_id])
-    
     if (@old_vote == nil)
       @new_vote = Vote.new(params[:vote].merge(:user_id => session[:user_id]))
     else
       @new_vote = @old_vote
+      ayc = @old_vote.adviser_yes_count
+      anc = @old_vote.adviser_no_count
       @old_vote = Vote.new(:selection => @old_vote.selection)
-      
+      @old_vote.change_adviser_counts(ayc, anc)      
       @new_vote.selection = params[:vote][:selection]
     end
     
