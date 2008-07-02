@@ -1,5 +1,5 @@
 #topic
-  %h2= @topic.name
+  %h2=h @topic.name
   - unless @posts_page.nil? 
     %table
       %thead
@@ -14,10 +14,10 @@
               .image
                 = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
               .username
-                = link_to post.user.username, profile_url(post.user)
+                = link_to h (post.user.username), profile_url(post.user)
               - unless post.user.address_text.nil?
                 .address
-                  = post.user.address_text
+                  =h post.user.address_text
             %td.text
               .meta
                 = link_to '#' + post.post_number.to_s, post_url(post)
