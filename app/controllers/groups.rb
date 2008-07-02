@@ -75,16 +75,16 @@ class Groups < Application
   end 
   
   def update
-      if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user])
       if @group.update_attributes(params[:group])
         redirect url(:group, :id => @user.username)
+        Tagging.tag_object(@group, @group_tags)
       else
         render :edit
       end
     else
       render :edit
     end
-
   end
   
   def destroy

@@ -17,10 +17,10 @@
             .description
               - unless bill.summary.nil?
                 %h4 Summary
-                %p= h bill.summary.ellipsis(150)
+                %p= h(bill.summary).ellipsis(50)
               - else
                 %h4 Bill Text
-                %p= h bill.text.ellipsis(150)
+                %p= h(bill.text).ellipsis(50)
             .tags
               tags:
               - if true || poll.tags.nil?
@@ -37,3 +37,7 @@
         = link_to "Click to get started", url(:new_bill)
       #bill_tags.filter
         .title Bill Tags
+        .tag_cloud
+          - tag_cloud(Tag.get_tags('bill')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
+            %span{ :class => c }
+              = t.name

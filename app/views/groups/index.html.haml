@@ -31,6 +31,13 @@
         #group_edit.attention
           .title Describe your group's focus
           = link_to "Edit Group Profile", url(:edit_group, :id => @current_user.username)
+      #group_tags.filter
+        .title Group Tags
+        .tag_cloud
+          - tag_cloud(Tag.get_tags('group')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
+            %span{ :class => c }
+              = t.name
+
       /- else
       /  #group_edit.attention
       /    .title= "Can't find the group you're looking for?"

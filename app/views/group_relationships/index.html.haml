@@ -1,7 +1,7 @@
 #group_requests
   %h2 New Group Requests
   .caption Confirm new group members and they will be able to participate in the group forum.
-  - if @new_grs
+  - unless @new_grs.empty?
     - @new_grs.each do |new_gr|
       .request
         == #{ link_to(new_gr.person.full_name, profile_url(new_gr.person.user)) } wants to to join '#{@current_user.group.name}' group.

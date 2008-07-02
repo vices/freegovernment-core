@@ -1,7 +1,7 @@
 #contact_requests
   %h2 New Contact Requests
   .caption Contacts are people who can see your email address and are listed under your contacts block.
-  - if @new_crs
+  - unless @new_crs.empty?
     - @new_crs.each do |new_cr|
       .request
         == #{ link_to(new_cr.person.full_name, profile_url(new_cr.person.user)) } wants to add you as a contact.
