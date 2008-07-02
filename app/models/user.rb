@@ -39,7 +39,8 @@ class User
 
   validates_length :username, :within => 4..40
   validates_is_unique :username
-  
+  validates_format :username, :with => /^([0-9a-z]+)$/i
+
   validates_format :email, :as => :email_address
   validates_length :email, :within => 3..100
   validates_is_unique :email
