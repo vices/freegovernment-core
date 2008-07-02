@@ -37,7 +37,7 @@ class GroupRelationships < Application
   end
 
   def find_group
-    if(@group_user = User.first(:username => param[:group], :group_id.not => nil)).nil?
+    if(@group_user = User.first(:username => params[:group], :group_id.not => nil)).nil?
       raise Merb::ControllerExceptions::NotFound
     end
   end
