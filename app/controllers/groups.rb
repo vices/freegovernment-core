@@ -19,14 +19,14 @@ class Groups < Application
         @sort_by = :id
     end
     case params['direction']
-      when 'desc'
-        @direction = 'desc'
-        @order = @sort_by.desc
-      else
+      when 'asc'
         @direction = 'asc'
         @order = @sort_by.asc
+      else
+        @direction = 'desc'
+        @order = @sort_by.desc
     end
-    @groups_page = Group.paginate(:page => params[:page], :per_page => 8) # (:order => [@order])
+    @groups_page = Group.paginate(:page => params[:page], :per_page => 8, :order => [@order]) # (:order => [@order])
     render
   end
   
