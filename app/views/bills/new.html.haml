@@ -5,6 +5,7 @@
     = text_control :title, :label => 'bill title:'
     = text_area_control :summary, :label => 'summary:'
     = text_area_control :text, :label => 'text:'
+    = text_field :name => 'bill_tags', :id => 'bill_tags', :label => 'bill tags ( comma separated )', :value => @bill_tags
     .actions
       .cancel
         = link_to "cancel", url(:bills)

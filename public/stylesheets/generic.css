@@ -364,9 +364,7 @@ button.active {
         margin-bottom: 5px; }
     #bills_index .bill .main .description {
       margin: 10px 0 20px;
-      height: 40px;
-      line-height: 18px;
-      overflow: hidden; }
+      line-height: 18px; }
       #bills_index .bill .main .description h4 {
         font-weight: bold; }
     #bills_index .bill .main .tags {
@@ -550,9 +548,7 @@ button.active {
           margin-bottom: 5px; }
       #polls_index .poll .details .main .description {
         margin-top: 10px;
-        height: 40px;
-        line-height: 18px;
-        overflow: hidden; }
+        line-height: 18px; }
       #polls_index .poll .details .main .voting_options {
         margin: 20px 0; }
       #polls_index .poll .details .main .tags {

@@ -14,7 +14,8 @@ class Bills < Application
   end
 
   def create
-    @new_bill = Bill.new(params[:bill].merge(:user_id => session[:user_id]))        
+    @new_bill = Bill.new(params[:bill].merge(:user_id => session[:user_id]))
+    @bill_tags = params[:bill_tags]
     if @new_bill.save
       poll = Poll.create(:question => "Do you support FG Bill ##{@new_bill.id}?", :description => @new_bill.title, :user_id => session[:user_id])
       forum = Forum.create(:name => "FG Bill ##{@new_bill.id} - #{@new_bill.title}".ellipsis(140), :bill_id => @new_bill.id, :poll_id => poll.id, :topics_count => 1)
@@ -22,6 +23,7 @@ class Bills < Application
       poll.save
       Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => session[:user_id])
       @new_bill.update_attributes(:forum_id => forum.id, :poll_id => poll.id)
+      Tagging.tag_object(@new_bill, @bill_tags)
       redirect url(:bill, :id => @new_bill.id)
     else
       render :new
