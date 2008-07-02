@@ -29,6 +29,12 @@ class Groups < Application
     @groups_page = Group.paginate(:page => params[:page], :per_page => 8, :order => [@order]) # (:order => [@order])
     render
   end
+
+  def by_tag
+    @tag = Tag.first(:permalink => params[:tag])
+    @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page]) 
+    render :index
+  end
   
   def show
     if logged_in?
