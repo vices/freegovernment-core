@@ -9,9 +9,10 @@
       = checkbox_field :name => 'delete_avatar'
       %label Upload Image
       = file_field :name => 'avatar'
-    %label Do you want to be an adviser?
-    .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have.
-    = checkbox_control :is_adviser
+    - unless @user.person_id.nil?
+      %label Do you want to be an adviser?
+      .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have.
+      = checkbox_control :is_adviser
     = text_area_control :address_text, :label => 'Address or Location'
     .actions
       .cancel

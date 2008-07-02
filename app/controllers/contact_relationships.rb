@@ -6,6 +6,7 @@ class ContactRelationships < Application
   before :find_alt_contact_relationship, :only => %w{ update destroy }
 
   def index
+    @new_crs = ContactRelationship.all(:contact_id => @current_user.person_id, :is_accepted => 0)
     render
   end
 
@@ -23,7 +24,6 @@ class ContactRelationships < Application
     @alt_contact_relationship.is_accepted = true
     @alt_contact_relationship.save
     ContactRelationship.create(:contact_id => @alt_contact_relationship.person_id, :person_id => @alt_contact_relationship.contact_id, :is_accepted => true)
-
   end
   
   def destroy

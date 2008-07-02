@@ -1,7 +1,10 @@
 #navigation
   %ul
     %li#n_home{ :class => @nav_active == :home ? 'active' : '' }
-      =link_to "Home", url(:home)
+      - if logged_in?
+        =link_to "Home", url(:start)
+      - else
+        =link_to "Home", url(:home)
     %li#n_bills{ :class => @nav_active == :bills ? 'active' : '' }
       =link_to "Legislation", url(:bills)
     %li#n_polls{ :class => @nav_active == :polls ? 'active' : '' }

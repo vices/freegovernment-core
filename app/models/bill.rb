@@ -14,6 +14,8 @@ class Bill
   property :forum_id, Integer
 
   belongs_to :user
+  has 1, :forum, :class_name => "Forum"
+  has 1, :poll
 
   def text=(value)
     value.gsub!("\r\n", "\n")

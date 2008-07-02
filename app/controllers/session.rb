@@ -9,7 +9,7 @@ class Session < Application
   
     self.current_user = User.authenticate(username, password)
     if logged_in?
-      redirect_back_or_default url(:home)
+      redirect_back_or_default url(:start)
     else
       redirect url(:login)
     end

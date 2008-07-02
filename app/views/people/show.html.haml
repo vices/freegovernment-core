@@ -49,7 +49,7 @@
     #person_details
       .name== #{@person.full_name} | #{@user.username}
       - unless @user.address.nil?
-        .address= @user.address
+        .address= @user.address_text
     #recent_activity.block
       .title.alt_title Recent Activity
       .content
