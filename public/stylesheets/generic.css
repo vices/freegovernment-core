@@ -61,6 +61,14 @@ a:hover {
     position: absolute;
     top: 10px;
     right: 0; }
+    #header #account_bar .requests {
+      margin-top: 10px; }
+      #header #account_bar .requests a {
+        float: right;
+        width: 134px;
+        height: 20px;
+        background: url('/images/layout/requests.png') no-repeat;
+        text-indent: -999em; }
 
 #navigation {
   margin-top: 12px;
@@ -96,6 +104,30 @@ a:hover {
     border-top: 3px solid #333;
     border-bottom: 3px solid #333; }
 
+#home .block {
+  margin-bottom: 20px; }
+  #home .block h3 {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 4px; }
+  #home .block .content {
+    border-top: 6px solid #525252;
+    background: #eee url('/images/patterns/stripe_light.png');
+    padding: 8px;
+    line-height: 1.3em;
+    font-size: 16px;
+    font-weight: bold; }
+    #home .block .content ul {
+      font-weight: normal;
+      margin: 5px 0 0 5px;
+      font-size: 14px; }
+      #home .block .content ul li {
+        margin: 5px 0;
+        padding-left: 14px;
+        background: url('/images/home/bullet-star.gif') no-repeat 0 5px; }
+  #home .block .content.alt {
+    background: #fff; }
 #home #intro {
   display: block;
   padding-bottom: 20px;
@@ -154,28 +186,6 @@ a:hover {
   #home #info .left {
     float: left;
     width: 250px; }
-    #home #info .left .block {
-      margin-bottom: 20px; }
-      #home #info .left .block h3 {
-        font-size: 18px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 4px; }
-      #home #info .left .block .content {
-        border-top: 6px solid #525252;
-        background: #eee url('/images/patterns/stripe_light.png');
-        padding: 8px;
-        line-height: 1.3em;
-        font-size: 16px;
-        font-weight: bold; }
-        #home #info .left .block .content ul {
-          font-weight: normal;
-          margin: 5px 0 0 5px;
-          font-size: 14px; }
-          #home #info .left .block .content ul li {
-            margin: 5px 0;
-            padding-left: 14px;
-            background: url('/images/home/bullet-star.gif') no-repeat 0 5px; }
     #home #info .left #support_block .content {
       background: #ebf3f7; }
   #home #info .right {
