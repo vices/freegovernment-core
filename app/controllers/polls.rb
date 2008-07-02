@@ -24,27 +24,24 @@ class Polls < Application
        pp "made it"
         @sort_by = :no_count
       when 'vote_count'
-
-      	Poll.vote_count
-
-      	@sort_by = :vote_count
+        Poll.vote_count
+        @sort_by = :vote_count
       else
         @sort_by = :created_at
     end
     case params['direction']
-      when 'desc'
-        @direction = 'desc'
-        @order = @sort_by.desc
-        
-       else
+      when 'asc'
         @direction = 'asc'
         @order = @sort_by.asc
+      else
+        @direction = 'desc'
+        @order = @sort_by.desc
     end
     #syntax : :conditions => {:id => 34}
        #       : :conditions => {:verified_vote_count gt 0}
       
       
-      @polls_page = Poll.paginate(:page => params[:page], :per_page => 6) #(:order => [@order])
+      @polls_page = Poll.paginate(:page => params[:page], :per_page => 6, :order => [@order]) #(:order => [@order])
     #pp @polls_page
     render
   end
