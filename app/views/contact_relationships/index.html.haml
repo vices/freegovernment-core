@@ -7,7 +7,7 @@
       - form_tag :action => url(:contact_relationships) do
         = hidden_field :name => 'contact', :value => new_cr.person.user.username
         = submit_button "Confirm Contact"
-      - form_tag :action => url(:contact_relationship, new_cr) do
+      - form_tag :action => url(:contact_relationship, :id => new_cr.person.user.username), :method => :delete do
         = hidden_field :name => 'contact', :value => new_cr.person.user.username
         = submit_button "Reject Contact"
   - else

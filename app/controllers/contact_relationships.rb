@@ -2,7 +2,6 @@ class ContactRelationships < Application
   before :login_required
   before :check_user_is_person
   before :find_contact, :only => %w{ create update destroy }
-  before :find_contact_relationship, :only => %w{ destroy }
 
   def index
     @new_crs = ContactRelationship.all(:contact_id => @current_user.person_id, :is_accepted => 0)
@@ -27,14 +26,10 @@ class ContactRelationships < Application
     redirect profile_url(@contact_user)
   end 
 
-  def update
-    @alt_contact_relationship.is_accepted = true
-    @alt_contact_relationship.save
-    ContactRelationship.create(:contact_id => @alt_contact_relationship.person_id, :person_id => @alt_contact_relationship.contact_id, :is_accepted => true)
-  end
-  
   def destroy
-    @contact_relationship.destroy
+    unless(@contact_relationship = ContactRelationship.first(:person_id => @current_user.person_id, :contact_id => @contact_user.person_id)).nil?
+      @contact_relationship.destroy
+    end
     unless(@alt_contact_relationship = ContactRelationship.first(:person_id => @contact_user.person_id, :contact_id => @current_user.person_id)).nil?
       @alt_contact_relationship.destroy
     end
@@ -55,15 +50,4 @@ class ContactRelationships < Application
     end
   end
   
-  def find_contact_relationship
-    if(@contact_relationship = ContactRelationship.first(:contact_id => @contact_user.person_id, :person_id => @current_user.person_id)).nil?
-      raise Merb::ControllerExceptions::NotFound
-    end
-  end
-
-  def find_alt_contact_relationship
-    if(@alt_contact_relationship = ContactRelationship.first(:contact_id => @current_user.person_id, :person_id => @contact_user.person_id)).nil? && @contact_relationship.nil?
-      raise Merb::ControllerExceptions::NotFound
-    end
-  end
 end
