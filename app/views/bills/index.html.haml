@@ -13,7 +13,7 @@
               ==[FG Bill ##{bill.id}]
               /%span FG BILL #287
             %h3
-              = link_to bill.title, url(:bill, :id => bill.id)
+              = link_to h(bill.title), url(:bill, :id => bill.id)
             .description
               - unless bill.summary.nil?
                 %h4 Summary
