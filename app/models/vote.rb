@@ -100,7 +100,7 @@ class Vote
       vote_change = Vote.describe_change(old_vote, new_vote)
       vote_difference = Vote.describe_difference(vote_change)
       Vote.populate_advisee_votes(old_vote.poll_id, advisee_ids)
-      votes_to_change = Vote.all(:poll_id => old_vote.poll_id, :user_id.in => advisee_ids)
+      votes_to_change = Vote.all(:poll_id => new_vote.poll_id, :user_id.in => advisee_ids)
       votes_to_change.each do |vote|
         before_state = vote.state
         vote.change_adviser_counts(vote_difference[:yes],vote_difference[:no])

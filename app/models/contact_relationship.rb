@@ -14,5 +14,8 @@ class ContactRelationship
   validates_is_unique :contact_id, :scope => [:person_id]
   
   belongs_to :person
-  belongs_to :contact, :class_name => 'Person'
+
+  def contact
+    Person.first(:id => self.contact_id)
+  end
 end

@@ -25,7 +25,7 @@ class Person
   
   has n, :contact_relationships
   has n, :group_relationships
-  
+
   def contacts(options = {:page => 1, :per_page => 6 })
     self.contact_relationships.all(:is_accepted => 1).paginate(:page => options[:page], :per_page => options[:per_page]).collect{|cr| cr.contact}
   end

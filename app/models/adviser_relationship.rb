@@ -11,8 +11,8 @@ class AdviserRelationship
   property :created_at, DateTime
   property :modified_at, DateTime
   
-  has 1, :adviser, :class_name => 'User'
-  has 1, :person
+  belongs_to :adviser, :class_name => 'User'
+  belongs_to :person, :class_name => 'Person'
 
   validates_is_unique :person_id, :scope => [:adviser_id]
 end

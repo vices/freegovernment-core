@@ -24,7 +24,7 @@ class User
   has 0..1, :person
   has 0..1, :group
   
-  has n, :adviser_relationships
+  has n, :adviser_relationships, :child_key => [:adviser_id]
   has n, :contact_relationships
   has n, :group_relationships
 
@@ -61,7 +61,7 @@ class User
   
   def advisee_list
     if is_adviser
-      self.adviser_relationships.collect{ |ar| ar.advisee_id }
+      self.adviser_relationships.collect{ |ar| ar.person.user_id }
     else
       {}
     end
