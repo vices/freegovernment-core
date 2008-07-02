@@ -1,0 +1,17 @@
+- form_for @group, :action => url(:group, :id => @user.username), :class => 'full' do
+  %h1 Edit Your Profile
+  .caption
+    %span You can describe yourself here.
+  = error_messages_for @group
+  = error_messages_for @user
+  - if !params[:after_signup]
+    = text_control :name, :label => 'Name'
+    - fields_for @user do
+      = text_control :email, :label => 'Email'
+  = text_area_control :description, :label => 'Group Yourself'
+  = text_area_control :mission, :label => 'Group Mission'
+  .actions
+    .cancel
+      = link_to "cancel", url(:home)
+    .submit
+      = submit_button "save profile"
