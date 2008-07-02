@@ -14,7 +14,7 @@
               .image
                 = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
               .username
-                = link_to h (post.user.username), profile_url(post.user)
+                = link_to h(post.user.username), profile_url(post.user)
               - unless post.user.address_text.nil?
                 .address
                   =h post.user.address_text
@@ -45,7 +45,7 @@
           - @videos.each do |video|
             %tr
               %td
-                = link_to video.title, 'http://pl.youtube.com/watch?v=' + video.resource
+                = link_to h(video.title), 'http://pl.youtube.com/watch?v=' + video.resource
               %td.narrow
                 = link_to 'Go: #' + video.post.post_number.to_s, post_url(video.post)
               %td.narrow
