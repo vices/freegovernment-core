@@ -4,7 +4,7 @@
     #title
       .number
         == FG BILL ##{@bill.id}
-      %h2= @bill.title
+      %h2= h @bill.title
     = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show bill poll page »', url(:poll, :id => @bill.poll_id)), :poll => Poll.first, :vote => logged_in? ? Poll.first.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
   
   #content
