@@ -10,6 +10,7 @@ module Merb
     end
    
     def tag_cloud(tags, classes)
+      return tags
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
       tags.each do |t|
