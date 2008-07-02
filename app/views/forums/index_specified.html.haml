@@ -13,7 +13,7 @@
         %tbody
           - @forums_page.each do |forum|
             %tr{:class => "alt#{i}"}
-              %td.name= link_to forum.name, url(:forum, :id => forum.id)
+              %td.name= link_to h(forum.name), url(:forum, :id => forum.id)
               %td.topic_count= forum.topics_count
             - i == 0 ? i = 1 : i = 0
     .bottom

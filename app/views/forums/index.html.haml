@@ -8,7 +8,7 @@
       %h3 Latest Topics
       - unless @latest_topics.nil?
         - @latest_topics.each do |topic|
-          = topic.name
+          =h(topic.name)
     .section
       %h3 General Forums
       - unless @general_forums.nil?
@@ -21,7 +21,7 @@
           %tbody
             - @general_forums.each do |forum|
               %tr{:class => "alt#{i}"}
-                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.name= link_to h(forum.name), url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
             
@@ -37,7 +37,7 @@
           %tbody
             - @group_forums.each do |forum|
               %tr{:class => "alt#{i}"}
-                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.name= link_to h(forum.name), url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
@@ -55,7 +55,7 @@
           %tbody
             - @poll_forums.each do |forum|
               %tr{:class => "alt#{i}"}
-                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.name= link_to h(forum.name), url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
@@ -72,11 +72,11 @@
           %tbody
             - @bill_forums.each do |forum|
               %tr{:class => "alt#{i}"}
-                %td.name= link_to forum.name, url(:forum, :id => forum.id)
+                %td.name= link_to h(forum.name), url(:forum, :id => forum.id)
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
           = link_to "Show All »", url(:bill_index), :class => 'navlink'
   - else
     - @forums_page.each do |forum|
-      = forum.name
+      = h(forum.name)
