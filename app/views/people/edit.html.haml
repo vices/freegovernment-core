@@ -11,9 +11,6 @@
   = text_area_control :description, :label => 'Describe Yourself'
   = text_area_control :political_beliefs, :label => 'Political Beliefs'
   = text_area_control :interests, :label => 'Interests'
-  - fields_for @user do
-    =text_area_control :address, :label => 'Address'
-
   .actions
     .cancel
       = link_to "cancel", url(:home)
