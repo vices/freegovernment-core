@@ -21,7 +21,7 @@
                   - if (tags = Tag.get_tags(group)).empty?
                     %span no associated tags
                   - else
-                    = partial 'partials/taglist', :tags => tags
+                    = partial 'partials/taglist', :tags => tags, :klass => 'group'
       .pagination
         = merb_paginate @groups_page
         = page_entries_info(@groups_page)

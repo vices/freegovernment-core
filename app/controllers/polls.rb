@@ -45,7 +45,13 @@ class Polls < Application
     #pp @polls_page
     render
   end
-  
+
+  def by_tag
+    @tag = Tag.first(:permalink => params[:tag])
+    @polls_page = @tag.get_tagged('poll').paginate(:per_page => 8, :page => params[:page]) 
+    render :index
+  end
+
   def new
     @new_poll = Poll.new
     render

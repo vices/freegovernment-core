@@ -23,8 +23,10 @@
                 %p= h(bill.text).ellipsis(50)
             .tags
               tags:
-              - if true || poll.tags.nil?
+              - if (tags = Tag.get_tags(bill)).empty?
                 %span no associated tags
+              - else
+                = partial 'partials/taglist', :tags => tags, :klass => 'bill'
             .actions
               = link_to "view related poll", url(:poll, :id => bill.poll_id)
               |

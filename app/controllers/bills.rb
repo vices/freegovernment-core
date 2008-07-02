@@ -8,6 +8,12 @@ class Bills < Application
     render
   end
 
+  def by_tag
+    @tag = Tag.first(:permalink => params[:tag])
+    @bills_page = @tag.get_tagged('bill').paginate(:per_page => 8, :page => params[:page]) 
+    render :index
+  end
+
   def new
     @new_bill = Bill.new
     render
