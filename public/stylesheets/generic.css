@@ -273,7 +273,8 @@ a:hover {
   padding: 10px; }
   .filter .title {
     text-transform: uppercase;
-    border-bottom: 1px solid #525252; }
+    border-bottom: 1px solid #525252;
+    margin-bottom: 10px; }
   .filter a {
     color: #525252; }
 
@@ -1362,3 +1363,17 @@ table tr.alt1 td {
       color: #fff; }
   #group_requests .request .reject,   #contact_requests .request .reject {
     right: 130px; }
+
+.tag_cloud {
+  line-height: 16px;
+  text-align: justify; }
+  .tag_cloud .t1 {
+    font-size: 10px; }
+  .tag_cloud .t2 {
+    font-size: 12px; }
+  .tag_cloud .t3 {
+    font-size: 14px; }
+  .tag_cloud .t4 {
+    font-size: 16px; }
+  .tag_cloud .t5 {
+    font-size: 18px; }

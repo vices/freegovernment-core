@@ -89,7 +89,8 @@ form.full {
   right: 20px;
   bottom: 0;
   background: url('/images/layout/feedback.png') no-repeat;
-  text-indent: -999em; }
+  text-indent: -999em;
+  cursor: pointer; }
 
 #feedback_form {
   z-index: 1100;
