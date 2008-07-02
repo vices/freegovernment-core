@@ -13,7 +13,7 @@ a {
   font-weight: normal;
   color: #333;
   text-decoration: none;
-  color: #002f50; }
+  color: #525252; }
 
 a:hover {
   text-decoration: underline; }
@@ -593,7 +593,6 @@ h2.index_header {
     #poll #poll_details .details .question {
       font-size: 22px;
       font-weight: bold;
-      line-height: 1.5em;
       margin-bottom: 10px;
       width: 360px;
       float: left; }
@@ -618,10 +617,12 @@ h2.index_header {
     border-top: 1px solid #ddd;
     margin-bottom: 10px; }
     #poll #poll_description_and_comments .block .title {
-      padding: 5px 0;
-      text-transform: uppercase; }
-    #poll #poll_description_and_comments .block .content {
       background-color: #e9e9e9;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-bottom: 2px solid #999; }
+    #poll #poll_description_and_comments .block .content {
+      background-color: #f4f4f4;
       padding: 8px 5px; }
       #poll #poll_description_and_comments .block .content .content_block {
         background: white;
@@ -935,8 +936,7 @@ h2.index_header {
         margin: 4px 0;
         color: #aaa; }
       .comments .content form textarea {
-        width: 487px;
-        height: 100px; }
+        width: 487px; }
     .comments .content .comment {
       display: block;
       background: #fff;

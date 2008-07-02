@@ -21,15 +21,18 @@ form.standard input.text, form.standard input.password, form.standard textarea, 
 form.standard input.text, form.standard input.password, form.full input.text, form.full input.password {
   background-image: url('/images/forms/input-bg.png');
   background-repeat: repeat-x; }
+form.standard textarea, form.full textarea {
+  height: 150px; }
 form.standard label, form.full label {
   display: block;
   font-size: 12px;
   font-weight: bold;
   color: #000; }
 form.standard .actions, form.full .actions {
-  display: inline-block;
+  display: block;
   margin-top: 20px; }
   form.standard .actions:after,   form.full .actions:after {
+    display: block;
     content: ".";
     height: 0;
     clear: both;
@@ -89,6 +92,7 @@ form.full {
   text-indent: -999em; }
 
 #feedback_form {
+  z-index: 1100;
   display: none;
   padding: 10px;
   border-color: #333;
@@ -114,3 +118,28 @@ form.full {
       color: #333;
       position: absolute;
       left: 0; }
+
+#donate_form {
+  display: block; }
+  #donate_form:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #donate_form {
+    height: 1px; }
+  #donate_form input.text {
+    padding: 2px;
+    width: 112px;
+    float: left;
+    padding-left: 16px;
+    background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
+    border: 1px solid #dadada; }
+  #donate_form button {
+    padding: 3px;
+    padding-right: 20px;
+    background: #e9e9e9 url('/images/layout/paypal.gif') no-repeat right;
+    float: right;
+    width: 65px;
+    font-size: 11px; }
