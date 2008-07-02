@@ -2,17 +2,38 @@
 #group
   #group_photo_etc
     .photo= image_tag @user.avatar.url(:large)
-    #group_donations_block.block
-      .title Donations Earned to Date
+    #group_actions
+      .actions
+        - if logged_in?
+          - if @current_user.id == @user.id
+            = link_to "edit group profile", url(:edit_group, :id => @user.username), :class => 'button_link'
+          - elsif !@current_user.person_id.nil?
+            - if @gr.nil? 
+              - form_tag :action => url(:group_relationship) do
+                = hidden_field :name => 'group', :value => @user.username
+                = submit_button("join this group")
+            - elsif @gr.is_accepted?
+              - form_tag :action => url(:group_relationship, :id => @user.username), :method => :delete do
+                = hidden_field :name => 'group', :value => @user.username
+                = submit_button("leave this group")
+            - if @user.is_adviser
+              - if @ar.nil?
+                - form_tag :action => url(:adviser_relationships) do
+                  = hidden_field :name => 'adviser', :value => @user.username
+                  = submit_button("add as adviser")
+              - else
+                - form_tag :action => url(:adviser_relationship, :id => @user.username), :method => :delete do
+                  = hidden_field :name => 'adviser', :value => @user.username
+                  = submit_button("remove from advisers")
     #group_members_block.block
       .title Group Members
       .avatars
         - @group.members.each do |member|
           =link_to image_tag(member.user.avatar.url(:small)), url(:person, :id => member.user.username)
-    #group_photos_block.block
-      .title Group Photos
-    #group_videos_block.block
-      .title Group Videos
+    /#group_photos_block.block
+    /  .title Group Photos
+    /#group_videos_block.block
+    /  .title Group Videos
   #group_details_etc
     #group_details
       .name== #{@group.name}

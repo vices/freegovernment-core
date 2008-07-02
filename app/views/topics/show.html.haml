@@ -49,4 +49,4 @@
               %td.narrow
                 = link_to 'Go: #' + video.post.post_number.to_s, post_url(video.post)
               %td.narrow
-                = link_to 'raindrops', profile_url(video.post.user)
+                = link_to video.post.user.username, profile_url(video.post.user)

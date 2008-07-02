@@ -9,11 +9,11 @@
             = link_to "edit my profile", url(:edit_person, :id => @user.username), :class => 'button_link'
           - elsif !@current_user.person_id.nil?
             - if @cr.nil? 
-              - form_tag :action => url(:contact_relationship) do
+              - form_tag :action => url(:contact_relationships) do
                 = hidden_field :name => 'contact', :value => @user.username
                 = submit_button("add to contacts")
             - elsif @cr.is_accepted?
-              - form_tag :action => url(:contact_relationship) do
+              - form_tag :action => url(:contact_relationship, :id => @user.username), :method => :delete do
                 = hidden_field :name => 'contact', :value => @user.username
                 = submit_button("remove from contacts")
             - if @user.is_adviser
