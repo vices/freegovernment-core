@@ -22,7 +22,7 @@ class String
 
   def render_textile
     begin
-      r = RedCloth.new self
+      r = RedCloth.new(self, [:filter_html])
       return r.to_html
     rescue
       return self
