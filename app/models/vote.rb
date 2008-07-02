@@ -119,6 +119,9 @@ class Vote
     end
 
     def describe_change(old_vote, new_vote)
+      p 'in describe'
+      pp old_vote
+      pp new_vote
       unless old_vote.nil?
         [old_vote.state, new_vote.state]
       else
