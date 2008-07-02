@@ -1,9 +1,9 @@
 #account_bar
   - if logged_in?
-    %strong
-      Hi
-      = @current_user.username
-    %span= "|"
+    %div
+      %strong
+        Hi
+        = @current_user.username
     - unless @current_user.person_id.nil?
       = link_to "my profile", url(:person, :id => @current_user.username)
     - else

@@ -104,143 +104,149 @@ a:hover {
     border-top: 3px solid #333;
     border-bottom: 3px solid #333; }
 
-#home .block {
+#home .block, #start .block {
   margin-bottom: 20px; }
-  #home .block h3 {
+  #home .block h3,   #start .block h3 {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 4px; }
-  #home .block .content {
+  #home .block .content,   #start .block .content {
     border-top: 6px solid #525252;
     background: #eee url('/images/patterns/stripe_light.png');
     padding: 8px;
     line-height: 1.3em;
     font-size: 16px;
     font-weight: bold; }
-    #home .block .content ul {
+    #home .block .content ul,     #start .block .content ul {
       font-weight: normal;
       margin: 5px 0 0 5px;
       font-size: 14px; }
-      #home .block .content ul li {
+      #home .block .content ul li,       #start .block .content ul li {
         margin: 5px 0;
         padding-left: 14px;
         background: url('/images/home/bullet-star.gif') no-repeat 0 5px; }
-  #home .block .content.alt {
+  #home .block .content.alt,   #start .block .content.alt {
     background: #fff; }
-#home #intro {
+#home #intro, #start #intro {
   display: block;
   padding-bottom: 20px;
   margin-bottom: 20px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
-  #home #intro:after {
+  #home #intro:after,   #start #intro:after {
     display: block;
     content: ".";
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html #home #intro {
+  * html #home #intro,   * html #start #intro {
     height: 1px; }
-  #home #intro .left {
+  #home #intro .left,   #start #intro .left {
     float: left;
     width: 250px; }
-  #home #intro .attention {
+  #home #intro .attention,   #start #intro .attention {
     margin-top: 10px;
     line-height: 1.3em;
     padding: 8px 16px; }
-  #home #intro #group_signup {
+  #home #intro #group_signup,   #start #intro #group_signup {
     background: #e3ebd6; }
-    #home #intro #group_signup a {
+    #home #intro #group_signup a,     #start #intro #group_signup a {
       color: #525252; }
-  #home #intro .right {
+  #home #intro .right,   #start #intro .right {
     width: 500px;
     float: right; }
-  #home #intro #banner a {
+  #home #intro #banner a,   #start #intro #banner a {
     display: block;
     height: 70px;
     text-indent: -999em;
     margin-bottom: 5px; }
-  #home #intro #banner a.banner1 {
+  #home #intro #banner a.banner1,   #start #intro #banner a.banner1 {
     background: url('/images/home/banners/1.png') no-repeat; }
-  #home #intro #banner a.banner2 {
+  #home #intro #banner a.banner2,   #start #intro #banner a.banner2 {
     background: url('/images/home/banners/2.png') no-repeat; }
-  #home #intro #banner a.banner3 {
+  #home #intro #banner a.banner3,   #start #intro #banner a.banner3 {
     background: url('/images/home/banners/3.png') no-repeat; }
-  #home #intro #banner a.banner4 {
+  #home #intro #banner a.banner4,   #start #intro #banner a.banner4 {
     background: url('/images/home/banners/4.png') no-repeat; }
-  #home #intro #banner a.banner5 {
+  #home #intro #banner a.banner5,   #start #intro #banner a.banner5 {
     background: url('/images/home/banners/5.png') no-repeat; }
-#home #info {
+#home #info, #start #info {
   display: block;
   padding-top: 20px;
   margin-top: 20px;
   background: url('/images/patterns/dots.gif') repeat-x top; }
-  #home #info:after {
+  #home #info:after,   #start #info:after {
     display: block;
     content: ".";
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html #home #info {
+  * html #home #info,   * html #start #info {
     height: 1px; }
-  #home #info .left {
+  #home #info .left,   #start #info .left {
     float: left;
     width: 250px; }
-    #home #info .left #support_block .content {
+    #home #info .left #support_block .content,     #start #info .left #support_block .content {
       background: #ebf3f7; }
-  #home #info .right {
+  #home #info .right,   #start #info .right {
     width: 500px;
     float: right; }
-  #home #info #blog h2 {
+  #home #info #blog h2,   #start #info #blog h2 {
     padding-bottom: 5px;
     border-bottom: 6px solid #525252; }
-    #home #info #blog h2 a {
+    #home #info #blog h2 a,     #start #info #blog h2 a {
       display: block;
       height: 52px;
       background: url('/images/home/blog-header.png') no-repeat center;
       text-indent: -999em; }
-  #home #info #blog .entry {
+  #home #info #blog .entry,   #start #info #blog .entry {
     margin: 15px 0;
     padding-bottom: 10px;
     background: url('/images/patterns/dots.gif') repeat-x bottom; }
-    #home #info #blog .entry h3 {
+    #home #info #blog .entry h3,     #start #info #blog .entry h3 {
       font-size: 16px;
       font-weight: bold;
       margin: 10px 0; }
-#home #freedoms h2 {
+#home #freedoms h2, #start #freedoms h2 {
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
   margin-bottom: 20px; }
-#home #freedoms ul {
+#home #freedoms ul, #start #freedoms ul {
   display: block; }
-  #home #freedoms ul:after {
+  #home #freedoms ul:after,   #start #freedoms ul:after {
     display: block;
     content: ".";
     height: 0;
     clear: both;
     visibility: hidden; }
-  * html #home #freedoms ul {
+  * html #home #freedoms ul,   * html #start #freedoms ul {
     height: 1px; }
-  #home #freedoms ul li {
+  #home #freedoms ul li,   #start #freedoms ul li {
     float: left;
     width: 182px;
     margin-right: 10px;
     height: 100%; }
-    #home #freedoms ul li h3 {
+    #home #freedoms ul li h3,     #start #freedoms ul li h3 {
       font-size: 22px;
       font-weight: bold;
       margin-bottom: 8px; }
-    #home #freedoms ul li .content {
+    #home #freedoms ul li .content,     #start #freedoms ul li .content {
       border-top: 6px solid #525252;
       background-color: #eee;
       padding: 8px;
       height: 88px;
       line-height: 1.3em;
       font-size: 14px; }
-  #home #freedoms ul li.last {
+  #home #freedoms ul li.last,   #start #freedoms ul li.last {
     width: 184px;
     margin-right: 0; }
+
+#start #info, #start #intro {
+  background: none;
+  padding: 0; }
+#start #info {
+  margin-top: 10px; }
 
 #login label {
   margin: 3px 0px; }
