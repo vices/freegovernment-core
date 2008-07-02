@@ -26,11 +26,14 @@
                   = hidden_field :name => 'adviser', :value => @user.username
                   = submit_button("remove from advisers")
     - if @user.is_adviser?
-      #person_advisees_block.block
-        .title Advisers
+      - unless @ar.nil?
+        #person_advisees_block.block
+          .title Advisees
     - else
-      #person_advisers_block.block
-        .title Advisees
+      - unless @ar.nil?
+        #person_advisers_block.block
+          .title Advisers
+
     #person_contacts_block.block
       .title Contacts
       .avatars
