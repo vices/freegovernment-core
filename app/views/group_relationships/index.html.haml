@@ -1,0 +1,14 @@
+#group_requests
+  %h2 New Group Requests
+  .caption Confirm new group members and they will be able to participate in the group forum.
+  - if @new_grs
+    - @new_grs.each do |new_gr|
+      == #{new_gr.person.full_name} wants to add you as a contact.
+      - form_tag :action => url(:group_relationship, :id => new_gr.person.user.username), :method => :put do
+        = hidden_field :name => 'person', :value => new_gr.person.user.username
+        = submit_button "Confirm Member"
+      - form_tag :action => url(:group_relationship, :id => new_gr.person.user.username), :method => :delete do
+        = hidden_field :name => 'person', :value => new_gr.person.user.username
+        = submit_button "Reject Member"
+  - else
+    .caption You have no new contacts seeking approval. 

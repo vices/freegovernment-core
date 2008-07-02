@@ -75,9 +75,9 @@
       #political_beliefs.block
         .title Political Beliefs
         .content
-          = h @person.political_beliefs
+          = @person.political_beliefs.render_textile
     - unless @person.interests.nil?
       #interests.block
         .title Interests
         .content
-          = h @person.interests
+          = @person.interests.render_textile

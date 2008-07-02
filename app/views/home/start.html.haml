@@ -1,3 +1,7 @@
 #start
-  - if @new_cr_count > 0
-    = link_to "You have new Contact Requests", url(:contact_relationships)
+  - unless @new_cr_count.nil?
+    - if @new_cr_count > 0
+      = link_to "You have new Contact Requests", url(:contact_relationships)
+  - unless @new_gr_count.nil?
+    - if @new_gr_count > 0
+      = link_to "You have new Group Requests", url(:group_relationships)
