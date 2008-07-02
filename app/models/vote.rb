@@ -170,12 +170,16 @@ class Vote
       poll_ids = []
       DataMapper::Transaction.new do
         votes.each do |vote|
-          unless Vote.create(:user_id => user_id, :poll_id => vote.poll_id, :is_yes => vote.is_yes, :is_no => vote.is_no, :adviser_yes_count => vote.is_yes, :adviser_no_count => vote.is_no)
+          pp vote
+          unless Vote.new(:user_id => user_id, :poll_id => vote.poll_id, :is_yes => vote.is_yes.to_i, :is_no => vote.is_no.to_i, :adviser_yes_count => vote.is_yes.to_i, :adviser_no_count => vote.is_no.to_i).save
+            pp 'no create'
             poll_ids << vote.poll_id
-            Vote.first(:user_id => user_id, :poll_id => vote.poll_id).update!(:adviser_yes_count => :adviser_yes_count + vote.is_yes, :adviser_no_count => :adviser_no_count + vote.is_no)
+            Vote.all(:user_id => user_id, :poll_id => vote.poll_id).adjust!(:adviser_yes_count => vote.is_yes, :adviser_no_count => vote.is_no)
           end
         end
-        Vote.update_votes_after_adviser_change([user_id],poll_ids)
+        unless poll_ids.empty?
+          Vote.update_votes_after_adviser_change([user_id],poll_ids)
+        end
       end
     end
 
@@ -184,7 +188,8 @@ class Vote
       poll_ids = []
       DataMapper::Transaction.new do
         votes.each do |vote|
-          Vote.first(:user_id => user_id, :poll_id => vote.poll_id).update!(:adviser_yes_count => :adviser_yes_count - vote.is_yes, :adviser_no_count => :adviser_no_count - vote.is_no)
+          poll_ids << vote.poll_id
+          Vote.all(:user_id => user_id, :poll_id => vote.poll_id).adjust!(:adviser_yes_count => -1*vote.is_yes, :adviser_no_count => -1*vote.is_no)
         end
         Vote.update_votes_after_adviser_change([user_id],poll_ids)
       end
@@ -192,9 +197,9 @@ class Vote
 
 
     def update_votes_after_adviser_change(user_ids, poll_ids)
-        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.gt => :adviser_no_count).update!(:is_yes => 1, :is_no => 0)
-        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.lt => :adviser_no_count).update!(:is_yes => 0, :is_no => 1)
-        Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.eql => :adviser_no_count).update!(:is_yes => 0, :is_no => 0)
+      Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.gt => :adviser_no_count).update!(:is_yes => 1, :is_no => 0)
+      Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.lt => :adviser_no_count).update!(:is_yes => 0, :is_no => 1)
+      Vote.all(:user_id.in => user_ids, :poll_id.in => poll_ids, :is_adviser_decided => true, :adviser_yes_count.eql => :adviser_no_count).update!(:is_yes => 0, :is_no => 0)
     end
 
   end

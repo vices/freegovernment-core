@@ -11,4 +11,6 @@ class AdviserRelationship
   
   has 1, :adviser, :class_name => 'User'
   has 1, :person
+
+  validates_is_unique :person_id, :scope => [:adviser_id]
 end

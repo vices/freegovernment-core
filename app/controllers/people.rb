@@ -18,6 +18,14 @@ class People < Application
   end
   
   def show
+    if logged_in?
+      if !@current_user.person_id.nil?
+        if !@current_user.is_adviser && @user.is_adviser
+          @ar = AdviserRelationship.first(:adviser_id => @user.id, :person_id => @current_user.id)
+        end
+        @cr = ContactRelationship.first(:person_id => @current_user.id, :contact_id => @user.id)
+      end
+    end
     render
   end
   

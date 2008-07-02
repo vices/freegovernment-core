@@ -15,7 +15,7 @@ class ContactRelationships < Application
   end
   
   def create
-    @contact_relationship.new({:contact_id => @contact_user.person_id, :person_id => @current_user.person_id})
+    ContactRelationship.create({:contact_id => @contact_user.person_id, :person_id => @current_user.person_id})
     redirect profile_url(@contact_user)
   end 
 
@@ -43,7 +43,7 @@ class ContactRelationships < Application
   end
 
   def find_contact
-    if(@contact_user = User.first(:username => param[:contact], :person_id.not => nil)).nil?
+    if(@contact_user = User.first(:username => params[:contact], :person_id.not => nil)).nil?
       raise Merb::ControllerExceptions::NotFound
     end
   end

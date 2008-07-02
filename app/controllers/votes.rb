@@ -27,8 +27,6 @@ class Votes < Application
     end  
   end
   
-  
-  
   def set_old_and_new_vote
     clean_vote_for_advisers
     @old_vote = Vote.first(:poll_id => params[:vote][:poll_id].to_i, :user_id => session[:user_id])

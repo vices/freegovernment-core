@@ -60,7 +60,7 @@ class User
   
   def advisee_list
     if is_adviser
-      self.advising_relationships.collect{ |ar| ar.advisee_id }
+      self.adviser_relationships.collect{ |ar| ar.advisee_id }
     else
       {}
     end
