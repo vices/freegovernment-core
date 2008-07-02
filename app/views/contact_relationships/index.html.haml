@@ -3,12 +3,13 @@
   .caption Contacts are people who can see your email address and are listed under your contacts block.
   - if @new_crs
     - @new_crs.each do |new_cr|
-      == #{new_cr.person.full_name} wants to add you as a contact.
-      - form_tag :action => url(:contact_relationships) do
-        = hidden_field :name => 'contact', :value => new_cr.person.user.username
-        = submit_button "Confirm Contact"
-      - form_tag :action => url(:contact_relationship, :id => new_cr.person.user.username), :method => :delete do
-        = hidden_field :name => 'contact', :value => new_cr.person.user.username
-        = submit_button "Reject Contact"
+      .request
+        == #{ link_to(new_cr.person.full_name, profile_url(new_cr.person.user)) } wants to add you as a contact.
+        - form_tag :action => url(:contact_relationships), :class => 'confirm' do
+          = hidden_field :name => 'contact', :value => new_cr.person.user.username
+          = submit_button "Confirm Contact"
+        - form_tag :action => url(:contact_relationship, :id => new_cr.person.user.username), :method => :delete, :class => 'reject' do
+          = hidden_field :name => 'contact', :value => new_cr.person.user.username
+          = submit_button "Reject Contact"
   - else
     .caption You have no new contacts seeking approval. 

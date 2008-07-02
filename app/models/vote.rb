@@ -167,31 +167,23 @@ class Vote
 
     def update_user_votes_for_added_adviser(user_id, adviser_id)
       votes = Vote.all(:user_id => adviser_id)
-      poll_ids = []
-      DataMapper::Transaction.new do
-        votes.each do |vote|
-          pp vote
-          unless Vote.new(:user_id => user_id, :poll_id => vote.poll_id, :is_yes => vote.is_yes.to_i, :is_no => vote.is_no.to_i, :adviser_yes_count => vote.is_yes.to_i, :adviser_no_count => vote.is_no.to_i).save
-            pp 'no create'
-            poll_ids << vote.poll_id
-            Vote.all(:user_id => user_id, :poll_id => vote.poll_id).adjust!(:adviser_yes_count => vote.is_yes, :adviser_no_count => vote.is_no)
-          end
-        end
-        unless poll_ids.empty?
-          Vote.update_votes_after_adviser_change([user_id],poll_ids)
+      votes.each do |vote|
+        v = Vote.new(:user_id => user_id, :poll_id => vote.poll_id)
+        v.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
+        unless v.save
+          vi = Vote.first(:user_id => user_id, :poll_id => vote.poll_id)
+          vi.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
+          vi.save
         end
       end
     end
 
     def update_user_votes_for_removed_adviser(user_id, adviser_id)
       votes = Vote.all(:user_id => adviser_id)
-      poll_ids = []
-      DataMapper::Transaction.new do
-        votes.each do |vote|
-          poll_ids << vote.poll_id
-          Vote.all(:user_id => user_id, :poll_id => vote.poll_id).adjust!(:adviser_yes_count => -1*vote.is_yes, :adviser_no_count => -1*vote.is_no)
-        end
-        Vote.update_votes_after_adviser_change([user_id],poll_ids)
+      votes.each do |vote|
+        vi = Vote.first(:user_id => user_id, :poll_id => vote.poll_id)
+        vi.change_adviser_counts(vote.is_yes ? -1 : 0, vote.is_no ? -1 : 0)
+        vi.save
       end
     end   
 

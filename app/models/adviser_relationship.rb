@@ -6,6 +6,8 @@ class AdviserRelationship
   property :id, Integer, :serial => true
   property :adviser_id, Integer, :nullable => false
   property :person_id, Integer, :nullable => false
+  property :is_adding_votes, Boolean, :default => 0
+  property :is_removing_votes, Boolean, :default => 0
   property :created_at, DateTime
   property :modified_at, DateTime
   

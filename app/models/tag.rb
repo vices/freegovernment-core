@@ -18,7 +18,15 @@ class Tag
   class << self
 
     def get_tags(object)
-        Tagging.get_taggings(object).collect{ |t| t.tag }
+      ids = []
+      tags = []
+      Tagging.get_taggings(object).each do |t|
+        unless ids.index(t.tag.id)
+          ids << t.tag.id
+          tags << t.tag
+        end
+      end
+      return tags
     end
 
   end

@@ -74,6 +74,14 @@ a:hover
     :position absolute
     :top 10px
     :right 0
+    .requests
+      :margin-top 10px
+      a
+        :float right
+        :width 134px
+        :height 20px
+        :background url('/images/layout/requests.png') no-repeat
+        :text-indent -999em
 
 #navigation
   :margin-top 12px
@@ -111,7 +119,31 @@ a:hover
       :border-bottom 3px solid #333
 
 
-#home
+#home, #start
+  .block
+    :margin-bottom 20px
+    h3
+      :font-size 18px
+      :font-weight bold
+      :text-transform uppercase
+      :margin-bottom 4px
+    .content
+      :border-top 6px solid #525252
+      :background #eee url('/images/patterns/stripe_light.png')
+      :padding 8px
+      :line-height 1.3em
+      :font-size 16px
+      :font-weight bold
+      ul
+        :font-weight normal
+        :margin 5px 0 0 5px
+        :font-size 14px
+        li
+          :margin 5px 0
+          :padding-left 14px
+          :background url('/images/home/bullet-star.gif') no-repeat 0 5px
+    .content.alt
+      :background #fff
   #intro
     +clearfix
     :padding-bottom 20px
@@ -159,28 +191,7 @@ a:hover
     .left
       :float left
       :width 250px
-      .block
-        :margin-bottom 20px
-        h3
-          :font-size 18px
-          :font-weight bold
-          :text-transform uppercase
-          :margin-bottom 4px
-        .content
-          :border-top 6px solid #525252
-          :background #eee url('/images/patterns/stripe_light.png')
-          :padding 8px
-          :line-height 1.3em
-          :font-size 16px
-          :font-weight bold
-          ul
-            :font-weight normal
-            :margin 5px 0 0 5px
-            :font-size 14px
-            li
-              :margin 5px 0
-              :padding-left 14px
-              :background url('/images/home/bullet-star.gif') no-repeat 0 5px
+
       #support_block .content
         :background #ebf3f7
     .right
@@ -235,7 +246,13 @@ a:hover
       li.last
         :width 184px
         :margin-right 0
-      
+        
+#start
+  #info, #intro
+    :background none
+    :padding 0
+  #info
+    :margin-top 10px
           
 #login
   label
@@ -265,6 +282,7 @@ a:hover
   .title
     :text-transform uppercase
     :border-bottom 1px solid #525252
+    :margin-bottom 10px
   a
     :color #525252
 
@@ -1170,3 +1188,49 @@ table
       :color #bbb
     .location:hover, .other:hover
       :color #ddd
+
+
+#group_requests, #contact_requests
+  h2, .caption
+    :font-weight bold
+    :margin-bottom 10px
+  h2
+    :font-size 20px
+  .caption
+    :font-size 14px
+    :margin-bottom 30px
+  .request
+    :padding 10px 0
+    :padding-left 10px
+    :margin-top 10px
+    :position relative
+    :border-bottom 1px solid #ddd
+    a
+      :font-weight bold
+    form
+      :position absolute
+      :bottom 4px
+      button
+        :padding 4px 5px
+    .confirm
+      :right 0
+      button
+        :background #333
+        :color #fff
+    .reject
+      :right 130px
+
+
+.tag_cloud
+  :line-height 16px
+  :text-align justify
+  .t1
+    :font-size 10px
+  .t2
+    :font-size 12px
+  .t3
+    :font-size 14px
+  .t4
+    :font-size 16px
+  .t5
+    :font-size 18px

@@ -13,6 +13,7 @@ module Merb
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
       tags.each do |t|
+        pp t
         max = t.taggings.count.to_i if t.taggings.count.to_i > max
         min = t.taggings.count.to_i if t.taggings.count.to_i < min
       end

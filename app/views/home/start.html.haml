@@ -1,7 +1,30 @@
 #start
-  - unless @new_cr_count.nil?
-    - if @new_cr_count > 0
-      = link_to "You have new Contact Requests", url(:contact_relationships)
-  - unless @new_gr_count.nil?
-    - if @new_gr_count > 0
-      = link_to "You have new Group Requests", url(:group_relationships)
+  #intro
+    .left
+      .block
+        %h3 Your updates
+        .content.alt
+    .right
+      - cache "home_map", 10 do
+        = partial 'home/map'
+  #info
+    .left
+      .block
+        %h3 About us
+        .content
+  
+    .right
+      #blog
+        %h2
+          = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
+        - cache "home_blog", 180 do
+          - begin
+            - rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+            - if rss.entries.length > 0
+              - rss.entries.each do |entry|
+                .entry
+                  %h3= entry.title
+                  = entry.content
+                  = link_to "See full post", entry.urls.first
+          - rescue
+

@@ -47,7 +47,15 @@ class Application < Merb::Controller
   def reset_session
     session.data.each{|k,v| session.data.delete(k)}
   end
-
+  
+  def requests_count
+    if !@current_user.person_id.nil?
+      ContactRelationship.count(:contact_id => @current_user.person_id, :is_accepted => 0)
+    else
+      GroupRelationship.count(:group_id => @current_user.group_id, :is_accepted => 0)
+    end
+  end
+  
   private
 
   def set_updates_data

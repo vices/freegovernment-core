@@ -89,7 +89,8 @@ form.full {
   right: 20px;
   bottom: 0;
   background: url('/images/layout/feedback.png') no-repeat;
-  text-indent: -999em; }
+  text-indent: -999em;
+  cursor: pointer; }
 
 #feedback_form {
   z-index: 1100;
@@ -141,6 +142,7 @@ form.full {
     background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
     border: 1px solid #dadada; }
   #footer .donation form button,   #support_block form button {
+    margin-top: 2px;
     padding: 3px;
     float: right;
     width: 65px;
@@ -154,6 +156,7 @@ form.full {
   background: #fafafa url('/images/layout/dollar_light.gif') no-repeat left;
   width: 138px; }
 #support_block form button {
+  margin-top: 2px;
   padding: 5px;
   background: #333;
   color: #fff; }

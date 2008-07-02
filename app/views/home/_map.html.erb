@@ -1,4 +1,4 @@
-<!-- <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script> -->
+<%- cache "home_map", 10 do %>
 <script type="text/javascript">
   has_map = true;
 
@@ -71,3 +71,4 @@
 </script>
 <a id="map_preimage" onclick="startMap()" style="cursor: pointer"><img src="/images/home/googlemap.png" /></a>
 <div id="map" style="display: none; width: 500px; height: 275px"></div>
+<% end -%>

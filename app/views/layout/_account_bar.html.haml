@@ -1,5 +1,9 @@
 #account_bar
   - if logged_in?
+    %div
+      %strong
+        Hi
+        = @current_user.username
     - unless @current_user.person_id.nil?
       = link_to "my profile", url(:person, :id => @current_user.username)
     - else
@@ -8,6 +12,14 @@
     = link_to "account settings", url(:edit_user, :id => @current_user.username)
     %span= "|"
     =delete_button :session, @session, "log out", :class => 'button_link'
+
+    - if requests_count > 0
+      %div.requests
+        - unless @current_user.person_id.nil?
+          = link_to "You have new Contact Requests", url(:contact_relationships), :title => 'New person/people wants to add you as a contact.'
+        - else
+          = link_to "You have new Group Requests", url(:group_relationships), :title => 'New person/people wants to join \'%s\' group.' % @current_user.group.name
+
   - else
     = link_to "sign up", url(:new_person)
     %span= "|"

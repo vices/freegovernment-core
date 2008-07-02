@@ -5,19 +5,26 @@ class AdviserRelationships < Application
   before :find_adviser_relationship, :only => 'destroy'
 
   def create
-    ar = AdviserRelationship.new({:adviser_id => @adviser.id, :person_id => @current_user.person_id})
+    ar = AdviserRelationship.new({:adviser_id => @adviser.id, :person_id => @current_user.person_id, :is_adding_votes => true})
     if ar.save
       run_later do
-        Vote.update_user_votes_for_added_adviser(@current_user.id, @adviser.id)
+        DataMapper::Transaction.new do
+          Vote.update_user_votes_for_added_adviser(@current_user.id, @adviser.id)
+          ar.is_adding_votes = false
+          ar.save
+        end
       end
     end
     redirect profile_url(@adviser)
   end
   
   def destroy
-    if @ar.destroy
-      run_later do
-        Vote.update_user_votes_for_removed_adviser(@current_user.id, @adviser.id) 
+    run_later do
+      @ar.is_removing_votes = true
+      @ar.save
+      DataMapper::Transaction.new do
+        Vote.update_user_votes_for_removed_adviser(@current_user.id, @adviser.id)
+        @ar.destroy
       end
     end
     redirect profile_url(@adviser)
