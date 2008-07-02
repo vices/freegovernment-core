@@ -6,7 +6,7 @@
       .actions
         - if logged_in?
           - if @current_user.id == @user.id
-            = link_to "edit my profile", url(:person, :id => @user.username), :class => 'button_link'
+            = link_to "edit my profile", url(:edit_person, :id => @user.username), :class => 'button_link'
           - elsif !@current_user.person_id.nil?
             - if @cr.nil? 
               - form_tag :action => url(:contact_relationship) do
