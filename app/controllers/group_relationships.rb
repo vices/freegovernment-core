@@ -26,14 +26,14 @@ class GroupRelationships < Application
     @gr = GroupRelationship.first(:group_id => @current_user.group_id, :person_id => @person_user.person_id)
     @gr.is_accepted = true
     @gr.save
-    redirect profile_url(@person_user)
+    redirect url(:group_relationships)
   end
   
   def destroy
     unless(@group_relationship = GroupRelationship.first(:group_id => @group_user.group_id, :person_id => @person_user.person_id)).nil?
       @group_relationship.destroy
     end
-    redirect profile_url(@group_user)
+    redirect url(:group_relationships)
   end
   
   private

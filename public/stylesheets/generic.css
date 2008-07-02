@@ -1327,3 +1327,32 @@ table tr.alt1 td {
     color: #bbb; }
   #footer .user .location:hover, #footer .user .other:hover {
     color: #ddd; }
+
+#group_requests h2, #group_requests .caption, #contact_requests h2, #contact_requests .caption {
+  font-weight: bold;
+  margin-bottom: 10px; }
+#group_requests h2, #contact_requests h2 {
+  font-size: 20px; }
+#group_requests .caption, #contact_requests .caption {
+  font-size: 14px;
+  margin-bottom: 30px; }
+#group_requests .request, #contact_requests .request {
+  padding: 10px 0;
+  padding-left: 10px;
+  margin-top: 10px;
+  position: relative;
+  border-bottom: 1px solid #ddd; }
+  #group_requests .request a,   #contact_requests .request a {
+    font-weight: bold; }
+  #group_requests .request form,   #contact_requests .request form {
+    position: absolute;
+    bottom: 4px; }
+    #group_requests .request form button,     #contact_requests .request form button {
+      padding: 4px 5px; }
+  #group_requests .request .confirm,   #contact_requests .request .confirm {
+    right: 0; }
+    #group_requests .request .confirm button,     #contact_requests .request .confirm button {
+      background: #333;
+      color: #fff; }
+  #group_requests .request .reject,   #contact_requests .request .reject {
+    right: 130px; }
