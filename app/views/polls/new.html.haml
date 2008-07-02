@@ -2,7 +2,8 @@
   %h1 Create a new poll
   = error_messages_for @new_poll
   = text_control :question, :label => 'poll question (140 characters max):'
-  = text_area_control :description, :label => 'poll description'  
+  = text_area_control :description, :label => 'poll description'
+  = text_field :name => 'poll_tags', :id => 'poll_tags', :label => 'poll tags ( comma separated )', :value => @poll_tags
   / TODO videos and tags text_area_control
   .captcha
     = recaptcha_tags
