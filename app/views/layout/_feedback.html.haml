@@ -2,6 +2,8 @@
   %p FreeGovernment.org is in active development. We consider your feedback critical to our success, so please share your suggestions through this form.
   = hidden_control :controller, :value => params[:controller]
   = hidden_control :action, :value => params[:action]
+  - unless logged_in?
+    = text_control :email, :label => 'Your email (optional)'
   = text_area_control :message, :label => 'Your message'
   %div
     = submit_button 'Send Feedback!', :class => 'submit'

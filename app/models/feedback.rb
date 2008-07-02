@@ -8,4 +8,5 @@ class Feedback
   property :controller, String
   property :action, String
   property :created_at, DateTime
+  property :email, String
 end

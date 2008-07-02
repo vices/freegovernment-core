@@ -105,6 +105,10 @@ form.full {
     line-height: 150%;
     margin-bottom: 10px;
     font-size: 10px; }
+  #feedback_form label {
+    margin-bottom: 5px; }
+  #feedback_form input {
+    margin-bottom: 10px; }
   #feedback_form textarea {
     width: 292px;
     display: block;
