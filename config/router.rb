@@ -29,9 +29,18 @@ Merb::Router.prepare do |r|
     s.match('/logout').to(:action => 'destroy').name(:logout)
   end
   r.resource :session
+  r.to(:controller => 'bills') do |b|
+    b.match('/bills/tag').to(:action => 'by_tag').name(:bill_tag)
+  end
   r.resources :bills
+  r.to(:controller => 'groups') do |b|
+    b.match('/groups/tag').to(:action => 'by_tag').name(:group_tag)
+  end
   r.resources :groups
   r.resources :people
+  r.to(:controller => 'polls') do |b|
+    b.match('/polls/tag').to(:action => 'by_tag').name(:poll_tag)
+  end
   r.resources :polls
   r.resources :votes
   

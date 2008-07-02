@@ -1,6 +1,6 @@
 - i = 1
 - tags.each do |tag|
-  %a<
+  %a{:href => url((klass + '_tag').to_sym, :tag => tag.permalink )}<
     = tag.name
   = (i == tags.length) ? '.' : ', '
   - i = i + 1
