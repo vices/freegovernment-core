@@ -1021,14 +1021,11 @@ table
 #forum
   .head
     :margin-bottom 10px
-    :position relative
     h2
       :font-size 20px
       :font-weight bold
-    .navlinks_c
-      :position absolute
-      :top 0
-      :right 0
+    .navlinks
+      :text-align right
   table
     :width 760px
     :margin-bottom 10px
@@ -1059,10 +1056,13 @@ table
     .pagination
       :margin-top 0
 #topic
-  h2
-    :font-size 20px
-    :font-weight bold
-    :margin-bottom 10px
+  .head
+    .navlinks
+      :text-align right
+    h2
+      :font-size 20px
+      :font-weight bold
+      :margin-bottom 10px
   table
     :width 760px
     :margin-bottom 10px

@@ -1128,15 +1128,12 @@ table tr.alt1 td {
     margin-top: 0; }
 
 #forum .head {
-  margin-bottom: 10px;
-  position: relative; }
+  margin-bottom: 10px; }
   #forum .head h2 {
     font-size: 20px;
     font-weight: bold; }
-  #forum .head .navlinks_c {
-    position: absolute;
-    top: 0;
-    right: 0; }
+  #forum .head .navlinks {
+    text-align: right; }
 #forum table {
   width: 760px;
   margin-bottom: 10px; }
@@ -1174,7 +1171,9 @@ table tr.alt1 td {
   #forum .bottom .pagination {
     margin-top: 0; }
 
-#topic h2 {
+#topic .head .navlinks {
+  text-align: right; }
+#topic .head h2 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px; }
