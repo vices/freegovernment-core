@@ -9,7 +9,6 @@ module Merb
       end
     end
    
-<<<<<<< HEAD:app/helpers/global_helpers.rb
     def get_years 
       t_now = Time.now 
       y_end = t_now.year - 120;
@@ -26,10 +25,8 @@ module Merb
     end 
    
    
-    def tag_cloud(tags, classes)
-=======
+
     def tag_cloud(tags, klass, classes)
->>>>>>> 13996bf84fcfa58cff2f2f300f0892f68939e6bd:app/helpers/global_helpers.rb
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
       tags.each do |t|
