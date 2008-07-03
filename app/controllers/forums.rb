@@ -16,19 +16,22 @@ class Forums < Application
   
   def group_index
     @what = 'Group'
-    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:group_id.not => nil})
+    @route = :group_index
+    @forums_page = Forum.paginate(:page => params[:page], :per_page => 20, :conditions => {:group_id.not => nil})
     render :template => 'forums/index_specified.html'
   end
 
   def poll_index
     @what = 'Poll-Related'
-    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:poll_id.not => nil, :bill_id => nil})
+    @route = :poll_index
+    @forums_page = Forum.paginate(:page => params[:page], :per_page => 20, :conditions => {:poll_id.not => nil, :bill_id => nil})
     render :template => 'forums/index_specified.html'
   end
 
   def bill_index
     @what = 'Bill-Related'
-    @forums_page = Forum.paginate(:page => params[:group_page], :per_page => 20, :conditions => {:bill_id.not => nil})
+    @route = :bill_index
+    @forums_page = Forum.paginate(:page => params[:page], :per_page => 20, :conditions => {:bill_id.not => nil})
     render :template => 'forums/index_specified.html'
   end
 

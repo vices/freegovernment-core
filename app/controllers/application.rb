@@ -1,5 +1,8 @@
 class Application < Merb::Controller
-  before :set_updates_data
+  before do
+    set_updates_data
+    store_page_number
+  end
 
   protected
   
@@ -39,7 +42,7 @@ class Application < Merb::Controller
     session[:return_to] = nil
     redirect loc
   end
-
+  
   def user_from_session
     self.current_user = User.first(:id => session[:user_id]) if session[:user_id]
   end
@@ -63,6 +66,12 @@ class Application < Merb::Controller
       @updates_newest_users = User.all(:limit => 5, :order => [:id.desc])
       @updates_newest_topics = Post.all(:limit => 3, :order => [:id.desc])
       @updates_newest_polls = Poll.all(:limit => 3, :order => [:id.desc])
+    end
+  end
+  
+  def store_page_number
+    if params[:action] == 'index'
+      session[(params[:controller] + '_index_page').to_sym] = params[:page]
     end
   end
 

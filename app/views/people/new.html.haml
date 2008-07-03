@@ -6,10 +6,14 @@
   = error_messages_for @new_person
   = error_messages_for @new_user
   = text_control :full_name, :label => 'Full Name'
+<<<<<<< HEAD:app/views/people/new.html.haml
   %td Birthdate:
   = select_control :b_year, :collection => get_years()
   = select_control :b_month, :collection => get_months()
   = select_control :b_day, :collection => get_days()
+=======
+  = text_control :date_of_birth, :label => 'Date of Birth ( YYYY-MM-DD )'
+>>>>>>> 13996bf84fcfa58cff2f2f300f0892f68939e6bd:app/views/people/new.html.haml
   - fields_for @new_user do
     = text_control :email, :label => 'Email'
     = text_control :username, :label => 'Username'

@@ -326,6 +326,14 @@ button.active {
   .voting_options .bottom {
     text-align: right; }
 
+#page_title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #666; }
+  #page_title span {
+    color: #333; }
+
 #bills_index .bill {
   display: block;
   border-bottom: 1px solid #ccc;
@@ -370,12 +378,6 @@ button.active {
     #bills_index .bill .main .tags {
       font-style: italic;
       color: #8b8b8b; }
-    #bills_index .bill .main .actions {
-      text-align: right;
-      margin-top: 10px; }
-      #bills_index .bill .main .actions a {
-        font-weight: bold;
-        margin: 0 10px; }
 
 #bill #main {
   display: block; }
@@ -387,23 +389,28 @@ button.active {
     visibility: hidden; }
   * html #bill #main {
     height: 1px; }
-  #bill #main #title {
-    width: 390px;
+  #bill #main .main {
     float: left;
-    padding-left: 80px;
-    background: url('/images/bills/congressbot.png') no-repeat; }
-    #bill #main #title .number {
-      font-size: 16px;
-      margin-bottom: 5px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #666; }
-      #bill #main #title .number span {
-        color: #20adbb;
-        margin-left: 20px; }
-    #bill #main #title h2 {
-      font-size: 22px;
-      font-weight: bold; }
+    width: 470px; }
+    #bill #main .main img {
+      display: block;
+      float: left;
+      border: 1px solid #ddd; }
+    #bill #main .main #title {
+      float: right;
+      width: 400px; }
+      #bill #main .main #title .number {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #666; }
+        #bill #main .main #title .number span {
+          color: #20adbb;
+          margin-left: 20px; }
+      #bill #main .main #title h2 {
+        font-size: 22px;
+        font-weight: bold; }
   #bill #main .voting_options {
     position: relative;
     width: 270px;
@@ -431,14 +438,18 @@ button.active {
     float: left; }
     #bill #content .left div {
       background: url('/images/bills/list.png') no-repeat;
-      width: 160px; }
+      width: 150px; }
       #bill #content .left div .title {
         width: 140px;
         padding: 5px;
         background: #f4f4f4;
-        font-weight: bold;
-        text-transform: uppercase;
         text-align: center; }
+        #bill #content .left div .title a {
+          color: #333;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding-right: 10px;
+          background: url('/images/layout/link.gif') no-repeat right top; }
       #bill #content .left div ul {
         width: 130px;
         margin-left: 20px;
@@ -448,6 +459,11 @@ button.active {
         #bill #content .left div ul li {
           margin-top: 8px;
           padding-right: 5px; }
+      #bill #content .left div a {
+        color: #fff; }
+      #bill #content .left div p {
+        padding: 8px;
+        color: #fff; }
   #bill #content .right {
     float: right;
     width: 539px;
@@ -546,6 +562,12 @@ button.active {
           color: #525252;
           font-size: 14px;
           margin-bottom: 5px; }
+        #polls_index .poll .details .main h3 small {
+          position: relative;
+          left: 50px; }
+          #polls_index .poll .details .main h3 small a {
+            padding-right: 10px;
+            background: url('/images/layout/link.gif') no-repeat right top; }
       #polls_index .poll .details .main .description {
         margin-top: 10px;
         line-height: 18px; }
@@ -584,8 +606,27 @@ h2.index_header {
   h2.index_header .caption {
     display: none; }
 
-#link_back {
-  margin-bottom: 15px; }
+.navlink {
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+  padding: 5px 10px; }
+
+.navlink.alt {
+  background: #ebf3f7;
+  border-color: #daebf3; }
+
+.navlink:hover {
+  text-decoration: none;
+  background: #f0f0f0; }
+
+.navlink.alt:hover {
+  background: #daebf3; }
+
+.navlinks {
+  text-align: right;
+  margin-bottom: 25px; }
+  .navlinks a {
+    margin-left: 10px; }
 
 #poll #poll_details {
   display: block;
@@ -636,26 +677,35 @@ h2.index_header {
       font-weight: bold;
       padding: 4px 8px;
       border-bottom: 2px solid #999; }
+    #poll #poll_description_and_comments .block .title a {
+      font-weight: bold;
+      color: #333;
+      padding-right: 10px;
+      background: url('/images/layout/link.gif') no-repeat right top; }
     #poll #poll_description_and_comments .block .content {
       background-color: #f4f4f4;
-      padding: 8px 5px; }
+      padding: 10px; }
       #poll #poll_description_and_comments .block .content .content_block {
         background: white;
         padding: 5px; }
+      #poll #poll_description_and_comments .block .content ul li {
+        list-style: disc;
+        margin-left: 2em; }
   #poll #poll_description_and_comments #poll_description_etc {
     float: left;
-    width: 260px; }
+    width: 225px; }
   #poll #poll_description_and_comments #poll_comments_etc {
     float: right;
-    width: 480px; }
+    width: 515px; }
 #poll #poll_stats_table {
-  width: 245px;
+  width: 200px;
   background: white;
   margin: 0 auto; }
   #poll #poll_stats_table tr, #poll #poll_stats_table td, #poll #poll_stats_table th {
     text-align: center; }
   #poll #poll_stats_table td, #poll #poll_stats_table th {
-    padding: 8px 5px; }
+    padding: 8px 5px;
+    vertical-align: middle; }
   #poll #poll_stats_table td {
     line-height: 18px;
     font-size: 16px; }
@@ -687,6 +737,12 @@ h2.index_header {
   .list_and_filters .list {
     float: left;
     width: 550px; }
+    .list_and_filters .list .actions {
+      text-align: right;
+      margin-top: 10px; }
+      .list_and_filters .list .actions a {
+        font-weight: bold;
+        margin: 0 10px; }
   .list_and_filters .filters {
     float: right;
     width: 200px; }
@@ -976,7 +1032,14 @@ h2.index_header {
         .comments .content .comment .main .meta {
           color: #666;
           padding-bottom: 3px;
-          border-bottom: 1px solid #ddd; }
+          border-bottom: 1px solid #ddd;
+          position: relative; }
+          .comments .content .comment .main .meta span {
+            margin-left: 10px; }
+          .comments .content .comment .main .meta small {
+            font-size: 10px;
+            position: absolute;
+            right: 0; }
 
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }
@@ -1013,20 +1076,16 @@ table tr.alt0 td {
 table tr.alt1 td {
   background: #f4f4f4; }
 
-.bottom .navlink {
-  border: 1px solid #f0f0f0;
-  background: #fafafa;
-  padding: 5px 10px; }
-.bottom .navlink:hover {
-  text-decoration: none;
-  background: #f0f0f0; }
-
 #forums .section {
   margin-bottom: 20px; }
   #forums .section h3 {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    position: relative; }
+    #forums .section h3 .navlink {
+      position: absolute;
+      right: 0; }
   #forums .section table {
     width: 760px; }
     #forums .section table .name {
@@ -1081,10 +1140,13 @@ table tr.alt1 td {
   #forums.specified .section .bottom .pagination {
     margin-top: 0; }
 
-#forum h2 {
-  font-size: 20px;
-  font-weight: bold;
+#forum .head {
   margin-bottom: 10px; }
+  #forum .head h2 {
+    font-size: 20px;
+    font-weight: bold; }
+  #forum .head .navlinks {
+    text-align: right; }
 #forum table {
   width: 760px;
   margin-bottom: 10px; }
@@ -1122,7 +1184,9 @@ table tr.alt1 td {
   #forum .bottom .pagination {
     margin-top: 0; }
 
-#topic h2 {
+#topic .head .navlinks {
+  text-align: right; }
+#topic .head h2 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px; }
@@ -1373,3 +1437,12 @@ table tr.alt1 td {
     font-size: 16px; }
   .tag_cloud .t5 {
     font-size: 18px; }
+
+#flash {
+  padding: 10px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  background: #ebf3f7 url('/images/layout/info.gif') no-repeat 1% 50%;
+  border: 1px solid #daebf3;
+  color: #306076;
+  font-weight: bold; }

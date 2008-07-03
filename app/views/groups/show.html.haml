@@ -1,5 +1,7 @@
-/ Groups View
 #group
+  .navlinks
+    = link_to 'All groups', url(:groups, :page => session[:groups_index_page]), :class => 'navlink'
+    = link_to 'Group forum', url(:forum, :id => @group.forum.id), :class => 'navlink alt'
   #group_photo_etc
     .photo= image_tag @user.avatar.url(:large)
     #group_actions
@@ -36,7 +38,7 @@
     /  .title Group Videos
   #group_details_etc
     #group_details
-      .name== #{@group.name}
+      .name== #{h @group.name}
     #recent_activity.block
       .title.alt_title Recent Activity
       .content
@@ -60,20 +62,23 @@
     #group_comments.comments.block
       .title.alt_title Group Comments
       .content
-        %form.standard
-          %label type your post here
-          %textarea
-          %button
-            submit post
-        .comment
-          =link_to image_tag(@user.avatar.url(:small)), url(:group, :id => @user.username), :class => 'avatar'
-          .main
-            .meta
-              = link_to h(@group.name), url(:group, :id => @group.name)
-              , Concord, NH
-            %p In hac habitasse platea dictumst. Proin bibendum pede in justo. Aliquam consectetuer gravida nisi. Curabitur nec turpis. Cras in nisi. Aenean sit amet sapien. In a diam id ipsum commodo malesuada. Aliquam dictum libero vel nisi. Nam commodo blandit lectus. Sed vel erat eu justo interdum malesuada. Morbi condimentum ligula cursus quam. Donec velit.
-            %p Aliquam feugiat risus in massa. Maecenas nisl lorem, pharetra sodales, rhoncus nec, facilisis in, purus. Donec non lorem aliquet mi porttitor pretium. Duis commodo purus id ipsum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc lectus eros, ultrices quis, viverra ac, suscipit et, nulla.
-        .comment
-          Test
-        .comment
-          Test
+        - form_for Post.new, :action => url(:posts), :class => 'standard' do
+          = hidden_control :topic_id, :value => @comments_topic.id
+          = text_area_control :text, :label => 'type your message here'
+          = submit_button "submit post"
+        - unless @comments.empty?
+          - @comments.each do |c|
+            #comments
+              .comment
+                =link_to image_tag(c.user.avatar.url(:small)), profile_url(c.user), :class => 'avatar'
+                .main
+                  .meta
+                    == #{link_to h(c.user.username), profile_url(c.user)},
+                    %span= c.user.address_text
+                    %small= c.created_at.strftime('%b %d, %Y %I:%M%P')
+                  = c.text.render_textile
+          .pagination
+            = merb_paginate @comments, :route => { :name => :group, :id => @user.username }, :anchor => '#comments'
+            = page_entries_info @comments
+        - else
+          %p No comments so far.

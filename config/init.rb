@@ -92,9 +92,7 @@ dependency 'dm-geokit'
 dependency 'dm-paperclip'
 dependency 'dm-observer'
 dependency 'dm-adjust'
-if Merb.environment != 'production'
-  dependency 'pp'
-end
+dependency 'pp'
 if Merb.environment == 'test'
   dependency 'merb_stories'
 end
@@ -110,6 +108,8 @@ Merb::BootLoader.after_app_loads do
   # dependency "magic_admin" # this gem uses the app's model classes
   require File.join(File.dirname(__FILE__),'recaptcha')
   require File.join(File.dirname(__FILE__),'geokit')
+
+  require File.join(File.dirname(__FILE__), 'dbthread')
 end
 
 
@@ -132,15 +132,8 @@ end
 #
 # ==== Set up your basic configuration
 #
-Merb::Config.use do |c|
 
-  # Sets up a custom session id key, if you want to piggyback sessions of other applications
-  # with the cookie session store. If not specified, defaults to '_session_id'.
-  # c[:session_id_key] = '_session_id'
-
-  c[:session_secret_key]  = '04c7f72a37e356776ae20f81ffec78573a864493'
-  c[:session_store] = 'memory'
-end
+require File.join(File.dirname(__FILE__),'memory')
 
 
 # ==== Tune your inflector

@@ -26,17 +26,21 @@ class Groups < Application
         @direction = 'desc'
         @order = @sort_by.desc
     end
+    @title = 'Latest groups'
     @groups_page = Group.paginate(:page => params[:page], :per_page => 8, :order => [@order]) # (:order => [@order])
     render
   end
 
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
-    @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page]) 
+    @title = 'Groups for tag: <span>%s</span>' % @tag.name
+    @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page])
     render :index
   end
   
   def show
+    @comments_topic = Topic.first(:forum_id => @group.forum.id, :name => 'Comments')
+    @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     if logged_in?
       if !@current_user.person_id.nil?
       @gr = GroupRelationship.first(:person_id => @current_user.person_id, :group_id => @group.id)
@@ -64,10 +68,11 @@ class Groups < Application
         @new_group.save
         @new_user.group_id = @new_group.id
         @new_user.save
-        forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name, :topic_count => 1)
-        Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => @new_user.id)
+        self.current_user = @new_user
+        forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name)#, :topic_count => 1)
+        topic = Topic.create(:name => "Comments", :forum_id => forum.id, :user_id => @new_group.user.id)
         Tagging.tag_object(@new_group, @group_tags)
-        redirect url(:home)
+        redirect url(:start)
       else
         render :new
       end
@@ -109,5 +114,5 @@ class Groups < Application
       raise NotFound #this isn't tested
     end
   end
-  
+
 end

@@ -9,6 +9,7 @@ module Merb
       end
     end
    
+<<<<<<< HEAD:app/helpers/global_helpers.rb
     def get_years 
       t_now = Time.now 
       y_end = t_now.year - 120;
@@ -26,15 +27,18 @@ module Merb
    
    
     def tag_cloud(tags, classes)
+=======
+    def tag_cloud(tags, klass, classes)
+>>>>>>> 13996bf84fcfa58cff2f2f300f0892f68939e6bd:app/helpers/global_helpers.rb
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
       tags.each do |t|
-        max = t.taggings.count.to_i if t.taggings.count.to_i > max
-        min = t.taggings.count.to_i if t.taggings.count.to_i < min
+        max = t.taggings.all(:object_type => klass).count.to_i if t.taggings.count.to_i > max
+        min = t.taggings.all(:object_type => klass).count.to_i if t.taggings.count.to_i < min
       end
       divisor = ((max - min) / classes.size) + 1
       tags.each do |t|
-        yield t, classes[(t.taggings.count.to_i - min) / divisor]
+        yield t, classes[(t.taggings.all(:object_type => klass).count.to_i - min) / divisor]
       end
     end
     

@@ -40,14 +40,14 @@ class Polls < Application
     #syntax : :conditions => {:id => 34}
        #       : :conditions => {:verified_vote_count gt 0}
       
-      
-      @polls_page = Poll.paginate(:page => params[:page], :per_page => 6, :order => [@order]) #(:order => [@order])
-    #pp @polls_page
+    @title = 'Latest polls'
+    @polls_page = Poll.paginate(:page => params[:page], :per_page => 8, :order => [@order]) #(:order => [@order])
     render
   end
 
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
+    @title = 'Polls for tag: <span>%s</span>' % @tag.name
     @polls_page = @tag.get_tagged('poll').paginate(:per_page => 8, :page => params[:page]) 
     render :index
   end
@@ -65,8 +65,7 @@ class Polls < Application
     if verify_recaptcha and @new_poll.save
         @new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id) #
         @new_forum.save #
-        @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id, #
-        :user_id => @new_poll.user_id) #
+        @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id, :user_id => @new_poll.user_id)
         @new_topic.save #
         Tagging.tag_object(@new_poll, @poll_tags)
         redirect url(:polls) #
@@ -76,6 +75,8 @@ class Polls < Application
   end
   
   def show
+    @comments_topic = Topic.first(:forum_id => @poll.forum.id, :name => 'Comments')
+    @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     render
   end
   

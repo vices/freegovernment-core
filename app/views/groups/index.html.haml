@@ -5,6 +5,8 @@
     .caption pick representative groups as your advisers
   #groups_list_and_filters.list_and_filters
     #people_list.list
+      - if @title
+        #page_title= @title
       - if !@groups_page.nil?
         - @groups_page.each do |group|
           .group
@@ -23,7 +25,10 @@
                   - else
                     = partial 'partials/taglist', :tags => tags, :klass => 'group'
       .pagination
-        = merb_paginate @groups_page
+        - if @tag
+          = merb_paginate @groups_page, :route => { :name => :group_tag }, :params => { :tag => @tag.permalink }
+        - else
+          = merb_paginate @groups_page, :route => { :name => :groups }
         = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search
@@ -34,8 +39,8 @@
       #group_tags.filter
         .title Groups Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('group')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
-            %a{ :href => url(:group_tag, :tag => t.permalink), :class => c }
+          - tag_cloud(Tag.get_tags('group')[0..50], 'group', ['t1','t2','t3','t4','t5']) do |t, c|
+            %a{ :href => url(:group_tag, :tag => t.permalink), :class => c }<
               = t.name
 
       /- else

@@ -10,6 +10,8 @@
       = text_control :email, :label => 'Email'
   = text_area_control :description, :label => 'Describe Yourself'
   = text_area_control :political_beliefs, :label => 'Political Beliefs'
+  - affiliations = ['Republican Party', 'Democratic Party', 'Libertarian Party', 'Constitution Party', 'Green Party', 'Other', 'None']
+  = select_control :political_affiliation, :collection => affiliations, :label => 'Political Affiliation'
   = text_area_control :interests, :label => 'Interests'
   .actions
     .cancel

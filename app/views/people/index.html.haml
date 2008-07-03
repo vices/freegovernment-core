@@ -5,6 +5,8 @@
     .caption find advisers, make friends, see what other people are up to
   #people_list_and_filters.list_and_filters
     #people_list.list
+      - if @title
+        #page_title= @title
       - @people_page.each do |person|
         .person
           .details
@@ -17,7 +19,7 @@
                 =h person.description
           .actions
       .pagination
-        = merb_paginate(@people_page)
+        = merb_paginate(@people_page, :route => :people)
         = page_entries_info(@people_page)
     #people_filters.filters
       #person_search

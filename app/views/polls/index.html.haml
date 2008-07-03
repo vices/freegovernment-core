@@ -5,59 +5,70 @@
     .caption don't forget to learn how you can get advisers to vote for you.
   .list_and_filters
     .list
+      - if @title
+        #page_title= @title
       - unless @polls_page.nil?
         - @polls_page.each do |poll|
           .poll
-            .details
-              = link_to image_tag("polls/missing_icon_small.png"), url(:poll, :id => poll.id), :class => 'img'
-              .main
-                %h3= link_to "#{h poll.question}", url(:poll, :id => poll.id)
-                .description= h(poll.description).ellipsis(50)
-                = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new, :box_title => '', :bottom => ''
-                .tags
-                  tags:
-                  - if (tags = Tag.get_tags(poll)).empty?
-                    %span no associated tags
+            .clearfix
+              .details
+                = link_to image_tag("polls/missing_icon_small.png"), url(:poll, :id => poll.id), :class => 'img'
+                .main
+                  %h3
+                    = link_to "#{h poll.question}", url(:poll, :id => poll.id)
+                  .description= h(poll.description).ellipsis(50)
+                  = partial 'polls/voting_options', :poll => poll, :vote => logged_in? ? poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new, :box_title => '', :bottom => ''
+                  .tags
+                    tags:
+                    - if (tags = Tag.get_tags(poll)).empty?
+                      %span no associated tags
+                    - else
+                      = partial 'partials/taglist', :tags => tags, :klass => 'poll'
+              .stats
+                .segment
+                  .title All Users
+                  - if poll.vote_count > 0
+                    .stat.yes
+                      %span.number== #{poll.yes_percent.precision_round(1)}%
+                      %span.label Yes 
+                    .stat.no
+                      %span.number== #{poll.no_percent.precision_round(1)}%
+                      %span.label No
                   - else
-                    = partial 'partials/taglist', :tags => tags, :klass => 'poll'
-                  
-            .stats
-              .segment
-                .title All Users
-                - if poll.vote_count > 0
-                  .stat.yes
-                    %span.number== #{poll.yes_percent.precision_round(1)}%
-                    %span.label Yes 
-                  .stat.no
-                    %span.number== #{poll.no_percent.precision_round(1)}%
-                    %span.label No
-                - else
-                  .stat.yes
-                    n/a
-                    %span Yes 
-                  .stat.no
-                    n/a
-                    %span No
-                .total== #{poll.vote_count} votes
-              .segment
-                .title Verified Voters
-                - if poll.verified_vote_count > 0
-                  .stat.yes
-                    = #{poll.verified_yes_percent.precision_round(1)}%
-                    %span Yes 
-                  .stat.no
-                    = #{poll.verified_no_percent.precision_round(1)}%
-                    %span No
-                - else
-                  .stat.yes
-                    n/a
-                    %span Yes 
-                  .stat.no
-                    n/a
-                    %span No
-                .total== #{poll.verified_vote_count} votes
+                    .stat.yes
+                      n/a
+                      %span Yes 
+                    .stat.no
+                      n/a
+                      %span No
+                  .total== #{poll.vote_count} votes
+                .segment
+                  .title Verified Voters
+                  - if poll.verified_vote_count > 0
+                    .stat.yes
+                      = #{poll.verified_yes_percent.precision_round(1)}%
+                      %span Yes 
+                    .stat.no
+                      = #{poll.verified_no_percent.precision_round(1)}%
+                      %span No
+                  - else
+                    .stat.yes
+                      n/a
+                      %span Yes 
+                    .stat.no
+                      n/a
+                      %span No
+                  .total== #{poll.verified_vote_count} votes
+            - unless poll.bill_id.nil?
+              .actions
+                = link_to "view related bill", url(:bill, :id => poll.bill_id)
+                |
+                = link_to "view poll", url(:poll, :id => poll.id)
       .pagination
-        = merb_paginate @polls_page
+        - if @tag
+          = merb_paginate @polls_page, :route => { :name => :poll_tag }, :params => { :tag => @tag.permalink }
+        - else
+          = merb_paginate @polls_page, :route => { :name => :polls }
         = page_entries_info @polls_page
     .filters
       #poll_search
@@ -67,6 +78,6 @@
       #poll_tags.filter
         .title Poll Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('poll')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
-            %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }
+          - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
+            %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }<
               = t.name

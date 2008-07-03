@@ -23,7 +23,17 @@ class Posts < Application
       end
       @topic.posts_count = new_posts_count
       @topic.save
-      redirect post_url(@new_post)
+      if @topic.name == 'Comments'
+        if !@topic.forum.bill_id.nil?
+          redirect url(:bill, :id => @topic.forum.bill_id)
+        elsif !@topic.forum.group_id.nil?
+          redirect url(:group, :id => @topic.forum.group.user.username) + '#comments'
+        else
+          redirect url(:poll, :id => @topic.forum.poll_id)
+        end
+      else
+        redirect post_url(@new_post)
+      end
     else
       render :new
     end

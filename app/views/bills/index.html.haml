@@ -5,6 +5,8 @@
     .caption create new bills and seek out the support of others
   .list_and_filters
     .list
+      - if @title
+        #page_title= @title
       - @bills_page.each do |bill|
         .bill
           .img= link_to image_tag(bill.user.avatar(:small)), profile_url(bill.user)
@@ -31,7 +33,12 @@
               = link_to "view related poll", url(:poll, :id => bill.poll_id)
               |
               = link_to "view bill", url(:bill, :id => bill.id)
-      = merb_paginate @bills_page
+      .pagination
+        - if @tag
+          = merb_paginate @bills_page, :route => { :name => :bill_tag }, :params => { :tag => @tag.permalink }
+        - else
+          = merb_paginate @bills_page, :route => { :name => :bills }
+        = page_entries_info @bills_page
     .filters
       #bill_search
       #bill_creation.attention
@@ -40,6 +47,6 @@
       #bill_tags.filter
         .title Bill Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('bill')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
-            %a{ :href => url(:bill_tag, :tag => t.permalink), :class => c }
+          - tag_cloud(Tag.get_tags('bill')[0..50], 'bill', ['t1','t2','t3','t4','t5']) do |t, c|
+            %a{ :href => url(:bill_tag, :tag => t.permalink), :class => c }<
               = t.name

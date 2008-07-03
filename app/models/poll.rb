@@ -19,8 +19,10 @@ class Poll
   property :description, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
+  property :bill_id, Integer
 
   has n, :votes
+  has 1, :forum, :class_name => "Forum"
 
   has_attached_file :icon,
     :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
