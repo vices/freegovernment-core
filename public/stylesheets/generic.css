@@ -440,7 +440,9 @@ button.active {
         #bill #content .left div .title a {
           color: #333;
           font-weight: bold;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          padding-right: 10px;
+          background: url('/images/layout/link.gif') no-repeat right top; }
       #bill #content .left div ul {
         width: 130px;
         margin-left: 20px;
@@ -653,12 +655,20 @@ h2.index_header {
       font-weight: bold;
       padding: 4px 8px;
       border-bottom: 2px solid #999; }
+    #poll #poll_description_and_comments .block .title a {
+      font-weight: bold;
+      color: #333;
+      padding-right: 10px;
+      background: url('/images/layout/link.gif') no-repeat right top; }
     #poll #poll_description_and_comments .block .content {
       background-color: #f4f4f4;
       padding: 8px 5px; }
       #poll #poll_description_and_comments .block .content .content_block {
         background: white;
         padding: 5px; }
+      #poll #poll_description_and_comments .block .content ul li {
+        list-style: disc;
+        margin-left: 2em; }
   #poll #poll_description_and_comments #poll_description_etc {
     float: left;
     width: 260px; }

@@ -10,7 +10,6 @@ class Bill
   property :summary, DM::Text
   property :text, DM::Text, :nullable => false
   property :sectioned_text, DM::Text
-  property :discussion_topics, DM::Text
   property :user_id, Integer, :nullable => false
   property :poll_id, Integer
   property :forum_id, Integer
