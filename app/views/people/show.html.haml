@@ -53,9 +53,9 @@
       .title Watched Polls
   #person_details_etc
     #person_details
-      .name== #{@person.full_name} | #{@user.username}
+      .name== #{h @person.full_name} | #{h @user.username}
       - unless @user.address.nil?
-        .address= @user.address_text
+        .address=h @user.address_text
     #recent_activity.block
       .title.alt_title Recent Activity
       .content
