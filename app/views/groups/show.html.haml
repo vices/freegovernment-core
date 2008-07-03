@@ -81,3 +81,5 @@
           .pagination
             = merb_paginate @comments, :route => { :name => :group, :id => @user.username }, :anchor => '#comments'
             = page_entries_info @comments
+        - else
+          %p No comments so far.

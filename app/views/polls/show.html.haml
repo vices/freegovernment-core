@@ -48,5 +48,27 @@
         .title Statistics in Real-Time
       #poll_timeline.block
         .title Timeline of Poll Results
-      #poll_comments.block
-        .title Comments
+      #poll_comments.comments.block
+        .title.alt_title Poll Comments
+        .content
+          %form.standard
+            %label type your post here
+            %textarea
+            %button
+              submit post
+          - unless @comments.empty?
+            - @comments.each do |c|
+              #comments
+                .comment
+                  =link_to image_tag(c.user.avatar.url(:small)), profile_url(c.user), :class => 'avatar'
+                  .main
+                    .meta
+                      == #{link_to h(c.user.username), profile_url(c.user)},
+                      %span= c.user.address_text
+                      %small= c.created_at.strftime('%b %d, %Y %I:%M%P')
+                    = c.text.render_textile
+            .pagination
+              = merb_paginate @comments, :route => { :name => :poll, :id => @poll.id }, :anchor => '#comments'
+              = page_entries_info @comments
+          - else
+            %p No comments so far.

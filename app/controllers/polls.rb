@@ -76,6 +76,7 @@ class Polls < Application
   end
   
   def show
+    @comments = Topic.first(:forum_id => @poll.forum.id, :name => 'Comments').posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     render
   end
   
