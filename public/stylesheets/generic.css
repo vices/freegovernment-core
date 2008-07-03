@@ -378,7 +378,9 @@ button.active {
         margin: 0 10px; }
 
 #bill #main {
-  display: block; }
+  display: block;
+  padding-left: 80px;
+  background: url('/images/bills/congressbot.png') no-repeat; }
   #bill #main:after {
     display: block;
     content: ".";
@@ -389,9 +391,7 @@ button.active {
     height: 1px; }
   #bill #main #title {
     width: 390px;
-    float: left;
-    padding-left: 80px;
-    background: url('/images/bills/congressbot.png') no-repeat; }
+    float: left; }
     #bill #main #title .number {
       font-size: 16px;
       margin-bottom: 5px;
@@ -602,10 +602,10 @@ h2.index_header {
   text-decoration: none;
   background: #f0f0f0; }
 
-.back_link {
+.navlinks {
   text-align: right;
   margin-bottom: 25px; }
-  .back_link a {
+  .navlinks a {
     margin-left: 10px; }
 
 #poll #poll_details {
