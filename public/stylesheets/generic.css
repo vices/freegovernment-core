@@ -555,6 +555,12 @@ button.active {
           color: #525252;
           font-size: 14px;
           margin-bottom: 5px; }
+        #polls_index .poll .details .main h3 small {
+          position: relative;
+          left: 50px; }
+          #polls_index .poll .details .main h3 small a {
+            padding-right: 10px;
+            background: url('/images/layout/link.gif') no-repeat right top; }
       #polls_index .poll .details .main .description {
         margin-top: 10px;
         line-height: 18px; }
