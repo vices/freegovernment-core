@@ -32,6 +32,8 @@ class BillSection
           end
         end
       end
+      pp bill
+      pp sections
       sections.each do |section|
         BillSection.create({:title => section[0], :text => section[1], :forum_id => bill.forum_id, :bill_id => bill.id})
       end

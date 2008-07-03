@@ -19,22 +19,10 @@ class Bill
   has 1, :poll
   has n, :bill_sections
 
-=begin
+
   def text=(value)
     value.gsub!("\r\n", "\n")
     attribute_set(:text, value)
-    attribute_set(:sectioned_text, section_text.to_yaml)
   end
-
-  def sectioned_text
-    if(value = attribute_get(:sectioned_text)).nil?
-      nil
-    else
-      ::YAML.load(value)
-    end
-  end
-=end
-
-
 
 end
