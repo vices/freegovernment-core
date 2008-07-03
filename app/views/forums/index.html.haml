@@ -28,7 +28,7 @@
     .section
       %h3
         Group Forums
-        = link_to 'Groups index', url(:groups), :class => 'navlink'
+        = link_to 'Groups index', url(:groups), :class => 'navlink alt'
       - unless @group_forums.nil?
         %table
           %thead
@@ -43,12 +43,12 @@
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
-          = link_to "Show All »", url(:group_index), :class => 'navlink'
+          = link_to "Show All", url(:group_index), :class => 'navlink'
 
     .section
       %h3
         Poll-Related Forums
-        = link_to 'Polls index', url(:polls), :class => 'navlink'
+        = link_to 'Polls index', url(:polls), :class => 'navlink alt'
       - unless @poll_forums.nil?
         %table
           %thead
@@ -63,11 +63,11 @@
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
-          = link_to "Show All »", url(:poll_index), :class => 'navlink'
+          = link_to "Show All", url(:poll_index), :class => 'navlink'
     .section
       %h3
         Legislation Forums
-        = link_to 'Bills index', url(:bill), :class => 'navlink'
+        = link_to 'Bills index', url(:bill), :class => 'navlink alt'
       - unless @bill_forums.nil?
         %table
           %thead
@@ -82,7 +82,7 @@
                 %td.topic_count= forum.topics_count
               - i == 0 ? i = 1 : i = 0
         .bottom
-          = link_to "Show All »", url(:bill_index), :class => 'navlink'
+          = link_to "Show All", url(:bill_index), :class => 'navlink'
   - else
     - @forums_page.each do |forum|
       = h(forum.name)
