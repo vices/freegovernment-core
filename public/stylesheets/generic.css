@@ -1437,3 +1437,12 @@ table tr.alt1 td {
     font-size: 16px; }
   .tag_cloud .t5 {
     font-size: 18px; }
+
+#flash {
+  padding: 10px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  background: #ebf3f7 url('/images/layout/info.gif') no-repeat 1% 50%;
+  border: 1px solid #daebf3;
+  color: #306076;
+  font-weight: bold; }
