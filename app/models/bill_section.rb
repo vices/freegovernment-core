@@ -1,6 +1,6 @@
 class BillSection
   include DataMapper::Resource
-  include DataMapper::Timestamps
+  include DataMapper::Timestamp
 
   property :id, Integer, :serial => true
   property :bill_id, Integer, :nullable => false
@@ -8,5 +8,4 @@ class BillSection
   property :topic_id, Integer, :nullable => false
   property :title, DM::Text, :nullable => false
   property :text, DM::Text
-
 end
