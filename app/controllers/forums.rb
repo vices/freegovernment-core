@@ -24,7 +24,7 @@ class Forums < Application
   def poll_index
     @what = 'Poll-Related'
     @route = :poll_index
-    @forums_page = Forum.paginate(:page => params[:page], :per_page => 5, :conditions => {:poll_id.not => nil, :bill_id => nil})
+    @forums_page = Forum.paginate(:page => params[:page], :per_page => 20, :conditions => {:poll_id.not => nil, :bill_id => nil})
     render :template => 'forums/index_specified.html'
   end
 
@@ -37,7 +37,7 @@ class Forums < Application
 
   # Shows forum / Lists paginated topics of forum
   def show
-    @topics_page = Topic.paginate(:page => params[:page], :per_page => 5, :conditions => {:forum_id => @forum.id})
+    @topics_page = Topic.paginate(:page => params[:page], :per_page => 20, :conditions => {:forum_id => @forum.id})
     render
   end
   

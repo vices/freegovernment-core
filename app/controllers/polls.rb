@@ -41,7 +41,7 @@ class Polls < Application
        #       : :conditions => {:verified_vote_count gt 0}
       
     @title = 'Latest polls'
-    @polls_page = Poll.paginate(:page => params[:page], :per_page => 6, :order => [@order]) #(:order => [@order])
+    @polls_page = Poll.paginate(:page => params[:page], :per_page => 8, :order => [@order]) #(:order => [@order])
     render
   end
 

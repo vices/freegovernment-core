@@ -13,7 +13,7 @@ class People < Application
   ]
 
   def index
-    @people_page = Person.paginate({:page => params[:page], :per_page => 6}.merge(search_conditions).merge(order_conditions))
+    @people_page = Person.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
   
