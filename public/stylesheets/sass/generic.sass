@@ -577,9 +577,14 @@ h2.index_header
   :border 1px solid #f0f0f0
   :background #fafafa
   :padding 5px 10px
+.navlink.alt
+  :background #ebf3f7
+  :border-color #daebf3
 .navlink:hover
   :text-decoration none
   :background #f0f0f0
+.navlink.alt:hover
+  :background #daebf3
 
 .navlinks
   :text-align right
@@ -1014,13 +1019,15 @@ table
     .pagination
       :margin-top 0
 #forum
-  h2
-    :font-size 20px
-    :font-weight bold
+  .head
     :margin-bottom 10px
     :position relative
-    .navlink
+    h2
+      :font-size 20px
+      :font-weight bold
+    .navlinks_c
       :position absolute
+      :top 0
       :right 0
   table
     :width 760px

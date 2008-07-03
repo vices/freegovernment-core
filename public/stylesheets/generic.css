@@ -606,9 +606,16 @@ h2.index_header {
   background: #fafafa;
   padding: 5px 10px; }
 
+.navlink.alt {
+  background: #ebf3f7;
+  border-color: #daebf3; }
+
 .navlink:hover {
   text-decoration: none;
   background: #f0f0f0; }
+
+.navlink.alt:hover {
+  background: #daebf3; }
 
 .navlinks {
   text-align: right;
@@ -1120,13 +1127,15 @@ table tr.alt1 td {
   #forums.specified .section .bottom .pagination {
     margin-top: 0; }
 
-#forum h2 {
-  font-size: 20px;
-  font-weight: bold;
+#forum .head {
   margin-bottom: 10px;
   position: relative; }
-  #forum h2 .navlink {
+  #forum .head h2 {
+    font-size: 20px;
+    font-weight: bold; }
+  #forum .head .navlinks_c {
     position: absolute;
+    top: 0;
     right: 0; }
 #forum table {
   width: 760px;

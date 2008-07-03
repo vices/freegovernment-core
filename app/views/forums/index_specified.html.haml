@@ -2,7 +2,7 @@
   .section
     %h3
       == #{ @what } Forums
-      = link_to 'All Forums', url(:forums), :class => 'navlink'
+      = link_to 'All forums', url(:forums), :class => 'navlink'
     - unless @forums_page.nil?
       %table
         %thead
@@ -20,4 +20,4 @@
       .pagination
         = merb_paginate @forums_page, :route => { :name => @route }
         = page_entries_info @forums_page
-      = link_to "« All Forums", url(:forums), :class => 'navlink'
+      = link_to "« All forums", url(:forums), :class => 'navlink'
