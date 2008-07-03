@@ -31,6 +31,7 @@ class Bills < Application
       poll.save
       Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => session[:user_id])
       @new_bill.update_attributes(:forum_id => forum.id, :poll_id => poll.id)
+      BillSection.section_text(@new_bill)
       Tagging.tag_object(@new_bill, @bill_tags)
       Tagging.tag_object(poll, @bill_tags)
       redirect url(:bill, :id => @new_bill.id)
