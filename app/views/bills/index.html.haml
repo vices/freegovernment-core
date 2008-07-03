@@ -4,9 +4,9 @@
     .caption debate bills paragraph-by-paragraph
     .caption create new bills and seek out the support of others
   .list_and_filters
-    - if @title
-      #page_title= @title
     .list
+      - if @title
+        #page_title= @title
       - @bills_page.each do |bill|
         .bill
           .img= link_to image_tag(bill.user.avatar(:small)), profile_url(bill.user)

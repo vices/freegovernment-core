@@ -4,9 +4,9 @@
     .caption search people by location, interests, political affiliation, and more
     .caption find advisers, make friends, see what other people are up to
   #people_list_and_filters.list_and_filters
-    - if @title
-      #page_title= @title
     #people_list.list
+      - if @title
+        #page_title= @title
       - @people_page.each do |person|
         .person
           .details
