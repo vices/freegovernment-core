@@ -4,6 +4,8 @@
     .caption debate bills paragraph-by-paragraph
     .caption create new bills and seek out the support of others
   .list_and_filters
+    - if @title
+      #page_title= @title
     .list
       - @bills_page.each do |bill|
         .bill

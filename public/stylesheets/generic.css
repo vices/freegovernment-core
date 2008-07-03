@@ -326,6 +326,14 @@ button.active {
   .voting_options .bottom {
     text-align: right; }
 
+#page_title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #666; }
+  #page_title span {
+    color: #333; }
+
 #bills_index .bill {
   display: block;
   border-bottom: 1px solid #ccc;

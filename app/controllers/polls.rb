@@ -40,14 +40,14 @@ class Polls < Application
     #syntax : :conditions => {:id => 34}
        #       : :conditions => {:verified_vote_count gt 0}
       
-      
-      @polls_page = Poll.paginate(:page => params[:page], :per_page => 6, :order => [@order]) #(:order => [@order])
-    #pp @polls_page
+    @title = 'Latest polls'
+    @polls_page = Poll.paginate(:page => params[:page], :per_page => 6, :order => [@order]) #(:order => [@order])
     render
   end
 
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
+    @title = 'Polls for tag: <span>%s</span>' % @tag.name
     @polls_page = @tag.get_tagged('poll').paginate(:per_page => 8, :page => params[:page]) 
     render :index
   end

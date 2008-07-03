@@ -4,6 +4,8 @@
     .caption discuss, stay updated, and learn more about what matters to you
     .caption pick representative groups as your advisers
   #groups_list_and_filters.list_and_filters
+    - if @title
+      #page_title= @title
     #people_list.list
       - if !@groups_page.nil?
         - @groups_page.each do |group|

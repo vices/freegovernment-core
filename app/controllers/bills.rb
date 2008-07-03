@@ -4,12 +4,14 @@ class Bills < Application
   before :find_bill, :only => %w{ show }
 
   def index
+    @title = 'Latest bills'
     @bills_page = Bill.paginate(:per_page => 8, :page => params[:page], :order => [:created_at.desc])
     render
   end
 
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
+    @title = 'Bills for tag: <span>%s</span>' % @tag.name
     @bills_page = @tag.get_tagged('bill').paginate(:per_page => 8, :page => params[:page]) 
     render :index
   end

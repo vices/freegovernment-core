@@ -4,6 +4,8 @@
     .caption vote here on user-submitted questions
     .caption don't forget to learn how you can get advisers to vote for you.
   .list_and_filters
+    - if @title
+      #page_title= @title
     .list
       - unless @polls_page.nil?
         - @polls_page.each do |poll|

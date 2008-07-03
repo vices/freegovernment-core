@@ -26,12 +26,14 @@ class Groups < Application
         @direction = 'desc'
         @order = @sort_by.desc
     end
+    @title = 'Latest groups'
     @groups_page = Group.paginate(:page => params[:page], :per_page => 8, :order => [@order]) # (:order => [@order])
     render
   end
 
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
+    @title = 'Groups for tag: <span>%s</span>' % @tag.name
     @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page]) 
     render :index
   end
