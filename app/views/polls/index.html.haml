@@ -65,7 +65,7 @@
                 |
                 = link_to "view poll", url(:poll, :id => poll.id)
       .pagination
-        = merb_paginate @polls_page
+        = merb_paginate @polls_page, :route => { :name => :polls, :params => {} }
         = page_entries_info @polls_page
     .filters
       #poll_search

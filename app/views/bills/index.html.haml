@@ -33,7 +33,9 @@
               = link_to "view related poll", url(:poll, :id => bill.poll_id)
               |
               = link_to "view bill", url(:bill, :id => bill.id)
-      = merb_paginate @bills_page
+      .pagination
+        = merb_paginate @bills_page, :route => :bills
+        = page_entries_info @bills_page
     .filters
       #bill_search
       #bill_creation.attention

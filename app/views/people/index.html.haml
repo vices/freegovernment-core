@@ -19,7 +19,7 @@
                 =h person.description
           .actions
       .pagination
-        = merb_paginate(@people_page)
+        = merb_paginate(@people_page, :route => :people)
         = page_entries_info(@people_page)
     #people_filters.filters
       #person_search

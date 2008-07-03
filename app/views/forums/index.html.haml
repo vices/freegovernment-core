@@ -26,7 +26,9 @@
               - i == 0 ? i = 1 : i = 0
             
     .section
-      %h3 Group Forums
+      %h3
+        Group Forums
+        = link_to 'Groups Index', url(:groups), :class => 'navlink'
       - unless @group_forums.nil?
         %table
           %thead
@@ -44,7 +46,9 @@
           = link_to "Show All »", url(:group_index), :class => 'navlink'
 
     .section
-      %h3 Poll-Related Forums
+      %h3
+        Poll-Related Forums
+        = link_to 'Polls Index', url(:polls), :class => 'navlink'
       - unless @poll_forums.nil?
         %table
           %thead
@@ -61,7 +65,9 @@
         .bottom
           = link_to "Show All »", url(:poll_index), :class => 'navlink'
     .section
-      %h3 Legislation Forums
+      %h3
+        Legislation Forums
+        = link_to 'Bills Index', url(:bill), :class => 'navlink'
       - unless @bill_forums.nil?
         %table
           %thead
