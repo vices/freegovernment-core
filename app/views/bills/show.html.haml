@@ -1,13 +1,12 @@
-- @box_title = 'Do you support this bill?'
-
 .back_link
   = link_to '« Back to bills index', url(:bills, :page => session[:bills_index_page]), :class => 'navlink'
 
 #bill
+  = @bill.poll
   #main
     #title
       .number
-        == FG BILL ##{@bill.id}
+        == FG BILL ##{@bill.object_id}
       %h2= h @bill.title
     = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show bill poll page »', url(:poll, :id => @bill.poll_id)), :poll => Poll.first, :vote => logged_in? ? Poll.first.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
   
@@ -15,11 +14,12 @@
     .left
       .topics
         .title Discussion topics
-        %ul
-          %li lorem ipsum kinda rocks guys
-          %li lorem ipsum isn't supreme for mocks
-          %li what's up holla!
-          %li jabberwock is so much better
+        - if @bill.discussion_topics
+          %ul
+            - @bill.discussion_topics.split("\n").each do |t|
+              %li= t.strip
+        - else
+          %p No topics for this bill.
     .right
       - unless @bill.summary.nil?
         #summary

@@ -4,7 +4,7 @@ class Bills < Application
   before :find_bill, :only => %w{ show }
 
   def index
-    @bills_page = Bill.paginate(:per_page => 8, :page => params[:page])
+    @bills_page = Bill.paginate(:per_page => 8, :page => params[:page], :order => [:created_at.desc])
     render
   end
 

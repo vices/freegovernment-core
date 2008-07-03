@@ -448,6 +448,9 @@ button.active {
         #bill #content .left div ul li {
           margin-top: 8px;
           padding-right: 5px; }
+      #bill #content .left div p {
+        padding: 8px;
+        color: #fff; }
   #bill #content .right {
     float: right;
     width: 539px;
