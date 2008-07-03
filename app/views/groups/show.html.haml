@@ -1,4 +1,8 @@
 / Groups View
+
+.back_link
+  = link_to '« Back to groups index', url(:groups, :page => session[:groups_index_page]), :class => 'navlink'
+  
 #group
   #group_photo_etc
     .photo= image_tag @user.avatar.url(:large)

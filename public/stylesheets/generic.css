@@ -584,8 +584,18 @@ h2.index_header {
   h2.index_header .caption {
     display: none; }
 
-#link_back {
-  margin-bottom: 15px; }
+.navlink {
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+  padding: 5px 10px; }
+
+.navlink:hover {
+  text-decoration: none;
+  background: #f0f0f0; }
+
+.back_link {
+  text-align: right;
+  margin-bottom: 25px; }
 
 #poll #poll_details {
   display: block;
@@ -1012,14 +1022,6 @@ table tr.alt0 td {
   background: #fafafa; }
 table tr.alt1 td {
   background: #f4f4f4; }
-
-.bottom .navlink {
-  border: 1px solid #f0f0f0;
-  background: #fafafa;
-  padding: 5px 10px; }
-.bottom .navlink:hover {
-  text-decoration: none;
-  background: #f0f0f0; }
 
 #forums .section {
   margin-bottom: 20px; }
