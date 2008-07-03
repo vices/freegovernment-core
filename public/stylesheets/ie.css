@@ -36,3 +36,4 @@ button { width:auto; overflow:visible; }
   left: expression( ( -145 - this.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' )  !important;
   top: expression( ( -50 - this.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' )  !important;
 }
+#recent_activity ul li span { left: -90px; top: 1px; }
