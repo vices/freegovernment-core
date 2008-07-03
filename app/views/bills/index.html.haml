@@ -40,6 +40,6 @@
       #bill_tags.filter
         .title Bill Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('bill')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
+          - tag_cloud(Tag.get_tags('bill')[0..50], 'bill', ['t1','t2','t3','t4','t5']) do |t, c|
             %a{ :href => url(:bill_tag, :tag => t.permalink), :class => c }
               = t.name

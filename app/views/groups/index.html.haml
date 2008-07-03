@@ -34,7 +34,7 @@
       #group_tags.filter
         .title Groups Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('group')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
+          - tag_cloud(Tag.get_tags('group')[0..50], 'group', ['t1','t2','t3','t4','t5']) do |t, c|
             %a{ :href => url(:group_tag, :tag => t.permalink), :class => c }
               = t.name
 

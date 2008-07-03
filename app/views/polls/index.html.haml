@@ -70,6 +70,6 @@
       #poll_tags.filter
         .title Poll Tags
         .tag_cloud
-          - tag_cloud(Tag.get_tags('poll')[0..50],['t1','t2','t3','t4','t5']) do |t, c|
+          - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
             %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }
               = t.name
