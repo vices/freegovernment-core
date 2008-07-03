@@ -1026,7 +1026,14 @@ h2.index_header {
         .comments .content .comment .main .meta {
           color: #666;
           padding-bottom: 3px;
-          border-bottom: 1px solid #ddd; }
+          border-bottom: 1px solid #ddd;
+          position: relative; }
+          .comments .content .comment .main .meta span {
+            margin-left: 10px; }
+          .comments .content .comment .main .meta small {
+            font-size: 10px;
+            position: absolute;
+            right: 0; }
 
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }

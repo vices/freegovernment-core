@@ -34,11 +34,12 @@ class Groups < Application
   def by_tag
     @tag = Tag.first(:permalink => params[:tag])
     @title = 'Groups for tag: <span>%s</span>' % @tag.name
-    @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page]) 
+    @groups_page = @tag.get_tagged('group').paginate(:per_page => 8, :page => params[:page])
     render :index
   end
   
   def show
+    @comments = Topic.first(:forum_id => @group.forum.id, :name => 'Comments').posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     if logged_in?
       if !@current_user.person_id.nil?
       @gr = GroupRelationship.first(:person_id => @current_user.person_id, :group_id => @group.id)
@@ -112,5 +113,5 @@ class Groups < Application
       raise NotFound #this isn't tested
     end
   end
-  
+
 end

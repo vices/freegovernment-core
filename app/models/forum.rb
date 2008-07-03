@@ -3,7 +3,7 @@ class Forum
   include DataMapper::Validate
   include DataMapper::Timestamp
   include MerbPaginate::Finders::Datamapper
-  
+
   property :id, Integer, :serial => true
   property :name, String, :length => 140, :nullable => false
   property :posts_count, Integer, :default => 0
@@ -13,6 +13,10 @@ class Forum
   property :bill_id, Integer
   property :created_at, DateTime
   property :updated_at, DateTime
+
+  belongs_to :group
+  belongs_to :poll
+  belongs_to :bill
 
   has n, :topics
   has n, :posts

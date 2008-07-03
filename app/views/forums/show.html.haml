@@ -4,7 +4,7 @@
       = link_to 'All forums', url(:forums), :class => 'navlink'
       - unless @forum.group_id.nil?
         = link_to 'Groups forums', url(:group_index), :class => 'navlink'
-        = link_to 'Show group', url(:group, :id => @forum.group_id), :class => 'navlink alt'
+        = link_to 'Show group', url(:group, :id => @forum.group.user.username), :class => 'navlink alt'
       - unless @forum.bill_id.nil?
         = link_to 'Bills forums', url(:bill_index), :class => 'navlink'
         = link_to 'Show bill', url(:bill, :id => @forum.bill_id), :class => 'navlink alt'

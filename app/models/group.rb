@@ -18,6 +18,8 @@ class Group
   validates_length :description, :within => 4..500, :context => [:default, :before_user_creation]
   validates_present :user_id, :context => [:default]
   
+  has 1, :forum, :class_name => 'Forum'
+  
   belongs_to :user
   
   has n, :group_relationships
