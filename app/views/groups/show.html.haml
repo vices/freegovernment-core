@@ -1,7 +1,6 @@
-.navlinks
-  = link_to 'All groups', url(:groups, :page => session[:groups_index_page]), :class => 'navlink'
-  
 #group
+  .navlinks
+    = link_to 'All groups', url(:groups, :page => session[:groups_index_page]), :class => 'navlink'
   #group_photo_etc
     .photo= image_tag @user.avatar.url(:large)
     #group_actions

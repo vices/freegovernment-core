@@ -1,7 +1,6 @@
-.navlinks
-  = link_to 'All people', url(:people, :page => session[:people_index_page]), :class => 'navlink'
-
 #person
+  .navlinks
+    = link_to 'All people', url(:people, :page => session[:people_index_page]), :class => 'navlink'
   #person_photo_etc
     #person_photo
       .photo= image_tag @user.avatar.url(:large)

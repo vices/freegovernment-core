@@ -23,7 +23,7 @@ button { width:auto; overflow:visible; }
   right: -10px !important;
 }
 #bill #title { width: 490px !important; }
-
+#bill .navlinks, #poll .navlinks, #group .navlinks, #person .navlinks { padding-top: 10px; }
 #feedback_link {
   position: absolute !important;
   right: auto !important; bottom: auto !important;

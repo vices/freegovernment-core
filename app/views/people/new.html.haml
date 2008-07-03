@@ -6,7 +6,7 @@
   = error_messages_for @new_person
   = error_messages_for @new_user
   = text_control :full_name, :label => 'Full Name'
-  = text_control :date_of_birth, :label => 'Date of Birth'  
+  = text_control :date_of_birth, :label => 'Date of Birth ( YYYY-MM-DD )'
   - fields_for @new_user do
     = text_control :email, :label => 'Email'
     = text_control :username, :label => 'Username'
