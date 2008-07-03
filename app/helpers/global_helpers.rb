@@ -9,6 +9,22 @@ module Merb
       end
     end
    
+    def get_years 
+      t_now = Time.now 
+      y_end = t_now.year - 120;
+      y_start = t_now.year
+      (y_end..y_start).to_a 
+    end 
+     
+    def get_months 
+      ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"] 
+    end 
+     
+    def get_days 
+      get_months + (13..31).to_a 
+    end 
+   
+   
     def tag_cloud(tags, classes)
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
