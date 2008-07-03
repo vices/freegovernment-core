@@ -1,7 +1,7 @@
 .navlinks
   = link_to 'All polls', url(:polls, :page => session[:polls_index_page]), :class => 'navlink'
   - unless @poll.bill_id.nil?
-    = link_to 'Show related bill', url(:bill, :id => @poll.bill_id), :class => 'navlink'
+    = link_to 'Show related bill', url(:bill, :id => @poll.bill_id), :class => 'navlink alt'
 #poll
   #poll_details
     = image_tag @poll.icon.url(:small)
