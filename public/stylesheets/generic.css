@@ -378,12 +378,6 @@ button.active {
     #bills_index .bill .main .tags {
       font-style: italic;
       color: #8b8b8b; }
-    #bills_index .bill .main .actions {
-      text-align: right;
-      margin-top: 10px; }
-      #bills_index .bill .main .actions a {
-        font-weight: bold;
-        margin: 0 10px; }
 
 #bill #main {
   display: block;
@@ -730,6 +724,12 @@ h2.index_header {
   .list_and_filters .list {
     float: left;
     width: 550px; }
+    .list_and_filters .list .actions {
+      text-align: right;
+      margin-top: 10px; }
+      .list_and_filters .list .actions a {
+        font-weight: bold;
+        margin: 0 10px; }
   .list_and_filters .filters {
     float: right;
     width: 200px; }
