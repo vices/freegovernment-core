@@ -6,18 +6,19 @@
   #main
     #title
       .number
-        == FG BILL ##{@bill.object_id}
+        == FG BILL ##{@bill.id}
       %h2= h @bill.title
     = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show bill poll page »', url(:poll, :id => @bill.poll_id)), :poll => Poll.first, :vote => logged_in? ? Poll.first.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
   
   #content
     .left
       .topics
-        .title Discussion topics
-        - if @bill.discussion_topics
+        .title
+          = link_to 'Discussion topics', url(:forum, :id => @bill.forum.id)
+        - unless @bill.forum.topics.delete_if { |t| t.name == 'Comments' }.empty?
           %ul
-            - @bill.discussion_topics.split("\n").each do |t|
-              %li= t.strip
+            - @bill.forum.topics.each do |t|
+              %li= link_to t.name, url(:topic, :id => t.id)
         - else
           %p No topics for this bill.
     .right

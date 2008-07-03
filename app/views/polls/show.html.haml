@@ -30,8 +30,14 @@
               %td= @poll.vote_count
               %td= @poll.verified_vote_count
       #poll_topics.block
-        .title Topics Being Discussed
+        .title= link_to 'Topics Being Discussed', url(:forum, :id => @poll.forum.id) 
         .content
+          - unless @poll.forum.topics.delete_if { |t| t.name == 'Comments' }.empty?
+            %ul
+              - @poll.forum.topics.each do |t|
+                %li= link_to t.name, url(:topic, :id => t.id)
+          - else
+            %p No topics for this bill.
       #poll_description.block
         .title Description & Updates
         .content

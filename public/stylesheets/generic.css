@@ -431,14 +431,16 @@ button.active {
     float: left; }
     #bill #content .left div {
       background: url('/images/bills/list.png') no-repeat;
-      width: 160px; }
+      width: 150px; }
       #bill #content .left div .title {
         width: 140px;
         padding: 5px;
         background: #f4f4f4;
-        font-weight: bold;
-        text-transform: uppercase;
         text-align: center; }
+        #bill #content .left div .title a {
+          color: #333;
+          font-weight: bold;
+          text-transform: uppercase; }
       #bill #content .left div ul {
         width: 130px;
         margin-left: 20px;
@@ -448,6 +450,8 @@ button.active {
         #bill #content .left div ul li {
           margin-top: 8px;
           padding-right: 5px; }
+      #bill #content .left div a {
+        color: #fff; }
       #bill #content .left div p {
         padding: 8px;
         color: #fff; }

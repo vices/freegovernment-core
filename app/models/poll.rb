@@ -21,6 +21,7 @@ class Poll
   property :updated_at, DateTime
 
   has n, :votes
+  has 1, :forum, :class_name => "Forum"
 
   has_attached_file :icon,
     :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
