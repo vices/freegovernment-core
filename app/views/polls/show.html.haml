@@ -1,6 +1,7 @@
 .back_link
   = link_to '« Back to polls index', url(:polls, :page => session[:polls_index_page]), :class => 'navlink'
-
+  - unless @poll.bill_id.nil?
+    = link_to 'Show Bill', url(:bill, :id => @poll.bill_id), :class => 'navlink'
 #poll
   #poll_details
     = image_tag @poll.icon.url(:small)

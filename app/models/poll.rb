@@ -19,6 +19,7 @@ class Poll
   property :description, DM::Text
   property :created_at, DateTime
   property :updated_at, DateTime
+  property :bill_id, Integer
 
   has n, :votes
   has 1, :forum, :class_name => "Forum"
