@@ -23,6 +23,9 @@
         = page_entries_info(@people_page)
     #people_filters.filters
       #person_search
+        - form_tag :action => url(:people), :method => :get do
+          = text_field :name => 'search[full_name]'
+          = submit_button "search"
       - if logged_in? && !@current_user.person_id.nil?
         #person_edit.attention
           .title Set the information you share with others.
@@ -31,3 +34,4 @@
         #person_creation.attention
           .title Looking to join?
           = link_to "Signup Here", url(:new_person)
+      
