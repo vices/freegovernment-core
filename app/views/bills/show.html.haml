@@ -40,8 +40,12 @@
               %h3= section.title
               %p= section.text
               .comments_link
-                %a
-                  3
-                  %span comments
+                - if section.topic_id.nil?
+                  %a{:href => url(:new_topic, :forum_id => section.forum_id, :bill_section => section.id)}
+                    %span comments
+                - else
+                  %a{:href => url(:topic, :id => section.topic_id)}
+                    = section.topic.posts_count
+                    %span comments
           .entire_bill
             %a See Entire Bill
