@@ -39,7 +39,8 @@ class Groups < Application
   end
   
   def show
-    @comments = Topic.first(:forum_id => @group.forum.id, :name => 'Comments').posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
+    @comments_topic = Topic.first(:forum_id => @group.forum.id, :name => 'Comments')
+    @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     if logged_in?
       if !@current_user.person_id.nil?
       @gr = GroupRelationship.first(:person_id => @current_user.person_id, :group_id => @group.id)
@@ -69,7 +70,7 @@ class Groups < Application
         @new_user.save
         self.current_user = @new_user
         forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name)#, :topic_count => 1)
-        Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => @new_user.id)
+        topic = Topic.create(:name => "Comments", :forum_id => forum.id, :user_id => @new_group.user.id)
         Tagging.tag_object(@new_group, @group_tags)
         redirect url(:start)
       else
