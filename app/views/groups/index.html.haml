@@ -25,7 +25,10 @@
                   - else
                     = partial 'partials/taglist', :tags => tags, :klass => 'group'
       .pagination
-        = merb_paginate @groups_page, :route => :groups
+        - if @tag
+          = merb_paginate @groups_page, :route => { :name => :group_tag }, :params => { :tag => @tag.permalink }
+        - else
+          = merb_paginate @groups_page, :route => { :name => :groups }
         = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search

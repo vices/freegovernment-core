@@ -34,7 +34,10 @@
               |
               = link_to "view bill", url(:bill, :id => bill.id)
       .pagination
-        = merb_paginate @bills_page, :route => :bills
+        - if @tag
+          = merb_paginate @bills_page, :route => { :name => :bill_tag }, :params => { :tag => @tag.permalink }
+        - else
+          = merb_paginate @bills_page, :route => { :name => :bills }
         = page_entries_info @bills_page
     .filters
       #bill_search
