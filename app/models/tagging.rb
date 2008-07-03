@@ -24,7 +24,7 @@ class Tagging
     def tag_object(object, tag_list)
       if object and tag_list
         Tagging.get_taggings(object).each { |t| t.destroy }
-        
+        tag_list.gsub!(/[^A-Za-z0-9 ,]/, '')
         tag_list.split(',').each do |t|
           t.strip!
           unless t.empty?

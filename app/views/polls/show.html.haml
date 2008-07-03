@@ -39,7 +39,7 @@
               - @poll.forum.topics.each do |t|
                 %li= link_to t.name, url(:topic, :id => t.id)
           - else
-            %p No topics for this bill.
+            %p No topics for this poll.
       #poll_description.block
         .title Description & Updates
         .content
