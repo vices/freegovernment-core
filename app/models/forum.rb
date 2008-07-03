@@ -13,7 +13,6 @@ class Forum
   property :bill_id, Integer
   property :created_at, DateTime
   property :updated_at, DateTime
-  
 
   has n, :topics
   has n, :posts

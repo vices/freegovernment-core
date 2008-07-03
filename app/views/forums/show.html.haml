@@ -1,5 +1,9 @@
 #forum
-  %h2= h @forum.name
+
+  %h2
+    =h @forum.name
+    - unless @forum.bill_id.nil?
+      = link_to 'Show Bill', url(:bill, :id => @forum.bill_id), :class => 'navlink'
   - unless @topics_page.nil?
     %table
       %thead
