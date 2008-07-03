@@ -68,7 +68,7 @@ class Groups < Application
         @new_user.group_id = @new_group.id
         @new_user.save
         self.current_user = @new_user
-        forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name, :topic_count => 1)
+        forum = Forum.create(:group_id => @new_group.id, :name => @new_group.name)#, :topic_count => 1)
         Topic.create(:forum_id => forum.id, :name => 'Comments', :user_id => @new_user.id)
         Tagging.tag_object(@new_group, @group_tags)
         redirect url(:start)
