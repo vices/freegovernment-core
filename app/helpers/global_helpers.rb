@@ -15,8 +15,8 @@ module Merb
       y_start = t_now.year
       (y_end..y_start).to_a
     end
-
-    def get_months
+    
+    def get_months_hash
       {
         1 => 'January',
         2 => 'February',
@@ -31,6 +31,10 @@ module Merb
         11 => 'November',
         12 => 'December'
       }
+    end
+    
+    def get_months
+      get_months_hash.sort{ |a,b| a[0]<=>b[0] }.collect { |m| m[1] }
     end
 
     def tag_cloud(tags, klass, classes)
