@@ -379,23 +379,28 @@ button.active
 #bill
   #main
     +clearfix
-    :padding-left 80px
-    :background url('/images/bills/congressbot.png') no-repeat
-    #title
-      :width 390px
+    .main
       :float left
-      .number
-        :font-size 16px
-        :margin-bottom 5px
-        :font-weight bold
-        :text-transform uppercase
-        :color #666
-        span
-          :color #20adbb
-          :margin-left 20px
-      h2
-        :font-size 22px
-        :font-weight bold
+      :width 470px
+      img
+        :display block
+        :float left
+        :border 1px solid #ddd
+      #title
+        :float right
+        :width 400px
+        .number
+          :font-size 16px
+          :margin-bottom 5px
+          :font-weight bold
+          :text-transform uppercase
+          :color #666
+          span
+            :color #20adbb
+            :margin-left 20px
+        h2
+          :font-size 22px
+          :font-weight bold
     .voting_options
       :position relative
       :width 270px
@@ -633,7 +638,7 @@ h2.index_header
         :background url('/images/layout/link.gif') no-repeat right top
       .content
         :background-color #f4f4f4
-        :padding 8px 5px
+        :padding 10px
         .content_block
           :background white
           :padding 5px
@@ -643,18 +648,20 @@ h2.index_header
             :margin-left 2em
     #poll_description_etc
       :float left
-      :width 260px
+      :width 225px
     #poll_comments_etc
       :float right
-      :width 480px
+      :width 515px
+
   #poll_stats_table
-    :width 245px
+    :width 200px
     :background white
     :margin 0 auto
     tr, td, th
       :text-align center
     td, th
       :padding 8px 5px
+      :vertical-align middle
     td
       :line-height 18px
       :font-size 16px
@@ -923,6 +930,13 @@ h2.index_header
           :color #666
           :padding-bottom 3px
           :border-bottom 1px solid #ddd
+          :position relative
+          span
+            :margin-left 10px
+          small
+            :font-size 10px
+            :position absolute
+            :right 0
 #polls_index
   h2
     :background-image url('/images/polls/header.png')
@@ -1280,3 +1294,12 @@ table
     :font-size 16px
   .t5
     :font-size 18px
+
+#flash
+  :padding 10px
+  :padding-left 35px
+  :margin-bottom 10px
+  :background #ebf3f7 url('/images/layout/info.gif') no-repeat 1% 50%
+  :border 1px solid #daebf3
+  :color #306076
+  :font-weight bold

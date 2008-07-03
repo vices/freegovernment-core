@@ -1,12 +1,16 @@
 #bill
   .navlinks
     = link_to 'All bills', url(:bills, :page => session[:bills_index_page]), :class => 'navlink'
+    = link_to 'Bill forum', url(:forum, :id => @bill.forum.id), :class => 'navlink alt'
   #main
-    #title
-      .number
-        == FG BILL ##{@bill.id}
-      %h2= h @bill.title
-    = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show related poll »', url(:poll, :id => @bill.poll_id)), :poll => @bill.poll.first, :vote => logged_in? ? @bill.poll.votes(:user_id => session[:user_id]).first || Vote.new : Vote.new
+    .main
+      .img
+        = link_to image_tag(@bill.user.avatar.url(:small)), profile_url(@bill.user)
+      #title
+        .number
+          == FG BILL ##{@bill.id}
+        %h2= h @bill.title
+    = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show related poll »', url(:poll, :id => @bill.poll_id)), :poll => @bill.poll, :vote => logged_in? ? @bill.poll.votes.first(:user_id => session[:user_id]) || Vote.new : Vote.new
   
   #content
     .left
@@ -24,17 +28,17 @@
         #summary
           %h3 Summary
           %p= h(@bill.summary).paragraphize
-      - if @bill.sectioned_text.nil? || @bill.sectioned_text.empty?
+      - if @bill.bill_sections.nil?
         #sections
           .section
             %h3 Bill Text
             %p= h(@bill.text).paragraphize
       - else
         #sections
-          - @bill.sectioned_text.each do |section|
+          - @bill.bill_sections.each do |section|
             .section
-              %h3= section[0]
-              %p= section[1]
+              %h3= section.title
+              %p= section.text
               .comments_link
                 %a
                   3

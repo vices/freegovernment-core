@@ -16,6 +16,8 @@ class Person
   property :created_at, DateTime
   property :updated_at, DateTime
   
+  attr_accessor :b_year, :b_month, :b_day
+  
   validates_present :full_name, :context => [:default, :before_user_creation]
   validates_present :date_of_birth, :context => [:default, :before_user_creation]
   validates_length :full_name, :within => 1..100, :context => [:default, :before_user_creation]

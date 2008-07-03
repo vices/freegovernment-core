@@ -41,6 +41,7 @@ class People < Application
     if verify_recaptcha
       if @new_person.valid?(:before_user_creation) && @new_user.save
         @new_person.user_id = @new_user.id
+        @new_person.date_of_birth = "#{@new_person.b_year}-#{@new_person.b_month}-#{@new_person.b_day}"
         @new_person.save
         @new_user.person_id = @new_person.id
         @new_user.save

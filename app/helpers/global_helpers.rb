@@ -8,7 +8,31 @@ module Merb
         url(:group, :id => user.username)
       end
     end
-   
+
+    def get_years
+      t_now = Time.now
+      y_end = t_now.year - 120
+      y_start = t_now.year
+      (y_end..y_start).to_a
+    end
+
+    def get_months
+      {
+        1 => 'January',
+        2 => 'February',
+        3 => 'March',
+        4 => 'April',
+        5 => 'May',
+        6 => 'June',
+        7 => 'July',
+        8 => 'August',
+        9 => 'September',
+        10 => 'October',
+        11 => 'November',
+        12 => 'December'
+      }
+    end
+
     def tag_cloud(tags, klass, classes)
       return "" if tags.nil? || tags.empty?
       max, min = 0, 0
