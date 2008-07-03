@@ -2,6 +2,8 @@
   - form_for @new_topic, :action => url(:topics), :class => 'full' do
     %h1 Want to add a new topic?
     = error_messages_for @new_topic
+    - if @bill_section
+      = hidden_field :name => 'bill_section', :value => @bill_section.id
     = hidden_control :forum_id, :value => @forum.id
     = text_control :name, :label => 'topic name:'
     - fields_for @new_post do

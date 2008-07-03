@@ -4,6 +4,7 @@ class Topics < Application
   before :find_topic, :only => %w{ show }
   before :find_forum, :only => %w{ new create }
   before :check_create_permissions, :only => 'create'
+  before :check_if_new_bill_section, :only => %w{ new create }
   #params_accessible [
   #  {:topic => [:name, :forum_id], :post => [:text]}  
   #]
@@ -16,7 +17,7 @@ class Topics < Application
   end
 
   def new
-    @new_topic = Topic.new
+    @new_topic = @new_topic || Topic.new
     @new_post = Post.new
     render
   end
@@ -27,6 +28,10 @@ class Topics < Application
       @forum.save
       @new_post.topic_id = @new_topic.id
       @new_post.post_number = 1
+      unless @bill_section.nil?
+        @bill_section.topic_id = @new_topic.id
+        @bill_section.save
+      end
       if @new_post.save
         @forum.posts_count = @forum.posts_count + 1
         @forum.save
@@ -62,10 +67,7 @@ class Topics < Application
     else
       forum_id = params[:forum_id]
     end
-    p 'hi'
-    p forum_id
     if(@forum = Forum.first(:id => forum_id)).nil?
-    pp "hey"
       raise Merb::ControllerExceptions::NotFound
     end
   end
@@ -73,6 +75,17 @@ class Topics < Application
   def check_create_permissions
     @new_topic = Topic.new(params[:topic].merge(:user_id => session[:user_id]))
     @new_post = Post.new(params[:post].merge(:user_id => session[:user_id]))
+  end
+
+  def check_if_new_bill_section
+    unless params[:bill_section].nil?
+      if(@bill_section = BillSection.first(:id => params[:bill_section], :topic_id => nil)).nil?
+        raise Merb::ControllerExceptions::NotFound
+      else
+        @new_topic = @new_topic || Topic.new
+        @new_topic.name = @bill_section.title
+      end
+    end
   end
 
 end

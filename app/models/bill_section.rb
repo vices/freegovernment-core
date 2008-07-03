@@ -9,6 +9,10 @@ class BillSection
   property :title, DM::Text, :nullable => false
   property :text, DM::Text
 
+  belongs_to :topic
+  belongs_to :forum, :class_name => 'Forum'
+  belongs_to :bill
+
   class << self
     def section_text(bill)
       #text_split = self.text.split(/((?:SECTION|SEC\.) (?:[ 0-9]+)\. (?:[A-Z ',;\-0-9\n]+)\.\n)/) 
