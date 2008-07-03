@@ -54,6 +54,7 @@
         .content
           - form_for Post.new, :action => url(:posts), :class => 'standard' do
             = hidden_control :topic_id, :value => @comments_topic.id
+            = hidden_field :name => 'from', :value => 'poll'
             = text_area_control :text, :label => 'type your message here'
             = submit_button "submit post"
           - unless @comments.empty?
