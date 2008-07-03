@@ -1,13 +1,15 @@
 #bill
   .navlinks
     = link_to 'All bills', url(:bills, :page => session[:bills_index_page]), :class => 'navlink'
+    = link_to 'Bill forum', url(:forum, :id => @bill.forum.id), :class => 'navlink alt'
   #main
-    #title
-      .photo
+    .main
+      .img
         = link_to image_tag(@bill.user.avatar.url(:small)), profile_url(@bill.user)
-      .number
-        == FG BILL ##{@bill.id}
-      %h2= h @bill.title
+      #title
+        .number
+          == FG BILL ##{@bill.id}
+        %h2= h @bill.title
     = partial 'polls/voting_options', :box_title => 'Do you support this bill?', :bottom => link_to('Show related poll »', url(:poll, :id => @bill.poll_id)), :poll => @bill.poll, :vote => logged_in? ? @bill.poll.votes.first(:user_id => session[:user_id]) || Vote.new : Vote.new
   
   #content

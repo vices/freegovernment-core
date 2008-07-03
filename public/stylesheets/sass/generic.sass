@@ -379,23 +379,28 @@ button.active
 #bill
   #main
     +clearfix
-    :padding-left 80px
-    :background url('/images/bills/congressbot.png') no-repeat
-    #title
-      :width 390px
+    .main
       :float left
-      .number
-        :font-size 16px
-        :margin-bottom 5px
-        :font-weight bold
-        :text-transform uppercase
-        :color #666
-        span
-          :color #20adbb
-          :margin-left 20px
-      h2
-        :font-size 22px
-        :font-weight bold
+      :width 470px
+      img
+        :display block
+        :float left
+        :border 1px solid #ddd
+      #title
+        :float right
+        :width 400px
+        .number
+          :font-size 16px
+          :margin-bottom 5px
+          :font-weight bold
+          :text-transform uppercase
+          :color #666
+          span
+            :color #20adbb
+            :margin-left 20px
+        h2
+          :font-size 22px
+          :font-weight bold
     .voting_options
       :position relative
       :width 270px

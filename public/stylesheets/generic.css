@@ -380,9 +380,7 @@ button.active {
       color: #8b8b8b; }
 
 #bill #main {
-  display: block;
-  padding-left: 80px;
-  background: url('/images/bills/congressbot.png') no-repeat; }
+  display: block; }
   #bill #main:after {
     display: block;
     content: ".";
@@ -391,21 +389,28 @@ button.active {
     visibility: hidden; }
   * html #bill #main {
     height: 1px; }
-  #bill #main #title {
-    width: 390px;
-    float: left; }
-    #bill #main #title .number {
-      font-size: 16px;
-      margin-bottom: 5px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #666; }
-      #bill #main #title .number span {
-        color: #20adbb;
-        margin-left: 20px; }
-    #bill #main #title h2 {
-      font-size: 22px;
-      font-weight: bold; }
+  #bill #main .main {
+    float: left;
+    width: 470px; }
+    #bill #main .main img {
+      display: block;
+      float: left;
+      border: 1px solid #ddd; }
+    #bill #main .main #title {
+      float: right;
+      width: 400px; }
+      #bill #main .main #title .number {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #666; }
+        #bill #main .main #title .number span {
+          color: #20adbb;
+          margin-left: 20px; }
+      #bill #main .main #title h2 {
+        font-size: 22px;
+        font-weight: bold; }
   #bill #main .voting_options {
     position: relative;
     width: 270px;
