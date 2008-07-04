@@ -8,7 +8,7 @@ class Pages < Application
     render
   end
 
-  def textile
+  def contact_us
     render
   end
 

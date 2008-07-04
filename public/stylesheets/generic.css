@@ -1476,3 +1476,30 @@ table tr.alt1 td {
   border: 1px solid #daebf3;
   color: #306076;
   font-weight: bold; }
+
+#static_page h1 {
+  font-size: 22px;
+  font-weight: bold;
+  marin-bottom: 20px; }
+#static_page p {
+  margin: 10px 0;
+  line-height: 16px; }
+#static_page .section {
+  margin-top: 40px;
+  padding-left: 20px; }
+#static_page h2 {
+  color: #00a0c1;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold; }
+#static_page ul {
+  margin-left: 20px;
+  font-size: 14px; }
+  #static_page ul li {
+    position: relative;
+    margin: 8px 0;
+    font-weight: bold; }
+    #static_page ul li a {
+      position: absolute;
+      left: 200px;
+      font-size: 14px; }
