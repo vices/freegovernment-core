@@ -6,8 +6,10 @@
     = text_area_control :summary, :label => 'summary:'
     = text_area_control :text, :label => 'text:'
     = text_field :name => 'bill_tags', :id => 'bill_tags', :label => 'bill tags ( comma separated )', :value => @bill_tags
+    .captcha
+      = recaptcha_tags
     .actions
       .cancel
-        = link_to "cancel", url(:bills)
+        = link_to "cancel", url(:home)
       .submit
-        = submit_button "post bill"
+        = submit_button "sign up"

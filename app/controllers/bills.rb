@@ -43,7 +43,7 @@ class Bills < Application
   def create
     @new_bill = Bill.new(params[:bill].merge(:user_id => session[:user_id]))
     @bill_tags = params[:bill_tags]
-    if @new_bill.save
+    if verify_recaptcha and @new_bill.save
       poll = Poll.create(:question => "Do you support FG Bill ##{@new_bill.id}?", :description => @new_bill.title, :user_id => session[:user_id], :bill_id => @new_bill.id)
       forum = Forum.create(:name => "FG Bill ##{@new_bill.id} - #{@new_bill.title}".ellipsis(140), :bill_id => @new_bill.id, :poll_id => poll.id, :topics_count => 1)
       poll.forum_id = forum.id
