@@ -14,13 +14,26 @@ class People < Application
 
   def index
     @pagination_params = {}
-    if search_conditions[:conditions].nil?
-      @title = 'Latest people'
-    else
+    if search_conditions[:conditions]
       @title = 'People for query: <span>%s</span>' % params[:search][:full_name]
       @pagination_params = { 'search[full_name]' => params[:search][:full_name] }
+    elsif params[:order_by] or params[:direction]
+      if params[:order_by] == 'name'
+        order_by = ['name', 'name']
+      else
+        order_by = ['date', 'created_at']
+      end
+      if params[:direction] == 'asc'
+        direction = ['ascending', 'asc']
+      else
+        direction = ['descending', 'desc']
+      end
+      @title = 'People ordered by: <span>%s, %s</span>' % [order_by[0], direction[0]]
+      @pagination_params = { :order_by => order_by[1], :direction => direction[1] }
+    else
+      @title = 'Latest people'
     end
-    @people_page = Person.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
+    @people_page = Person.paginate({:page => params[:page], :per_page => 1}.merge(search_conditions).merge(order_conditions))
     render
   end
 
@@ -92,7 +105,7 @@ class People < Application
       :id
     end
 
-    params['direction'] = '' if params['direction'].nil?    
+    params['direction'] = '' if params['direction'].nil?
     order = params['direction'].downcase == 'desc' ? sort_by.desc : sort_by.asc
     
     {:order => [order]}
