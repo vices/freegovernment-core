@@ -13,10 +13,15 @@ class People < Application
   ]
 
   def index
+    if search_conditions[:conditions].nil?
+      @title = 'Latest people'
+    else
+      @title = 'People for query: <span>%s</span>' % params[:search][:full_name]
+    end
     @people_page = Person.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
-  
+
   def show
     if logged_in?
       if !@current_user.person_id.nil?

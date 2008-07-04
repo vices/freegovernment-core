@@ -46,7 +46,10 @@
                   = link_to "\"#{h poll.question}\"", url(:poll, :id => poll.id)
                   .vote_count== #{ poll.vote_count } votes
                 - if poll.vote_count > 0
-                  .results== #{poll.yes_percent.precision_round(1)}% Yes | #{poll.no_percent.precision_round(1)}% No
+                  .results
+                    == #{poll.yes_percent.precision_round(1)}% Yes
+                    %span |
+                    == #{poll.no_percent.precision_round(1)}% No
                 - else
                   .results no results yet
   .bottom
