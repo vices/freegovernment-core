@@ -72,12 +72,15 @@
         = page_entries_info @polls_page
     .filters
       #poll_search
-      #poll_creation.attention
-        .title Can't find the poll you're looking for?
-        = link_to "Click here to create it.", url(:new_poll)
-      #poll_tags.filter
-        .title Poll Tags
-        .tag_cloud
-          - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
-            %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }<
+        - form_tag :action => url(:polls), :method => :get do
+          = text_field :question => 'search[question]'
+          = submit_button "search"
+        #poll_creation.attention
+          .title Can't find the poll you're looking for?
+          = link_to "Click here to create it.", url(:new_poll)
+        #poll_tags.filter
+          .title Poll Tags
+          .tag_cloud
+            - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
+              %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }<
               = t.name

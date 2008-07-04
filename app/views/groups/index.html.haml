@@ -32,6 +32,9 @@
         = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search
+        - form_tag :action => url(:groups), :method => :get do
+          = text_field :name => 'search[name]'
+          = submit_button "search"
       - if logged_in? && !@current_user.group_id.nil?
         #group_edit.attention
           .title Describe your group's focus

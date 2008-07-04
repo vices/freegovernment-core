@@ -5,43 +5,19 @@ class Polls < Application
   
   #params_accessible :poll => [:]
   
+
   def index
+=begin
     case params['filter_by']
       when 'verified_vote_count'
         @filter_by = {:verified_vote_count.gt => 0}
       else 
         @filter_by = nil
     end
-    #syntax : :conditions => {:id => 34}
-       #       : :conditions => {:verified_vote_count gt 0}
-          
-    case params['sort_by']
-      when 'question'
-        @sort_by = :question
-      when 'yes_count'
-        @sort_by = :yes_count
-      when 'no_count'
-       pp "made it"
-        @sort_by = :no_count
-      when 'vote_count'
-        Poll.vote_count
-        @sort_by = :vote_count
-      else
-        @sort_by = :created_at
-    end
-    case params['direction']
-      when 'asc'
-        @direction = 'asc'
-        @order = @sort_by.asc
-      else
-        @direction = 'desc'
-        @order = @sort_by.desc
-    end
-    #syntax : :conditions => {:id => 34}
-       #       : :conditions => {:verified_vote_count gt 0}
+=end
       
     @title = 'Latest polls'
-    @polls_page = Poll.paginate(:page => params[:page], :per_page => 8, :order => [@order]) #(:order => [@order])
+    @polls_page = Poll.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
 
@@ -81,6 +57,40 @@ class Polls < Application
   end
   
   private
+
+  def order_conditions
+    params['sort_by'] = '' if params['sort_by'].nil?
+    sort_by = case params['sort_by'].downcase
+    when 'question'
+      :question
+    when 'yes_count'
+      :yes_count
+    when 'no_count'
+      :no_count
+    when 'created_at'
+      :created_at
+    else
+      :id
+    end
+
+    params['direction'] = '' if params['direction'].nil?    
+    order = params['direction'].downcase == 'desc' ? sort_by.desc : sort_by.asc
+    
+    {:order => [order]}
+  end
+
+  def search_conditions
+    out = {}
+    unless params[:search].nil? || params[:search].empty?
+      params[:search].each_pair do |col, val|
+        out[col.to_sym.like] = "%#{val}%"
+      end
+    end
+    if !out.empty?
+      out = {:conditions => out}
+    end
+    out
+  end
   
   def find_poll
     if (@poll = Poll.first(:id => params[:id])).nil?

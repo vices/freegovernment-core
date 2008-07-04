@@ -78,7 +78,7 @@ class People < Application
 
   private
 
-def order_conditions
+  def order_conditions
     params['sort_by'] = '' if params['sort_by'].nil?
     sort_by = case params['sort_by'].downcase
     when 'name'

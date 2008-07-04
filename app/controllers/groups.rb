@@ -8,26 +8,12 @@ class Groups < Application
     :recaptcha_challenge_field,
     :recaptcha_response_field,
     {:group => [:name, :description, :mission]},
-    {:user => [:email, :password, :password_confirmation, :username]}
+    {:user => [:email, :password, :password_confirmation, :username]},
+    :search
   ]
-  
   def index
-    case params['sort_by']
-      when 'name'
-        @sort_by = :name
-      else
-        @sort_by = :id
-    end
-    case params['direction']
-      when 'asc'
-        @direction = 'asc'
-        @order = @sort_by.asc
-      else
-        @direction = 'desc'
-        @order = @sort_by.desc
-    end
     @title = 'Latest groups'
-    @groups_page = Group.paginate(:page => params[:page], :per_page => 8, :order => [@order]) # (:order => [@order])
+    @groups_page = Group.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
 
@@ -106,6 +92,34 @@ class Groups < Application
   
   private
   
+  def order_conditions
+    params['sort_by'] = '' if params['sort_by'].nil?
+    sort_by = case params['sort_by'].downcase
+    when 'name'
+      :name
+    else
+      :id
+    end
+
+    params['direction'] = '' if params['direction'].nil?    
+    order = params['direction'].downcase == 'desc' ? sort_by.desc : sort_by.asc
+    
+    {:order => [order]}
+  end
+
+  def search_conditions
+    out = {}
+    unless params[:search].nil? || params[:search].empty?
+      params[:search].each_pair do |col, val|
+        out[col.to_sym.like] = "%#{val}%"
+      end
+    end
+    if !out.empty?
+      out = {:conditions => out}
+    end
+    out
+  end  
+
   def find_group
     username = params[:id]
     unless (@user = User.first(:username => username, :group_id.not => nil)).nil?
