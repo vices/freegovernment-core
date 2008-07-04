@@ -46,6 +46,11 @@
       .avatars
         - @person.groups.each do |group|
           =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
+    #person_contacts_block.block
+      .title Advisers
+      .avatars
+        - @person.advisers.each do |adviser|
+          =link_to image_tag(adviser.user.avatar.url(:small)), url(:person, :id => adviser.user.username)
     #watched_bills.block
       .title Watched Bills
     #watched_polls.block
