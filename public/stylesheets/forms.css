@@ -162,3 +162,36 @@ form.full {
   padding: 5px;
   background: #333;
   color: #fff; }
+
+#edit_user .check {
+  display: block;
+  margin: 40px 0 5px; }
+  #edit_user .check:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #edit_user .check {
+    height: 1px; }
+  #edit_user .check input {
+    width: auto;
+    float: left;
+    margin: 0; }
+  #edit_user .check label {
+    float: left;
+    margin-left: 10px; }
+#edit_user .note {
+  margin-bottom: 40px; }
+#edit_user .image_upload {
+  text-align: center; }
+  #edit_user .image_upload label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    display: inline; }
+  #edit_user .image_upload input {
+    width: auto;
+    display: inline; }
+  #edit_user .image_upload .current {
+    display: block; }

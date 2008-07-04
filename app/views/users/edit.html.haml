@@ -3,16 +3,19 @@
     %h1 Account Settings
     = error_messages_for @user
     .image_upload
-      %label Current Image
+      %label.current Current Image
       .current_image= image_tag @user.avatar.url(:large)
-      %label Delete Current Image?
-      = checkbox_field :name => 'delete_avatar'
-      %label Upload Image
-      = file_field :name => 'avatar'
+      .delete
+        = checkbox_field :name => 'delete_avatar', :id => 'delete_avatar'
+        %label{ :for => 'delete_avatar' } Delete Current Image?
+      .upload
+        %label Upload Image
+        = file_field :name => 'avatar'
     - unless @user.person_id.nil?
-      %label Do you want to be an adviser?
+      .check
+        = checkbox_control :is_adviser
+        %label{:for => 'user_is_adviser'} Do you want to be an adviser?
       .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have.
-      = checkbox_control :is_adviser
     = text_area_control :address_text, :label => 'Address or Location'
     .actions
       .cancel

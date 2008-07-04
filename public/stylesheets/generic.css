@@ -1104,19 +1104,6 @@ h2.index_header {
 #forums h2 {
   background-image: url('/images/forums/header.png'); }
 
-#edit_user .image_upload {
-  text-align: center; }
-  #edit_user .image_upload label {
-    font-size: 14px;
-    color: #222;
-    margin-top: 15px;
-    margin-bottom: 5px; }
-  #edit_user .image_upload .file {
-    margin: 0 auto;
-    width: 500px; }
-#edit_user .current_image {
-  text-align: center; }
-
 table td {
   border-bottom: 1px solid #ddd; }
 table tr.alt0 td {
