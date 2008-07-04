@@ -23,9 +23,9 @@ class Polls < Application
     elsif params[:order_by] or params[:direction]
       if params[:order_by] == 'question'
         order_by = ['question', 'question']
-      elsif params[:order_by] == 'yes_votes'
+      elsif params[:order_by] == 'yes_count'
         order_by = ['vote count for yes', 'yes_votes']
-      elsif params[:order_by] == 'no_votes'
+      elsif params[:order_by] == 'no_count'
         order_by = ['vote count for no', 'no_votes']
       elsif params[:order_by] == 'vote_count'
         order_by = ['vote count overall', 'vote_count']
@@ -87,8 +87,8 @@ class Polls < Application
   private
 
   def order_conditions
-    params['sort_by'] = '' if params['sort_by'].nil?
-    sort_by = case params['sort_by'].downcase
+    params['order_by'] = '' if params['order_by'].nil?
+    sort_by = case params['order_by'].downcase
     when 'question'
       :question
     when 'yes_count'

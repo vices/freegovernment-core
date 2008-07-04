@@ -111,8 +111,8 @@ class Groups < Application
   private
   
   def order_conditions
-    params['sort_by'] = '' if params['sort_by'].nil?
-    sort_by = case params['sort_by'].downcase
+    params['order_by'] = '' if params['order_by'].nil?
+    sort_by = case params['order_by'].downcase
     when 'name'
       :name
     when 'created_at'

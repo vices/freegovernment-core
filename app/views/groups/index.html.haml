@@ -43,8 +43,8 @@
         .title Order by
         .content
           %ul.bullets
-            %li= link_to "created at", url(:groups, :sort_by => 'created_at', :direction => 'desc')
-            %li= link_to "name", url(:groups, :sort_by => 'name', :direction => 'asc')
+            %li= link_to "created at", url(:groups, :order_by => 'created_at', :direction => !params[:direction].nil? && params[:direction] == 'asc' ? 'desc' : 'asc')
+            %li= link_to "name", url(:groups, :order_by => 'name', :direction => !params[:direction].nil? && params[:direction] == 'asc' ? 'desc' : 'asc')
       #group_tags.filter
         .title Groups Tags
         .tag_cloud

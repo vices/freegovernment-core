@@ -4,11 +4,11 @@
     .caption debate the issue in real time
     .caption become part of the discussion
   - if @forums_page.nil?
-    .section
-      %h3 Latest Topics
-      - unless @latest_topics.nil?
-        - @latest_topics.each do |topic|
-          =h(topic.name)
+    /.section
+    /  %h3 Latest Topics
+    /  - unless @latest_topics.nil?
+    /    - @latest_topics.each do |topic|
+    /      =h(topic.name)
     .section
       %h3 General Forums
       - unless @general_forums.nil?

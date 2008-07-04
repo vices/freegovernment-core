@@ -38,6 +38,7 @@
         .title Order by
         .content
           %ul.bullets
-            %li= link_to "created at", url(:people, :sort_by => 'created_at', :direction => 'desc')
-            %li= link_to "name", url(:people, :sort_by => 'name', :direction => 'asc')
+            - rev_dir = !params[:direction].nil? && params[:direction] == 'asc' ? 'desc' : 'asc'
+            %li= link_to "created at", url(:people, :order_by => 'created_at', :direction => rev_dir)
+            %li= link_to "name", url(:people, :order_by => 'name', :direction => rev_dir)
 
