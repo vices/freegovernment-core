@@ -5,11 +5,24 @@ class Bills < Application
 
   def index
     @pagination_params = {}
-    if search_conditions[:conditions].nil?
-      @title = 'Latest bills'
+    if search_conditions[:conditions]
+      @title = 'Bills for query: <span>%s</span>' % params[:search][:title]
+      @pagination_params = { 'search[title]' => params[:search][:title] }
+    elsif params[:order_by] or params[:direction]
+      if params[:order_by] == 'name'
+        order_by = ['name', 'name']
+      else
+        order_by = ['date', 'created_at']
+      end
+      if params[:direction] == 'asc'
+        direction = ['ascending', 'asc']
+      else
+        direction = ['descending', 'desc']
+      end
+      @title = 'Bills ordered by: <span>%s, %s</span>' % [order_by[0], direction[0]]
+      @pagination_params = { :order_by => order_by[1], :direction => direction[1] }
     else
-      @title = 'Pills for query: <span>%s</span>' % params[:search][:question]
-      @pagination_params = { 'search[question]' => params[:search][:question] }
+      @title = 'Latest bills'
     end
     @bills_page = Bill.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
