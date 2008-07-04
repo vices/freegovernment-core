@@ -18,11 +18,17 @@ class Polls < Application
     
     @pagination_params = {}
     if search_conditions[:conditions]
-      @title = 'Polls for query: <span>%s</span>' % params[:search][:question]
+      @title = 'Polls for query: <span>%s</span>' % h(params[:search][:question])
       @pagination_params = { 'search[question]' => params[:search][:question] }
     elsif params[:order_by] or params[:direction]
-      if params[:order_by] == 'name'
-        order_by = ['name', 'name']
+      if params[:order_by] == 'question'
+        order_by = ['question', 'question']
+      elsif params[:order_by] == 'yes_votes'
+        order_by = ['vote count for yes', 'yes_votes']
+      elsif params[:order_by] == 'no_votes'
+        order_by = ['vote count for no', 'no_votes']
+      elsif params[:order_by] == 'vote_count'
+        order_by = ['vote count overall', 'vote_count']
       else
         order_by = ['date', 'created_at']
       end

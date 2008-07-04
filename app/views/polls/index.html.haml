@@ -82,9 +82,9 @@
           %ul.bullets
             %li= link_to "created at", url(:polls, :sort_by => 'created_at', :direction => 'desc')
             %li= link_to "question", url(:polls, :sort_by => 'question', :direction => 'asc')
-            %li= link_to "yes votes", url(:polls, :sort_by => 'yes_count', :direction => 'desc')
-            %li= link_to "no votes", url(:polls, :sort_by => 'no_count', :direction => 'desc')
-            %li= link_to "most votes", url(:polls, :sort_by => 'vote_count', :direction => 'desc')
+            %li= link_to "vote count for yes", url(:polls, :sort_by => 'yes_count', :direction => 'desc')
+            %li= link_to "vote count for no", url(:polls, :sort_by => 'no_count', :direction => 'desc')
+            %li= link_to "vote count overall", url(:polls, :sort_by => 'vote_count', :direction => 'desc')
       #poll_tags.filter
         .title Poll Tags
         .tag_cloud
