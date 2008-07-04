@@ -9,7 +9,7 @@ class Bills < Application
       @title = 'Bills for query: <span>%s</span>' % h(params[:search][:title])
       @pagination_params = { 'search[title]' => params[:search][:title] }
     elsif params[:order_by] or params[:direction]
-      if params[:order_by] == 'name'
+      if params[:order_by] == 'title'
         order_by = ['name', 'name']
       else
         order_by = ['date', 'created_at']
