@@ -1,9 +1,12 @@
 class String
   
-  def ellipsis(size, more_marker=' [...]')
-    a = self.split(' ')
-    if a.length > size
-      a[0,size].join(' ') + more_marker
+  def ellipsis(size, more_marker='...')
+    if self.length > size
+      if (a = self[0..size].split(' ')).length > 1
+        a[0..-2].join(' ') + more_marker
+      else
+        self[0..size] + more_marker
+      end
     else
       self
     end
