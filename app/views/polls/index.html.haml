@@ -70,7 +70,7 @@
         = page_entries_info @polls_page
     #poll_filters.filters
       = link_to "Order by created at", url(:polls, :sort_by => 'created_at', :direction => 'desc')
-      = link_to "Order by question", url(:polls, :sort_by => 'question', :direction => 'desc')
+      = link_to "Order by question", url(:polls, :sort_by => 'question', :direction => 'asc')
       = link_to "Order by yes votes", url(:polls, :sort_by => 'yes_count', :direction => 'desc')
       = link_to "Order by no votes", url(:polls, :sort_by => 'no_count', :direction => 'desc')
       = link_to "Order by most votes", url(:polls, :sort_by => 'vote_count', :direction => 'desc')
