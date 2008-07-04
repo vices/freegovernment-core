@@ -6,7 +6,7 @@
   #groups_list_and_filters.list_and_filters
     #people_list.list
       - if @title
-        #page_title= @title
+        #page_title=h @title
       - if !@groups_page.nil?
         - @groups_page.each do |group|
           .group
