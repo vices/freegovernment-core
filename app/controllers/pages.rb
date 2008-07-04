@@ -12,4 +12,8 @@ class Pages < Application
     render
   end
 
+  def about_us
+    render
+  end
+
 end
