@@ -26,9 +26,9 @@
                     = partial 'partials/taglist', :tags => tags, :klass => 'group'
       .pagination
         - if @tag
-          = merb_paginate @groups_page, :route => { :name => :group_tag }, :params => { :tag => @tag.permalink }
+          = merb_paginate(@groups_page, :route => { :name => :group_tag }, :params => { :tag => @tag.permalink })
         - else
-          = merb_paginate @groups_page, :route => { :name => :groups }
+          = merb_paginate(@groups_page, :route => { :name => :groups }, :params => @pagination_params)
         = page_entries_info(@groups_page)
     #groups_filters.filters
       #groups_search.search

@@ -64,9 +64,9 @@
                 = link_to "show related bill", url(:bill, :id => poll.bill_id)
       .pagination
         - if @tag
-          = merb_paginate @polls_page, :route => { :name => :poll_tag }, :params => { :tag => @tag.permalink }
+          = merb_paginate(@polls_page, :route => { :name => :poll_tag }, :params => { :tag => @tag.permalink })
         - else
-          = merb_paginate @polls_page, :route => { :name => :polls }
+          = merb_paginate(@polls_page, :route => { :name => :polls }, :params => @pagination_params)
         = page_entries_info @polls_page
     .filters
       #poll_search
