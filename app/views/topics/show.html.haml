@@ -2,6 +2,8 @@
   .head
     .navlinks
       = link_to "All topics", url(:forum, :id => @topic.forum_id), :class => 'navlink'
+      - unless @topic.forum.bill_id.nil?
+        = link_to 'Show bill', url(:bill, :id => @topic.forum.bill_id), :class => 'navlink alt'
     %h2=h @topic.name
 
   - unless @posts_page.nil? 
