@@ -15,8 +15,12 @@ class Polls < Application
         @filter_by = nil
     end
 =end
-      
-    @title = 'Latest polls'
+
+    if search_conditions[:conditions].nil?
+      @title = 'Latest polls'
+    else
+      @title = 'Polls for query: <span>%s</span>' % params[:search][:full_name]
+    end
     @polls_page = Poll.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end

@@ -840,6 +840,20 @@ h2.index_header {
       #person #person_photo_etc .photo img {
         padding: 10px;
         border: 1px solid #ddd; }
+  #person #person_actions {
+    padding: 5px 0; }
+    #person #person_actions a, #person #person_actions button {
+      display: block;
+      text-align: center;
+      padding: 7px 5px;
+      background: #f4f4f4;
+      border: 1px solid #ddd; }
+    #person #person_actions a:hover, #person #person_actions button:hover {
+      background: #ebf3f7;
+      border-color: #daebf3;
+      text-decoration: none; }
+    #person #person_actions button {
+      width: 225px; }
   #person #person_details_etc {
     float: right;
     width: 515px; }
@@ -878,31 +892,38 @@ h2.index_header {
         #person .block .avatars a img {
           border: 1px solid #ddd; }
 
-#recent_activity ul {
-  margin: 5px 0; }
-  #recent_activity ul li {
-    line-height: 18px;
+#recent_activity table {
+  border-collapse: collapse;
+  margin: 5px 0;
+  width: 100%;
+  line-height: 16px; }
+  #recent_activity table tr td {
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #ddd;
-    position: relative;
-    padding: 3px 25px 3px 100px; }
-    #recent_activity ul li span {
-      position: absolute;
-      left: 10px;
-      color: #666; }
-    #recent_activity ul li form {
-      width: 10px;
+    vertical-align: top; }
+  #recent_activity table tr .date {
+    color: #666;
+    width: 80px;
+    padding-left: 5px; }
+  #recent_activity table tr .activity {
+    padding-left: 10px;
+    padding-right: 25px; }
+  #recent_activity table tr .delete form {
+    width: 10px;
+    height: 10px;
+    float: right;
+    margin-top: 4px;
+    margin-right: 3px; }
+    #recent_activity table tr .delete form button {
+      display: block;
+      padding: 0;
       height: 10px;
-      position: absolute;
-      right: 5px;
-      top: 7px; }
-      #recent_activity ul li form button {
-        display: block;
-        padding: 0;
-        height: 10px;
-        width: 10px;
-        background: url('/images/other/delete.gif') no-repeat; }
-        #recent_activity ul li form button span {
-          display: none; }
+      width: 10px;
+      overflow: hidden;
+      background: url('/images/other/delete.gif') no-repeat; }
+      #recent_activity table tr .delete form button span {
+        display: none; }
 
 #groups_index .group {
   display: block;

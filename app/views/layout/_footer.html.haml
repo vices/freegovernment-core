@@ -15,7 +15,10 @@
                 .location
                   = h user.address_text
                 .other
-                  Liberian / User
+                  - if user.group
+                    Group
+                  - else
+                    == User / #{h user.person.political_affiliation}
                 /.location== #{h user.address.city}
                 /.location== #{h user.address.state}
       .donation

@@ -770,6 +770,20 @@ h2.index_header
       img
         :padding 10px
         :border 1px solid #ddd
+  #person_actions
+    :padding 5px 0
+    a, button
+      :display block
+      :text-align center
+      :padding 7px 5px
+      :background #f4f4f4
+      :border 1px solid #ddd
+    a:hover, button:hover
+      :background #ebf3f7
+      :border-color #daebf3
+      :text-decoration none
+    button
+      :width 225px
   #person_details_etc
     :float right
     :width 515px
@@ -802,31 +816,40 @@ h2.index_header
           :border 1px solid #ddd
 
 #recent_activity
-  ul
+  table
+    :border-collapse collapse
     :margin 5px 0
-    li
-      :line-height 18px
-      :border-bottom 1px solid #ddd
-      :position relative
-      :padding 3px 25px 3px 100px
-      span
-        :position absolute
-        :left 10px
+    :width 100%
+    :line-height 16px
+    tr
+      td
+        :padding-top 5px
+        :padding-bottom 5px
+        :border-bottom 1px solid #ddd
+        :vertical-align top
+      .date
         :color #666
-      form
-        :width 10px
-        :height 10px
-        :position absolute
-        :right 5px
-        :top 7px
-        button
-          :display block
-          :padding 0
-          :height 10px
+        :width 80px
+        :padding-left 5px
+      .activity
+        :padding-left 10px
+        :padding-right 25px
+      .delete
+        form
           :width 10px
-          :background url('/images/other/delete.gif') no-repeat
-          span
-            :display none
+          :height 10px
+          :float right
+          :margin-top 4px
+          :margin-right 3px
+          button
+            :display block
+            :padding 0
+            :height 10px
+            :width 10px
+            :overflow hidden
+            :background url('/images/other/delete.gif') no-repeat
+            span
+              :display none
 
 #groups_index
   .group
