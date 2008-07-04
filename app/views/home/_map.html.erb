@@ -12,7 +12,7 @@
   function initializeMap() {
     var map = new google.maps.Map2(document.getElementById("map"));
     map.setCenter(new google.maps.LatLng(42, -71), 4);
-    map.openInfoWindowHtml(map.getCenter(),'<div style="width: 220px"><img style="float: left" src="/images/home/small_icon.png" /><div style="float: right; width: 140px; padding: 10px">FreeGovernment.org is fetching recent activity...</div></div>');
+    map.openInfoWindowHtml(map.getCenter(),'<div style="width: 220px"><img style="float: left" src="/images/home/bot-small.png" /><div style="float: right; width: 140px; padding: 10px">FreeGovernment.org is fetching recent activity...</div></div>');
     <% unless @map_items.nil? %>
     what_where = [
        <% @map_items.each do |a| %>

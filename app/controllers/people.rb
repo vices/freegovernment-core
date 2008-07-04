@@ -46,7 +46,7 @@ class People < Application
         @cr = ContactRelationship.first(:person_id => @current_user.id, :contact_id => @user.id)
       end
     end
-    pp @activities = FeedItem.all(:user_id => @user.id)
+    @activities = FeedItem.all(:user_id => @user.id, :limit => 20)
     render
   end
   
