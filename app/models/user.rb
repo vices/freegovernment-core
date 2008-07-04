@@ -37,7 +37,7 @@ class User
   
   validates_attachment_thumbnails :avatar
 
-  validates_length :username, :within => 4..40
+  validates_length :username, :within => 4..32
   validates_is_unique :username
   validates_format :username, :with => /^([0-9a-z_]+)$/i
 
