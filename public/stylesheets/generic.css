@@ -1364,15 +1364,18 @@ table tr.alt1 td {
       #footer .bottom .links .right {
         float: right;
         text-align: right; }
-  #footer .poll .heading a {
-    font-size: 14px; }
-  #footer .poll .vote_count {
-    margin-top: 5px;
-    padding-bottom: 3px; }
-  #footer .poll .results {
-    margin: 5px 0 10px;
-    font-size: 16px;
+  #footer .poll {
     border-bottom: 1px solid #888; }
+    #footer .poll .heading a {
+      font-size: 14px; }
+    #footer .poll .vote_count {
+      margin-top: 5px;
+      padding-bottom: 3px; }
+    #footer .poll .results {
+      margin: 5px 0 10px;
+      font-size: 16px; }
+      #footer .poll .results span {
+        margin: 0 20px; }
   #footer .topic .heading {
     padding-bottom: 3px;
     border-bottom: 1px solid #888; }
