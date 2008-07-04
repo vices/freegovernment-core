@@ -81,13 +81,9 @@ class Groups < Application
   
   def update
     @group_tags = params[:group_tags]
-    if @user.update_attributes(params[:user])
-      if @group.update_attributes(params[:group])
-        redirect url(:group, :id => @user.username)
-        Tagging.tag_object(@group, @group_tags)
-      else
-        render :edit
-      end
+    if @group.update_attributes(params[:group])
+      redirect url(:group, :id => @user.username)
+      Tagging.tag_object(@group, @group_tags)
     else
       render :edit
     end
