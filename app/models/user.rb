@@ -45,6 +45,8 @@ class User
   validates_length :email, :within => 3..100
   validates_is_unique :email
   
+  validates_length :address_text, :within => 0..150
+  
   attr_accessor :password, :password_confirmation
   
   validates_present :password, :if => proc { |r| r.new_record? }
