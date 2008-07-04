@@ -37,11 +37,10 @@ class Votes < Application
       @new_vote = @old_vote
       ayc = @old_vote.adviser_yes_count
       anc = @old_vote.adviser_no_count
-      @old_vote = Vote.new(:selection => @old_vote.selection)
+      @old_vote = Vote.new(:selection => @old_vote.selection, :user_id => session[:user_id])
       @old_vote.change_adviser_counts(ayc, anc)      
       @new_vote.selection = params[:vote][:selection]
     end
-    
   end
   
   def clean_vote_for_advisers
