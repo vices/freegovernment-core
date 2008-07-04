@@ -8,4 +8,8 @@ class Pages < Application
     render
   end
 
+  def textile
+    render
+  end
+
 end

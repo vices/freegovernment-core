@@ -3,7 +3,7 @@
     %h1 Submit a new post
     = error_messages_for @new_post
     = hidden_control :topic_id, :value => @topic.id
-    = text_area_control :text, :label => 'your post:'
+    = text_area_control :text, :label => 'your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
     .actions
       .cancel
         = link_to "cancel", url(:topic, :id => @topic.id)

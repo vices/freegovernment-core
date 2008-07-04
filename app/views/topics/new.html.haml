@@ -7,7 +7,7 @@
     = hidden_control :forum_id, :value => @forum.id
     = text_control :name, :label => 'topic name:'
     - fields_for @new_post do
-      = text_area_control :text, :label => 'your post:'
+      = text_area_control :text, :label => 'your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
     .actions
       .cancel
         = link_to "cancel", url(:forum, :id => @forum.id)

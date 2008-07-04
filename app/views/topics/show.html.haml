@@ -3,7 +3,7 @@
     .navlinks
       = link_to "All topics", url(:forum, :id => @topic.forum_id), :class => 'navlink'
     %h2=h @topic.name
-  
+
   - unless @posts_page.nil? 
     %table
       %thead

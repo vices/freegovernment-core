@@ -8,8 +8,8 @@
     = text_control :name, :label => 'Name'
     - fields_for @user do
       = text_control :email, :label => 'Email'
-  = text_area_control :description, :label => 'Group Yourself'
-  = text_area_control :mission, :label => 'Group Mission'
+  = text_area_control :description, :label => 'Group Yourself ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
+  = text_area_control :mission, :label => 'Group Mission ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
   = text_field :name => 'group_tags', :id => 'group_tags', :label => 'Group Tags ( comma separated )', :value => @group_tags
 
   .actions
