@@ -1,6 +1,20 @@
 module Merb
   module GlobalHelpers
     # helpers defined here available to all views. 
+
+    def describe_feed_item(a)
+      case(a.what)
+      when 'signup'
+        what = '%s signed up.' % link_to(a.user.username, profile_url(a.user))
+      when 'poll'
+        what = '%s created the poll, "%s"' % [link_to(a.user.username, profile_url(a.user)), link_to(a.poll.question, url(:poll, :id => a.poll_id))]
+      when 'bill'
+        what = '%s created the bill, "%s"' % [link_to(a.user.username, profile_url(a.user)), link_to(a.bill.title, url(:bill, :id => a.bill_id))]
+      when 'vote'
+        what = '%s voted %s on the poll, "%s."' % [link_to(a.user.username, profile_url(a.user)), a.vote.upcase, link_to(a.poll.question, url(:poll, :id => a.poll_id))]
+      end
+    end
+
     def profile_url(user)
       if user.group_id.nil?
         url(:person, :id => user.username)
