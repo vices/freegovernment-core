@@ -2,7 +2,8 @@ body {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;
   font-weight: normal;
-  color: #333; }
+  color: #333;
+  background: #585858; }
 
 strong {
   font-weight: bold; }
@@ -35,17 +36,15 @@ a:hover {
 
 #non_footer {
   background: white;
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -550px; }
+  padding-bottom: 20px; }
 
 .girdle {
   width: 760px;
   margin: 0 auto; }
 
 #header {
-  margin: 12px auto 28px;
+  padding-top: 12px;
+  margin: 5px auto 28px;
   position: relative; }
   #header #logo a {
     display: block;
@@ -742,7 +741,9 @@ h2.index_header {
       margin-top: 10px; }
       .list_and_filters .list .actions a {
         font-weight: bold;
-        margin: 0 10px; }
+        margin: 0 10px;
+        padding-right: 10px;
+        background: url('/images/layout/link.gif') no-repeat right top; }
   .list_and_filters .filters {
     float: right;
     width: 200px; }
@@ -1276,11 +1277,7 @@ table tr.alt1 td {
     border-left: 1px solid #ddd;
     padding-left: 20px; }
 
-#push {
-  height: 580px; }
-
 #footer {
-  height: 550px;
   background: #787878;
   color: white; }
   #footer a {
@@ -1297,7 +1294,6 @@ table tr.alt1 td {
     text-transform: uppercase; }
   #footer .content {
     display: block;
-    height: 500px;
     padding: 5px; }
     #footer .content:after {
       display: block;
@@ -1316,26 +1312,24 @@ table tr.alt1 td {
     #footer .content .left {
       float: left;
       width: 200px; }
-      #footer .content .left .users {
-        height: 390px; }
-        #footer .content .left .users .user {
+      #footer .content .left .users .user {
+        display: block;
+        margin: 10px 0px; }
+        #footer .content .left .users .user:after {
           display: block;
-          margin: 10px 0px; }
-          #footer .content .left .users .user:after {
-            display: block;
-            content: ".";
-            height: 0;
-            clear: both;
-            visibility: hidden; }
-          * html #footer .content .left .users .user {
-            height: 1px; }
-          #footer .content .left .users .user .image {
-            float: left;
-            width: 60px; }
-          #footer .content .left .users .user .details {
-            float: right;
-            width: 130px;
-            font-weight: bold; }
+          content: ".";
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        * html #footer .content .left .users .user {
+          height: 1px; }
+        #footer .content .left .users .user .image {
+          float: left;
+          width: 60px; }
+        #footer .content .left .users .user .details {
+          float: right;
+          width: 130px;
+          font-weight: bold; }
     #footer .content .right {
       float: right;
       width: 520px; }
@@ -1357,7 +1351,6 @@ table tr.alt1 td {
           width: 450px;
           float: right; }
   #footer .bottom {
-    height: 40px;
     padding: 2px;
     background: #585858;
     line-height: 20px; }
@@ -1375,11 +1368,11 @@ table tr.alt1 td {
     font-size: 14px; }
   #footer .poll .vote_count {
     margin-top: 5px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #888; }
+    padding-bottom: 3px; }
   #footer .poll .results {
-    margin-top: 5px;
-    font-size: 16px; }
+    margin: 5px 0 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #888; }
   #footer .topic .heading {
     padding-bottom: 3px;
     border-bottom: 1px solid #888; }

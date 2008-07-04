@@ -30,9 +30,7 @@
               - else
                 = partial 'partials/taglist', :tags => tags, :klass => 'bill'
             .actions
-              = link_to "view related poll", url(:poll, :id => bill.poll_id)
-              |
-              = link_to "view bill", url(:bill, :id => bill.id)
+              = link_to "show related poll", url(:poll, :id => bill.poll_id)
       .pagination
         - if @tag
           = merb_paginate @bills_page, :route => { :name => :bill_tag }, :params => { :tag => @tag.permalink }

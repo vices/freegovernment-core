@@ -61,9 +61,7 @@
                   .total== #{poll.verified_vote_count} votes
             - unless poll.bill_id.nil?
               .actions
-                = link_to "view related bill", url(:bill, :id => poll.bill_id)
-                |
-                = link_to "view poll", url(:poll, :id => poll.id)
+                = link_to "show related bill", url(:bill, :id => poll.bill_id)
       .pagination
         - if @tag
           = merb_paginate @polls_page, :route => { :name => :poll_tag }, :params => { :tag => @tag.permalink }

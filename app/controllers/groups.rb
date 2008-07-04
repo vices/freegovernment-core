@@ -25,7 +25,7 @@ class Groups < Application
   end
   
   def show
-    unless(@comments_topic = Topic.first(:forum_id => @group.forum.id, :name => 'Comments')).nil?
+    unless(@comments_topic = Topic.first(:forum_id => @group.forum.id)).nil?
       @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
     else
       @comments = []
