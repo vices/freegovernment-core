@@ -1,0 +1,16 @@
+%table
+  - activities.each do |a|
+    %tr
+      %td.date
+        = a.created_at.strftime '%d %b %Y @ %I:%m %P'
+      %td.activity
+        = a.item_type
+        - case a.item_type
+          - when 'signup'
+            = '%s signed up.' % User.first(:id => a.user_id).username
+          - when 'poll'
+            = '%s created %s poll.' % [User.first(:id => a.user_id), Poll.first(:id => a.poll_id).question]
+      %td.delete
+        %form
+          %button
+            %span Delete

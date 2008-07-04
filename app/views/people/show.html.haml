@@ -58,23 +58,7 @@
     #recent_activity.block
       .title.alt_title Recent Activity
       .content
-        %table
-          %tr
-            %td.date Today
-            %td.activity
-              Sophia voted YES on poll Do rock have feelings? Sophia voted YES on poll Do rock have feelings? Sophia voted YES on poll Do rock have feelings?
-            %td.delete
-              %form
-                %button
-                  %span Delete
-          %tr
-            %td.date Today
-            %td.activity
-              Sophia voted YES on poll Do rock have feelings?
-            %td.delete
-              %form
-                %button
-                  %span Delete
+        = partial 'people/activities', :activities => @activities
     - unless @person.description.nil?
       #description.block
         .title About Me
