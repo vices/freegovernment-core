@@ -37,8 +37,13 @@
         - else
           = merb_paginate @bills_page, :route => { :name => :bills }
         = page_entries_info @bills_page
-    .filters
+    #bill_filters.filters
+      = link_to "Order by created at", url(:bills, :sort_by => 'created_at', :direction => 'desc')
+      = link_to "Order by title", url(:bills, :sort_by => 'title', :direction => 'desc')
       #bill_search
+      - form_tag :action => url(:bills), :method => :get do
+        = text_field :title => 'search[title]'
+        = submit_button "search"
       #bill_creation.attention
         .title Want to create a bill to share with FreeGov community?
         = link_to "Click to get started", url(:new_bill)
