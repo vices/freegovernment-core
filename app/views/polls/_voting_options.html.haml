@@ -3,6 +3,8 @@
     .title
       = box_title
   .current_vote== Your vote is set to #{vote.selection}
+  - pp vote
+  - pp vote.selection
   - form_for Vote.new, :action => url(:votes) do
     = hidden_control :poll_id, :value => poll.id
     = submit_button "Yes", :name => 'vote[selection]', :value => 'yes', :class => "#{ vote.selection == 'yes' ? 'active'  : '' }"
