@@ -27,27 +27,30 @@
                 - form_tag :action => url(:adviser_relationship, :id => @user.username), :method => :delete do
                   = hidden_field :name => 'adviser', :value => @user.username
                   = submit_button("Remove from advisers")
-    - if @user.is_adviser?
-      - unless @ar.nil?
-        #person_advisees_block.block
-          .title Advisees
-    - else
-      - unless @person.advisers.nil?
-        #person_advisers_block.block
-          .title Advisers
-          .avatars
-            - @person.advisers.each do |adviser|
-              =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser)
-    #person_contacts_block.block
-      .title Contacts
-      .avatars
-        - @person.contacts.each do |contact|
-          =link_to image_tag(contact.user.avatar.url(:small)), url(:person, :id => contact.user.username)
-    #person_groups_block.block
-      .title Groups
-      .avatars
-        - @person.groups.each do |group|
-          =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
+    - unless @person.contacts.nil?
+      #person_contacts_block.block
+        .title Contacts
+        .avatars
+          - @person.contacts[8].each do |contact|
+            =link_to image_tag(contact.user.avatar.url(:small)), profile_url(contact), :title => contact.user.username
+    - unless @user.advisees.nil?
+      #person_advisees_block.block
+        .title Advisees
+        .avatars
+          - @user.advisees[8].each do |advisee|
+            =link_to image_tag(advisee.avatar.url(:small)), profile_url(advisee), :title => advisee.user.username
+    - unless @person.advisers.nil?
+      #person_advisers_block.block
+        .title Advisers
+        .avatars
+          - @person.advisers[8].each do |adviser|
+            =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.user.username
+    - unless @person.groups.nil?
+      #person_groups_block.block
+        .title Groups
+        .avatars
+          - @person.groups[8].each do |group|
+            =link_to image_tag(group.user.avatar.url(:small)), profile_url(group), :title => group.user.username
     #watched_bills.block
       .title Watched Bills
     #watched_polls.block

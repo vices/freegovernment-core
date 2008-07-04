@@ -61,12 +61,8 @@ class User
     self.address = value
   end
   
-  def advisee_list
-    if is_adviser
-      self.adviser_relationships.collect{ |ar| ar.person.user_id }
-    else
-      {}
-    end
+  def advisees
+    AdviserRelationship.all(:person_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
   end
   
   def username=(value)

@@ -27,11 +27,18 @@
                 - form_tag :action => url(:adviser_relationship, :id => @user.username), :method => :delete do
                   = hidden_field :name => 'adviser', :value => @user.username
                   = submit_button("remove from advisers")
-    #group_members_block.block
-      .title Group Members
-      .avatars
-        - @group.members.each do |member|
-          =link_to image_tag(member.user.avatar.url(:small)), url(:person, :id => member.user.username), :title => member.user.username
+    - unless @group.members.nil?
+      #group_members_block.block
+        .title Members
+        .avatars
+          - @group.members[8].each do |member|
+            =link_to image_tag(member.avatar.url(:small)), profile_url(member), :title => member.user.username
+    - unless @user.advisees.nil?
+      #group_advisees_block.block
+        .title Advisees
+        .avatars
+          - @user.advisees[8].each do |advisee|
+            =link_to image_tag(advisee.avatar.url(:small)), profile_url(advisee), :title => advisee.user.username
     /#group_photos_block.block
     /  .title Group Photos
     /#group_videos_block.block

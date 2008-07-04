@@ -26,15 +26,15 @@ class Person
   has n, :contact_relationships
   has n, :group_relationships
 
-  def contacts(options = {:page => 1, :per_page => 6 })
-    self.contact_relationships.all(:is_accepted => 1).paginate(:page => options[:page], :per_page => options[:per_page]).collect{|cr| cr.contact}
+  def contacts
+    self.contact_relationships.all(:is_accepted => 1, :order => [:modified_at.desc]).collect{|cr| cr.contact}
   end
   
-  def groups(options = {:page => 1, :per_page => 6})
-    self.group_relationships.all(:is_accepted => 1).paginate(:page => options[:page], :per_page => options[:per_page]).collect{|gr| gr.group}
+  def groups
+    self.group_relationships.all(:is_accepted => 1, :order => [:modified_at.desc]).collect{|gr| gr.group}
   end
 
-  def advisers(options = {:page => 1, :per_page => 6})
-    self.user.adviser_relationships.paginate(:page => options[:page], :per_page => options[:per_page]).collect{|ar| ar.adviser}
+  def advisers
+    AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.adviser}
   end
 end

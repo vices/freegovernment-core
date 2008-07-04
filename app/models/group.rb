@@ -24,7 +24,7 @@ class Group
   
   has n, :group_relationships
   
-  def members(options = {:page => 1, :per_page => 6})
-    self.group_relationships.all(:is_accepted => 1).paginate(:page => options[:page], :per_page => options[:per_page]).collect{|gr| gr.person}
+  def members
+    self.group_relationships.all(:is_accepted => 1, :order => [:modified_at.desc]).collect{|gr| gr.person}
   end
 end
