@@ -31,6 +31,8 @@
           = merb_paginate @groups_page, :route => { :name => :groups }
         = page_entries_info(@groups_page)
     #groups_filters.filters
+      = link_to "Order by created at", url(:groups, :sort_by => 'created_at', :direction => 'desc')
+      = link_to "Order by name", url(:groups, :sort_by => 'name', :direction => 'desc')
       #groups_search.search
         - form_tag :action => url(:groups), :method => :get do
           = text_field :name => 'search[name]'

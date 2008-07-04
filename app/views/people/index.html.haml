@@ -22,6 +22,9 @@
         = merb_paginate(@people_page, :route => { :name => :people })
         = page_entries_info(@people_page)
     #people_filters.filters
+      = link_to "Order by created at", url(:people, :sort_by => 'created_at', :direction => 'desc')
+      = link_to "Order by name", url(:people, :sort_by => 'name', :direction => 'desc')
+      #groups_search.search
       #person_search
         - form_tag :action => url(:people), :method => :get do
           = text_field :name => 'search[full_name]'

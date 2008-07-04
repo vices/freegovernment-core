@@ -100,6 +100,8 @@ class Groups < Application
     sort_by = case params['sort_by'].downcase
     when 'name'
       :name
+    when 'created_at'
+      :created_at
     else
       :id
     end

@@ -74,6 +74,8 @@ class Polls < Application
       :yes_count
     when 'no_count'
       :no_count
+    when 'vote_count'
+      :vote_count
     when 'created_at'
       :created_at
     else

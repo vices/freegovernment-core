@@ -84,10 +84,8 @@ class People < Application
     sort_by = case params['sort_by'].downcase
     when 'name'
       :full_name
-    when 'interests'
-      :interests
-    when 'political_belief'
-      :political_belief
+    when 'created_at'
+      :created_at
     else
       :id
     end
