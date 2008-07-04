@@ -181,25 +181,42 @@ class Vote
       poll_changes = []
       votes.each do |vote|
         v = Vote.new(:user_id => user_id, :poll_id => vote.poll_id)
+        y0 = 0
+        n0 = 0
         v.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
         unless v.save
           vi = Vote.first(:user_id => user_id, :poll_id => vote.poll_id)
+          y0 = vi.is_yes ? 1 : 0
+          n0 = vi.is_no ? 1 : 0
           vi.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
           vi.save
+          v = vi
         end
-        poll_changes << {:poll_id => vote.poll_id, :yes => vote.is_yes ? 1 : 0, :no => vote.is_no ? 1 : 0 }
+        dy = (v.is_yes ? 1 : 0) - y0
+        dn = (v.is_no ? 1 : 0) - n0
+        Merb.logger.warn 'the bad must be in here'
+        Merb.logger.warn y0.to_s
+        Merb.logger.warn n0.to_s
+        Merb.logger.warn dy.to_s
+        Merb.logger.warn dn.to_s
+        poll_changes << {:poll_id => v.poll_id, :yes => dy, :no => dn }
       end
       poll_changes
     end
 
     def update_user_votes_for_removed_adviser(user_id, adviser_id)
+      Merb.logger.warn('update remove')
       votes = Vote.all(:user_id => adviser_id)
       poll_changes = []
       votes.each do |vote|
         vi = Vote.first(:user_id => user_id, :poll_id => vote.poll_id)
         vi.change_adviser_counts(vote.is_yes ? -1 : 0, vote.is_no ? -1 : 0)
+        y0 = vote.is_yes ? 1 : 0
+        n0 = vote.is_no ? 1 : 0
         vi.save
-        poll_changes << {:poll_id => vi.poll_id, :yes => vote.is_yes ? -1 : 0, :no => vote.is_no ? -1 : 0 }
+        dy = (vi.is_yes ? 1 : 0) - y0
+        dn = (vi.is_no ? 1 : 0) - n0
+        poll_changes << {:poll_id => vi.poll_id, :yes => dy, :no => dn}
       end
       poll_changes
     end   

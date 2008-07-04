@@ -11,8 +11,8 @@ class AdviserRelationships < Application
         DataMapper::Transaction.new do
           poll_changes = Vote.update_user_votes_for_added_adviser(@current_user.id, @adviser.id)
           poll_changes.each do |poll_change|
+            Merb.logger.warn "in pollchange #{poll_change[:poll_id]} #{poll_change[:yes]} #{poll_change[:no]}"
             poll = Poll.first(:id => poll_change[:poll_id])
-            pp poll
             poll.update_for_votes({:yes => poll_change[:yes], :no => poll_change[:no]})
           end
           ar.is_adding_votes = false
@@ -28,6 +28,7 @@ class AdviserRelationships < Application
       @ar.is_removing_votes = true
       @ar.save
       DataMapper::Transaction.new do
+        Merb.logger.warn('hi')
         poll_changes = Vote.update_user_votes_for_removed_adviser(@current_user.id, @adviser.id)
         poll_changes.each do |poll_change|
           poll = Poll.first(:id => poll_change[:poll_id])
