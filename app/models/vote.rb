@@ -170,6 +170,7 @@ class Vote
 
     def update_user_votes_for_added_adviser(user_id, adviser_id)
       votes = Vote.all(:user_id => adviser_id)
+      poll_changes = []
       votes.each do |vote|
         v = Vote.new(:user_id => user_id, :poll_id => vote.poll_id)
         v.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
@@ -178,16 +179,21 @@ class Vote
           vi.change_adviser_counts(vote.is_yes ? 1 : 0, vote.is_no ? 1 : 0)
           vi.save
         end
+        poll_changes << {:poll_id => vote.poll_id, :yes => vote.is_yes ? 1 : 0, :no => vote.is_no ? 1 : 0 }
       end
+      poll_changes
     end
 
     def update_user_votes_for_removed_adviser(user_id, adviser_id)
       votes = Vote.all(:user_id => adviser_id)
+      poll_changes = []
       votes.each do |vote|
         vi = Vote.first(:user_id => user_id, :poll_id => vote.poll_id)
         vi.change_adviser_counts(vote.is_yes ? -1 : 0, vote.is_no ? -1 : 0)
         vi.save
+        poll_changes << {:poll_id => vi.poll_id, :yes => vote.is_yes ? -1 : 0, :no => vote.is_no ? -1 : 0 }
       end
+      poll_changes
     end   
 
 

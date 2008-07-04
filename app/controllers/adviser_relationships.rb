@@ -9,7 +9,12 @@ class AdviserRelationships < Application
     if ar.save
       run_later do
         DataMapper::Transaction.new do
-          Vote.update_user_votes_for_added_adviser(@current_user.id, @adviser.id)
+          poll_changes = Vote.update_user_votes_for_added_adviser(@current_user.id, @adviser.id)
+          poll_changes.each do |poll_change|
+            poll = Poll.first(:id => poll_change[:poll_id])
+            pp poll
+            poll.update_for_votes({:yes => poll_change[:yes], :no => poll_change[:no]})
+          end
           ar.is_adding_votes = false
           ar.save
         end
@@ -23,7 +28,11 @@ class AdviserRelationships < Application
       @ar.is_removing_votes = true
       @ar.save
       DataMapper::Transaction.new do
-        Vote.update_user_votes_for_removed_adviser(@current_user.id, @adviser.id)
+        poll_changes = Vote.update_user_votes_for_removed_adviser(@current_user.id, @adviser.id)
+        poll_changes.each do |poll_change|
+          poll = Poll.first(:id => poll_change[:poll_id])
+          poll.update_for_votes({:yes => poll_change[:yes], :no => poll_change[:no]})
+        end
         @ar.destroy
       end
     end
