@@ -3,6 +3,7 @@ class Users < Application
   before :check_edit_permissions
   params_accessible [
     :avatar, 
+    :avatar_delete,
     {:user => [:username, :email]}  
   ]
 
@@ -26,9 +27,12 @@ class Users < Application
     if !params[:avatar].nil?
       @user.avatar = params[:avatar]
     end
+    if params[:delete_avatar] == "1"
+      @user.avatar = nil
+    end
     if !params[:user][:is_adviser].nil?
       pp params
-      pp @user.is_adviser
+      #pp @user.is_adviser
       if @user.is_adviser && params[:user][:is_adviser].to_i == 0 
         p 'getting rid of adviser'
         advisee_list = @user.advisee_list
