@@ -3,10 +3,14 @@ class Home < Application
   before :login_required, :only => 'start'
 
   def index
-    unless cached?("home_map")
-      @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"])
+    if logged_in?
+      redirect url(:start)
+    else
+      unless cached?("home_map")
+        @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"])
+      end
+      render
     end
-    render
   end
 
   def start
