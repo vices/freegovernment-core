@@ -31,7 +31,9 @@ class FeedLoggingObserver
       case self.class.to_s
       when 'User'
         if self.selection != 'adviser' && self.selection != 'undecided'
-          f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.poll_id, :vote => self.stance, :what => 'vote')
+          f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.poll_id, :vote => self.stance)
+          f.what = 'poll'
+          f.save
         end
       end
     end

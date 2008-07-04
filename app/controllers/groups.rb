@@ -12,10 +12,12 @@ class Groups < Application
     :search
   ]
   def index
+    @pagination_params = {}
     if search_conditions[:conditions].nil?
       @title = 'Latest groups'
     else
       @title = 'Groups for query: <span>%s</span>' % params[:search][:name]
+      @pagination_params = { 'search[name]' => params[:search][:name] }
     end
     @groups_page = Group.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render

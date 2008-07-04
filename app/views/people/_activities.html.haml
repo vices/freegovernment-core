@@ -4,12 +4,14 @@
       %td.date
         = a.created_at.strftime '%d %b %Y @ %I:%m %P'
       %td.activity
-        = a.item_type
-        - case a.item_type
+        = a.what
+        - case a.what
           - when 'signup'
             = '%s signed up.' % User.first(:id => a.user_id).username
           - when 'poll'
             = '%s created %s poll.' % [User.first(:id => a.user_id), Poll.first(:id => a.poll_id).question]
+          - when 'vote'
+            = '%s voted %s on the poll %s.' % [User.first(:id => a.user_id), a.vote == 1 ? 'yes' : 'no', Poll.first(:id => a.poll_id).question]
       %td.delete
         %form
           %button

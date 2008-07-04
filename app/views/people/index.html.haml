@@ -19,7 +19,7 @@
                 =h person.description
           .actions
       .pagination
-        = merb_paginate(@people_page, :route => { :name => :people })
+        = merb_paginate(@people_page, :route => { :name => :people }, :params => @pagination_params)
         = page_entries_info(@people_page)
     #people_filters.filters
       = link_to "Order by created at", url(:people, :sort_by => 'created_at', :direction => 'desc')

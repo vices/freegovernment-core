@@ -27,7 +27,7 @@
         = partial 'layout/donate'
     .right
       .topics
-        %h3 Recent Topics
+        %h3 Recent Posts
         - unless @updates_newest_topics.nil?
           - @updates_newest_topics.each do |post|
             .topic
@@ -35,8 +35,15 @@
               .details
                 .heading
                   =link_to h(post.user.username), profile_url(post.user)
-                  %span commented on 
-                  =link_to h(post.topic.name), url(:topic, :id => post.topic.id)
+                  - if post.topic.forum.group_id and post.topic.name == 'Comments'
+                    %span commented on 
+                    =link_to h(post.topic.forum.group.name), url(:group, :id => post.topic.forum.group_id)
+                  - elsif post.topic.forum.poll_id and post.topic.name == 'Comments'
+                    %span commented on 
+                    =link_to h(post.topic.forum.poll.question), url(:poll, :id => post.topic.forum.poll_id)
+                  - else
+                    %span posted on 
+                    =link_to h(post.topic.name), url(:topic, :id => post.topic.id)
                 .text
                   =link_to h(post.text), post_url(post)
       .polls
