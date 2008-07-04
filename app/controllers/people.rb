@@ -33,7 +33,7 @@ class People < Application
     else
       @title = 'Latest people'
     end
-    @people_page = Person.paginate({:page => params[:page], :per_page => 1}.merge(search_conditions).merge(order_conditions))
+    @people_page = Person.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
 
