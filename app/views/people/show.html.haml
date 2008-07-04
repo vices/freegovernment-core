@@ -32,10 +32,12 @@
         #person_advisees_block.block
           .title Advisees
     - else
-      - unless @ar.nil?
+      - unless @person.advisers.nil?
         #person_advisers_block.block
           .title Advisers
-
+          .avatars
+            - @person.advisers.each do |adviser|
+              =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser)
     #person_contacts_block.block
       .title Contacts
       .avatars
@@ -46,11 +48,6 @@
       .avatars
         - @person.groups.each do |group|
           =link_to image_tag(group.user.avatar.url(:small)), url(:group, :id => group.user.username)
-    #person_contacts_block.block
-      .title Advisers
-      .avatars
-        - @person.advisers.each do |adviser|
-          =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser)
     #watched_bills.block
       .title Watched Bills
     #watched_polls.block
