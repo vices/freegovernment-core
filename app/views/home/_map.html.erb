@@ -12,17 +12,28 @@
   function initializeMap() {
     var map = new google.maps.Map2(document.getElementById("map"));
     map.setCenter(new google.maps.LatLng(42, -71), 4);
-    //map.openInfoWindow(map.getCenter(),document.createTextNode('FreeGovernment.org launched!'));
+    map.openInfoWindowHtml(map.getCenter(),'<div style="width: 220px"><img style="float: left" src="/images/home/small_icon.png" /><div style="float: right; width: 140px; padding: 10px">FreeGovernment.org is fetching recent activity...</div></div>');
+    <% unless @map_items.nil? %>
     what_where = [
-      <% unless @map_items.nil? %>
-        <% @map_items.each do |map_item| %>
+       <% @map_items.each do |a| %>
+         <%
+  case a.what
+  when 'signup'
+    what = '%s signed up.' % link_to(a.user.username, profile_url(a.user))
+  when 'poll'
+    what = '%s created the poll, "%s"' % [link_to(a.user.username, profile_url(a.user)), link_to(a.poll.question.ellipsis(80), url(:poll, :id => a.poll_id))]
+  when 'bill'
+    what = '%s created the bill, "%s"' % [link_to(a.user.username, profile_url(a.user)), link_to(a.bill.title.ellipsis(80), url(:bill, :id => a.bill_id))]
+  when 'vote'
+    what = '%s voted %s on the poll, "%s."' % [link_to(a.user.username, profile_url(a.user)), a.vote.upcase, link_to(a.poll.question.ellipsis(80), url(:poll, :id => a.poll_id))]
+  end
+         %>
           {
-            what: '<%= link_to map_item.user.username, profile_url(map_item.user) %>',
-            where: [<%= map_item.user.address_lat %>, <%= map_item.user.address_lng %>],
-            image: "<%= map_item.user.avatar.url(:small) %>"
+            what: '<%= what%>',
+            where: [<%= a.user.address_lat %>, <%= a.user.address_lng %>],
+            image: "<%= a.user.avatar.url(:small) %>"
           },
         <% end %>
-      <% end %>
     ];
  
     what_where.sort(randOrd);
@@ -45,6 +56,7 @@
       } else
         num++;
     }, 10000);
+    <% end %>
   }
 
   jQuery(document).ready(function(){

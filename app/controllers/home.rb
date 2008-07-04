@@ -4,12 +4,15 @@ class Home < Application
 
   def index
     unless cached?("home_map")
-      @map_items = FeedItem.all(:limit => 20)
+      @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"])
     end
     render
   end
 
   def start
+    unless cached?("home_map")
+      @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"])
+    end
     render
   end
 
