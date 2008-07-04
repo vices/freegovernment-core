@@ -6,7 +6,7 @@
   .list_and_filters
     .list
       - if @title
-        #page_title=h @title
+        #page_title= @title
       - @bills_page.each do |bill|
         .bill
           .img= link_to image_tag(bill.user.avatar(:small)), profile_url(bill.user)

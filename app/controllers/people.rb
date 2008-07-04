@@ -15,7 +15,7 @@ class People < Application
   def index
     @pagination_params = {}
     if search_conditions[:conditions]
-      @title = 'People for query: <span>%s</span>' % params[:search][:full_name]
+      @title = 'People for query: <span>%s</span>' % h(params[:search][:full_name])
       @pagination_params = { 'search[full_name]' => params[:search][:full_name] }
     elsif params[:order_by] or params[:direction]
       if params[:order_by] == 'name'
@@ -33,7 +33,7 @@ class People < Application
     else
       @title = 'Latest people'
     end
-    @people_page = Person.paginate({:page => params[:page], :per_page => 1}.merge(search_conditions).merge(order_conditions))
+    @people_page = Person.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render
   end
 

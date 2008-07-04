@@ -42,7 +42,6 @@ class Poll
       yes_agg = yes_agg + diff[:yes]
       no_agg = no_agg + diff[:no]
     end
-    pp yes_agg, no_agg
     attribute_set(:yes_count, self.yes_count + yes_agg)
     attribute_set(:no_count, self.no_count + no_agg)
     attribute_set(:vote_count, self.yes_count + self.no_count)

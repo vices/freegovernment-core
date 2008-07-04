@@ -6,7 +6,7 @@ class FeedLoggingObserver
 #    id_class_sym = (self.class.to_s.snake_case + "_id").to_sym
 #    FeedItem.create!(:user_id => self.user_id, id_class_sym => self.id)
 #  end
-  
+
   after :create do
     case self.class.to_s
       when 'User'
@@ -26,16 +26,4 @@ class FeedLoggingObserver
     end
   end
 
-  if method_defined? :notify
-    after :notify do
-      case self.class.to_s
-      when 'User'
-        if self.selection != 'adviser' && self.selection != 'undecided'
-          f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.poll_id, :vote => self.stance)
-          f.what = 'poll'
-          f.save
-        end
-      end
-    end
-  end
 end
