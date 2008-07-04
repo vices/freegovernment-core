@@ -18,7 +18,10 @@ class Vote
   
   # How user sets vote
   attr_accessor :selection
-  
+
+  def notify
+  end
+
   def selection=(value)
     case(value)
       when 'yes'

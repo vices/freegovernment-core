@@ -18,11 +18,22 @@ class FeedLoggingObserver
         f.what = 'bill'
         f.save
       when 'Poll'
-        if self.bill_id
+        unless self.bill_id
           f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.id)
           f.what = 'poll'
           f.save
         end
+    end
+  end
+
+  if method_defined? :notify
+    after :notify do
+      case self.class.to_s
+      when 'User'
+        if self.selection != 'adviser' && self.selection != 'undecided'
+          f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.poll_id, :vote => self.stance, :what => 'vote')
+        end
+      end
     end
   end
 end

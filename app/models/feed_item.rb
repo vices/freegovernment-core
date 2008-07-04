@@ -10,6 +10,8 @@ class FeedItem
   property :created_at, DateTime
   property :what, String
   property :vote, String
+  property :is_private, Boolean, :default => 0
+  property :is_hidden, Boolean, :default => 0
 
   belongs_to :user
   belongs_to :poll

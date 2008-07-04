@@ -7,6 +7,7 @@ class Votes < Application
   def create
     set_old_and_new_vote
     if @new_vote.save
+      @nvew_vote.notify
       update_poll_for_vote
       change_advisee_votes_and_update_poll
     end
