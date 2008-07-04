@@ -25,8 +25,11 @@ class Groups < Application
   end
   
   def show
-    @comments_topic = Topic.first(:forum_id => @group.forum.id, :name => 'Comments')
-    @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
+    unless(@comments_topic = Topic.first(:forum_id => @group.forum.id, :name => 'Comments')).nil?
+      @comments = @comments_topic.posts.all(:order => [:created_at.desc]).paginate(:page => params[:page], :per_page => 10)
+    else
+      @comments = []
+    end
     if logged_in?
       if !@current_user.person_id.nil?
       @gr = GroupRelationship.first(:person_id => @current_user.person_id, :group_id => @group.id)

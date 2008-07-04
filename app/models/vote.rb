@@ -97,15 +97,18 @@ class Vote
  
     def update_advisee_votes(old_vote,new_vote,advisee_ids)
       vote_differences = []
-      vote_change = Vote.describe_change(old_vote, new_vote)
-      vote_difference = Vote.describe_difference(vote_change)
-      Vote.populate_advisee_votes(old_vote.poll_id, advisee_ids)
-      votes_to_change = Vote.all(:poll_id => new_vote.poll_id, :user_id.in => advisee_ids)
-      votes_to_change.each do |vote|
-        before_state = vote.state
-        vote.change_adviser_counts(vote_difference[:yes],vote_difference[:no])
-        vote.save
-        vote_differences << describe_difference([before_state, vote.state])
+      unless advisee_ids.empty?
+        vote_change = Vote.describe_change(old_vote, new_vote)
+        vote_difference = Vote.describe_difference(vote_change)
+        Vote.populate_advisee_votes(new_vote.poll_id, advisee_ids)
+
+        votes_to_change = Vote.all(:poll_id => new_vote.poll_id, :user_id.in => advisee_ids)
+        votes_to_change.each do |vote|
+          before_state = vote.state
+          vote.change_adviser_counts(vote_difference[:yes],vote_difference[:no])
+          vote.save
+          vote_differences << describe_difference([before_state, vote.state])
+        end
       end
       vote_differences
     end
@@ -119,9 +122,6 @@ class Vote
     end
 
     def describe_change(old_vote, new_vote)
-      p 'in describe'
-      pp old_vote
-      pp new_vote
       unless old_vote.nil?
         [old_vote.state, new_vote.state]
       else
