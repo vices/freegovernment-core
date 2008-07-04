@@ -1405,9 +1405,7 @@ table tr.alt1 td {
   #footer .topic .text {
     margin-top: 10px; }
   #footer .user a {
-    font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis; }
+    font-size: 12px; }
   #footer .user .location, #footer .user .other {
     margin-top: 7px;
     color: #bbb; }

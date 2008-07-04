@@ -11,14 +11,15 @@
             .user
               .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
               .details
-                .username= link_to h(user.username), profile_url(user)
+                .username= link_to h(user.username.ellipsis(15)), profile_url(user)
                 .location
                   = h user.address_text
-                .other
                   - if user.group
-                    Group
+                    .other
+                      Group
                   - else
-                    == User / #{h user.person.political_affiliation}
+                    .other User
+                    .other= h user.person.political_affiliation
                 /.location== #{h user.address.city}
                 /.location== #{h user.address.state}
       .donation
