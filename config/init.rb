@@ -108,7 +108,7 @@ Merb::BootLoader.after_app_loads do
   # dependency "magic_admin" # this gem uses the app's model classes
   require File.join(File.dirname(__FILE__),'recaptcha')
   require File.join(File.dirname(__FILE__),'geokit')
-
+  require File.join(File.dirname(__FILE__), 'mailer')
   require File.join(File.dirname(__FILE__), 'dbthread')
 end
 
