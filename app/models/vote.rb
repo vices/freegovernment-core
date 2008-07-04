@@ -93,6 +93,14 @@ class Vote
     end
   end
 
+  def clear_adviser_counts
+    self.adviser_yes_count = 0
+    self.adviser_no_count = 0
+    if self.is_adviser_decided
+      self.state = 0
+    end
+  end
+
   class << self
  
     def update_advisee_votes(old_vote,new_vote,advisee_ids)
