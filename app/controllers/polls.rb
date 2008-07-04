@@ -17,11 +17,24 @@ class Polls < Application
 =end
     
     @pagination_params = {}
-    if search_conditions[:conditions].nil?
-      @title = 'Latest polls'
-    else
+    if search_conditions[:conditions]
       @title = 'Polls for query: <span>%s</span>' % params[:search][:question]
       @pagination_params = { 'search[question]' => params[:search][:question] }
+    elsif params[:order_by] or params[:direction]
+      if params[:order_by] == 'name'
+        order_by = ['name', 'name']
+      else
+        order_by = ['date', 'created_at']
+      end
+      if params[:direction] == 'asc'
+        direction = ['ascending', 'asc']
+      else
+        direction = ['descending', 'desc']
+      end
+      @title = 'Polls ordered by: <span>%s, %s</span>' % [order_by[0], direction[0]]
+      @pagination_params = { :order_by => order_by[1], :direction => direction[1] }
+    else
+      @title = 'Latest polls'
     end
     @polls_page = Poll.paginate({:page => params[:page], :per_page => 8}.merge(search_conditions).merge(order_conditions))
     render

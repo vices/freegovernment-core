@@ -14,7 +14,7 @@ class Groups < Application
   def index
     @pagination_params = {}
     if search_conditions[:conditions]
-      @title = 'Groups for query: <span>%s</span>' % params[:search][:name]
+      @title = 'Groups for query: <span>%s</span>' % h(params[:search][:name])
       @pagination_params = { 'search[name]' => params[:search][:name] }
     elsif params[:order_by] or params[:direction]
       if params[:order_by] == 'name'

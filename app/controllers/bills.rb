@@ -6,7 +6,7 @@ class Bills < Application
   def index
     @pagination_params = {}
     if search_conditions[:conditions]
-      @title = 'Bills for query: <span>%s</span>' % params[:search][:title]
+      @title = 'Bills for query: <span>%s</span>' % h(params[:search][:title])
       @pagination_params = { 'search[title]' => params[:search][:title] }
     elsif params[:order_by] or params[:direction]
       if params[:order_by] == 'name'

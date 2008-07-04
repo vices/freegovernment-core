@@ -6,7 +6,7 @@
   .list_and_filters
     .list
       - if @title
-        #page_title=h @title
+        #page_title= @title
       - unless @polls_page.nil?
         - @polls_page.each do |poll|
           .poll
