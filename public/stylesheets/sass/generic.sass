@@ -17,6 +17,7 @@
 
 body
   +font
+  :background #585858
 
 strong
   :font-weight bold
@@ -47,17 +48,15 @@ a:hover
 
 #non_footer
   :background white
-  :min-height 100%
-  :height auto !important
-  :height 100%
-  :margin 0 auto -550px
+  :padding-bottom 20px
 
 .girdle
   :width 760px
   :margin 0 auto
 
 #header
-  :margin 12px auto 28px
+  :padding-top 12px
+  :margin 5px auto 28px
   :position relative
   #logo
     a
@@ -1153,11 +1152,7 @@ table
     
 // FOOTER
 
-#push
-  :height 580px
-
 #footer
-  :height 550px
   :background #787878
   :color white
   a
@@ -1174,7 +1169,6 @@ table
     :text-transform uppercase
   .content
     +clearfix
-    :height 500px
     :padding 5px
     h3
       :font-weight bold
@@ -1186,7 +1180,6 @@ table
       :float left
       :width 200px
       .users
-        :height 390px
         .user
           +clearfix
           :margin 10px 0px
@@ -1210,7 +1203,6 @@ table
           :width 450px
           :float right
   .bottom
-    :height 40px
     :padding 2px
     :background #585858
     :line-height 20px
@@ -1230,10 +1222,10 @@ table
     .vote_count
       :margin-top 5px
       :padding-bottom 3px
-      :border-bottom 1px solid #888
     .results
-      :margin-top 5px
+      :margin 5px 0 10px
       :font-size 16px
+      :border-bottom 1px solid #888
   .topic
     .heading
       :padding-bottom 3px
