@@ -4,15 +4,32 @@
       .block
         %h3 Your updates
         .content.alt
-    .right
-      = partial 'home/map'
-  #info
-    .left
+          - unless @feed_items.nil?
+            - @feed_items.each do |feed_item|
+              = describe_feed_item(feed_item)
+      - if !@adv_updates.nil?
+        .block
+          %h3 Adviser Votes
+          .content.alt              
+            - @adv_items.each do |adv_item|
+              = describe_feed_item(adv_item)
       .block
         %h3 About us
         .content
-  
+          FreeGovernment.org is a:
+          %ul
+            %li
+              %strong non-profit
+              organization
+            %li
+              build on
+              %strong open source
+              software
+            %li
+              designed to
+              %strong empower citizens
     .right
+      = partial 'home/map'
       #blog
         %h2
           = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
