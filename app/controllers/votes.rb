@@ -8,6 +8,13 @@ class Votes < Application
     set_old_and_new_vote
     if @new_vote.save
       @new_vote.notify
+      if @new_vote.selection == 'adviser'
+        flash[:notice] = "You have choosen to have your advisers determine your vote on this poll."
+      elsif @new_vote.selection == 'undecided'
+        flash[:notice] = "You are now abstaining from this poll."
+      else
+        flash[:notice] = "You have voted #{@new_vote.selection.upcase} on this poll."
+      end
       update_poll_for_vote
       change_advisee_votes_and_update_poll
     end
