@@ -31,9 +31,7 @@
           = merb_paginate(@groups_page, :route => { :name => :groups }, :params => @pagination_params)
         = page_entries_info(@groups_page)
     #groups_filters.filters
-      = link_to "Order by created at", url(:groups, :sort_by => 'created_at', :direction => 'asc')
-      = link_to "Order by name", url(:groups, :sort_by => 'name', :direction => 'desc')
-      #groups_search.search
+      #groups_search.search_filter
         - form_tag :action => url(:groups), :method => :get do
           = text_field :name => 'search[name]'
           = submit_button "search"
@@ -41,6 +39,12 @@
         #group_edit.attention
           .title Describe your group's focus
           = link_to "Edit Group Profile", url(:edit_group, :id => @current_user.username)
+      .filter
+        .title Order by
+        .content
+          %ul.bullets
+            %li= link_to "created at", url(:groups, :sort_by => 'created_at', :direction => 'desc')
+            %li= link_to "name", url(:groups, :sort_by => 'name', :direction => 'asc')
       #group_tags.filter
         .title Groups Tags
         .tag_cloud

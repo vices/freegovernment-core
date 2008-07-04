@@ -22,10 +22,7 @@
         = merb_paginate(@people_page, :route => { :name => :people }, :params => @pagination_params)
         = page_entries_info(@people_page)
     #people_filters.filters
-      = link_to "Order by created at", url(:people, :sort_by => 'created_at', :direction => 'desc')
-      = link_to "Order by name", url(:people, :sort_by => 'name', :direction => 'asc')
-      #groups_search.search
-      #person_search
+      #person_search.search_filter
         - form_tag :action => url(:people), :method => :get do
           = text_field :name => 'search[full_name]'
           = submit_button "search"
@@ -37,4 +34,10 @@
         #person_creation.attention
           .title Looking to join?
           = link_to "Signup Here", url(:new_person)
-      
+      .filter
+        .title Order by
+        .content
+          %ul.bullets
+            %li= link_to "created at", url(:people, :sort_by => 'created_at', :direction => 'desc')
+            %li= link_to "name", url(:people, :sort_by => 'name', :direction => 'asc')
+

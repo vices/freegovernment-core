@@ -277,6 +277,32 @@ a:hover {
   .filter a {
     color: #525252; }
 
+.search_filter {
+  display: block;
+  margin-bottom: 10px; }
+  .search_filter:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .search_filter {
+    height: 1px; }
+  .search_filter input {
+    float: left;
+    width: 140px; }
+  .search_filter button {
+    padding: 3px 5px;
+    font-size: 11px;
+    float: right; }
+
+.filter ul.bullets {
+  margin-left: 10px; }
+  .filter ul.bullets li {
+    padding-left: 12px;
+    margin: 5px 0;
+    background: url('/images/other/bullet.png') no-repeat left; }
+
 button {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;

@@ -69,22 +69,25 @@
           = merb_paginate(@polls_page, :route => { :name => :polls }, :params => @pagination_params)
         = page_entries_info @polls_page
     #poll_filters.filters
-      = link_to "Order by created at", url(:polls, :sort_by => 'created_at', :direction => 'desc')
-      = link_to "Order by question", url(:polls, :sort_by => 'question', :direction => 'asc')
-      = link_to "Order by yes votes", url(:polls, :sort_by => 'yes_count', :direction => 'desc')
-      = link_to "Order by no votes", url(:polls, :sort_by => 'no_count', :direction => 'desc')
-      = link_to "Order by most votes", url(:polls, :sort_by => 'vote_count', :direction => 'desc')
-      #groups_search.search
-      #poll_search
+      #poll_search.search_filter
         - form_tag :action => url(:polls), :method => :get do
           = text_field :question => 'search[question]'
           = submit_button "search"
-        #poll_creation.attention
-          .title Can't find the poll you're looking for?
-          = link_to "Click here to create it.", url(:new_poll)
-        #poll_tags.filter
-          .title Poll Tags
-          .tag_cloud
-            - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
-              %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }<
-              = t.name
+      #poll_creation.attention
+        .title Can't find the poll you're looking for?
+        = link_to "Click here to create it.", url(:new_poll)
+      .filter
+        .title Order by
+        .content
+          %ul.bullets
+            %li= link_to "created at", url(:polls, :sort_by => 'created_at', :direction => 'desc')
+            %li= link_to "question", url(:polls, :sort_by => 'question', :direction => 'asc')
+            %li= link_to "yes votes", url(:polls, :sort_by => 'yes_count', :direction => 'desc')
+            %li= link_to "no votes", url(:polls, :sort_by => 'no_count', :direction => 'desc')
+            %li= link_to "most votes", url(:polls, :sort_by => 'vote_count', :direction => 'desc')
+      #poll_tags.filter
+        .title Poll Tags
+        .tag_cloud
+          - tag_cloud(Tag.get_tags('poll')[0..50], 'poll', ['t1','t2','t3','t4','t5']) do |t, c|
+            %a{ :href => url(:poll_tag, :tag => t.permalink), :class => c }<
+            = t.name
