@@ -9,6 +9,7 @@ class FeedItem
   property :post_id, Integer
   property :created_at, DateTime
   property :what, String
+  property :vote, String
 
   belongs_to :user
   belongs_to :poll

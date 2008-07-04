@@ -18,9 +18,11 @@ class FeedLoggingObserver
         f.what = 'bill'
         f.save
       when 'Poll'
-        f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.id)
-        f.what = 'poll'
-        f.save
+        if self.bill_id
+          f = FeedItem.create!(:user_id => self.user_id, :poll_id => self.id)
+          f.what = 'poll'
+          f.save
+        end
     end
   end
 end
