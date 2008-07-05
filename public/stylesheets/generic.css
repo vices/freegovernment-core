@@ -1304,6 +1304,10 @@ table tr.alt1 td {
         color: #aaa;
         position: absolute;
         right: 0px; }
+      #topic table .text .meta .edit {
+        right: 40px;
+        color: #333;
+        font-weight: bold; }
 #topic .bottom {
   display: block;
   position: relative; }

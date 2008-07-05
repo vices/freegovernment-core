@@ -13,7 +13,12 @@ class Posts < Application
     @new_post = Post.new
     render
   end
-
+  
+  def edit(id)
+    @post = Post.get(id.to_i)
+    render
+  end
+  
   def create
     new_posts_count = @topic.posts_count + 1
     @new_post.post_number = new_posts_count
@@ -35,6 +40,17 @@ class Posts < Application
       end
     else
       render :new
+    end
+  end
+  
+  def update
+    @post = Post.first(:id => params[:id])
+    if @post.post_number == @post.topic.posts_count and @post.user == current_user
+      if @post.update_attributes(params[:post])
+        redirect post_url(@post)
+      else
+        render :edit
+      end
     end
   end
   

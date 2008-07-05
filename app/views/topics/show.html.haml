@@ -27,6 +27,8 @@
             %td.text
               .meta
                 = link_to '#' + post.post_number.to_s, post_url(post)
+                - if post.post_number == @topic.posts_count and post.user == current_user
+                  = link_to 'Edit', url(:edit_post, :id => post.id), :class => 'edit'
                 %span.chrono
                   = post.created_at.strftime('%b %d, %Y %I:%M%P')
               = post.text.render_textile
