@@ -357,6 +357,20 @@ button.active {
     margin-top: 10px; }
   .voting_options .bottom {
     text-align: right; }
+  .voting_options .top_forms {
+    display: block;
+    padding-left: 50px;
+    padding-bottom: 10px; }
+    .voting_options .top_forms:after {
+      display: block;
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html .voting_options .top_forms {
+      height: 1px; }
+    .voting_options .top_forms form.top {
+      float: left; }
 
 #page_title {
   font-weight: bold;
@@ -365,6 +379,9 @@ button.active {
   color: #666; }
   #page_title span {
     color: #333; }
+
+#poll .voting_options .top_forms, #bill .voting_options .top_forms {
+  padding-left: 15px; }
 
 #bills_index .bill {
   display: block;
