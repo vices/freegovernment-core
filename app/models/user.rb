@@ -18,6 +18,10 @@ class User
   property :created_at, DateTime
   property :updated_at, DateTime
   property :address_text, DM::Text
+  property :street_address1, String 
+  property :street_address2, String 
+  property :city_town, String
+  property :zipcode, String
   property :private_votes, Boolean, :default => 0
   property :private_profile, Boolean, :default => 0
 
@@ -46,7 +50,11 @@ class User
   validates_is_unique :email
   
   validates_length :address_text, :within => 0..150
+  validates_length :street_address1, :within => 0..50 
+  validates_length :street_address2, :within => 0..50
+  validates_length :city_town, :within => 0..50
   
+ 
   attr_accessor :password, :password_confirmation
   
   validates_present :password, :if => proc { |r| r.new_record? }
@@ -60,7 +68,34 @@ class User
     attribute_set(:address_text, value)
     self.address = value
   end
+
+  def street_address1=(value)
+    attribute_set(:street_address1, value)
+    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
+   pp self.address  
+end
+
+  def street_address2=(value)
+    attribute_set(:street_address2, value)
+    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
+  end
+
+  def city_town=(value)
+    attribute_set(:city_town, value)
+    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
+  end
+
+  def zipcode=(value)
+    attribute_set(:zipcode, value)
+    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
+  end
   
+  def address_set=(item, value)
+    @item = item.to_s  
+    attribute_set(@item, value)
+    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
+  end
+ 
   def advisees
     AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
   end

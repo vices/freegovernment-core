@@ -15,8 +15,11 @@
       .check
         = checkbox_control :is_adviser
         %label{:for => 'user_is_adviser'} Do you want to be an adviser?
-      .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have.
-    = text_area_control :address_text, :label => 'Address or Location'
+      .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have. 
+    = text_area_control :street_address1, :label => 'Street Address 1'
+    = text_area_control :street_address2, :label => 'Street Address 2'
+    = text_area_control :city_town, :label => 'City or Town'
+    = text_area_control :zipcode, :label => 'Zipcode'
     .actions
       .cancel
         = link_to "cancel", url(:home)
