@@ -40,7 +40,7 @@
     #bill_filters.filters
       #bill_search.search_filter
         - form_tag :action => url(:bills), :method => :get do
-          = text_field :title => 'search[title]'
+          = text_field :name => 'search[title]'
           = submit_button "search"
       #bill_creation.attention
         .title Want to create a bill to share with FreeGov community?
