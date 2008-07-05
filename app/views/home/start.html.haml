@@ -13,12 +13,13 @@
       - if !@adv_updates.nil?
         .block
           %h3 Adviser Votes
-          .content.alt.updates              
-            - @adv_items.each do |adv_item|
-              - unless adv_item.what.nil?
-                .activity
-                  = describe_feed_item(adv_item)
-                  = adv_item.created_at.strftime '%d %b %Y @ %I:%m %P'
+          .content.alt.updates
+            - unless @adv_items.nil? 
+              - @adv_items.each do |adv_item|
+                - unless adv_item.what.nil?
+                  .activity
+                    = describe_feed_item(adv_item)
+                    = adv_item.created_at.strftime '%d %b %Y @ %I:%m %P'
       .block
         %h3 About us
         .content
