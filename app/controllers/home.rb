@@ -31,7 +31,7 @@ class Home < Application
     unless @current_user.is_adviser
       adviser_ids = @current_user.person.advisers.collect{ |a| a.id }
       if !adviser_ids.nil? && !adviser_ids.empty?
-        @adv_updates = FeedItem.all(:limit => 15, :user_id.in => adviser_ids, :what => 'vote', :order => :id.desc)
+        @adv_updates = FeedItem.all(:limit => 15, :user_id.in => adviser_ids, :what => 'vote', :order => [:id.desc])
       end
     end
     render
