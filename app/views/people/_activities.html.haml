@@ -5,15 +5,7 @@
         %td.date
           = a.created_at.strftime '%d %b %Y @ %I:%m %P'
         %td.activity
-          - case a.what
-            - when 'signup'
-              = '%s signed up.' % a.user.username
-            - when 'poll'
-              = '%s created %s poll.' % [a.user.username, link_to(a.poll.question, url(:poll, :id => a.poll))]
-            - when 'vote'
-              = '%s voted %s on the poll: %s.' % [a.user.username, a.vote.upcase, link_to(a.poll.question, url(:poll, :id => a.poll_id))]
-            - else
-              = pp a
+          = describe_feed_item a
         %td.delete
           %form
             %button
