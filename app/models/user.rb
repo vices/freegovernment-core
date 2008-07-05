@@ -64,7 +64,15 @@ class User
   def advisees
     AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
   end
-  
+
+  def advisee_list
+    if self.is_adviser
+      AdviserRelationship.all(:adviser_id => self.id).collect{ |ar| ar.person.user_id }
+    else
+      {}
+    end  
+  end
+
   def username=(value)
     attribute_set(:username, value.downcase)
   end
