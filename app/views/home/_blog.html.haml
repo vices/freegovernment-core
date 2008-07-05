@@ -5,5 +5,5 @@
     - @rss.each do |entry|
       .entry
         %h3= entry.title
-        = entry.content
+        .content= entry.content
         .permalink= link_to "Permalink", entry.urls.first
