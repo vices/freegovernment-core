@@ -8,7 +8,7 @@ class Home < Application
       redirect url(:start)
     else
       unless cached?("home_map")
-        @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"], :order => [:id.desc])
+        @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"], :what.not => nil, :order => [:id.desc])
       end
       render
     end
@@ -16,7 +16,7 @@ class Home < Application
 
   def start
     unless cached?("home_map")
-      @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"], :order => [:id.desc])
+      @map_items = FeedItem.all(:limit => 20, :links => [:user], :conditions => ["address_lat IS NOT NULL"], :what.not => nil, :order => [:id.desc])
     end
     related_ids = []
     if @current_user.group_id.nil?
