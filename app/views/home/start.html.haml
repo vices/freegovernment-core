@@ -3,16 +3,22 @@
     .left
       .block
         %h3 Your updates
-        .content.alt
+        .content.alt.updates
           - unless @feed_items.nil?
             - @feed_items.each do |feed_item|
-              = describe_feed_item(feed_item)
+              - unless feed_item.what.nil?
+                .activity
+                  = describe_feed_item(feed_item)
+                  = feed_item.created_at.strftime '%d %b %Y @ %I:%m %P'
       - if !@adv_updates.nil?
         .block
           %h3 Adviser Votes
-          .content.alt              
+          .content.alt.updates              
             - @adv_items.each do |adv_item|
-              = describe_feed_item(adv_item)
+              - unless adv_item.what.nil?
+                .activity
+                  = describe_feed_item(adv_item)
+                  = adv_item.created_at.strftime '%d %b %Y @ %I:%m %P'
       .block
         %h3 About us
         .content

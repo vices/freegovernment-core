@@ -956,6 +956,12 @@ h2.index_header {
       #recent_activity table tr .delete form button span {
         display: none; }
 
+.updates .activity {
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee; }
+
 #groups_index .group {
   display: block;
   border-bottom: 1px solid #ccc;

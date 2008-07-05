@@ -54,11 +54,12 @@
         %table
           - unless @activities.nil?
             - @activities.each do |a|
-              %tr
-                %td.date
-                  = a.created_at.strftime '%d %b %Y @ %I:%m %P'
-                %td.activity
-                  = describe_feed_item a
+              - unless a.what.nil?
+                %tr
+                  %td.date
+                    = a.created_at.strftime '%d %b %Y @ %I:%m %P'
+                  %td.activity
+                    = describe_feed_item a
     - unless @group.description.nil?
       #group_description.block
         .title About Us

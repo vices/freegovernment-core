@@ -20,15 +20,16 @@ class Home < Application
     end
     related_ids = []
     if @current_user.group_id.nil?
-      @current_user.contact_relationships.each{ |c| related_ids << c.contact.user_id }
+      @current_user.person.contact_relationships.each{ |c| related_ids << c.contact.user_id }
+      @current_user.person.group_relationships.each{ |g| related_ids << g.group.user_id }
     else
-      @current_user.group_relationships.each{ |g| related_ids << g.person.user_id }
+      @current_user.group.group_relationships.each{ |g| related_ids << g.person.user_id }
     end
     unless related_ids.empty?
-      @feed_items = FeedItem.all(:limit => 15, :user_id.in => related_ids, :order => :id.desc)
+      @feed_items = FeedItem.all(:limit => 15, :user_id.in => related_ids, :order => [:id.desc])
     end
     unless @current_user.is_adviser
-      adviser_ids = @current_user.adviser_relationships.collect{ |a| a.adviser_id }
+      adviser_ids = @current_user.person.advisers.collect{ |a| a.id }
       if !adviser_ids.nil? && !adviser_ids.empty?
         @adv_updates = FeedItem.all(:limit => 15, :user_id.in => adviser_ids, :what => 'vote', :order => :id.desc)
       end
