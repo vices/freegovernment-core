@@ -7,8 +7,8 @@
   = error_messages_for @new_user
   = text_control :full_name, :label => 'Full Name'
   %label Birthdate
-  = select_field :name => 'b_day', :collection => (1..31).collect { |d| '%02d' % d }
   = select_field :name => 'b_month', :collection => get_months()
+  = select_field :name => 'b_day', :collection => (1..31).collect { |d| '%02d' % d }
   = select_field :name => 'b_year', :collection => get_years().reverse
   - fields_for @new_user do
     = text_control :email, :label => 'Email'
