@@ -29,7 +29,7 @@
   end
          %>
           {
-            what: '<%= what%>',
+            what: '<%= what.gsub(/[']/, '\\\\\'') %>',
             where: [<%= a.user.address_lat %>, <%= a.user.address_lng %>],
             image: "<%= a.user.avatar.url(:small) %>"
           },
