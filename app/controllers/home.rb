@@ -1,6 +1,7 @@
 class Home < Application
   before Proc.new{ @nav_active = :home }
   before :login_required, :only => 'start'
+  before :get_blog
 
   def index
     if logged_in?
@@ -35,4 +36,14 @@ class Home < Application
     render
   end
 
+  private
+
+  def get_blog
+    begin
+      unless cached?("home_blog")
+        @rss = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+      end
+    rescue
+    end
+  end
 end
