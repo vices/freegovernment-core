@@ -310,7 +310,7 @@ a:hover {
     margin: 5px 0;
     background: url('/images/other/bullet.png') no-repeat left; }
 
-button {
+button, input.button {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;
   font-weight: normal;
@@ -322,7 +322,7 @@ button {
   font-size: 12px;
   cursor: pointer; }
 
-button.active {
+button.active, input.button.active {
   color: #fff;
   background-color: #525252;
   font-weight: bold; }
@@ -350,7 +350,7 @@ button.active {
   .voting_options .current_vote {
     margin-left: -999em;
     height: 0px; }
-  .voting_options form button {
+  .voting_options form input {
     margin: 0 10px;
     text-transform: uppercase; }
   .voting_options form div {
