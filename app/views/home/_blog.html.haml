@@ -1,0 +1,10 @@
+#blog
+  %h2
+    = link_to 'FreeGovernment Blog', 'http://blog.freegovernment.org'
+  - cache "home_blog", 180 do
+    - if !rss.nil? && rss.entries.length > 0
+      - @rss.entries.each do |entry|
+        .entry
+          %h3= entry.title
+          = entry.content
+          .permalink= link_to "Permalink", entry.urls.first
