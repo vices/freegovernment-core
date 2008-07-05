@@ -21,7 +21,8 @@ class User
   property :street_address1, String 
   property :street_address2, String 
   property :city_town, String
-  property :zipcode, String
+  property :zipcode, Integer
+  property :state, String
   property :private_votes, Boolean, :default => 0
   property :private_profile, Boolean, :default => 0
 
@@ -53,7 +54,7 @@ class User
   validates_length :street_address1, :within => 0..50 
   validates_length :street_address2, :within => 0..50
   validates_length :city_town, :within => 0..50
-  
+  validates_length :state, :within => 0..30 
  
   attr_accessor :password, :password_confirmation
   
