@@ -47,7 +47,8 @@
         .avatars
           - unless @person.advisers.empty?
             - @person.advisers.first(8).each do |adviser|
-              =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.username
+              - unless adviser.nil?
+                =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.username
     - unless @person.groups.nil?
       #person_groups_block.block
         .title Groups
