@@ -35,6 +35,6 @@ class Person
   end
 
   def advisers
-    AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.adviser}
+    AdviserRelationship.all(:person_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.adviser}
   end
 end
