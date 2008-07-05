@@ -10,7 +10,7 @@ body { text-align: center; }
 
 .block .avatars a { margin: 6px !important; }
 
-button { width:auto; overflow:visible; }
+button, input.button { width:auto; overflow:visible; }
 
 #bill .left .title {
   width: 150px !important;
@@ -40,3 +40,7 @@ button { width:auto; overflow:visible; }
 
 #topic table .text .meta a { right: 10px; }
 #topic table .text .meta .edit { right: 50px; }
+
+.voting_options form { margin-top: -10px; }
+
+#forum .head, #topic .head { padding-top: 10px; }
