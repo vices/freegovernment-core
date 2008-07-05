@@ -18,7 +18,7 @@
               - form_tag :action => url(:contact_relationship, :id => @user.username), :method => :delete do
                 = hidden_field :name => 'contact', :value => @user.username
                 = submit_button("Remove from contacts")
-            - if @user.is_adviser
+            - if @user.is_adviser || !@current_user.is_adviser
               - if @ar.nil?
                 - form_tag :action => url(:adviser_relationships) do
                   = hidden_field :name => 'adviser', :value => @user.username

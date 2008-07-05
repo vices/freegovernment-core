@@ -13,6 +13,7 @@ module Merb
       when 'vote'
         what = '%s voted %s on the poll, "%s."' % [link_to(a.user.username, profile_url(a.user)), a.vote.upcase, link_to(a.poll.question, url(:poll, :id => a.poll_id))]
       end
+      what
     end
 
     def profile_url(user)
