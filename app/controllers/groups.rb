@@ -11,6 +11,7 @@ class Groups < Application
     {:user => [:email, :password, :password_confirmation, :username]},
     :search
   ]
+
   def index
     @pagination_params = {}
     if search_conditions[:conditions]
@@ -57,6 +58,7 @@ class Groups < Application
         @ar = AdviserRelationship.first(:adviser_id => @user.id, :person_id => @current_user.person_id)
       end
     end
+    @activities = FeedItem.all(:user_id => @user.id, :limit => 20)
     render
   end
   

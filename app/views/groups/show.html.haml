@@ -31,14 +31,16 @@
       #group_members_block.block
         .title Members
         .avatars
-          - @group.members[8].each do |member|
-            =link_to image_tag(member.avatar.url(:small)), profile_url(member), :title => member.user.username
+          - unless @group.members.empty?
+            - @group.members.first(8).each do |member|
+              =link_to image_tag(member.user.avatar.url(:small)), profile_url(member.user), :title => member.user.username
     - unless @user.advisees.nil?
       #group_advisees_block.block
         .title Advisees
         .avatars
-          - @user.advisees[8].each do |advisee|
-            =link_to image_tag(advisee.avatar.url(:small)), profile_url(advisee), :title => advisee.user.username
+          - unless @user.advisees.empty?
+            - @user.advisees.first(8).each do |advisee|
+              =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
     /#group_photos_block.block
     /  .title Group Photos
     /#group_videos_block.block
@@ -49,13 +51,14 @@
     #recent_activity.block
       .title.alt_title Recent Activity
       .content
-        %ul
-          %li
-            %span Today
-            Added a new event, "Event name"
-            %form
-              %button
-                %span Delete
+        %table
+          - unless @activities.nil?
+            - @activities.each do |a|
+              %tr
+                %td.date
+                  = a.created_at.strftime '%d %b %Y @ %I:%m %P'
+                %td.activity
+                  = describe_feed_item a
     - unless @group.description.nil?
       #group_description.block
         .title About Us

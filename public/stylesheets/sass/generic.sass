@@ -861,6 +861,7 @@ h2.index_header
           :margin-top 4px
           :margin-right 3px
           button
+            :display none
             :display block
             :padding 0
             :height 10px
@@ -905,6 +906,20 @@ h2.index_header
 #group
   +clearfix
   :width 760px
+  #group_actions
+    :padding 5px 0
+    a, button
+      :display block
+      :text-align center
+      :padding 7px 5px
+      :background #f4f4f4
+      :border 1px solid #ddd
+    a:hover, button:hover
+      :background #ebf3f7
+      :border-color #daebf3
+      :text-decoration none
+    button
+      :width 225px
   #group_photo_etc
     :float left
     :width 225px

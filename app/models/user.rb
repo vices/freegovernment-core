@@ -62,7 +62,7 @@ class User
   end
   
   def advisees
-    AdviserRelationship.all(:person_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
+    AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
   end
   
   def username=(value)

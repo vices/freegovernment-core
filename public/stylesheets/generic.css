@@ -942,6 +942,7 @@ h2.index_header {
     margin-top: 4px;
     margin-right: 3px; }
     #recent_activity table tr .delete form button {
+      display: none;
       display: block;
       padding: 0;
       height: 10px;
@@ -998,6 +999,20 @@ h2.index_header {
     visibility: hidden; }
   * html #group {
     height: 1px; }
+  #group #group_actions {
+    padding: 5px 0; }
+    #group #group_actions a, #group #group_actions button {
+      display: block;
+      text-align: center;
+      padding: 7px 5px;
+      background: #f4f4f4;
+      border: 1px solid #ddd; }
+    #group #group_actions a:hover, #group #group_actions button:hover {
+      background: #ebf3f7;
+      border-color: #daebf3;
+      text-decoration: none; }
+    #group #group_actions button {
+      width: 225px; }
   #group #group_photo_etc {
     float: left;
     width: 225px; }

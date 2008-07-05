@@ -71,7 +71,7 @@
     #poll_filters.filters
       #poll_search.search_filter
         - form_tag :action => url(:polls), :method => :get do
-          = text_field :question => 'search[question]'
+          = text_field :name => 'search[question]'
           = submit_button "search"
       #poll_creation.attention
         .title Can't find the poll you're looking for?

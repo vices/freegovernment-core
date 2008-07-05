@@ -31,30 +31,34 @@
       #person_contacts_block.block
         .title Contacts
         .avatars
-          - @person.contacts[8].each do |contact|
-            =link_to image_tag(contact.user.avatar.url(:small)), profile_url(contact), :title => contact.user.username
+          - unless @person.contacts.empty?
+            - @person.contacts.first(8).each do |contact|
+              =link_to image_tag(contact.user.avatar.url(:small)), profile_url(contact.user), :title => contact.user.username
     - unless @user.advisees.nil?
       #person_advisees_block.block
         .title Advisees
         .avatars
-          - @user.advisees[8].each do |advisee|
-            =link_to image_tag(advisee.avatar.url(:small)), profile_url(advisee), :title => advisee.user.username
+          - unless @user.advisees.empty?
+            - @user.advisees.first(8).each do |advisee|
+              =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
     - unless @person.advisers.nil?
       #person_advisers_block.block
         .title Advisers
         .avatars
-          - @person.advisers[8].each do |adviser|
-            =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.user.username
+          - unless @person.advisers.empty?
+            - @person.advisers.first(8).each do |adviser|
+              =link_to image_tag(adviser.user.avatar.url(:small)), profile_url(adviser.user), :title => adviser.user.username
     - unless @person.groups.nil?
       #person_groups_block.block
         .title Groups
         .avatars
-          - @person.groups[8].each do |group|
-            =link_to image_tag(group.user.avatar.url(:small)), profile_url(group), :title => group.user.username
-    #watched_bills.block
-      .title Watched Bills
-    #watched_polls.block
-      .title Watched Polls
+          - unless @person.groups.empty?
+            - @person.groups.first(8).each do |group|
+              =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user), :title => group.user.username
+    /#watched_bills.block
+    /  .title Watched Bills
+    /#watched_polls.block
+    /  .title Watched Polls
   #person_details_etc
     #person_details
       .name== #{h @person.full_name} | #{h @user.username}

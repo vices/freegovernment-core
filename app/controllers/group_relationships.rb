@@ -33,7 +33,7 @@ class GroupRelationships < Application
     unless(@group_relationship = GroupRelationship.first(:group_id => @group_user.group_id, :person_id => @person_user.person_id)).nil?
       @group_relationship.destroy
     end
-    redirect url(:group_relationships)
+    redirect profile_url(@group_user)
   end
   
   private
@@ -63,7 +63,6 @@ class GroupRelationships < Application
   end
 
   def find_both
-    p 'hi'
     if @current_user.group_id.nil?
       find_group
       @person_user = @current_user
