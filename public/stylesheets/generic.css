@@ -433,7 +433,6 @@ button.active, input.button.active {
       #bills_index .bill .main .description h4 {
         font-weight: bold; }
     #bills_index .bill .main .tags {
-      font-style: italic;
       color: #8b8b8b; }
 
 #bill #main {
