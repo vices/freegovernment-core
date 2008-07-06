@@ -14,7 +14,7 @@ class String
 
   def paragraphize
     text = self.dup
-    text.replace( text.split( /\n{2,}(?! )/m ).collect do |blk|
+    text.replace( text.split( /\n{1,}(?! )/m ).collect do |blk|
       blk.strip!
       if blk.empty?
         blk

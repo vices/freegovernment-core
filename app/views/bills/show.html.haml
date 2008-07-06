@@ -37,8 +37,8 @@
         #sections
           - @bill.bill_sections.each do |section|
             .section
-              %h3= section.title
-              %p= section.text
+              %h3= h(section.title)
+              %p= h(section.text).paragraphize
               .comments_link
                 - if section.topic_id.nil?
                   %a{:href => url(:new_topic, :forum_id => section.forum_id, :bill_section => section.id)}
