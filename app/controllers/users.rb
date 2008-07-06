@@ -36,9 +36,9 @@ class Users < Application
       !params[:user][:zipcode].empty?)
       if !params[:user][:street_address1].empty?
         if !params[:user][:street_address2].empty?
-          sa = params[:user][:street_adress1] + ' ' + params[:user][:street_adress1]
+          sa = params[:user][:street_address1] + ' ' + params[:user][:street_address1]
         else
-          sa = params[:user][:street_adress1]
+          sa = params[:user][:street_address1]
         end
       else
         sa = nil
