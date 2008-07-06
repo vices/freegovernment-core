@@ -3,7 +3,7 @@
     - unless a.what.nil?
       %tr
         %td.date
-          = a.created_at.strftime '%d %b %Y @ %I:%m %P'
+          = a.created_at.strftime '%d %b %Y @ %I:%M %P'
         %td.activity
           = describe_feed_item a
         %td.delete

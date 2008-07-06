@@ -9,7 +9,7 @@
               - unless feed_item.what.nil?
                 .activity
                   = describe_feed_item(feed_item)
-                  = feed_item.created_at.strftime '%d %b %Y @ %I:%m %P'
+                  = feed_item.created_at.strftime '%d %b %Y @ %I:%M%P'
       - if !@adv_updates.nil?
         .block
           %h3 Adviser Votes
@@ -19,7 +19,7 @@
                 - unless adv_item.what.nil?
                   .activity
                     = describe_feed_item(adv_item)
-                    = adv_item.created_at.strftime '%d %b %Y @ %I:%m %P'
+                    = adv_item.created_at.strftime '%d %b %Y @ %I:%M%P'
       .block
         %h3 About us
         .content
