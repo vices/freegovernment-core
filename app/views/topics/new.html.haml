@@ -1,15 +1,15 @@
 #new_topic
   - form_for @new_topic, :action => url(:topics), :class => 'full' do
-    %h1 Want to add a new topic?
+    %h1 New Topic
     = error_messages_for @new_topic
     - if @bill_section
       = hidden_field :name => 'bill_section', :value => @bill_section.id
     = hidden_control :forum_id, :value => @forum.id
-    = text_control :name, :label => 'topic name:'
+    = text_control :name, :label => 'Topic name'
     - fields_for @new_post do
-      = text_area_control :text, :label => 'your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
+      = text_area_control :text, :label => 'Your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
     .actions
       .cancel
-        = link_to "cancel", url(:forum, :id => @forum.id)
+        = link_to "Cancel", url(:forum, :id => @forum.id)
       .submit
-        = submit_button "submit topic & post"
+        = submit_button "Submit topic & post"

@@ -3,13 +3,13 @@
     %h1 Account Settings
     = error_messages_for @user
     .image_upload
-      %label.current Current Image
+      %label.current Current image
       .current_image= image_tag @user.avatar.url(:large)
       .delete
         = checkbox_field :name => 'delete_avatar', :id => 'delete_avatar'
-        %label{ :for => 'delete_avatar' } Delete Current Image?
+        %label{ :for => 'delete_avatar' } Delete current image?
       .upload
-        %label Upload Image
+        %label Upload image
         = file_field :name => 'avatar'
     - unless @user.person_id.nil?
       .check
@@ -23,6 +23,6 @@
     = text_control :zipcode, :label => 'Zipcode'
     .actions
       .cancel
-        = link_to "cancel", url(:home)
+        = link_to "Cancel", url(:home)
       .submit
-        = submit_button "update account"
+        = submit_button "Update account"

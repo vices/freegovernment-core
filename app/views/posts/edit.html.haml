@@ -1,10 +1,10 @@
 #new_post
   - form_for @post, :action => url(:post, :id => @post.id), :class => 'full' do
-    %h1 Edit your post
+    %h1 Edit Your Post
     = error_messages_for @post
-    = text_area_control :text, :label => 'your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
+    = text_area_control :text, :label => 'Your post ( <a href="http://hobix.com/textile/">Textile enabled</a> )'
     .actions
       .cancel
-        = link_to "cancel", post_url(@post)
+        = link_to "Cancel", post_url(@post)
       .submit
-        = submit_button "submit post"
+        = submit_button "Submit post"

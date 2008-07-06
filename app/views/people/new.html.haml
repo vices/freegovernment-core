@@ -5,7 +5,7 @@
     = link_to "Group Signup", url(:new_group)
   = error_messages_for @new_person
   = error_messages_for @new_user
-  = text_control :full_name, :label => 'Full Name'
+  = text_control :full_name, :label => 'Full name'
   %label Birthdate
   = select_field :name => 'b_month', :collection => get_months()
   = select_field :name => 'b_day', :collection => (1..31).collect { |d| '%02d' % d }
@@ -14,11 +14,11 @@
     = text_control :email, :label => 'Email'
     = text_control :username, :label => 'Username'
     = password_control :password, :label => 'Password'
-    = password_control :password_confirmation, :label => 'Confirm Password'
+    = password_control :password_confirmation, :label => 'Confirm password'
   .captcha
     = recaptcha_tags
   .actions
     .cancel
-      = link_to "cancel", url(:home)
+      = link_to "Cancel", url(:home)
     .submit
-      = submit_button "sign up"
+      = submit_button "Sign up"

@@ -5,19 +5,19 @@
     = link_to "Person Signup", url(:new_person)
   = error_messages_for @new_group
   = error_messages_for @new_user
-  = text_control :name, :label => 'Group Name'
-  = text_area_control :description, :label => 'Group Description'
-  = text_area_control :mission, :label => 'Group Mission'
+  = text_control :name, :label => 'Group name'
+  = text_area_control :description, :label => 'Group description'
+  = text_area_control :mission, :label => 'Group mission'
   - fields_for @new_user do
     = text_control :email, :label => 'Email'
     = text_control :username, :label => 'Username'
     = password_control :password, :label => 'Password'
-    = password_control :password_confirmation, :label => 'Confirm Password'
-  = text_field :name => 'group_tags', :id => 'group_tags', :label => 'group tags ( comma separated )', :value => @group_tags
+    = password_control :password_confirmation, :label => 'Confirm password'
+  = text_field :name => 'group_tags', :id => 'group_tags', :label => 'Group tags ( comma separated )', :value => @group_tags
   .captcha
     = recaptcha_tags
   .actions
     .cancel
-      = link_to "cancel", url(:home)
+      = link_to "Cancel", url(:home)
     .submit
-      = submit_button "sign up"
+      = submit_button "Sign up"
