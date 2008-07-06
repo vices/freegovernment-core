@@ -29,16 +29,7 @@ form.standard label, form.full label {
   font-weight: bold;
   color: #000; }
 form.standard .actions, form.full .actions {
-  display: block;
   margin-top: 20px; }
-  form.standard .actions:after,   form.full .actions:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html form.standard .actions,   * html form.full .actions {
-    height: 1px; }
   form.standard .actions .cancel,   form.full .actions .cancel {
     float: left;
     padding: 8px 0px; }
@@ -126,29 +117,19 @@ form.full {
       position: absolute;
       left: 0; }
 
-#footer .donation form, #support_block form {
-  display: block; }
-  #footer .donation form:after,   #support_block form:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #footer .donation form,   * html #support_block form {
-    height: 1px; }
-  #footer .donation form input.text,   #support_block form input.text {
-    padding: 2px;
-    width: 112px;
-    float: left;
-    padding-left: 16px;
-    background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
-    border: 1px solid #dadada; }
-  #footer .donation form button,   #support_block form button {
-    margin-top: 2px;
-    padding: 3px;
-    float: right;
-    width: 65px;
-    font-size: 11px; }
+.donate_form form input.text {
+  padding: 2px;
+  width: 112px;
+  float: left;
+  padding-left: 16px;
+  background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
+  border: 1px solid #dadada; }
+.donate_form form button {
+  margin-top: 2px;
+  padding: 3px;
+  float: right;
+  width: 65px;
+  font-size: 11px; }
 
 #support_block h4 {
   margin-bottom: 10px; }
@@ -164,16 +145,7 @@ form.full {
   color: #fff; }
 
 #edit_user .check {
-  display: block;
   margin: 40px 0 5px; }
-  #edit_user .check:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #edit_user .check {
-    height: 1px; }
   #edit_user .check input {
     width: auto;
     float: left;

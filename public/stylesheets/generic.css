@@ -128,18 +128,9 @@ a:hover {
   #home .block .content.alt,   #start .block .content.alt {
     background: #fff; }
 #home #intro, #start #intro {
-  display: block;
   padding-bottom: 20px;
   margin-bottom: 20px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
-  #home #intro:after,   #start #intro:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #home #intro,   * html #start #intro {
-    height: 1px; }
   #home #intro .left,   #start #intro .left {
     float: left;
     width: 250px; }
@@ -170,18 +161,9 @@ a:hover {
   #home #intro #banner a.banner5,   #start #intro #banner a.banner5 {
     background: url('/images/home/banners/5.png') no-repeat; }
 #home #info, #start #info {
-  display: block;
   padding-top: 20px;
   margin-top: 20px;
   background: url('/images/patterns/dots.gif') repeat-x top; }
-  #home #info:after,   #start #info:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #home #info,   * html #start #info {
-    height: 1px; }
   #home #info .left,   #start #info .left {
     float: left;
     width: 250px; }
@@ -195,35 +177,25 @@ a:hover {
   text-align: center;
   font-size: 14px;
   margin-bottom: 20px; }
-#home #freedoms ul, #start #freedoms ul {
-  display: block; }
-  #home #freedoms ul:after,   #start #freedoms ul:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #home #freedoms ul,   * html #start #freedoms ul {
-    height: 1px; }
-  #home #freedoms ul li,   #start #freedoms ul li {
-    float: left;
-    width: 182px;
-    margin-right: 10px;
-    height: 100%; }
-    #home #freedoms ul li h3,     #start #freedoms ul li h3 {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 8px; }
-    #home #freedoms ul li .content,     #start #freedoms ul li .content {
-      border-top: 6px solid #525252;
-      background-color: #eee;
-      padding: 8px;
-      height: 88px;
-      line-height: 1.3em;
-      font-size: 14px; }
-  #home #freedoms ul li.last,   #start #freedoms ul li.last {
-    width: 184px;
-    margin-right: 0; }
+#home #freedoms ul li, #start #freedoms ul li {
+  float: left;
+  width: 182px;
+  margin-right: 10px;
+  height: 100%; }
+  #home #freedoms ul li h3,   #start #freedoms ul li h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px; }
+  #home #freedoms ul li .content,   #start #freedoms ul li .content {
+    border-top: 6px solid #525252;
+    background-color: #eee;
+    padding: 8px;
+    height: 88px;
+    line-height: 1.3em;
+    font-size: 14px; }
+#home #freedoms ul li.last, #start #freedoms ul li.last {
+  width: 184px;
+  margin-right: 0; }
 
 #blog h2 {
   padding-bottom: 5px;
@@ -234,18 +206,9 @@ a:hover {
     background: url('/images/home/blog-header.png') no-repeat center;
     text-indent: -999em; }
 #blog .entry {
-  display: block;
   margin: 15px 0;
   padding-bottom: 10px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
-  #blog .entry:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #blog .entry {
-    height: 1px; }
   #blog .entry h3 {
     font-size: 16px;
     font-weight: bold;
@@ -302,16 +265,7 @@ a:hover {
     color: #525252; }
 
 .search_filter {
-  display: block;
   margin-bottom: 10px; }
-  .search_filter:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html .search_filter {
-    height: 1px; }
   .search_filter input {
     float: left;
     width: 140px; }
@@ -375,9 +329,10 @@ button.active, input.button.active {
   .voting_options .bottom {
     text-align: right; }
   .voting_options .top_forms {
-    padding-bottom: 12px; }
-    .voting_options .top_forms form {
-      display: inline; }
+    padding-left: 50px;
+    padding-bottom: 10px; }
+    .voting_options .top_forms form.top {
+      float: left; }
 
 #page_title {
   font-weight: bold;
@@ -387,20 +342,13 @@ button.active, input.button.active {
   #page_title span {
     color: #333; }
 
+#poll .voting_options .top_forms, #bill .voting_options .top_forms {
+  padding-left: 15px; }
 
 #bills_index .bill {
-  display: block;
   border-bottom: 1px solid #ccc;
   padding: 10px 0px;
   margin-bottom: 10px; }
-  #bills_index .bill:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #bills_index .bill {
-    height: 1px; }
   #bills_index .bill .img {
     float: left;
     width: 60px; }
@@ -430,63 +378,43 @@ button.active, input.button.active {
       #bills_index .bill .main .description h4 {
         font-weight: bold; }
     #bills_index .bill .main .tags {
-      font-style: italic;
       color: #8b8b8b; }
 
-#bill #main {
-  display: block; }
-  #bill #main:after {
+#bill #main .main {
+  float: left;
+  width: 470px; }
+  #bill #main .main img {
     display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #bill #main {
-    height: 1px; }
-  #bill #main .main {
     float: left;
-    width: 470px; }
-    #bill #main .main img {
-      display: block;
-      float: left;
-      border: 1px solid #ddd; }
-    #bill #main .main #title {
-      float: right;
-      width: 400px; }
-      #bill #main .main #title .number {
-        font-size: 16px;
-        margin-bottom: 5px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #666; }
-        #bill #main .main #title .number span {
-          color: #20adbb;
-          margin-left: 20px; }
-      #bill #main .main #title h2 {
-        font-size: 22px;
-        font-weight: bold; }
-  #bill #main .voting_options {
-    position: relative;
-    width: 270px;
+    border: 1px solid #ddd; }
+  #bill #main .main #title {
     float: right;
-    padding: 18px 0 36px;
-    border: 1px solid #ddd;
-    background: #fafafa; }
-    #bill #main .voting_options .bottom {
-      position: absolute;
-      right: 10px;
-      bottom: 10px; }
+    width: 400px; }
+    #bill #main .main #title .number {
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #666; }
+      #bill #main .main #title .number span {
+        color: #20adbb;
+        margin-left: 20px; }
+    #bill #main .main #title h2 {
+      font-size: 22px;
+      font-weight: bold; }
+#bill #main .voting_options {
+  position: relative;
+  width: 270px;
+  float: right;
+  padding: 18px 0 36px;
+  border: 1px solid #ddd;
+  background: #fafafa; }
+  #bill #main .voting_options .bottom {
+    position: absolute;
+    right: 10px;
+    bottom: 10px; }
 #bill #content {
-  margin-top: 20px;
-  display: block; }
-  #bill #content:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #bill #content {
-    height: 1px; }
+  margin-top: 20px; }
   #bill #content .left {
     width: 180px;
     float: left; }
@@ -577,30 +505,12 @@ button.active, input.button.active {
           font-weight: bold; }
 
 #polls_index .poll {
-  display: block;
   border-bottom: 1px solid #ccc;
   padding: 10px 0px;
   margin-bottom: 10px; }
-  #polls_index .poll:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #polls_index .poll {
-    height: 1px; }
   #polls_index .poll .details {
-    display: block;
     float: left;
     width: 430px; }
-    #polls_index .poll .details:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #polls_index .poll .details {
-      height: 1px; }
     #polls_index .poll .details .img {
       float: left;
       width: 60px; }
@@ -683,16 +593,7 @@ h2.index_header {
     margin-left: 10px; }
 
 #poll #poll_details {
-  display: block;
   margin-bottom: 20px; }
-  #poll #poll_details:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #poll #poll_details {
-    height: 1px; }
   #poll #poll_details img {
     display: block;
     float: left;
@@ -713,16 +614,7 @@ h2.index_header {
       border: 1px solid #ddd;
       background: #fafafa; }
 #poll #poll_description_and_comments {
-  display: block;
   width: 760px; }
-  #poll #poll_description_and_comments:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #poll #poll_description_and_comments {
-    height: 1px; }
   #poll #poll_description_and_comments .block {
     border-top: 1px solid #ddd;
     margin-bottom: 10px; }
@@ -778,34 +670,24 @@ h2.index_header {
     width: 80px;
     border-left: 4px solid #e9e9e9; }
 
-.list_and_filters {
-  display: block; }
-  .list_and_filters:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html .list_and_filters {
-    height: 1px; }
-  .list_and_filters .list {
-    float: left;
-    width: 550px; }
-    .list_and_filters .list .actions {
-      text-align: right;
-      margin-top: 10px; }
-      .list_and_filters .list .actions a {
-        font-weight: bold;
-        margin: 0 10px;
-        padding-right: 10px;
-        background: url('/images/layout/link.gif') no-repeat right top; }
-  .list_and_filters .filters {
-    float: right;
-    width: 200px; }
-    .list_and_filters .filters .attention {
-      margin-bottom: 10px; }
-    .list_and_filters .filters .filter {
-      margin-bottom: 10px; }
+.list_and_filters .list {
+  float: left;
+  width: 550px; }
+  .list_and_filters .list .actions {
+    text-align: right;
+    margin-top: 10px; }
+    .list_and_filters .list .actions a {
+      font-weight: bold;
+      margin: 0 10px;
+      padding-right: 10px;
+      background: url('/images/layout/link.gif') no-repeat right top; }
+.list_and_filters .filters {
+  float: right;
+  width: 200px; }
+  .list_and_filters .filters .attention {
+    margin-bottom: 10px; }
+  .list_and_filters .filters .filter {
+    margin-bottom: 10px; }
 
 .pagination {
   margin-top: 10px;
@@ -826,30 +708,12 @@ h2.index_header {
     display: none; }
 
 #people_index .person {
-  display: block;
   width: 550px;
   padding: 10px 0px;
   border-bottom: 1px solid #ddd; }
-  #people_index .person:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #people_index .person {
-    height: 1px; }
   #people_index .person .details {
-    display: block;
     float: left;
     width: 440px; }
-    #people_index .person .details:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #people_index .person .details {
-      height: 1px; }
     #people_index .person .details .img {
       float: left;
       width: 60px; }
@@ -877,16 +741,7 @@ h2.index_header {
   margin-bottom: 10px; }
 
 #person {
-  display: block;
   width: 760px; }
-  #person:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #person {
-    height: 1px; }
   #person #person_photo_etc {
     float: left;
     width: 225px; }
@@ -935,23 +790,13 @@ h2.index_header {
     #person .block p {
       margin: 10px 0;
       line-height: 16px; }
-    #person .block .avatars {
-      display: block; }
-      #person .block .avatars:after {
-        display: block;
-        content: ".";
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      * html #person .block .avatars {
-        height: 1px; }
-      #person .block .avatars a {
-        float: left;
-        width: 60px;
-        height: 60px;
-        margin: 7px; }
-        #person .block .avatars a img {
-          border: 1px solid #ddd; }
+    #person .block .avatars a {
+      float: left;
+      width: 60px;
+      height: 60px;
+      margin: 7px; }
+      #person .block .avatars a img {
+        border: 1px solid #ddd; }
 
 #recent_activity table {
   border-collapse: collapse;
@@ -994,18 +839,9 @@ h2.index_header {
   border-bottom: 1px solid #eee; }
 
 #groups_index .group {
-  display: block;
   border-bottom: 1px solid #ccc;
   padding: 5px 0px 20px;
   margin-bottom: 10px; }
-  #groups_index .group:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #groups_index .group {
-    height: 1px; }
   #groups_index .group .details .img {
     float: left;
     width: 60px; }
@@ -1030,16 +866,7 @@ h2.index_header {
       color: #8b8b8b; }
 
 #group {
-  display: block;
   width: 760px; }
-  #group:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #group {
-    height: 1px; }
   #group #group_actions {
     padding: 5px 0; }
     #group #group_actions a, #group #group_actions button {
@@ -1082,23 +909,13 @@ h2.index_header {
     #group .block p {
       margin: 10px 0;
       line-height: 16px; }
-    #group .block .avatars {
-      display: block; }
-      #group .block .avatars:after {
-        display: block;
-        content: ".";
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      * html #group .block .avatars {
-        height: 1px; }
-      #group .block .avatars a {
-        float: left;
-        width: 60px;
-        height: 60px;
-        margin: 7px; }
-        #group .block .avatars a img {
-          border: 1px solid #ddd; }
+    #group .block .avatars a {
+      float: left;
+      width: 60px;
+      height: 60px;
+      margin: 7px; }
+      #group .block .avatars a img {
+        border: 1px solid #ddd; }
 
 .comments {
   background: #eee; }
@@ -1113,18 +930,9 @@ h2.index_header {
       .comments .content form textarea {
         width: 487px; }
     .comments .content .comment {
-      display: block;
       background: #fff;
       margin: 20px 0 10px;
       padding: 10px; }
-      .comments .content .comment:after {
-        display: block;
-        content: ".";
-        height: 0;
-        clear: both;
-        visibility: hidden; }
-      * html .comments .content .comment {
-        height: 1px; }
       .comments .content .comment .avatar {
         float: left;
         width: 60px; }
@@ -1197,16 +1005,7 @@ table tr.alt1 td {
       background: #555;
       color: #fff; }
   #forums .section .bottom {
-    margin: 10px 0;
-    display: block; }
-    #forums .section .bottom:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #forums .section .bottom {
-      height: 1px; }
+    margin: 10px 0; }
     #forums .section .bottom .navlink {
       float: right; }
 
@@ -1219,16 +1018,7 @@ table tr.alt1 td {
     right: 0;
     bottom: 0; }
 #forums.specified .section .bottom {
-  display: block;
   position: relative; }
-  #forums.specified .section .bottom:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #forums.specified .section .bottom {
-    height: 1px; }
   #forums.specified .section .bottom .navlink {
     position: absolute;
     left: 0;
@@ -1261,16 +1051,7 @@ table tr.alt1 td {
   padding: 8px 10px;
   border: 1px solid #DADADA; }
 #forum .bottom {
-  display: block;
   position: relative; }
-  #forum .bottom:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #forum .bottom {
-    height: 1px; }
   #forum .bottom .button_black {
     position: absolute;
     right: 0;
@@ -1325,16 +1106,7 @@ table tr.alt1 td {
         color: #333;
         font-weight: bold; }
 #topic .bottom {
-  display: block;
   position: relative; }
-  #topic .bottom:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #topic .bottom {
-    height: 1px; }
   #topic .bottom .navlink {
     position: absolute;
     left: 0;
@@ -1357,24 +1129,14 @@ table tr.alt1 td {
 #new_topic textarea {
   height: 250px; }
 
-#login_page {
-  display: block; }
-  #login_page:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #login_page {
-    height: 1px; }
-  #login_page #login {
-    width: 250px;
-    float: left; }
-  #login_page .info {
-    float: right;
-    width: 470px;
-    border-left: 1px solid #ddd;
-    padding-left: 20px; }
+#login_page #login {
+  width: 250px;
+  float: left; }
+#login_page .info {
+  float: right;
+  width: 470px;
+  border-left: 1px solid #ddd;
+  padding-left: 20px; }
 
 #footer {
   background: #787878;
@@ -1392,16 +1154,7 @@ table tr.alt1 td {
     font-weight: bold;
     text-transform: uppercase; }
   #footer .content {
-    display: block;
     padding: 5px; }
-    #footer .content:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #footer .content {
-      height: 1px; }
     #footer .content h3 {
       font-weight: bold;
       text-transform: uppercase;
@@ -1412,16 +1165,7 @@ table tr.alt1 td {
       float: left;
       width: 200px; }
       #footer .content .left .users .user {
-        display: block;
         margin: 10px 0px; }
-        #footer .content .left .users .user:after {
-          display: block;
-          content: ".";
-          height: 0;
-          clear: both;
-          visibility: hidden; }
-        * html #footer .content .left .users .user {
-          height: 1px; }
         #footer .content .left .users .user .image {
           float: left;
           width: 60px; }
@@ -1433,16 +1177,7 @@ table tr.alt1 td {
       float: right;
       width: 520px; }
       #footer .content .right .topic, #footer .content .right .poll {
-        display: block;
         margin: 10px 0px; }
-        #footer .content .right .topic:after,         #footer .content .right .poll:after {
-          display: block;
-          content: ".";
-          height: 0;
-          clear: both;
-          visibility: hidden; }
-        * html #footer .content .right .topic,         * html #footer .content .right .poll {
-          height: 1px; }
         #footer .content .right .topic .image,         #footer .content .right .poll .image {
           float: left;
           width: 60px; }
@@ -1578,17 +1313,8 @@ table tr.alt1 td {
     background: url('/images/other/bullet.png') no-repeat left;
     font-weight: normal; }
   .static_page .person {
-    display: block;
     margin-left: 20px;
     margin-bottom: 20px; }
-    .static_page .person:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html .static_page .person {
-      height: 1px; }
     .static_page .person .photo {
       width: 102px;
       float: left; }
@@ -1607,6 +1333,7 @@ table tr.alt1 td {
         color: #00a0c1;
         margin-bottom: 10px; }
   .static_page .question {
+    font-style: italic;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 10px; }

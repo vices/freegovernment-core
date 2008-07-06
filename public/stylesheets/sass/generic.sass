@@ -1,14 +1,3 @@
-=clearfix
-  display: block
-  &:after
-    display: block
-    content: "." 
-    height: 0
-    clear: both
-    visibility: hidden
-  * html &
-    height: 1px
-    
 =font
   :font-size 12px
   :font-family "Arial", "Verdana", sans-serif
@@ -144,7 +133,7 @@ a:hover
     .content.alt
       :background #fff
   #intro
-    +clearfix
+    
     :padding-bottom 20px
     :margin-bottom 20px
     :background url('/images/patterns/dots.gif') repeat-x bottom
@@ -182,7 +171,7 @@ a:hover
       
       
   #info
-    +clearfix
+    
     :padding-top 20px
     :margin-top 20px
     :background url('/images/patterns/dots.gif') repeat-x top
@@ -206,7 +195,7 @@ a:hover
       :margin-bottom 20px
 
     ul
-      +clearfix
+      
 
       li
         :float left
@@ -239,7 +228,6 @@ a:hover
       :text-indent -999em
   
   .entry
-    +clearfix
     :margin 15px 0
     :padding-bottom 10px
     :background url('/images/patterns/dots.gif') repeat-x bottom
@@ -305,7 +293,7 @@ a:hover
 
 .search_filter
   form
-  +clearfix
+  
   :margin-bottom 10px
   input
     :float left
@@ -366,9 +354,11 @@ button.active, input.button.active
   .bottom
     :text-align right
   .top_forms
-    :padding-bottom 12px
-    form
-      :display inline
+    
+    :padding-left 50px
+    :padding-bottom 10px
+    form.top
+      :float left
 #page_title
   :font-weight bold
   :margin-bottom 20px
@@ -380,10 +370,11 @@ button.active, input.button.active
 #poll, #bill
   .voting_options
     .top_forms
+      :padding-left 15px
 
 #bills_index
   .bill
-    +clearfix
+    
     :border-bottom 1px solid #ccc
     :padding 10px 0px
     :margin-bottom 10px
@@ -416,12 +407,11 @@ button.active, input.button.active
         h4
           :font-weight bold
       .tags
-        :font-style italic
         :color #8b8b8b
 
 #bill
   #main
-    +clearfix
+    
     .main
       :float left
       :width 470px
@@ -457,7 +447,7 @@ button.active, input.button.active
         :bottom 10px
   #content
     :margin-top 20px
-    +clearfix
+    
     .left
       :width 180px
       :float left
@@ -551,12 +541,12 @@ button.active, input.button.active
 
 #polls_index
   .poll
-    +clearfix
+    
     :border-bottom 1px solid #ccc
     :padding 10px 0px
     :margin-bottom 10px
     .details
-      +clearfix
+      
       :float left
       :width 430px
       .img
@@ -642,7 +632,7 @@ h2.index_header
 
 #poll
   #poll_details
-    +clearfix
+    
     :margin-bottom 20px
     img
       :display block
@@ -664,7 +654,7 @@ h2.index_header
         :border 1px solid #ddd
         :background #fafafa
   #poll_description_and_comments
-    +clearfix
+    
     :width 760px
     .block
       :border-top 1px solid #ddd
@@ -727,7 +717,7 @@ h2.index_header
 
 
 .list_and_filters
-  +clearfix
+  
   .list
     :float left
     :width 550px
@@ -766,12 +756,12 @@ h2.index_header
     :display none
 #people_index
   .person
-    +clearfix
+    
     :width 550px
     :padding 10px 0px
     :border-bottom 1px solid #ddd
     .details
-      +clearfix
+      
       :float left
       :width 440px
       .img
@@ -804,7 +794,7 @@ h2.index_header
       :margin-bottom 10px
 
 #person
-  +clearfix
+  
   :width 760px
   #person_photo_etc
     :float left
@@ -856,7 +846,7 @@ h2.index_header
       :margin 10px 0
       :line-height 16px
     .avatars
-      +clearfix
+      
       a
         :float left
         :width 60px
@@ -911,7 +901,7 @@ h2.index_header
 
 #groups_index
   .group
-    +clearfix
+    
     :border-bottom 1px solid #ccc
     :padding 5px 0px 20px
     :margin-bottom 10px
@@ -942,7 +932,7 @@ h2.index_header
 
 
 #group
-  +clearfix
+  
   :width 760px
   #group_actions
     :padding 5px 0
@@ -988,7 +978,7 @@ h2.index_header
       :margin 10px 0
       :line-height 16px
     .avatars
-      +clearfix
+      
       a
         :float left
         :width 60px
@@ -1010,7 +1000,7 @@ h2.index_header
       textarea
         :width 487px
     .comment
-      +clearfix
+      
       :background #fff
       :margin 20px 0 10px
       :padding 10px
@@ -1095,7 +1085,7 @@ table
           :color #fff
     .bottom
       :margin 10px 0
-      +clearfix
+      
       .navlink
         :float right
 
@@ -1110,7 +1100,7 @@ table
       :right 0
       :bottom 0
   .bottom
-    +clearfix
+    
     :position relative
     .navlink
       :position absolute
@@ -1145,7 +1135,7 @@ table
     :padding 8px 10px
     :border 1px solid #DADADA
   .bottom
-    +clearfix
+    
     :position relative
     .button_black
       :position absolute
@@ -1203,7 +1193,7 @@ table
           :color #333
           :font-weight bold
   .bottom
-    +clearfix
+    
     :position relative
     .navlink
       :position absolute
@@ -1229,7 +1219,7 @@ table
     :height 250px
 
 #login_page
-  +clearfix
+  
   #login
     :width 250px
     :float left
@@ -1257,7 +1247,7 @@ table
     :font-weight bold
     :text-transform uppercase
   .content
-    +clearfix
+    
     :padding 5px
     h3
       :font-weight bold
@@ -1270,7 +1260,7 @@ table
       :width 200px
       .users
         .user
-          +clearfix
+          
           :margin 10px 0px
           .image
             :float left
@@ -1283,7 +1273,7 @@ table
       :float right
       :width 520px
       .topic, .poll
-        +clearfix
+        
         :margin 10px 0px
         .image
           :float left
@@ -1427,7 +1417,6 @@ table
     :background url('/images/other/bullet.png') no-repeat left
     :font-weight normal
   .person
-    +clearfix
     :margin-left 20px
     :margin-bottom 20px
     .photo
@@ -1448,6 +1437,7 @@ table
         :color #00a0c1
         :margin-bottom 10px
   .question
+    :font-style italic
     :font-weight bold
     :font-size 16px
     :margin-bottom 10px
