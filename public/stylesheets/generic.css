@@ -1587,12 +1587,12 @@ table tr.alt1 td {
     * html .static_page .person {
       height: 1px; }
     .static_page .person .photo {
-      width: 202px;
+      width: 102px;
       float: left; }
       .static_page .person .photo img {
         border: 1px solid #ddd; }
     .static_page .person .description {
-      width: 500px;
+      width: 600px;
       float: right; }
       .static_page .person .description h3 {
         font-size: 16px;
