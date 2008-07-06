@@ -1603,6 +1603,15 @@ table tr.alt1 td {
         font-weight: bold;
         color: #00a0c1;
         margin-bottom: 10px; }
+  .static_page .question {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px; }
+  .static_page .answer {
+    margin-bottom: 20px; }
+  .static_page a {
+    font-size: 14px; }
 
 #exception {
   height: 300px;

@@ -16,4 +16,8 @@ class Pages < Application
     render
   end
 
+  def faq
+    render
+  end
+
 end

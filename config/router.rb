@@ -63,6 +63,7 @@ Merb::Router.prepare do |r|
     p.match('/privacy').to(:action => 'privacy').name(:privacy)
     p.match('/contact_us').to(:action => 'contact_us').name(:contact_us)
     p.match('/about_us').to(:action => 'about_us').name(:about_us)
+    p.match('/faq').to(:action => 'faq').name(:faq)
   end
 
   # This is the default route for /:controller/:action/:id
