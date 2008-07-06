@@ -1,14 +1,14 @@
 - form_for @new_poll, :action => url(:polls), :class => 'full' do
-  %h1 Create a new poll
+  %h1 New Poll
   = error_messages_for @new_poll
-  = text_control :question, :label => 'poll question (140 characters max):'
-  = text_area_control :description, :label => 'poll description'
-  = text_field :name => 'poll_tags', :id => 'poll_tags', :label => 'poll tags ( comma separated )', :value => @poll_tags
+  = text_control :question, :label => 'Poll question (140 characters max):'
+  = text_area_control :description, :label => 'Poll description'
+  = text_field :name => 'poll_tags', :id => 'poll_tags', :label => 'Poll tags ( comma separated )', :value => @poll_tags
   / TODO videos and tags text_area_control
   .captcha
     = recaptcha_tags
   .actions
     .cancel
-      = link_to "cancel", url(:polls)
+      = link_to "Cancel", url(:polls)
     .submit
-      = submit_button "create"
+      = submit_button "Create poll"

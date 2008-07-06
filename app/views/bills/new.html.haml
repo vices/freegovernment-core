@@ -1,15 +1,15 @@
 #new_bill
   - form_for @new_bill, :action => url(:bills), :class => 'full' do
-    %h1 Want to create a new bill?
+    %h1 New Bill
     = error_messages_for @new_bill
-    = text_control :title, :label => 'bill title:'
-    = text_area_control :summary, :label => 'summary:'
-    = text_area_control :text, :label => 'text:'
-    = text_field :name => 'bill_tags', :id => 'bill_tags', :label => 'bill tags ( comma separated )', :value => @bill_tags
+    = text_control :title, :label => 'Bill title'
+    = text_area_control :summary, :label => 'Summary'
+    = text_area_control :text, :label => 'Text'
+    = text_field :name => 'bill_tags', :id => 'bill_tags', :label => 'Bill tags ( comma separated )', :value => @bill_tags
     .captcha
       = recaptcha_tags
     .actions
       .cancel
-        = link_to "cancel", url(:home)
+        = link_to "Cancel", url(:home)
       .submit
-        = submit_button "sign up"
+        = submit_button "Create bill"

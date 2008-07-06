@@ -5,22 +5,22 @@
   = error_messages_for @person
   = error_messages_for @user
   - if !params[:after_signup]
-    = text_control :full_name, :label => 'Full Name'
+    = text_control :full_name, :label => 'Full name'
     - fields_for @user do
       = text_control :email, :label => 'Email'
-  %label Describe Yourself ( <a href="http://hobix.com/textile/">Textile enabled</a> )
+  %label Describe yourself ( <a href="http://hobix.com/textile/">Textile enabled</a> )
   %textarea{ :name => "person[description]" }
     = preserve "#{@person.description}"
-  %label Political Beliefs ( <a href="http://hobix.com/textile/">Textile enabled</a> )
+  %label Political beliefs ( <a href="http://hobix.com/textile/">Textile enabled</a> )
   %textarea{ :name => "person[political_beliefs]" }
     = preserve "#{@person.political_beliefs}"
   - affiliations = ['None', 'Republican Party', 'Democratic Party', 'Libertarian Party', 'Constitution Party', 'Green Party', 'Other']
-  = select_control :political_affiliation, :collection => affiliations, :label => 'Political Affiliation'
+  = select_control :political_affiliation, :collection => affiliations, :label => 'Political affiliation'
   %label Interests ( <a href="http://hobix.com/textile/">Textile enabled</a> )
   %textarea{ :name => "person[interests]" }
     = preserve "#{@person.interests}"
   .actions
     .cancel
-      = link_to "cancel", url(:home)
+      = link_to "Cancel", url(:home)
     .submit
-      = submit_button "save profile"
+      = submit_button "Save profile"
