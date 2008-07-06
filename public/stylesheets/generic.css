@@ -234,9 +234,18 @@ a:hover {
     background: url('/images/home/blog-header.png') no-repeat center;
     text-indent: -999em; }
 #blog .entry {
+  display: block;
   margin: 15px 0;
   padding-bottom: 10px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
+  #blog .entry:after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #blog .entry {
+    height: 1px; }
   #blog .entry h3 {
     font-size: 16px;
     font-weight: bold;
@@ -917,6 +926,12 @@ h2.index_header {
     #person #person_details_etc #person_details .name {
       font-size: 24px;
       font-weight: bold; }
+    #person #person_details_etc #person_details .address {
+      color: #666666;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 10px; }
   #person .block {
     margin: 10px 0 20px; }
     #person .block .title {

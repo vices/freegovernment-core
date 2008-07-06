@@ -5,5 +5,9 @@
     - @rss.each do |entry|
       .entry
         %h3= entry.title
-        .content= entry.content
-        .permalink= link_to "Permalink", entry.urls.first
+        - if entry.content.length < 400
+          .content= entry.content
+          .permalink= link_to "Permalink", entry.urls.first
+        - else
+          .content= entry.content.truncate_html(400) + "..."
+          .permalink= link_to "Read more", entry.urls.first
