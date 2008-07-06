@@ -27,35 +27,31 @@
                 - form_tag :action => url(:adviser_relationship, :id => @user.username), :method => :delete do
                   = hidden_field :name => 'adviser', :value => @user.username
                   = submit_button("Remove from advisers")
-    - unless @person.contacts.nil?
+    - unless @person.contacts.empty?
       #person_contacts_block.block
         .title Contacts
         .avatars
-          - unless @person.contacts.empty?
-            - @person.contacts.first(8).each do |contact|
-              =link_to image_tag(contact.user.avatar.url(:small)), profile_url(contact.user), :title => contact.user.username
-    - if @user.advisees.empty? == false && @person.user.is_adviser
+          - @person.contacts.first(8).each do |contact|
+            =link_to image_tag(contact.user.avatar.url(:small)), profile_url(contact.user), :title => contact.user.username
+    - unless @user.advisees.empty?
       #person_advisees_block.block
         .title Advisees
         .avatars
-          - unless @user.advisees.empty?
-            - @user.advisees.first(8).each do |advisee|
-              =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
-    - unless @person.advisers.empty? 
+          - @user.advisees.first(8).each do |advisee|
+            =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
+    - unless @person.advisers.empty?
       #person_advisers_block.block
         .title Advisers
         .avatars
-          - unless @person.advisers.empty?
-            - @person.advisers.first(8).each do |adviser|
-              - unless adviser.nil?
-                =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.username
-    - unless @person.groups.nil?
+          - @person.advisers.first(8).each do |adviser|
+            - unless adviser.nil?
+              =link_to image_tag(adviser.avatar.url(:small)), profile_url(adviser), :title => adviser.username
+    - unless @person.groups.empty?
       #person_groups_block.block
         .title Groups
         .avatars
-          - unless @person.groups.empty?
-            - @person.groups.first(8).each do |group|
-              =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user), :title => group.user.username
+          - @person.groups.first(8).each do |group|
+            =link_to image_tag(group.user.avatar.url(:small)), profile_url(group.user), :title => group.user.username
     /#watched_bills.block
     /  .title Watched Bills
     /#watched_polls.block

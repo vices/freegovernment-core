@@ -31,16 +31,14 @@
       #group_members_block.block
         .title Members
         .avatars
-          - unless @group.members.empty?
-            - @group.members.first(8).each do |member|
-              =link_to image_tag(member.user.avatar.url(:small)), profile_url(member.user), :title => member.user.username
-    - unless @user.advisees.nil?
+          - @group.members.first(8).each do |member|
+            =link_to image_tag(member.user.avatar.url(:small)), profile_url(member.user), :title => member.user.username
+    - unless @user.advisees.empty?
       #group_advisees_block.block
         .title Advisees
         .avatars
-          - unless @user.advisees.empty?
-            - @user.advisees.first(8).each do |advisee|
-              =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
+          - @user.advisees.first(8).each do |advisee|
+            =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
     /#group_photos_block.block
     /  .title Group Photos
     /#group_videos_block.block
