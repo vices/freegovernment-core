@@ -41,7 +41,7 @@
           - unless @user.advisees.empty?
             - @user.advisees.first(8).each do |advisee|
               =link_to image_tag(advisee.user.avatar.url(:small)), profile_url(advisee.user), :title => advisee.user.username
-    - unless @person.advisers.nil? || @person.user.is_adviser
+    - unless @person.advisers.empty? || @person.user.is_adviser
       #person_advisers_block.block
         .title Advisers
         .avatars
