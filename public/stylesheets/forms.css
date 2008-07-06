@@ -117,15 +117,14 @@ form.full {
       position: absolute;
       left: 0; }
 
-.donate_form form input.text {
+.donate_form input.text {
   padding: 2px;
   width: 112px;
   float: left;
   padding-left: 16px;
-  background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
-  border: 1px solid #dadada; }
-.donate_form form button {
-  margin-top: 2px;
+  border: 1px solid #dadada;
+  background: #fafafa url('/images/layout/dollar.gif') no-repeat left; }
+.donate_form button {
   padding: 3px;
   float: right;
   width: 65px;
@@ -139,7 +138,6 @@ form.full {
   background: #fafafa url('/images/layout/dollar_light.gif') no-repeat left;
   width: 138px; }
 #support_block form button {
-  margin-top: 2px;
   padding: 5px;
   background: #333;
   color: #fff; }
