@@ -3,7 +3,7 @@ class Feedback
   include DataMapper::Timestamp
   
   property :id, Integer, :serial => true
-  property :message, String
+  property :message, DM::Text
   property :user_id, Integer
   property :controller, String
   property :action, String

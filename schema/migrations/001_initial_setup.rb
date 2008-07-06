@@ -2,9 +2,25 @@ migration 1, :initial_setup do
   # user person group poll advising_relationship, contact_relationship
   # group_relationship, forum, vote, post, topic
   
-  
-  
   up do
+    create_table :advising_relationships do
+      column :id, Integer, :serial => true
+      column :adviser_id, Integer, :nullable => false
+      column :person_id, Integer, :nullable => false
+      column :is_adding_votes, TrueClass
+      column :is_removing_votes, TrueClass
+      column :created_at, DateTime
+      column :modified_at, DateTime
+    end
+
+    create_table :feedback
+      column :id, Integer, :serial => true
+      column :message, DM::Text
+      column :user_id, Integer
+      column 
+    end
+
+
     create_table :contact_relationships do
       column :id, Integer, :serial => true
       column :adviser_id, Integer, :nullable => false
@@ -13,20 +29,13 @@ migration 1, :initial_setup do
       column :modified_at, DateTime
     end
     
-    create_table :advising_relationships do
-      column :id, Integer, :serial => true
-      column :adviser_id, Integer, :nullable => false
-      column :advisee_id, Integer, :nullable => false
-      column :created_at, DateTime
-      column :modified_at, DateTime
-    end
+
     
     create_table :group_relationships do
       column :id, Integer, :serial => true
       column :user_id, Integer, :nullable => false
       column :group_id, Integer, :nullable => false
-      column :is_accepted, TrueClass, :default => 1, :nullable => false
-      
+      column :is_accepted, TrueClass, :default => 1, :nullable => false      
       column :created_at, DateTime
       column :modified_at, DateTime  
     end

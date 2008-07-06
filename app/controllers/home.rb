@@ -43,7 +43,7 @@ class Home < Application
     begin
       unless cached?("home_blog")
         @rss = []
-        rss_feed = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment')
+        rss_feed = FeedNormalizer::FeedNormalizer.parse open('http://feeds.feedburner.com/freegovernment?format=xml')
         @rss.push(*rss_feed.entries)
       end
     rescue
