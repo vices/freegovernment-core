@@ -30,11 +30,46 @@ class Users < Application
     if params[:delete_avatar] == "1"
       @user.avatar = nil
     end
+    pp params
+    if(!params[:user][:city_town].empty? ||
+      !params[:user][:state].empty? ||
+      !params[:user][:zipcode].empty?)
+      if !params[:user][:street_address1].empty?
+        if !params[:user][:street_address2].empty?
+          sa = params[:user][:street_adress1] + ' ' + params[:user][:street_adress1]
+        else
+          sa = params[:user][:street_adress1]
+        end
+      else
+        sa = nil
+      end
+      if !params[:user][:city_town].empty? && !params[:user][:state].empty?
+        city = params[:user][:city_town] + ', ' + params[:user][:state]
+      elsif !params[:user][:city_town].empty?
+        city = params[:user][:city]
+      elsif !params[:user][:state].empty?
+        city = params[:user][:state]
+      else
+        city = nil
+      end
+
+      if !sa.nil? && !city.nil?
+        where = sa + ', ' + city
+      elsif !city.nil?
+        where = city
+      else
+        where = nil
+      end
+      
+      if !params[:user][:zipcode].nil? && where.nil?
+        where = params[:user][:zipcode]
+      else
+        where = where + ' ' + params[:user][:zipcode]
+      end
+      @user.address_text = where
+    end 
     if !params[:user][:is_adviser].nil?
-      pp params
-      #pp @user.is_adviser
       if @user.is_adviser && params[:user][:is_adviser].to_i == 0 
-        p 'getting rid of adviser'
         advisee_list = @user.advisee_list
         unless advisee_list.empty?
           DataMapper::Transaction.new do

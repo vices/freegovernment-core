@@ -70,33 +70,6 @@ class User
     attribute_set(:address_text, value)
     self.address = value
   end
-
-  def street_address1=(value)
-    attribute_set(:street_address1, value)
-    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
-   pp self.address  
-end
-
-  def street_address2=(value)
-    attribute_set(:street_address2, value)
-    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
-  end
-
-  def city_town=(value)
-    attribute_set(:city_town, value)
-    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
-  end
-
-  def zipcode=(value)
-    attribute_set(:zipcode, value)
-    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
-  end
-  
-  def address_set=(item, value)
-    @item = item.to_s  
-    attribute_set(@item, value)
-    self.address = "#{self.street_address1}, #{self.street_address2}, #{self.city_town}, #{self.zipcode}" 
-  end
  
   def advisees
     AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
