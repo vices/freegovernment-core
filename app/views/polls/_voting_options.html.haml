@@ -3,14 +3,25 @@
     .title
       = box_title
   .current_vote== Your vote is set to #{vote.selection}
-  - form_for Vote.new, :action => url(:votes) do
-    = hidden_control :poll_id, :value => poll.id
-    = submit_field :name => 'selection', :value => 'Yes', :class => "#{ vote.selection == 'yes' ? 'active button'  : 'button' }"
-    = submit_field :name => 'selection', :value => 'Undecided', :class => "#{ vote.selection == 'undecided button' ? 'active'  : 'button' }"
-    = submit_field :name => 'selection', :value => 'No', :class => "#{ vote.selection == 'no' ? 'active button'  : 'button' }"
-    - if logged_in? && !@current_user.is_adviser?
-      %div
-        = submit_field :name => 'selection', :value => 'Let Advisers Decide', :class => "#{ vote.selection == 'adviser' ? 'active button'  : 'button' }"
+  .top_forms
+    - form_for Vote.new, :action => url(:votes) do
+      = hidden_control :poll_id, :value => poll.id
+      = hidden_control :selection, :value => 'yes'
+      = submit_field :value => 'Yes', :class => "#{ vote.selection == 'yes' ? 'active button'  : 'button' }"
+    - form_for Vote.new, :action => url(:votes) do
+      = hidden_control :poll_id, :value => poll.id
+      = hidden_control :selection, :value => 'undecided'
+      = submit_field :value => 'Undecided', :class => "#{ vote.selection == 'undecided' ? 'active button' : 'button' }"
+    - form_for Vote.new, :action => url(:votes) do
+      = hidden_control :poll_id, :value => poll.id
+      = hidden_control :selection, :value => 'no'
+      = submit_field :value => 'No', :class => "#{ vote.selection == 'no' ? 'active button'  : 'button' }"
+  - if logged_in? && !@current_user.is_adviser?
+    .bottom_form
+      - form_for Vote.new, :action => url(:votes) do
+        = hidden_control :poll_id, :value => poll.id
+        = hidden_control :selection, :value => 'adviser'
+        = submit_field :value => 'Let Advisers Decide', :class => "#{ vote.selection == 'adviser' ? 'active button'  : 'button' }"
   - unless bottom.empty?
     .bottom
       = bottom

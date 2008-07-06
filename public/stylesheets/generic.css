@@ -375,19 +375,9 @@ button.active, input.button.active {
   .voting_options .bottom {
     text-align: right; }
   .voting_options .top_forms {
-    display: block;
-    padding-left: 50px;
-    padding-bottom: 10px; }
-    .voting_options .top_forms:after {
-      display: block;
-      content: ".";
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html .voting_options .top_forms {
-      height: 1px; }
-    .voting_options .top_forms form.top {
-      float: left; }
+    padding-bottom: 12px; }
+    .voting_options .top_forms form {
+      display: inline; }
 
 #page_title {
   font-weight: bold;
@@ -397,8 +387,6 @@ button.active, input.button.active {
   #page_title span {
     color: #333; }
 
-#poll .voting_options .top_forms, #bill .voting_options .top_forms {
-  padding-left: 15px; }
 
 #bills_index .bill {
   display: block;
@@ -442,6 +430,7 @@ button.active, input.button.active {
       #bills_index .bill .main .description h4 {
         font-weight: bold; }
     #bills_index .bill .main .tags {
+      font-style: italic;
       color: #8b8b8b; }
 
 #bill #main {
@@ -1618,7 +1607,6 @@ table tr.alt1 td {
         color: #00a0c1;
         margin-bottom: 10px; }
   .static_page .question {
-    font-style: italic;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 10px; }

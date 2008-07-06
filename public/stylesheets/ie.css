@@ -30,6 +30,16 @@ button, input.button { width:auto; overflow:visible; }
   left: expression( ( -20 - this.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' )  !important;
   top: expression( ( 0 - this.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' )  !important;
 }
+
+.voting_options .top_forms {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.bottom_form {
+  margin-top: 10px;
+}
+
 #feedback_form {
   position: absolute !important;
   right: auto !important; bottom: auto !important;
