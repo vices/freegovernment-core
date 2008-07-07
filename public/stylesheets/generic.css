@@ -331,8 +331,8 @@ button.active, input.button.active {
   .voting_options .top_forms {
     padding-left: 50px;
     padding-bottom: 10px; }
-    .voting_options .top_forms form.top {
-      float: left; }
+    .voting_options .top_forms form {
+      display: inline; }
 
 #page_title {
   font-weight: bold;
@@ -957,6 +957,8 @@ h2.index_header {
             right: 130px;
             font-weight: bold;
             color: #333; }
+      .comments .content .comment p {
+        margin: 10px 0; }
 
 #polls_index h2 {
   background-image: url('/images/polls/header.png'); }

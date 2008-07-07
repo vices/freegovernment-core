@@ -354,11 +354,10 @@ button.active, input.button.active
   .bottom
     :text-align right
   .top_forms
-    
     :padding-left 50px
     :padding-bottom 10px
-    form.top
-      :float left
+    form
+      :display inline
 #page_title
   :font-weight bold
   :margin-bottom 20px
@@ -1000,7 +999,6 @@ h2.index_header
       textarea
         :width 487px
     .comment
-      
       :background #fff
       :margin 20px 0 10px
       :padding 10px
@@ -1028,6 +1026,8 @@ h2.index_header
             :right 130px
             :font-weight bold
             :color #333
+      p
+        :margin 10px 0
 #polls_index
   h2
     :background-image url('/images/polls/header.png')
