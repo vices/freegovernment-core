@@ -1,6 +1,7 @@
 #edit_user
   - form_for @user, :action => url(:user, :id => @user.username), :multipart => true, :class => 'full' do
     %h1 Account Settings
+    = hidden_field :name => 'after_signup', :value => 1
     = error_messages_for @user
     .image_upload
       %label.current Current image

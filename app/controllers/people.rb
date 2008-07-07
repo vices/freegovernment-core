@@ -83,7 +83,11 @@ class People < Application
   
   def update
     if @person.update_attributes(params[:person])
-      redirect url(:person, :id => @user.username)
+      unless params[:after_signup].nil?
+        redirect url(:edit_user, :id => @user.username, :after_signup => 1)
+      else
+        redirect url(:person, :id => @user.username)
+      end
     else
       render :edit
     end
