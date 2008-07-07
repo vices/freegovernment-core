@@ -66,6 +66,7 @@ class People < Application
         @new_person.save
         @new_user.person_id = @new_person.id
         @new_user.save
+        FeedItem.create!(:user_id => @new_user.id, :what => 'signup')
         self.current_user = @new_user
         redirect url(:edit_person, :id => @new_user.username, :after_signup => 1)
       else

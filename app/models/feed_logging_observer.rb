@@ -1,6 +1,6 @@
 class FeedLoggingObserver
   include DataMapper::Observer
-  observe Bill, User, Poll
+  observe
   
 #  after :save do
 #    id_class_sym = (self.class.to_s.snake_case + "_id").to_sym

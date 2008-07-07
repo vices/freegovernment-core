@@ -18,4 +18,7 @@ class FeedItem
   belongs_to :bill
   belongs_to :post
 
+  before :create do
+    self.is_private = User.first(:id => self.user_id).private_profile
+  end
 end
