@@ -329,7 +329,6 @@ button.active, input.button.active {
   .voting_options .bottom {
     text-align: right; }
   .voting_options .top_forms {
-    padding-left: 50px;
     padding-bottom: 10px; }
     .voting_options .top_forms form {
       display: inline; }
