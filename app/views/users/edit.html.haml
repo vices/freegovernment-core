@@ -16,7 +16,10 @@
       .check
         = checkbox_control :is_adviser
         %label{:for => 'user_is_adviser'} Do you want to be an adviser?
-      .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have. 
+      .note If you become an adviser you may not choose advisers yourself, and will lose any current advisers you may have.
+      .check
+        = checkbox_control :private_profile
+        %label{:for => 'user_private_profile'} Do you want your profile to be private?
     = text_control :street_address1, :label => 'Street address 1'
     = text_control :street_address2, :label => 'Street address 2'
     = text_control :city_town, :label => 'City or town'
