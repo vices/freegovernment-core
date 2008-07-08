@@ -7,18 +7,6 @@ class Users < Application
     {:user => [:username, :email]}  
   ]
 
-=begin
-  params_accessible [
-    :sort_by,
-    :direction,
-    :page,
-    :recaptcha_challenge_field,
-    :recaptcha_response_field,
-    {:group => [:name, :description, :mission]},
-    {:user => [:email, :password, :password_confirmation, :username]}
-  ]
-=end
-
   def edit
     render
   end
@@ -96,7 +84,11 @@ class Users < Application
       @user.attributes = params[:user]
     end
     if @user.save
-      redirect url(:edit_user, :id => @user.username)
+      unless params[:after_signup].nil?
+        redirect profile_url(@user)
+      else
+        redirect url(:edit_user, :id => @user.username)
+      end
     else
       render :edit
     end
