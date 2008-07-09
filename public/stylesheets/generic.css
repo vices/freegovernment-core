@@ -145,10 +145,12 @@ a:hover {
   margin-bottom: 20px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
   #home #intro:after,   #start #intro:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #home #intro,   * html #start #intro {
     height: 1px; }
   #home #intro .left,   #start #intro .left {
@@ -189,10 +191,12 @@ a:hover {
   margin-top: 20px;
   background: url('/images/patterns/dots.gif') repeat-x top; }
   #home #info:after,   #start #info:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #home #info,   * html #start #info {
     height: 1px; }
   #home #info .left,   #start #info .left {
@@ -203,10 +207,12 @@ a:hover {
       padding-bottom: 10px;
       background: #ebf3f7; }
       #home #info .left #support_block .content:after,       #start #info .left #support_block .content:after {
-        content: ".";
+        display: block;
+        content: " ";
         height: 0;
         clear: both;
-        visibility: hidden; }
+        visibility: hidden;
+        font-size: 0; }
       * html #home #info .left #support_block .content,       * html #start #info .left #support_block .content {
         height: 1px; }
   #home #info .right,   #start #info .right {
@@ -221,10 +227,12 @@ a:hover {
   display: inline-block;
   width: 760px; }
   #home #freedoms ul:after,   #start #freedoms ul:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #home #freedoms ul,   * html #start #freedoms ul {
     height: 1px; }
   #home #freedoms ul li,   #start #freedoms ul li {
@@ -261,10 +269,12 @@ a:hover {
   padding-bottom: 10px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
   #blog .entry:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #blog .entry {
     height: 1px; }
   #blog .entry h3 {
@@ -327,10 +337,12 @@ a:hover {
   .search_filter form {
     display: inline-block; }
     .search_filter form:after {
-      content: ".";
+      display: block;
+      content: " ";
       height: 0;
       clear: both;
-      visibility: hidden; }
+      visibility: hidden;
+      font-size: 0; }
     * html .search_filter form {
       height: 1px; }
   .search_filter input {
@@ -415,10 +427,12 @@ button.active, input.button.active {
   padding: 10px 0px;
   margin-bottom: 10px; }
   #bills_index .bill:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #bills_index .bill {
     height: 1px; }
   #bills_index .bill .img {
@@ -456,10 +470,12 @@ button.active, input.button.active {
   display: inline-block;
   width: 760px; }
   #bill #main:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #bill #main {
     height: 1px; }
   #bill #main .main {
@@ -500,10 +516,12 @@ button.active, input.button.active {
   display: inline-block;
   width: 760px; }
   #bill #content:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #bill #content {
     height: 1px; }
   #bill #content .left {
@@ -602,10 +620,12 @@ button.active, input.button.active {
   padding: 10px 0px;
   margin-bottom: 10px; }
   #polls_index .poll:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #polls_index .poll {
     height: 1px; }
   #polls_index .poll .details {
@@ -697,10 +717,12 @@ h2.index_header {
   width: 760px;
   margin-bottom: 20px; }
   #poll #poll_details:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #poll #poll_details {
     height: 1px; }
   #poll #poll_details img {
@@ -726,10 +748,12 @@ h2.index_header {
   display: inline-block;
   width: 760px; }
   #poll #poll_description_and_comments:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #poll #poll_description_and_comments {
     height: 1px; }
   #poll #poll_description_and_comments .block {
@@ -760,10 +784,12 @@ h2.index_header {
   #poll #poll_description_and_comments #poll_comments .content {
     display: inline-block; }
     #poll #poll_description_and_comments #poll_comments .content:after {
-      content: ".";
+      display: block;
+      content: " ";
       height: 0;
       clear: both;
-      visibility: hidden; }
+      visibility: hidden;
+      font-size: 0; }
     * html #poll #poll_description_and_comments #poll_comments .content {
       height: 1px; }
   #poll #poll_description_and_comments #poll_comments_etc {
@@ -800,10 +826,12 @@ h2.index_header {
   display: inline-block;
   width: 760px; }
   .list_and_filters:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html .list_and_filters {
     height: 1px; }
   .list_and_filters .list {
@@ -849,10 +877,12 @@ h2.index_header {
   padding: 10px 0px;
   border-bottom: 1px solid #ddd; }
   #people_index .person:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #people_index .person {
     height: 1px; }
   #people_index .person .details {
@@ -860,10 +890,12 @@ h2.index_header {
     float: left;
     width: 440px; }
     #people_index .person .details:after {
-      content: ".";
+      display: block;
+      content: " ";
       height: 0;
       clear: both;
-      visibility: hidden; }
+      visibility: hidden;
+      font-size: 0; }
     * html #people_index .person .details {
       height: 1px; }
     #people_index .person .details .img {
@@ -896,10 +928,12 @@ h2.index_header {
   display: inline-block;
   width: 760px; }
   #person:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #person {
     height: 1px; }
   #person #person_photo_etc {
@@ -954,10 +988,12 @@ h2.index_header {
       display: inline-block;
       width: 225px; }
       #person .block .avatars:after {
-        content: ".";
+        display: block;
+        content: " ";
         height: 0;
         clear: both;
-        visibility: hidden; }
+        visibility: hidden;
+        font-size: 0; }
       * html #person .block .avatars {
         height: 1px; }
       #person .block .avatars a {
@@ -1015,10 +1051,12 @@ h2.index_header {
   padding: 5px 0px 20px;
   margin-bottom: 10px; }
   #groups_index .group:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #groups_index .group {
     height: 1px; }
   #groups_index .group .details .img {
@@ -1048,10 +1086,12 @@ h2.index_header {
   display: inline-block;
   width: 760px; }
   #group:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #group {
     height: 1px; }
   #group #group_actions {
@@ -1123,10 +1163,12 @@ h2.index_header {
       margin: 20px 0 10px;
       padding: 10px; }
       .comments .content .comment:after {
-        content: ".";
+        display: block;
+        content: " ";
         height: 0;
         clear: both;
-        visibility: hidden; }
+        visibility: hidden;
+        font-size: 0; }
       * html .comments .content .comment {
         height: 1px; }
       .comments .content .comment .avatar {
@@ -1183,10 +1225,12 @@ table tr.alt1 td {
   width: 760px;
   margin-bottom: 20px; }
   #forums .section:after {
-    content: ".";
+    display: block;
+    content: " ";
     height: 0;
     clear: both;
-    visibility: hidden; }
+    visibility: hidden;
+    font-size: 0; }
   * html #forums .section {
     height: 1px; }
   #forums .section h3 {
@@ -1364,10 +1408,12 @@ table tr.alt1 td {
     width: 760px;
     padding: 5px; }
     #footer .content:after {
-      content: ".";
+      display: block;
+      content: " ";
       height: 0;
       clear: both;
-      visibility: hidden; }
+      visibility: hidden;
+      font-size: 0; }
     * html #footer .content {
       height: 1px; }
     #footer .content h3 {
@@ -1385,10 +1431,12 @@ table tr.alt1 td {
         margin: 0px;
         margin-bottom: 8px; }
         #footer .content .left .users .user:after {
-          content: ".";
+          display: block;
+          content: " ";
           height: 0;
           clear: both;
-          visibility: hidden; }
+          visibility: hidden;
+          font-size: 0; }
         * html #footer .content .left .users .user {
           height: 1px; }
         #footer .content .left .users .user .image {
@@ -1412,10 +1460,12 @@ table tr.alt1 td {
         margin: 5px 0px;
         padding: 5px 0px; }
         #footer .content .right .topic:after,         #footer .content .right .poll:after {
-          content: ".";
+          display: block;
+          content: " ";
           height: 0;
           clear: both;
-          visibility: hidden; }
+          visibility: hidden;
+          font-size: 0; }
         * html #footer .content .right .topic,         * html #footer .content .right .poll {
           height: 1px; }
         #footer .content .right .topic .image,         #footer .content .right .poll .image {
@@ -1559,10 +1609,12 @@ table tr.alt1 td {
     margin-left: 20px;
     margin-bottom: 20px; }
     .static_page .person:after {
-      content: ".";
+      display: block;
+      content: " ";
       height: 0;
       clear: both;
-      visibility: hidden; }
+      visibility: hidden;
+      font-size: 0; }
     * html .static_page .person {
       height: 1px; }
     .static_page .person .photo {
