@@ -74,7 +74,7 @@ a:hover {
     #header #account_bar .requests {
       margin-top: 10px; }
       #header #account_bar .requests a {
-        float: right;
+        float: left;
         width: 134px;
         height: 20px;
         background: url('/images/layout/requests.png') no-repeat;

@@ -1,7 +1,8 @@
 =clearfix
   display: inline-block
   &:after
-    content: "."
+    display: block
+    content: " "
     height: 0
     clear: both
     visibility: hidden
@@ -86,7 +87,7 @@ a:hover
     .requests
       :margin-top 10px
       a
-        :float right
+        :float left
         :width 134px
         :height 20px
         :background url('/images/layout/requests.png') no-repeat
