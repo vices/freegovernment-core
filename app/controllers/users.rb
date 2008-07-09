@@ -54,7 +54,9 @@ class Users < Application
       else
         where = where + ' ' + params[:user][:zipcode]
       end
-      @user.address_text = where
+      if @user.address_text != where
+        @user.address_text = where
+      end
     end 
     if !params[:user][:is_adviser].nil?
       if @user.is_adviser && params[:user][:is_adviser].to_i == 0 

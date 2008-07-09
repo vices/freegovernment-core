@@ -33,11 +33,18 @@ a:hover
 
 .button_link, .button_link input, .button_link button
   +font
+  :color #525252
   :background transparent
-  :border 0
+  :border 0px solid
   :display inline
   :margin 0
   :padding 0
+  :vertical-align text-top
+  :height 14px
+  :line-height 14px
+
+.button_link button
+  :margin-top -1px
 
 .button_link:hover, .button_link input:hover, .button_link button:hover
   :cursor pointer
@@ -73,6 +80,8 @@ a:hover
     :top 10px
     :right 0
     a
+      :font-weight bold
+    .button_link button, .button_link input
       :font-weight bold
     .requests
       :margin-top 10px
@@ -860,7 +869,8 @@ h2.index_header
       :margin 10px 0
       :line-height 16px
     .avatars
-      
+      +clearfix
+      :width 225px
       a
         :float left
         :width 60px

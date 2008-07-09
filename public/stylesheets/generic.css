@@ -24,11 +24,18 @@ a:hover {
   font-family: "Arial", "Verdana", sans-serif;
   font-weight: normal;
   color: #333;
+  color: #525252;
   background: transparent;
-  border: 0;
+  border: 0px solid;
   display: inline;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  vertical-align: text-top;
+  height: 14px;
+  line-height: 14px; }
+
+.button_link button {
+  margin-top: -1px; }
 
 .button_link:hover, .button_link input:hover, .button_link button:hover {
   cursor: pointer;
@@ -61,6 +68,8 @@ a:hover {
     top: 10px;
     right: 0; }
     #header #account_bar a {
+      font-weight: bold; }
+    #header #account_bar .button_link button, #header #account_bar .button_link input {
       font-weight: bold; }
     #header #account_bar .requests {
       margin-top: 10px; }
@@ -941,13 +950,23 @@ h2.index_header {
     #person .block p {
       margin: 10px 0;
       line-height: 16px; }
-    #person .block .avatars a {
-      float: left;
-      width: 60px;
-      height: 60px;
-      margin: 7px; }
-      #person .block .avatars a img {
-        border: 1px solid #ddd; }
+    #person .block .avatars {
+      display: inline-block;
+      width: 225px; }
+      #person .block .avatars:after {
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html #person .block .avatars {
+        height: 1px; }
+      #person .block .avatars a {
+        float: left;
+        width: 60px;
+        height: 60px;
+        margin: 7px; }
+        #person .block .avatars a img {
+          border: 1px solid #ddd; }
 
 #recent_activity table {
   border-collapse: collapse;

@@ -1,0 +1,8 @@
+- form_tag :action => url(:contact_relationships), :method => :post, :class => 'full' do
+  %h1== Do you want to add #{params[:contact]} to you contacts?
+  = hidden_field :contact => params[:contact]
+  .actions
+    .cancel
+      = link_to 'Cancel', url(:people)
+    .submit
+      = submit_button "Add #{params[:contact]} to contacts"

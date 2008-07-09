@@ -62,3 +62,7 @@ button, input.button { width:auto; overflow:visible; }
 * html .donate_form input { width: 130px !important; margin-top: 1px; height: 21px !important; }
 * html #footer .donate_form { margin-top: -45px; }
 * html #support_block input { width: 160px !important; margin-top: 0px; height: 26px !important; }
+
+.button_link button {
+  margin-top: 0px;
+}

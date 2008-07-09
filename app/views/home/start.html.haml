@@ -20,21 +20,7 @@
                   .activity
                     = describe_feed_item(adv_item)
                     = adv_item.created_at.strftime '%d %b %Y @ %I:%M%P'
-      .block
-        %h3 About us
-        .content
-          FreeGovernment.org is a:
-          %ul
-            %li
-              %strong non-profit
-              organization
-            %li
-              built on
-              %strong open source
-              software
-            %li
-              designed to
-              %strong empower citizens
+      = partial 'home/is_a'
     .right
       = partial 'home/map'
       - unless @rss.nil?
