@@ -18,7 +18,6 @@ class Users < Application
     if params[:delete_avatar] == "1"
       @user.avatar = nil
     end
-    pp params
     if(!params[:user][:city_town].empty? ||
       !params[:user][:state].empty? ||
       !params[:user][:zipcode].empty?)
@@ -63,7 +62,7 @@ class Users < Application
         advisee_list = @user.advisee_list
         unless advisee_list.empty?
           DataMapper::Transaction.new do
-            AdviserRelationship.all(:adviser_id => @user.id).each{ |ar| ar.destroy ; p 'kil ar' }
+            AdviserRelationship.all(:adviser_id => @user.id).each{ |ar| ar.destroy }
             Vote.all(:user_id => @user.id).each do |vote|
               if !vote.is_no || !vote.is_yes
                 vote_nulled = Vote.new(:poll_id => vote.poll_id)
@@ -75,8 +74,20 @@ class Users < Application
         end
       elsif !@user.is_adviser && params[:user][:is_adviser].to_i == 1
         if !@user.person_id.nil?
-          AdviserRelationship.all(:person_id => @user.person_id).each{ |ar| ar.destroy }
-          Vote.all(:user_id => @user.id).each{ |v| v.clear_adviser_counts ; v.save }
+          DataMapper::Transaction.new do
+            AdviserRelationship.all(:person_id => @user.person_id).each{ |ar| ar.destroy }
+            Vote.all(:user_id => @user.id).each do |v|
+              if v.is_adviser_decided
+                if v.is_yes
+                  Poll.first(:id => v.poll_id).update_for_votes({:yes => -1, :no => 0})
+                elsif v.is_no
+                  Poll.first(:id => v.poll_id).update_for_votes({:yes => 0, :no => -1})
+                end
+              end
+              v.clear_adviser_counts
+              v.save
+            end
+          end
         end
       else
         params[:user][:is_adviser] = @user.is_adviser

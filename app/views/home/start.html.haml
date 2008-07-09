@@ -1,6 +1,7 @@
 #start
   #intro
     .left
+      = partial 'home/is_a'
       .block
         %h3 Your updates
         .content.alt.updates
@@ -20,7 +21,6 @@
                   .activity
                     = describe_feed_item(adv_item)
                     = adv_item.created_at.strftime '%d %b %Y @ %I:%M%P'
-      = partial 'home/is_a'
     .right
       = partial 'home/map'
       - unless @rss.nil?

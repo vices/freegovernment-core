@@ -11,6 +11,7 @@ class Session < Application
     if logged_in?
       redirect_back_or_default url(:start)
     else
+      flash[:error] = "Username and password do not match or were not found."
       redirect url(:login)
     end
   end
