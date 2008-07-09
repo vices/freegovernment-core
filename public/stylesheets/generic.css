@@ -1569,6 +1569,10 @@ table tr.alt1 td {
 
 .static_page {
   font-size: 14px; }
+  .static_page .questions a {
+    display: block;
+    line-height: 1.4em;
+    margin: 15px; }
   .static_page h1 {
     font-size: 22px;
     font-weight: bold;
@@ -1635,7 +1639,6 @@ table tr.alt1 td {
         color: #00a0c1;
         margin-bottom: 10px; }
   .static_page .question {
-    font-style: italic;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 10px; }
