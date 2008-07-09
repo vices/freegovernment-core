@@ -37,7 +37,7 @@ class User
   
   has_attached_file :avatar,
     :styles => { :small => "60x60#", :medium => "100x100>", :large => "200x200>" },
-    :default_url => "users/missing_icon_:style.png",
+    :default_url => "/images/users/missing_icon_:style.png",
     :whiny_thumbnails => true
   
   validates_attachment_thumbnails :avatar
