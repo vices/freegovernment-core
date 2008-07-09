@@ -1,3 +1,13 @@
+=clearfix
+  display: inline-block
+  &:after
+    content: "."
+    height: 0
+    clear: both
+    visibility: hidden
+  * html &
+    height: 1px
+
 =font
   :font-size 12px
   :font-family "Arial", "Verdana", sans-serif
@@ -62,6 +72,8 @@ a:hover
     :position absolute
     :top 10px
     :right 0
+    a
+      :font-weight bold
     .requests
       :margin-top 10px
       a
@@ -133,14 +145,16 @@ a:hover
     .content.alt
       :background #fff
   #intro
-    
+    +clearfix
+    :width 760px
     :padding-bottom 20px
     :margin-bottom 20px
-    :background url('/images/patterns/dots.gif') repeat-x bottom
-    
+    :background url('/images/patterns/dots.gif') repeat-x bottom   
     .left
       :float left
       :width 250px
+    .block
+      :margin-bottom 12px
     .attention
       :margin-top 10px
       :line-height 1.3em
@@ -151,8 +165,7 @@ a:hover
         :color #525252
     .right
       :width 500px
-      :float right
-    
+      :float right 
     #banner a
       :display block
       :height 70px
@@ -171,32 +184,30 @@ a:hover
       
       
   #info
-    
+    +clearfix
+    :width 760px 
     :padding-top 20px
     :margin-top 20px
     :background url('/images/patterns/dots.gif') repeat-x top
-    
     .left
       :float left
       :width 250px
-
       #support_block .content
+        +clearfix
+        :padding-bottom 10px
         :background #ebf3f7
     .right
       :width 500px
       :float right
-        
-
   #freedoms
     h2
       :text-transform uppercase
       :text-align center
       :font-size 14px
       :margin-bottom 20px
-
     ul
-      
-
+      +clearfix  
+      :width 760px
       li
         :float left
         :width 182px
@@ -228,6 +239,7 @@ a:hover
       :text-indent -999em
   
   .entry
+    +clearfix
     :margin 15px 0
     :padding-bottom 10px
     :background url('/images/patterns/dots.gif') repeat-x bottom
@@ -292,8 +304,8 @@ a:hover
     :color #525252
 
 .search_filter
-  form
-  
+  form 
+    +clearfix
   :margin-bottom 10px
   input
     :float left
@@ -365,14 +377,11 @@ button.active, input.button.active
   span
     :color #333
 
-#poll, #bill
-  .voting_options
-    .top_forms
-      :padding-left 15px
 
 #bills_index
   .bill
-    
+    +clearfix
+    :width 550px 
     :border-bottom 1px solid #ccc
     :padding 10px 0px
     :margin-bottom 10px
@@ -409,7 +418,8 @@ button.active, input.button.active
 
 #bill
   #main
-    
+    +clearfix
+    :width 760px
     .main
       :float left
       :width 470px
@@ -445,7 +455,8 @@ button.active, input.button.active
         :bottom 10px
   #content
     :margin-top 20px
-    
+    +clearfix
+    :width 760px 
     .left
       :width 180px
       :float left
@@ -539,7 +550,8 @@ button.active, input.button.active
 
 #polls_index
   .poll
-    
+    +clearfix
+    :width 550px    
     :border-bottom 1px solid #ccc
     :padding 10px 0px
     :margin-bottom 10px
@@ -630,7 +642,8 @@ h2.index_header
 
 #poll
   #poll_details
-    
+    +clearfix
+    :width 760px
     :margin-bottom 20px
     img
       :display block
@@ -652,7 +665,7 @@ h2.index_header
         :border 1px solid #ddd
         :background #fafafa
   #poll_description_and_comments
-    
+    +clearfix 
     :width 760px
     .block
       :border-top 1px solid #ddd
@@ -680,10 +693,12 @@ h2.index_header
     #poll_description_etc
       :float left
       :width 225px
+    #poll_comments
+      .content
+        +clearfix
     #poll_comments_etc
       :float right
       :width 515px
-
   #poll_stats_table
     :width 200px
     :background white
@@ -715,7 +730,8 @@ h2.index_header
 
 
 .list_and_filters
-  
+  +clearfix
+  :width 760px 
   .list
     :float left
     :width 550px
@@ -754,12 +770,12 @@ h2.index_header
     :display none
 #people_index
   .person
-    
+    +clearfix   
     :width 550px
     :padding 10px 0px
     :border-bottom 1px solid #ddd
     .details
-      
+      +clearfix 
       :float left
       :width 440px
       .img
@@ -792,7 +808,7 @@ h2.index_header
       :margin-bottom 10px
 
 #person
-  
+  +clearfix 
   :width 760px
   #person_photo_etc
     :float left
@@ -899,7 +915,8 @@ h2.index_header
 
 #groups_index
   .group
-    
+    +clearfix
+    :width 550px 
     :border-bottom 1px solid #ccc
     :padding 5px 0px 20px
     :margin-bottom 10px
@@ -930,7 +947,7 @@ h2.index_header
 
 
 #group
-  
+  +clearfix 
   :width 760px
   #group_actions
     :padding 5px 0
@@ -998,6 +1015,8 @@ h2.index_header
       textarea
         :width 487px
     .comment
+      +clearfix
+      :width 475px
       :background #fff
       :margin 20px 0 10px
       :padding 10px
@@ -1057,6 +1076,8 @@ table
 
 #forums
   .section
+    +clearfix
+    :width 760px
     :margin-bottom 20px
     h3
       :font-size 20px
@@ -1218,12 +1239,10 @@ table
     :height 250px
 
 #login_page
-  
   #login
+    :margin 0 auto
     :width 250px
-    :float left
   .info
-    :float right
     :width 470px
     :border-left 1px solid #ddd
     :padding-left 20px
@@ -1246,7 +1265,8 @@ table
     :font-weight bold
     :text-transform uppercase
   .content
-    
+    +clearfix
+    :width 760px    
     :padding 5px
     h3
       :font-weight bold
@@ -1259,8 +1279,10 @@ table
       :width 200px
       .users
         .user
-          
-          :margin 10px 0px
+          +clearfix
+          :width 200px 
+          :margin 0px
+          :margin-bottom 8px
           .image
             :float left
             :width 60px
@@ -1268,12 +1290,19 @@ table
             :float right
             :width 130px
             :font-weight bold
+            :padding 0px
+            *
+              :margin 2px 0px
+            .username
+              :margin 0px
     .right
       :float right
       :width 520px
       .topic, .poll
-        
-        :margin 10px 0px
+        +clearfix
+        :width 520px
+        :margin 5px 0px
+        :padding 5px 0px
         .image
           :float left
           :width 60px
@@ -1299,11 +1328,11 @@ table
     .heading a
       :font-size 14px
     .vote_count
-      :margin-top 5px
+      :margin-top 6px
       :padding-bottom 3px
     .results
       :margin 5px 0 10px
-      :font-size 16px
+      :font-size 14px
       span
         :margin 0 20px
   .topic
@@ -1403,19 +1432,22 @@ table
   ul
     :margin-left 20px
     :font-size 14px
+    :margin-bottom 30px
     li
       :position relative
       :margin 8px 0
       :font-weight bold
       a
         :position absolute
-        :left 200px
+        :left 250px
         :font-size 14px
   ul.bullets li
     :padding-left 15px
     :background url('/images/other/bullet.png') no-repeat left
     :font-weight normal
   .person
+    +clearfix
+    :width 760px
     :margin-left 20px
     :margin-bottom 20px
     .photo

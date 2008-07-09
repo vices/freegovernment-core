@@ -70,7 +70,23 @@ class User
     attribute_set(:address_text, value)
     self.address = value
   end
- 
+
+  def home
+    if self.address.nil?
+      nil
+    else
+      if !self.address.city.nil? && !self.address.state.nil?
+        self.address.city + ", " + self.address.state
+      elsif !self.address.city.nil?
+        self.address.city
+      elsif !self.address.state.nil?
+        self.address.state
+      else
+        nil
+      end
+    end
+  end
+
   def advisees
     AdviserRelationship.all(:adviser_id => self.id, :order => [:modified_at.desc]).collect{|ar| ar.person}
   end

@@ -13,10 +13,12 @@
             =link_to image_tag(person.user.avatar.url(:small)), url(:person, :id => person.user.username), :class => 'img'
             .main
               %h3= link_to h(person.full_name), url(:person, :id => person.user.username)
-              .address=h person.user.address_text
-              .description
-                %span About me:
-                =h person.description
+              - unless person.user.home.nil?
+                .address=h person.user.home
+              - unless person.description.nil?
+                .description
+                  %span About me:
+                  =h person.description
           .actions
       .pagination
         = merb_paginate(@people_page, :route => { :name => :people }, :params => @pagination_params)

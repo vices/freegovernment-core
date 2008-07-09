@@ -60,6 +60,8 @@ a:hover {
     position: absolute;
     top: 10px;
     right: 0; }
+    #header #account_bar a {
+      font-weight: bold; }
     #header #account_bar .requests {
       margin-top: 10px; }
       #header #account_bar .requests a {
@@ -128,12 +130,23 @@ a:hover {
   #home .block .content.alt,   #start .block .content.alt {
     background: #fff; }
 #home #intro, #start #intro {
+  display: inline-block;
+  width: 760px;
   padding-bottom: 20px;
   margin-bottom: 20px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
+  #home #intro:after,   #start #intro:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #home #intro,   * html #start #intro {
+    height: 1px; }
   #home #intro .left,   #start #intro .left {
     float: left;
     width: 250px; }
+  #home #intro .block,   #start #intro .block {
+    margin-bottom: 12px; }
   #home #intro .attention,   #start #intro .attention {
     margin-top: 10px;
     line-height: 1.3em;
@@ -161,14 +174,32 @@ a:hover {
   #home #intro #banner a.banner5,   #start #intro #banner a.banner5 {
     background: url('/images/home/banners/5.png') no-repeat; }
 #home #info, #start #info {
+  display: inline-block;
+  width: 760px;
   padding-top: 20px;
   margin-top: 20px;
   background: url('/images/patterns/dots.gif') repeat-x top; }
+  #home #info:after,   #start #info:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #home #info,   * html #start #info {
+    height: 1px; }
   #home #info .left,   #start #info .left {
     float: left;
     width: 250px; }
     #home #info .left #support_block .content,     #start #info .left #support_block .content {
+      display: inline-block;
+      padding-bottom: 10px;
       background: #ebf3f7; }
+      #home #info .left #support_block .content:after,       #start #info .left #support_block .content:after {
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html #home #info .left #support_block .content,       * html #start #info .left #support_block .content {
+        height: 1px; }
   #home #info .right,   #start #info .right {
     width: 500px;
     float: right; }
@@ -177,25 +208,35 @@ a:hover {
   text-align: center;
   font-size: 14px;
   margin-bottom: 20px; }
-#home #freedoms ul li, #start #freedoms ul li {
-  float: left;
-  width: 182px;
-  margin-right: 10px;
-  height: 100%; }
-  #home #freedoms ul li h3,   #start #freedoms ul li h3 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px; }
-  #home #freedoms ul li .content,   #start #freedoms ul li .content {
-    border-top: 6px solid #525252;
-    background-color: #eee;
-    padding: 8px;
-    height: 88px;
-    line-height: 1.3em;
-    font-size: 14px; }
-#home #freedoms ul li.last, #start #freedoms ul li.last {
-  width: 184px;
-  margin-right: 0; }
+#home #freedoms ul, #start #freedoms ul {
+  display: inline-block;
+  width: 760px; }
+  #home #freedoms ul:after,   #start #freedoms ul:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #home #freedoms ul,   * html #start #freedoms ul {
+    height: 1px; }
+  #home #freedoms ul li,   #start #freedoms ul li {
+    float: left;
+    width: 182px;
+    margin-right: 10px;
+    height: 100%; }
+    #home #freedoms ul li h3,     #start #freedoms ul li h3 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 8px; }
+    #home #freedoms ul li .content,     #start #freedoms ul li .content {
+      border-top: 6px solid #525252;
+      background-color: #eee;
+      padding: 8px;
+      height: 88px;
+      line-height: 1.3em;
+      font-size: 14px; }
+  #home #freedoms ul li.last,   #start #freedoms ul li.last {
+    width: 184px;
+    margin-right: 0; }
 
 #blog h2 {
   padding-bottom: 5px;
@@ -206,9 +247,17 @@ a:hover {
     background: url('/images/home/blog-header.png') no-repeat center;
     text-indent: -999em; }
 #blog .entry {
+  display: inline-block;
   margin: 15px 0;
   padding-bottom: 10px;
   background: url('/images/patterns/dots.gif') repeat-x bottom; }
+  #blog .entry:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #blog .entry {
+    height: 1px; }
   #blog .entry h3 {
     font-size: 16px;
     font-weight: bold;
@@ -266,6 +315,15 @@ a:hover {
 
 .search_filter {
   margin-bottom: 10px; }
+  .search_filter form {
+    display: inline-block; }
+    .search_filter form:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html .search_filter form {
+      height: 1px; }
   .search_filter input {
     float: left;
     width: 140px; }
@@ -341,13 +399,19 @@ button.active, input.button.active {
   #page_title span {
     color: #333; }
 
-#poll .voting_options .top_forms, #bill .voting_options .top_forms {
-  padding-left: 15px; }
-
 #bills_index .bill {
+  display: inline-block;
+  width: 550px;
   border-bottom: 1px solid #ccc;
   padding: 10px 0px;
   margin-bottom: 10px; }
+  #bills_index .bill:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bills_index .bill {
+    height: 1px; }
   #bills_index .bill .img {
     float: left;
     width: 60px; }
@@ -379,41 +443,60 @@ button.active, input.button.active {
     #bills_index .bill .main .tags {
       color: #8b8b8b; }
 
-#bill #main .main {
-  float: left;
-  width: 470px; }
-  #bill #main .main img {
-    display: block;
+#bill #main {
+  display: inline-block;
+  width: 760px; }
+  #bill #main:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bill #main {
+    height: 1px; }
+  #bill #main .main {
     float: left;
-    border: 1px solid #ddd; }
-  #bill #main .main #title {
+    width: 470px; }
+    #bill #main .main img {
+      display: block;
+      float: left;
+      border: 1px solid #ddd; }
+    #bill #main .main #title {
+      float: right;
+      width: 400px; }
+      #bill #main .main #title .number {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #666; }
+        #bill #main .main #title .number span {
+          color: #20adbb;
+          margin-left: 20px; }
+      #bill #main .main #title h2 {
+        font-size: 22px;
+        font-weight: bold; }
+  #bill #main .voting_options {
+    position: relative;
+    width: 270px;
     float: right;
-    width: 400px; }
-    #bill #main .main #title .number {
-      font-size: 16px;
-      margin-bottom: 5px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #666; }
-      #bill #main .main #title .number span {
-        color: #20adbb;
-        margin-left: 20px; }
-    #bill #main .main #title h2 {
-      font-size: 22px;
-      font-weight: bold; }
-#bill #main .voting_options {
-  position: relative;
-  width: 270px;
-  float: right;
-  padding: 18px 0 36px;
-  border: 1px solid #ddd;
-  background: #fafafa; }
-  #bill #main .voting_options .bottom {
-    position: absolute;
-    right: 10px;
-    bottom: 10px; }
+    padding: 18px 0 36px;
+    border: 1px solid #ddd;
+    background: #fafafa; }
+    #bill #main .voting_options .bottom {
+      position: absolute;
+      right: 10px;
+      bottom: 10px; }
 #bill #content {
-  margin-top: 20px; }
+  margin-top: 20px;
+  display: inline-block;
+  width: 760px; }
+  #bill #content:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #bill #content {
+    height: 1px; }
   #bill #content .left {
     width: 180px;
     float: left; }
@@ -504,9 +587,18 @@ button.active, input.button.active {
           font-weight: bold; }
 
 #polls_index .poll {
+  display: inline-block;
+  width: 550px;
   border-bottom: 1px solid #ccc;
   padding: 10px 0px;
   margin-bottom: 10px; }
+  #polls_index .poll:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #polls_index .poll {
+    height: 1px; }
   #polls_index .poll .details {
     float: left;
     width: 430px; }
@@ -592,7 +684,16 @@ h2.index_header {
     margin-left: 10px; }
 
 #poll #poll_details {
+  display: inline-block;
+  width: 760px;
   margin-bottom: 20px; }
+  #poll #poll_details:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #poll #poll_details {
+    height: 1px; }
   #poll #poll_details img {
     display: block;
     float: left;
@@ -613,7 +714,15 @@ h2.index_header {
       border: 1px solid #ddd;
       background: #fafafa; }
 #poll #poll_description_and_comments {
+  display: inline-block;
   width: 760px; }
+  #poll #poll_description_and_comments:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #poll #poll_description_and_comments {
+    height: 1px; }
   #poll #poll_description_and_comments .block {
     border-top: 1px solid #ddd;
     margin-bottom: 10px; }
@@ -639,6 +748,15 @@ h2.index_header {
   #poll #poll_description_and_comments #poll_description_etc {
     float: left;
     width: 225px; }
+  #poll #poll_description_and_comments #poll_comments .content {
+    display: inline-block; }
+    #poll #poll_description_and_comments #poll_comments .content:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #poll #poll_description_and_comments #poll_comments .content {
+      height: 1px; }
   #poll #poll_description_and_comments #poll_comments_etc {
     float: right;
     width: 515px; }
@@ -669,24 +787,34 @@ h2.index_header {
     width: 80px;
     border-left: 4px solid #e9e9e9; }
 
-.list_and_filters .list {
-  float: left;
-  width: 550px; }
-  .list_and_filters .list .actions {
-    text-align: right;
-    margin-top: 10px; }
-    .list_and_filters .list .actions a {
-      font-weight: bold;
-      margin: 0 10px;
-      padding-right: 10px;
-      background: url('/images/layout/link.gif') no-repeat right top; }
-.list_and_filters .filters {
-  float: right;
-  width: 200px; }
-  .list_and_filters .filters .attention {
-    margin-bottom: 10px; }
-  .list_and_filters .filters .filter {
-    margin-bottom: 10px; }
+.list_and_filters {
+  display: inline-block;
+  width: 760px; }
+  .list_and_filters:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .list_and_filters {
+    height: 1px; }
+  .list_and_filters .list {
+    float: left;
+    width: 550px; }
+    .list_and_filters .list .actions {
+      text-align: right;
+      margin-top: 10px; }
+      .list_and_filters .list .actions a {
+        font-weight: bold;
+        margin: 0 10px;
+        padding-right: 10px;
+        background: url('/images/layout/link.gif') no-repeat right top; }
+  .list_and_filters .filters {
+    float: right;
+    width: 200px; }
+    .list_and_filters .filters .attention {
+      margin-bottom: 10px; }
+    .list_and_filters .filters .filter {
+      margin-bottom: 10px; }
 
 .pagination {
   margin-top: 10px;
@@ -707,12 +835,28 @@ h2.index_header {
     display: none; }
 
 #people_index .person {
+  display: inline-block;
   width: 550px;
   padding: 10px 0px;
   border-bottom: 1px solid #ddd; }
+  #people_index .person:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #people_index .person {
+    height: 1px; }
   #people_index .person .details {
+    display: inline-block;
     float: left;
     width: 440px; }
+    #people_index .person .details:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #people_index .person .details {
+      height: 1px; }
     #people_index .person .details .img {
       float: left;
       width: 60px; }
@@ -740,7 +884,15 @@ h2.index_header {
   margin-bottom: 10px; }
 
 #person {
+  display: inline-block;
   width: 760px; }
+  #person:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #person {
+    height: 1px; }
   #person #person_photo_etc {
     float: left;
     width: 225px; }
@@ -838,9 +990,18 @@ h2.index_header {
   border-bottom: 1px solid #eee; }
 
 #groups_index .group {
+  display: inline-block;
+  width: 550px;
   border-bottom: 1px solid #ccc;
   padding: 5px 0px 20px;
   margin-bottom: 10px; }
+  #groups_index .group:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #groups_index .group {
+    height: 1px; }
   #groups_index .group .details .img {
     float: left;
     width: 60px; }
@@ -865,7 +1026,15 @@ h2.index_header {
       color: #8b8b8b; }
 
 #group {
+  display: inline-block;
   width: 760px; }
+  #group:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #group {
+    height: 1px; }
   #group #group_actions {
     padding: 5px 0; }
     #group #group_actions a, #group #group_actions button {
@@ -929,9 +1098,18 @@ h2.index_header {
       .comments .content form textarea {
         width: 487px; }
     .comments .content .comment {
+      display: inline-block;
+      width: 475px;
       background: #fff;
       margin: 20px 0 10px;
       padding: 10px; }
+      .comments .content .comment:after {
+        content: ".";
+        height: 0;
+        clear: both;
+        visibility: hidden; }
+      * html .comments .content .comment {
+        height: 1px; }
       .comments .content .comment .avatar {
         float: left;
         width: 60px; }
@@ -982,7 +1160,16 @@ table tr.alt1 td {
   background: #f4f4f4; }
 
 #forums .section {
+  display: inline-block;
+  width: 760px;
   margin-bottom: 20px; }
+  #forums .section:after {
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html #forums .section {
+    height: 1px; }
   #forums .section h3 {
     font-size: 20px;
     font-weight: bold;
@@ -1131,10 +1318,9 @@ table tr.alt1 td {
   height: 250px; }
 
 #login_page #login {
-  width: 250px;
-  float: left; }
+  margin: 0 auto;
+  width: 250px; }
 #login_page .info {
-  float: right;
   width: 470px;
   border-left: 1px solid #ddd;
   padding-left: 20px; }
@@ -1155,7 +1341,16 @@ table tr.alt1 td {
     font-weight: bold;
     text-transform: uppercase; }
   #footer .content {
+    display: inline-block;
+    width: 760px;
     padding: 5px; }
+    #footer .content:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html #footer .content {
+      height: 1px; }
     #footer .content h3 {
       font-weight: bold;
       text-transform: uppercase;
@@ -1166,19 +1361,44 @@ table tr.alt1 td {
       float: left;
       width: 200px; }
       #footer .content .left .users .user {
-        margin: 10px 0px; }
+        display: inline-block;
+        width: 200px;
+        margin: 0px;
+        margin-bottom: 8px; }
+        #footer .content .left .users .user:after {
+          content: ".";
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        * html #footer .content .left .users .user {
+          height: 1px; }
         #footer .content .left .users .user .image {
           float: left;
           width: 60px; }
         #footer .content .left .users .user .details {
           float: right;
           width: 130px;
-          font-weight: bold; }
+          font-weight: bold;
+          padding: 0px; }
+          #footer .content .left .users .user .details * {
+            margin: 2px 0px; }
+          #footer .content .left .users .user .details .username {
+            margin: 0px; }
     #footer .content .right {
       float: right;
       width: 520px; }
       #footer .content .right .topic, #footer .content .right .poll {
-        margin: 10px 0px; }
+        display: inline-block;
+        width: 520px;
+        margin: 5px 0px;
+        padding: 5px 0px; }
+        #footer .content .right .topic:after,         #footer .content .right .poll:after {
+          content: ".";
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        * html #footer .content .right .topic,         * html #footer .content .right .poll {
+          height: 1px; }
         #footer .content .right .topic .image,         #footer .content .right .poll .image {
           float: left;
           width: 60px; }
@@ -1204,11 +1424,11 @@ table tr.alt1 td {
     #footer .poll .heading a {
       font-size: 14px; }
     #footer .poll .vote_count {
-      margin-top: 5px;
+      margin-top: 6px;
       padding-bottom: 3px; }
     #footer .poll .results {
       margin: 5px 0 10px;
-      font-size: 16px; }
+      font-size: 14px; }
       #footer .poll .results span {
         margin: 0 20px; }
   #footer .topic .heading {
@@ -1300,22 +1520,32 @@ table tr.alt1 td {
     font-weight: bold; }
   .static_page ul {
     margin-left: 20px;
-    font-size: 14px; }
+    font-size: 14px;
+    margin-bottom: 30px; }
     .static_page ul li {
       position: relative;
       margin: 8px 0;
       font-weight: bold; }
       .static_page ul li a {
         position: absolute;
-        left: 200px;
+        left: 250px;
         font-size: 14px; }
   .static_page ul.bullets li {
     padding-left: 15px;
     background: url('/images/other/bullet.png') no-repeat left;
     font-weight: normal; }
   .static_page .person {
+    display: inline-block;
+    width: 760px;
     margin-left: 20px;
     margin-bottom: 20px; }
+    .static_page .person:after {
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html .static_page .person {
+      height: 1px; }
     .static_page .person .photo {
       width: 102px;
       float: left; }

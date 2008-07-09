@@ -1,5 +1,5 @@
 =clearfix
-  display: block
+  display: inline-block
   &:after
     display: block
     content: "." 
@@ -85,6 +85,7 @@ form.full
     :margin-bottom 10px
   .actions
     :width 500px
+    +clearfix
   .captcha
     margin 10px auto
     *
@@ -148,6 +149,11 @@ form.full
     :float right
     :width 65px
     :font-size 11px
+#non_footer .donate_form
+  :width 234px
+#footer .donate_form
+  :width 200px
+
 #support_block
   h4
     :margin-bottom 10px
@@ -161,11 +167,13 @@ form.full
       :padding 5px
       :background #333
       :color #fff
-
+  .content
+    :padding-bottom 0px
 
 #edit_user
   .check
-    :margin 40px 0 5px
+    +clearfix
+    :margin 20px 0
     input
       :width auto
       :float left
@@ -174,7 +182,7 @@ form.full
       :float left
       :margin-left 10px
   .note
-    :margin-bottom 40px
+    :margin-bottom 10px
   .image_upload
     :text-align center
     label

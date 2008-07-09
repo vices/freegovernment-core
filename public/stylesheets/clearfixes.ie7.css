@@ -1,9 +1,0 @@
-.static_page .person, form.standard, form.full, .clearfix, #intro, #info, #freedoms ul, .search_filter, .top_forms, #bill_index .bill, #bill #main, #bill #main #content, #poll_index .poll, #poll_index .poll .details, #poll #poll_details, #poll_description_and_comments, .list_and_filters, #people_index .person, #people_index .person .details, #person, .block .avatars, #group_index .group, #group, .comments .comment, #forums .bottom, #forum .bottom, #topic .bottom, #login_page, #footer .content, #footer .user, #footer .topic, #footer .poll, #static_page .person, form.standard .actions, form.full .actions, .donate_form, #edit_user .check {
-  display: inline-table;
-  min-height: 1%; }
-  .static_page .person:after,   form.standard:after,   form.full:after,   .clearfix:after,   #intro:after,   #info:after,   #freedoms ul:after,   .search_filter:after,   .top_forms:after,   #bill_index .bill:after,   #bill #main:after,   #bill #main #content:after,   #poll_index .poll:after,   #poll_index .poll .details:after,   #poll #poll_details:after,   #poll_description_and_comments:after,   .list_and_filters:after,   #people_index .person:after,   #people_index .person .details:after,   #person:after,   .block .avatars:after,   #group_index .group:after,   #group:after,   .comments .comment:after,   #forums .bottom:after,   #forum .bottom:after,   #topic .bottom:after,   #login_page:after,   #footer .content:after,   #footer .user:after,   #footer .topic:after,   #footer .poll:after,   #static_page .person:after,   form.standard .actions:after,   form.full .actions:after,   .donate_form:after,   #edit_user .check:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }

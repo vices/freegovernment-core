@@ -2,67 +2,69 @@
   %h2
     .girdle
       == Updates
-  .content.girdle
-    .left
-      .users
-        %h3 New Users
-        - unless @updates_newest_users.nil?
-          - @updates_newest_users.each do |user|
-            .user
-              .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
-              .details
-                .username= link_to h(user.username.ellipsis(15)), profile_url(user)
-                .location
-                  = h user.address_text
-                  - if user.group
-                    .other
-                      Group
+  .girdle
+    .content
+      .left
+        .users
+          %h3 New Users
+          - unless @updates_newest_users.nil?
+            - @updates_newest_users.each do |user|
+              .user
+                .image= link_to image_tag(user.avatar.url(:small)), profile_url(user)
+                .details
+                  .username= link_to h(user.username.ellipsis(15)), profile_url(user)
+                  .location
+                    - if user.group
+                      .other
+                        Group
+                    - else
+                      .other Person
+                      - if !user.person.political_affiliation.nil? && user.person.political_affiliation != "None"
+                        .other= h user.person.political_affiliation
+                  .location
+                    - unless user.home.nil?
+                      = h user.home
+        .donation
+          %h3 Support FreeGovernment.org
+          = partial 'layout/donate'
+      .right
+        .topics
+          %h3 Recent Posts
+          - unless @updates_newest_topics.nil?
+            - @updates_newest_topics.each do |post|
+              .topic
+                .image= link_to image_tag(post.user.avatar(:small)), profile_url(post.user)
+                .details
+                  .heading
+                    =link_to h(post.user.username), profile_url(post.user)
+                    - if post.topic.forum.group_id and post.topic.name == 'Comments'
+                      %span commented on 
+                      =link_to h(post.topic.forum.group.name), url(:group, :id => post.topic.forum.group_id)
+                    - elsif post.topic.forum.poll_id and post.topic.name == 'Comments'
+                      %span commented on 
+                      =link_to h(post.topic.forum.poll.question), url(:poll, :id => post.topic.forum.poll_id)
+                    - else
+                      %span posted on 
+                      =link_to h(post.topic.name), url(:topic, :id => post.topic.id)
+                  .text
+                    =link_to h(post.text), post_url(post)
+        .polls
+          %h3 Recent Polls
+          - unless @updates_newest_polls.nil?
+            - @updates_newest_polls.each do |poll|
+              .poll
+                .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
+                .details
+                  .heading
+                    = link_to "\"#{h poll.question}\"", url(:poll, :id => poll.id)
+                    .vote_count== #{ poll.vote_count } votes
+                  - if poll.vote_count > 0
+                    .results
+                      == #{poll.yes_percent.precision_round(1)}% Yes
+                      %span |
+                      == #{poll.no_percent.precision_round(1)}% No
                   - else
-                    .other User
-                    .other= h user.person.political_affiliation
-                /.location== #{h user.address.city}
-                /.location== #{h user.address.state}
-      .donation
-        %h3 Support FreeGovernment.org
-        = partial 'layout/donate'
-    .right
-      .topics
-        %h3 Recent Posts
-        - unless @updates_newest_topics.nil?
-          - @updates_newest_topics.each do |post|
-            .topic
-              .image= link_to image_tag(post.user.avatar(:small)), profile_url(post.user)
-              .details
-                .heading
-                  =link_to h(post.user.username), profile_url(post.user)
-                  - if post.topic.forum.group_id and post.topic.name == 'Comments'
-                    %span commented on 
-                    =link_to h(post.topic.forum.group.name), url(:group, :id => post.topic.forum.group_id)
-                  - elsif post.topic.forum.poll_id and post.topic.name == 'Comments'
-                    %span commented on 
-                    =link_to h(post.topic.forum.poll.question), url(:poll, :id => post.topic.forum.poll_id)
-                  - else
-                    %span posted on 
-                    =link_to h(post.topic.name), url(:topic, :id => post.topic.id)
-                .text
-                  =link_to h(post.text), post_url(post)
-      .polls
-        %h3 Recent Polls
-        - unless @updates_newest_polls.nil?
-          - @updates_newest_polls.each do |poll|
-            .poll
-              .image= link_to image_tag(poll.icon.url(:small)), url(:poll, :id => poll.id) 
-              .details
-                .heading
-                  = link_to "\"#{h poll.question}\"", url(:poll, :id => poll.id)
-                  .vote_count== #{ poll.vote_count } votes
-                - if poll.vote_count > 0
-                  .results
-                    == #{poll.yes_percent.precision_round(1)}% Yes
-                    %span |
-                    == #{poll.no_percent.precision_round(1)}% No
-                - else
-                  .results no results yet
+                    .results no results yet
   .bottom
     .girdle
       .copyright== &copy; #{Time.now.year} FreeGovernment.org

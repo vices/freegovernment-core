@@ -1,7 +1,24 @@
 #home
   #intro
     .left
-      = partial 'home/login'
+      .block
+        .content
+          FreeGovernment.org is a:
+          %ul
+            %li
+              %strong non-profit
+              organization
+            %li
+              built on
+              %strong open source
+              software
+            %li
+              defined by
+              %strong four freedoms
+            %li
+              designed to
+              %strong empower citizens
+      /= partial 'home/login'
       .attention
         .title See how FreeGovernment.org is empowering citizens.
         = link_to "Read the FAQ", url(:faq)
@@ -28,21 +45,6 @@
         .content Freedom to improve the government for the benefit of all society with the support of others.
   #info
     .left
-      .block
-        %h3 About us
-        .content
-          FreeGovernment.org is a:
-          %ul
-            %li
-              %strong non-profit
-              organization
-            %li
-              built on
-              %strong open source
-              software
-            %li
-              designed to
-              %strong empower citizens
       #support_block.block
         %h3 Support us
         .content
