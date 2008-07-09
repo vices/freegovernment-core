@@ -29,16 +29,7 @@ form.standard label, form.full label {
   font-weight: bold;
   color: #000; }
 form.standard .actions, form.full .actions {
-  display: block;
   margin-top: 20px; }
-  form.standard .actions:after,   form.full .actions:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html form.standard .actions,   * html form.full .actions {
-    height: 1px; }
   form.standard .actions .cancel,   form.full .actions .cancel {
     float: left;
     padding: 8px 0px; }
@@ -78,7 +69,16 @@ form.full {
     text-align: center;
     margin-bottom: 10px; }
   form.full .actions {
-    width: 500px; }
+    width: 500px;
+    display: inline-block; }
+    form.full .actions:after {
+      display: block;
+      content: ".";
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    * html form.full .actions {
+      height: 1px; }
   form.full .captcha * {
     margin: 0 auto;
     text-align: center; }
@@ -126,29 +126,24 @@ form.full {
       position: absolute;
       left: 0; }
 
-#footer .donation form, #support_block form {
-  display: block; }
-  #footer .donation form:after,   #support_block form:after {
-    display: block;
-    content: ".";
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html #footer .donation form,   * html #support_block form {
-    height: 1px; }
-  #footer .donation form input.text,   #support_block form input.text {
-    padding: 2px;
-    width: 112px;
-    float: left;
-    padding-left: 16px;
-    background: #f4f4f4 url('/images/layout/dollar.gif') no-repeat left;
-    border: 1px solid #dadada; }
-  #footer .donation form button,   #support_block form button {
-    margin-top: 2px;
-    padding: 3px;
-    float: right;
-    width: 65px;
-    font-size: 11px; }
+.donate_form input.text {
+  padding: 2px;
+  width: 112px;
+  float: left;
+  padding-left: 16px;
+  border: 1px solid #dadada;
+  background: #fafafa url('/images/layout/dollar.gif') no-repeat left; }
+.donate_form button {
+  padding: 3px;
+  float: right;
+  width: 65px;
+  font-size: 11px; }
+
+#non_footer .donate_form {
+  width: 234px; }
+
+#footer .donate_form {
+  width: 200px; }
 
 #support_block h4 {
   margin-bottom: 10px; }
@@ -158,14 +153,15 @@ form.full {
   background: #fafafa url('/images/layout/dollar_light.gif') no-repeat left;
   width: 138px; }
 #support_block form button {
-  margin-top: 2px;
   padding: 5px;
   background: #333;
   color: #fff; }
+#support_block .content {
+  padding-bottom: 0px; }
 
 #edit_user .check {
-  display: block;
-  margin: 40px 0 5px; }
+  display: inline-block;
+  margin: 20px 0; }
   #edit_user .check:after {
     display: block;
     content: ".";
@@ -182,7 +178,7 @@ form.full {
     float: left;
     margin-left: 10px; }
 #edit_user .note {
-  margin-bottom: 40px; }
+  margin-bottom: 10px; }
 #edit_user .image_upload {
   text-align: center; }
   #edit_user .image_upload label {

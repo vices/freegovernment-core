@@ -64,6 +64,7 @@ class Polls < Application
     @new_poll = Poll.new(params[:poll].merge(:user_id => session[:user_id]))
     @poll_tags = params[:poll_tags]
     if verify_recaptcha and @new_poll.save
+        FeedItem.create!(:user_id => @new_poll.user_id, :poll_id => @new_poll.id)
         @new_forum = Forum.new(:name => @new_poll.question, :poll_id => @new_poll.id) #
         @new_forum.save #
         @new_topic = Topic.new(:name => "Comments", :forum_id => @new_forum.id, :user_id => @new_poll.user_id)

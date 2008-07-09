@@ -1,6 +1,6 @@
 %table
   - activities.each do |a|
-    - unless a.what.nil?
+    - unless a.what.nil? or a.is_hidden
       %tr
         %td.date
           = a.created_at.strftime '%d %b %Y @ %I:%M %P'

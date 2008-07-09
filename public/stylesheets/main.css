@@ -1,0 +1,92 @@
+/*	=layout
+---------------------------------------------------------------------------- */
+
+body {
+	font-family: "Arial", "Verdana", sans-serif;
+	font-size: 12px;
+	line-height: 175%;
+	background: #585858;
+	color: #333333;
+}
+
+.girdle {
+	width: 760px;
+	margin: 0 auto;
+}
+
+#content {
+	background: #FFFFFF;
+}
+
+/* =header
+---------------------- */
+
+#header {
+	width: 760px;
+	margin: 0 auto;
+	padding-top: 1em;
+}
+
+#logo a {
+	float: left;
+	width: 450px;
+	height: 84px;
+	background: url('/images/layout/logo_header_beta.png') no-repeat top left;
+	text-indent: -999em;
+}
+#logo span { display: none; }
+
+#account_bar {
+	float: right;
+	text-align: right;
+}
+
+#account_bar .requests {
+	float: right;
+	margin-top: 1em;
+	width: 134px;
+	height: 20px;
+	background: url('/images/layout/requests.png') no-repeat;
+	text-align: left;
+	text-indent: -999em;
+}
+
+/*	=navigation
+--------------------------------- */
+
+#navigation {
+	clear: both;
+	margin-top: 1em;
+	height: 36px;
+	background: url('/images/layout/navigation-dots.png') repeat-x;
+	text-transform: uppercase;
+}
+
+#navigation li {
+	float: left;
+	width: 125px;
+}
+
+#navigation li a {
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	font-size: 0.92em;
+	font-weight: bold;
+}
+#navigation li a:hover {
+	height: 30px;
+	line-height: 30px;
+	border-top: 3px solid #666666;
+	border-bottom: 3px solid #666666;
+}
+
+#navigation li.active a {
+	height: 30px;
+	line-height: 30px;
+	border-top: 3px solid #333333;
+	border-bottom: 3px solid #333333;
+}

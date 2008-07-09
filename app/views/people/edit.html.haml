@@ -2,6 +2,8 @@
   %h1 Edit Your Profile
   .caption
     %span You can describe yourself here.
+  - unless params[:after_signup].nil?
+    = hidden_field :name => 'after_signup', :value => 1
   = error_messages_for @person
   = error_messages_for @user
   - if !params[:after_signup]

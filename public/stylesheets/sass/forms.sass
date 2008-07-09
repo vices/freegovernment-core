@@ -1,5 +1,5 @@
 =clearfix
-  display: block
+  display: inline-block
   &:after
     display: block
     content: "." 
@@ -41,7 +41,6 @@ form.standard, form.full
     :font-weight bold
     :color #000
   .actions
-    +clearfix
     :margin-top 20px
     .cancel
       :float left
@@ -86,6 +85,7 @@ form.full
     :margin-bottom 10px
   .actions
     :width 500px
+    +clearfix
   .captcha
     margin 10px auto
     *
@@ -136,24 +136,24 @@ form.full
       :left 0
 
 
-#footer .donation, #support_block
-  form
-    +clearfix
-    input.text
-      :padding 2px
-      :width 112px
-      :float left
-      :padding-left 16px
-      :background #f4f4f4 url('/images/layout/dollar.gif') no-repeat left
-      :border 1px solid #dadada
-    button
-      :margin-top 2px
-      :padding 3px
-      /:padding-right 20px
-      /:background #e9e9e9 url('/images/layout/paypal.gif') no-repeat right
-      :float right
-      :width 65px
-      :font-size 11px
+.donate_form
+  input.text
+    :padding 2px
+    :width 112px
+    :float left
+    :padding-left 16px
+    :border 1px solid #dadada
+    :background #fafafa url('/images/layout/dollar.gif') no-repeat left
+  button
+    :padding 3px
+    :float right
+    :width 65px
+    :font-size 11px
+#non_footer .donate_form
+  :width 234px
+#footer .donate_form
+  :width 200px
+
 #support_block
   h4
     :margin-bottom 10px
@@ -164,16 +164,16 @@ form.full
       :background #fafafa url('/images/layout/dollar_light.gif') no-repeat left
       :width 138px
     button
-      :margin-top 2px
       :padding 5px
       :background #333
       :color #fff
-
+  .content
+    :padding-bottom 0px
 
 #edit_user
   .check
     +clearfix
-    :margin 40px 0 5px
+    :margin 20px 0
     input
       :width auto
       :float left
@@ -182,7 +182,7 @@ form.full
       :float left
       :margin-left 10px
   .note
-    :margin-bottom 40px
+    :margin-bottom 10px
   .image_upload
     :text-align center
     label

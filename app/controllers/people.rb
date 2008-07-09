@@ -66,6 +66,7 @@ class People < Application
         @new_person.save
         @new_user.person_id = @new_person.id
         @new_user.save
+        FeedItem.create!(:user_id => @new_user.id, :what => 'signup')
         self.current_user = @new_user
         redirect url(:edit_person, :id => @new_user.username, :after_signup => 1)
       else
@@ -82,7 +83,11 @@ class People < Application
   
   def update
     if @person.update_attributes(params[:person])
-      redirect url(:person, :id => @user.username)
+      unless params[:after_signup].nil?
+        redirect url(:edit_user, :id => @user.username, :after_signup => 1)
+      else
+        redirect url(:person, :id => @user.username)
+      end
     else
       render :edit
     end
@@ -142,15 +147,15 @@ class People < Application
             c.redirect url(:login)
           }
         else
-          if !@current_user.group_id.nil?
+          if @current_user.group_id.nil?
             throw :halt, Proc.new { |c|
               c.flash[:notice] = "#{@user.username}'s profile is private. You must be a contact to see it."
-              c.redirect url(:new_group_relationships)
+              c.redirect url(:new_contact_relationship, :contact => @user.username)
             }
           else
             throw :halt, Proc.new { |c|
-              c.flash[:halt] = "#{@user.username}'s profile is private. #{@user.username} must be a group member for you to see it."
-              c.redirect url(:new_contact_relationship)
+              c.flash[:notice] = "#{@user.username}'s profile is private. #{@user.username} must be a group member for you to see it."
+              c.redirect url(:people)
             }
           end
         end

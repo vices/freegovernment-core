@@ -28,11 +28,13 @@
     what = '%s voted %s on the poll, "%s."' % [link_to(a.user.username, profile_url(a.user)), a.vote.upcase, link_to(a.poll.question.ellipsis(80), url(:poll, :id => a.poll_id))]
   end
          %>
+         <% unless a.is_private and (a.user_id != current_user.id or (!a.user.person_id.nil? and !a.user.person.contacts.collect{|c| c.id}.include?(current_user.id)) or (!a.user.group_d.nil? and !a.user.group.members.collect{|c| c.id}.include?(current_user.id))) %>
           {
             what: '<%= what.gsub(/[']/, '\\\\\'') %>',
             where: [<%= a.user.address_lat %>, <%= a.user.address_lng %>],
             image: "<%= a.user.avatar.url(:small) %>"
           },
+          <% end %>
         <% end %>
     ];
  
