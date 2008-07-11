@@ -87,7 +87,8 @@
                     %span= c.user.address_text
                     %small= c.created_at.strftime('%b %d, %Y %I:%M%P')
                     - if c.post_number == c.topic.posts_count and c.user == current_user
-                      = link_to 'Edit', url(:edit_post, :id => c.id), :class => 'edit'
+                      %div
+                        = link_to 'Edit', url(:edit_post, :id => c.id), :class => 'edit'
                   = c.text.render_textile
           .pagination
             = merb_paginate @comments, :route => { :name => :group, :id => @user.username }, :anchor => '#comments'
