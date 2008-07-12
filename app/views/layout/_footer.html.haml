@@ -47,7 +47,7 @@
                       %span posted on 
                       =link_to h(post.topic.name), url(:topic, :id => post.topic.id)
                   .text
-                    =link_to h(post.text), post_url(post)
+                    =link_to h(post.text).ellipsis(300), post_url(post)
         .polls
           %h3 Recent Polls
           - unless @updates_newest_polls.nil?
