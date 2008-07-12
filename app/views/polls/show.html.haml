@@ -65,7 +65,7 @@
                   .main
                     .meta
                       == #{link_to h(c.user.username), profile_url(c.user)},
-                      %span= c.user.address_text
+                      %span= c.user.home
                       %small= c.created_at.strftime('%b %d, %Y %I:%M%P')
                       - if c.post_number == c.topic.posts_count and c.user == current_user
                         %div
