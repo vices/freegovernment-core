@@ -125,7 +125,7 @@ class Groups < Application
     end
 
     params['direction'] = '' if params['direction'].nil?
-    order = params['direction'].downcase == 'desc' ? sort_by.desc : sort_by.asc
+    order = params['direction'].downcase == 'asc' ? sort_by.asc : sort_by.desc
     
     {:order => [order]}
   end

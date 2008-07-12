@@ -33,6 +33,9 @@ a
 a:hover
   :text-decoration underline
 
+pre
+  :white-space normal
+
 .button_link, .button_link input, .button_link button
   +font
   :color #525252
@@ -1040,6 +1043,7 @@ h2.index_header
       .main
         :float right
         :width 400px
+        :line-height 175%;
         .meta
           :color #666
           :padding-bottom 3px
@@ -1051,11 +1055,11 @@ h2.index_header
             :font-size 10px
             :position absolute
             :right 0
-          a.edit
-            :position absolute
-            :right 130px
-            :font-weight bold
-            :color #333
+          div
+            :text-align right
+            a.edit
+              :font-weight bold
+              :color #333
       p
         :margin 10px 0
 #polls_index
@@ -1212,6 +1216,7 @@ table
     .text
       :width 650px
       :vertical-align top
+      :line-height 175%
       .meta
         :margin-bottom 10px
         :color #aaa
@@ -1220,10 +1225,11 @@ table
           :color #aaa
           :position absolute
           :right 0px
-        .edit
-          :right 40px
-          :color #333
-          :font-weight bold
+        div
+          :text-align right
+          .edit
+            :color #333
+            :font-weight bold
   .bottom
     
     :position relative
