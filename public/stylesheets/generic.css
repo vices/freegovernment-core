@@ -19,6 +19,9 @@ a {
 a:hover {
   text-decoration: underline; }
 
+pre {
+  white-space: normal; }
+
 .button_link, .button_link input, .button_link button {
   font-size: 12px;
   font-family: "Arial", "Verdana", sans-serif;
@@ -1178,7 +1181,8 @@ h2.index_header {
           border: 1px solid #ddd; }
       .comments .content .comment .main {
         float: right;
-        width: 400px; }
+        width: 400px;
+        line-height: 175%; }
         .comments .content .comment .main .meta {
           color: #666;
           padding-bottom: 3px;
@@ -1190,11 +1194,11 @@ h2.index_header {
             font-size: 10px;
             position: absolute;
             right: 0; }
-          .comments .content .comment .main .meta a.edit {
-            position: absolute;
-            right: 130px;
-            font-weight: bold;
-            color: #333; }
+          .comments .content .comment .main .meta div {
+            text-align: right; }
+            .comments .content .comment .main .meta div a.edit {
+              font-weight: bold;
+              color: #333; }
       .comments .content .comment p {
         margin: 10px 0; }
 
@@ -1343,7 +1347,10 @@ table tr.alt1 td {
       color: #888; }
   #topic table .text {
     width: 650px;
-    vertical-align: top; }
+    vertical-align: top;
+    line-height: 175%; }
+    #topic table .text p {
+      margin: 12px 0; }
     #topic table .text .meta {
       margin-bottom: 10px;
       color: #aaa;
@@ -1352,10 +1359,11 @@ table tr.alt1 td {
         color: #aaa;
         position: absolute;
         right: 0px; }
-      #topic table .text .meta .edit {
-        right: 40px;
-        color: #333;
-        font-weight: bold; }
+      #topic table .text .meta div {
+        text-align: right; }
+        #topic table .text .meta div .edit {
+          color: #333;
+          font-weight: bold; }
 #topic .bottom {
   position: relative; }
   #topic .bottom .navlink {
