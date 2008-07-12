@@ -16,7 +16,7 @@ class String
 
   def paragraphize
     text = self.dup
-    text.replace( text.split( /\n{1,}(?! )/m ).collect do |blk|
+    text.replace( text.split( /\n/m ).collect do |blk|
       blk.strip!
       if blk.empty?
         blk
@@ -28,7 +28,8 @@ class String
 
   def render_textile
     begin
-      r = RedCloth.new(self, [:filter_html])
+      s = self.split( /\n/m ).each { |l| l.strip! }.join("\n\n")
+      r = RedCloth.new(s, [:filter_html])
       return r.to_html
     rescue
       return self
