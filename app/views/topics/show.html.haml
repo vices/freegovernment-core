@@ -21,9 +21,9 @@
                 = link_to image_tag(post.user.avatar.url(:small)), profile_url(post.user)
               .username
                 = link_to h(post.user.username), profile_url(post.user)
-              - unless post.user.address_text.nil?
+              - unless post.user.home.nil?
                 .address
-                  =h post.user.address_text
+                  =h post.user.home
             %td.text
               .meta
                 = link_to '#' + post.post_number.to_s, post_url(post)

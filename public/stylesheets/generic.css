@@ -1359,11 +1359,11 @@ table tr.alt1 td {
         color: #aaa;
         position: absolute;
         right: 0px; }
-      #topic table .text .meta div {
-        text-align: right; }
-        #topic table .text .meta div .edit {
-          color: #333;
-          font-weight: bold; }
+      #topic table .text .meta .edit {
+        color: #333;
+        font-weight: bold;
+        position: absolute;
+        right: 40px; }
 #topic .bottom {
   position: relative; }
   #topic .bottom .navlink {
